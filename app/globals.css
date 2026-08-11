@@ -1,0 +1,197 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg-app: var(--bg-app);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-primary: var(--bg-primary);
+
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-text-on-dark: var(--text-on-dark);
+  --color-text-on-dark-muted: var(--text-on-dark-muted);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-fg);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-on-dark: var(--border-on-dark);
+
+  /* Legacy brand-* token aliases for backward compatibility */
+  --color-brand-background: var(--bg-app);
+  --color-brand-foreground: var(--text-main);
+  --color-brand-secondary: var(--bg-surface);
+  --color-brand-muted: var(--text-muted);
+  --color-brand-border: var(--border-subtle);
+  --color-brand-accent: var(--accent);
+
+  --color-brand-primary: var(--bg-primary);
+  --color-brand-primary-foreground: var(--text-on-dark);
+  --color-brand-primary-muted: var(--text-on-dark-muted);
+  --color-brand-primary-accent: var(--accent);
+  --color-brand-primary-border: var(--border-on-dark);
+  --color-brand-primary-placeholder: var(--placeholder-on-dark);
+  --color-brand-primary-card: var(--card-bg-dark);
+
+  --font-sans: var(--font-sans), Arial, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+
+  --animate-compass-drift: compass-drift 8s ease-in-out infinite;
+  --animate-compass-spin: compass-spin 90s linear infinite;
+
+  @keyframes compass-drift {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(-35deg);
+    }
+    50% {
+      transform: translateY(12px) rotate(-30deg);
+    }
+  }
+  @keyframes compass-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Theme 1: Evergreen (Default) - Forest Green & Warm Ivory */
+:root {
+  --bg-app: #f9f7f5;
+  --bg-surface: #f0ebe1;
+  --bg-primary: #0f2c28;
+
+  --text-main: #16332f;
+  --text-muted: #4a6661;
+  --text-on-dark: #f0f5f3;
+  --text-on-dark-muted: #b8ccb5;
+
+  --accent: #c85a32;
+  --accent-hover: #b24d28;
+  --accent-fg: #ffffff;
+
+  --border-subtle: rgba(22, 51, 47, 0.15);
+  --border-on-dark: rgba(240, 245, 243, 0.18);
+  --placeholder-on-dark: rgba(240, 245, 243, 0.5);
+  --card-bg-dark: rgba(240, 235, 225, 0.05);
+
+  --hero-glow: radial-gradient(circle at 80% 30%, rgba(200, 90, 50, 0.15), transparent 45%);
+  scroll-behavior: smooth;
+}
+
+/* Theme 2: Pacific - Deep Coastal Navy & Soft Frost */
+[data-theme='pacific'] {
+  --bg-app: #f4f6f9;
+  --bg-surface: #e8eef5;
+  --bg-primary: #0f1b2d;
+
+  --text-main: #17253c;
+  --text-muted: #4c5b70;
+  --text-on-dark: #f0f4f9;
+  --text-on-dark-muted: #b4c2d4;
+
+  --accent: #d47a22;
+  --accent-hover: #ba6a1b;
+  --accent-fg: #ffffff;
+
+  --border-subtle: rgba(23, 37, 60, 0.15);
+  --border-on-dark: rgba(240, 244, 249, 0.18);
+  --placeholder-on-dark: rgba(240, 244, 249, 0.5);
+  --card-bg-dark: rgba(232, 238, 245, 0.05);
+
+  --hero-glow: radial-gradient(circle at 80% 30%, rgba(212, 122, 34, 0.15), transparent 45%);
+}
+
+/* Theme 3: Maple - Mahogany Burgundy & Warm Linen */
+[data-theme='maple'] {
+  --bg-app: #faf6f0;
+  --bg-surface: #f2e7dc;
+  --bg-primary: #2a181a;
+
+  --text-main: #362224;
+  --text-muted: #614d4f;
+  --text-on-dark: #fbf0f0;
+  --text-on-dark-muted: #dac2c4;
+
+  --accent: #b83a2e;
+  --accent-hover: #a02e23;
+  --accent-fg: #ffffff;
+
+  --border-subtle: rgba(54, 34, 36, 0.15);
+  --border-on-dark: rgba(251, 240, 240, 0.18);
+  --placeholder-on-dark: rgba(251, 240, 240, 0.5);
+  --card-bg-dark: rgba(242, 231, 220, 0.05);
+
+  --hero-glow: radial-gradient(circle at 80% 30%, rgba(184, 58, 46, 0.15), transparent 45%);
+}
+
+/* Theme 4: Slate - Modern Dark Mode */
+[data-theme='slate'] {
+  --bg-app: #1a2026;
+  --bg-surface: #242c34;
+  --bg-primary: #12161a;
+
+  --text-main: #f0f4f8;
+  --text-muted: #94a3b8;
+  --text-on-dark: #f0f4f8;
+  --text-on-dark-muted: #94a3b8;
+
+  --accent: #e28b38;
+  --accent-hover: #d27926;
+  --accent-fg: #12161a;
+
+  --border-subtle: rgba(240, 244, 248, 0.12);
+  --border-on-dark: rgba(240, 244, 248, 0.15);
+  --placeholder-on-dark: rgba(240, 244, 248, 0.45);
+  --card-bg-dark: rgba(255, 255, 255, 0.04);
+
+  --hero-glow: radial-gradient(circle at 80% 30%, rgba(226, 139, 56, 0.15), transparent 45%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+em {
+  font-weight: 400;
+  font-style: italic;
+}
