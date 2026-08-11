@@ -1,0 +1,38 @@
+{
+  "name": "elvin-ediz-immigration",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "studio": "sanity dev",
+    "studio:deploy": "sanity deploy",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@portabletext/react": "^7.0.1",
+    "@sanity/client": "^7.23.1",
+    "@sanity/icons": "^5.1.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/ui": "^3.3.5",
+    "@sanity/vision": "^6.5.0",
+    "lucide-react": "^1.24.0",
+    "next": "^16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sanity": "^6.5.0",
+    "styled-components": "^6.1.19",
+    "typescript": "^6.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
+    "@types/node": "^26.0.0",
+    "@types/react": "^19.2.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4.3.2"
+  }
+}
