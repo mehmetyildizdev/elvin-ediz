@@ -2,6 +2,10 @@
 node_modules
 .pnpm-store
 
+# typescript build cache
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
 # next.js build output
 .next
 out
