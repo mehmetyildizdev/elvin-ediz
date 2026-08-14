@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { VisualIconPicker } from '../components/VisualIconPicker';
 
 export const service = defineType({
   name: 'service',
@@ -28,15 +29,8 @@ export const service = defineType({
       name: 'iconName',
       title: 'Icon Name',
       type: 'string',
-      options: {
-        list: [
-          { title: 'Passport / Visitor Visa', value: 'passport' },
-          { title: 'Suitcase / Temporary Residency', value: 'suitcase' },
-          { title: 'Home / Permanent Residency', value: 'home' },
-          { title: 'Briefcase / Start-Up Visa', value: 'briefcase' },
-          { title: 'Graduation / Study Permit', value: 'graduation' },
-          { title: 'File Text / LMIA', value: 'file-text' },
-        ],
+      components: {
+        input: VisualIconPicker,
       },
     }),
     defineField({
@@ -63,6 +57,30 @@ export const service = defineType({
       title: 'Detailed Overview / Body',
       type: 'array',
       of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }],
+    }),
+    defineField({
+      name: 'ctaTitle',
+      title: 'Callout Title',
+      description: 'Optional custom heading for the callout box (defaults to "Apply for [Service Title]").',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ctaSubtitle',
+      title: 'Callout Subtitle',
+      description: 'Optional description (defaults to "Direct representation and assessment with Nazly Sunguroglu, RCIC.").',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ctaButtonText',
+      title: 'Callout Button Text',
+      description: 'Optional button label (defaults to "Book Free Consultation").',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ctaButtonLink',
+      title: 'Callout Button Link',
+      description: 'Optional custom URL or WhatsApp link (defaults to WhatsApp message for this service).',
+      type: 'string',
     }),
   ],
   preview: {
