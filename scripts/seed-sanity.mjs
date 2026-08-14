@@ -66,6 +66,7 @@ async function seed() {
   const homePage = {
     _id: 'homePage',
     _type: 'homePage',
+    // 00. Hero
     heroEyebrow: 'ELVIN EDIZ IMMIGRATION SERVICES',
     heroTitle: 'Your Canadian story. starts here.',
     heroSubtitle:
@@ -73,24 +74,114 @@ async function seed() {
     heroPrimaryCtaText: 'Free Consultation',
     heroPrimaryCtaLink: 'https://wa.me/16475681009',
     heroSecondaryCtaText: 'Explore services',
+    heroSecondaryCtaLink: '#services',
     badgeText: 'EST. 2018',
-    stats: [
-      { _key: 's1', number: '4,578+', label: 'Trusted Clients' },
-      { _key: 's2', number: '150+', label: 'Countries Represented' },
-      { _key: 's3', number: '574+', label: 'Partner Universities' },
-      { _key: 's4', number: '1,564+', label: 'Student Permits' },
-      { _key: 's5', number: '1,254+', label: 'Successful Immigrations' },
+
+    // 01. Trust Bar
+    trustBarItems: [
+      { _key: 't1', number: '01', text: 'CICC Regulated Consultant', icon: 'shield' },
+      { _key: 't2', number: '02', text: 'Personalized Guidance', icon: 'user-check' },
+      { _key: 't3', number: '03', text: 'Clear Next Steps', icon: 'check' },
+      { _key: 't4', number: '04', text: 'Canada-Wide Service', icon: 'map-pin' },
     ],
-    strategyEyebrow: 'ELVIN EDIZ IMMIGRATION SERVICES',
-    strategyTitle: 'Our Strategy',
+
+    // 02. Services Header
+    servicesEyebrow: 'IMMIGRATION PATHWAYS',
+    servicesTitleMain: 'Choose your',
+    servicesTitleAccent: 'immigration plan.',
+    servicesDescription:
+      'We personalize your immigration plan to suit your needs and goals. Your pathway to Canada is divided into distinct, clear categories.',
+    servicesViewAllText: 'View all 5 pathways →',
+    servicesViewAllLink: '/services',
+
+    // 03. Who Are We / Stats
+    strategyEyebrow: 'WHO ARE WE?',
+    strategyTitle: 'Elvin Ediz Immigration Services',
     strategyParagraph1:
-      'Elvin Ediz Immigration Services believes every individual is unique with a one-of-a-kind goal in life.',
+      'Elvin Ediz Immigration Services is a Toronto-based Canadian immigration firm led by Nazly Sunguroglu, RCIC (Regulated Canadian Immigration Consultant). We provide structured, end-to-end guidance across economic immigration, study pathways, work permits, family sponsorship, and citizenship.',
     strategyParagraph2:
-      'Our personalized approach believes that Pragmatism is the key to handling your case. Considering your circumstances will maximize the effectiveness of your application when you engage with our legal team, you will know your rights and options, if you qualify for a specific program, and the chances of a successful case.',
-    calloutEyebrow: 'NOT SURE WHERE TO BEGIN?',
-    calloutTitle: 'We can find the right starting point.',
-    calloutCtaText: 'Free Consultation',
+      'Every profile is assessed with direct oversight from an RCIC, ensuring your submission meets current IRCC criteria and minimizes avoidable processing delays.',
+    whoAreWePrimaryCtaText: 'Free Consultation',
+    whoAreWePrimaryCtaLink: 'https://wa.me/16475681009',
+    whoAreWeSecondaryCtaText: 'Send a Message',
+    whoAreWeSecondaryCtaLink: '#contact',
+    ciccBadgeTitle: 'CICC REGISTERED & APPROVED',
+    ciccBadgeSubtitle:
+      'Regulated Canadian Immigration Consultant (RCIC)\nMember of the College of Immigration and Citizenship Consultants.',
+    stats: [
+      { _key: 's1', number: '4,578+', label: 'Trusted Clients', icon: 'user-check' },
+      { _key: 's2', number: '99%', label: 'Worldwide Approvals', icon: 'globe' },
+      { _key: 's3', number: '50+', label: 'Canadian Colleges', icon: 'school' },
+      { _key: 's4', number: '120+', label: 'Successful PR Visas', icon: 'graduation' },
+      { _key: 's5', number: '100%', label: 'Regulated RCIC Support', icon: 'file-check' },
+    ],
+
+    // 04. Strategy & About
+    aboutEyebrow: 'ELVIN EDIZ IMMIGRATION SERVICES',
+    aboutTitleMain: 'Our',
+    aboutTitleAccent: 'Strategy',
+    aboutQuoteParagraph:
+      'We believe Canadian immigration should be empowering, not overwhelming.',
+    aboutBodyParagraph:
+      'With personalized assessment and clear strategic direction, we help individuals, students, professionals, and families navigate Canadian immigration regulations with confidence.',
+    aboutCtaText: 'Free Consultation',
+    aboutCtaLink: 'https://wa.me/16475681009',
+
+    // 05. Testimonials Header
+    testimonialsEyebrow: 'CLIENT EXPERIENCES',
+    testimonialsTitleMain: 'Trusted by clients',
+    testimonialsTitleAccent: 'across the globe.',
+
+    // 06. Process (How It Works)
+    processEyebrow: 'THE ELVIN EDIZ WAY',
+    processTitleMain: 'Less uncertainty.',
+    processTitleAccent: 'More momentum.',
+    processSteps: [
+      {
+        _key: 'p1',
+        number: '01',
+        title: 'Start with a conversation',
+        text: 'We listen to your plans, questions, and circumstances.',
+      },
+      {
+        _key: 'p2',
+        number: '02',
+        title: 'Find your right pathway',
+        text: 'Together, we map out an approach that makes sense for you.',
+      },
+      {
+        _key: 'p3',
+        number: '03',
+        title: 'Move forward with confidence',
+        text: 'We help you prepare, submit, and understand what comes next.',
+      },
+    ],
+
+    // 07. Insights Header
+    insightsEyebrow: 'THE LATEST',
+    insightsTitleMain: 'Fresh',
+    insightsTitleAccent: 'perspective.',
+    insightsViewAllText: 'View all insights',
+    insightsViewAllLink: '/insights',
+
+    // 08. Contact Section
+    contactEyebrow: 'READY WHEN YOU ARE',
+    contactTitleMain: "Let's talk about\nwhat's",
+    contactTitleAccent: 'next.',
+    contactDescription:
+      'Whether you have a clear plan or are just beginning to explore, reaching out for a free consultation is a good place to start.',
+    contactSubmitButtonText: 'Free Consultation Request',
+    contactDisclaimer:
+      'By submitting, you agree to be contacted by Elvin Ediz Immigration Services.',
+    contactServiceOptions: [
+      'Study in Canada',
+      'Work & Careers',
+      'Family Sponsorship',
+      'Permanent Residence',
+      'Other',
+    ],
   };
+
 
   // 3. Staff Member (Nazly Sunguroglu)
   const staffNazly = {
@@ -277,6 +368,9 @@ Our personalized approach believes that Pragmatism is the key to handling your c
 
   for (const doc of docs) {
     await client.createOrReplace(doc);
+    try {
+      await client.delete(`drafts.${doc._id}`);
+    } catch {}
     console.log(`✓ Published document: [${doc._type}] ID: "${doc._id}"`);
   }
 
