@@ -6,7 +6,7 @@ import { Menu, X, Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { useState } from 'react';
 import { ThemeSwitcher } from '@/components/ui/theme-switcher';
 import { Button } from '@/components/ui/button';
-import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/data';
+import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
 
 export function Header({ settings = defaultSiteSettings }: { settings?: SiteSettingsData }) {
   const [open, setOpen] = useState(false);

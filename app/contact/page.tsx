@@ -1,7 +1,7 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { ContactInfo } from '@/components/pages/contact/info';
-import { ConsultationForm } from '@/components/sections/contact';
+import { ConsultationForm } from '@/components/home/contact';
 import { fetchSiteSettings } from '@/sanity/lib/data';
 
 export default async function ContactPage() {

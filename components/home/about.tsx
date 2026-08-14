@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { StaffData, HomePageData, defaultStaff, defaultHomePage } from '@/sanity/lib/data';
+import type { StaffData, HomePageData } from '@/sanity/lib/types';
+import { defaultStaff, defaultHomePage } from '@/sanity/lib/types';
 
 export function About({
   staff = defaultStaff,
@@ -43,29 +44,32 @@ export function About({
         {/* Right Column: Strategy Content */}
         <div className="flex flex-col justify-center lg:col-span-7">
           <p className="text-accent mb-3 text-xs font-bold tracking-widest uppercase">
-            {homeData.strategyEyebrow || 'ELVIN EDIZ IMMIGRATION SERVICES'}
+            {homeData.aboutEyebrow || homeData.strategyEyebrow || 'ELVIN EDIZ IMMIGRATION SERVICES'}
           </p>
           <h2 className="text-text-main mb-6 font-serif text-4xl leading-tight font-light sm:text-5xl md:text-5xl">
-            Our <span className="text-accent font-serif font-semibold italic">Strategy</span>
+            {homeData.aboutTitleMain || 'Our'}{' '}
+            <span className="text-accent font-serif font-semibold italic">
+              {homeData.aboutTitleAccent || 'Strategy'}
+            </span>
           </h2>
 
           <div className="text-text-muted mb-8 space-y-4 text-base leading-relaxed">
             <p className="text-text-main font-serif text-lg font-medium italic">
-              {homeData.strategyParagraph1}
+              {homeData.aboutQuoteParagraph || homeData.strategyParagraph1}
             </p>
             <p className="text-sm leading-relaxed md:text-base">
-              {homeData.strategyParagraph2}
+              {homeData.aboutBodyParagraph || homeData.strategyParagraph2}
             </p>
           </div>
 
           <div className="flex items-center gap-4">
             <Button
-              href="https://wa.me/16475681009"
+              href={homeData.aboutCtaLink || 'https://wa.me/16475681009'}
               variant="primary"
               size="md"
               className="self-start"
             >
-              Free Consultation <ArrowUpRight size={16} />
+              {homeData.aboutCtaText || 'Free Consultation'} <ArrowUpRight size={16} />
             </Button>
           </div>
         </div>
@@ -73,3 +77,4 @@ export function About({
     </section>
   );
 }
+

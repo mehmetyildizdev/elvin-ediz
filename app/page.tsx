@@ -1,13 +1,15 @@
 import { Header } from '@/components/layout/header';
-import { Hero } from '@/components/sections/hero';
-import { TrustBar } from '@/components/sections/trust-bar';
-import { Services } from '@/components/sections/services';
-import { RcicSection } from '@/components/sections/rcic-section';
-import { Testimonials } from '@/components/sections/testimonials';
-import { About } from '@/components/sections/about';
-import { Process } from '@/components/sections/process';
-import { Insights } from '@/components/sections/insights';
-import { Contact } from '@/components/sections/contact';
+import {
+  Hero,
+  TrustBar,
+  Services,
+  RcicSection,
+  Testimonials,
+  About,
+  Process,
+  Insights,
+  Contact,
+} from '@/components/home';
 import { Footer } from '@/components/layout/footer';
 import {
   fetchSiteSettings,
@@ -16,6 +18,9 @@ import {
   fetchTestimonials,
   fetchStaff,
 } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function Home() {
   const settings = await fetchSiteSettings();
@@ -28,15 +33,16 @@ export default async function Home() {
     <main>
       <Header settings={settings} />
       <Hero homeData={homeData} />
-      <TrustBar />
-      <Services services={services} />
+      <TrustBar homeData={homeData} />
+      <Services services={services} homeData={homeData} />
       <RcicSection homeData={homeData} />
       <About staff={staff} homeData={homeData} />
-      <Testimonials testimonials={testimonials} />
-      <Process />
-      <Insights />
-      <Contact />
+      <Testimonials testimonials={testimonials} homeData={homeData} />
+      <Process homeData={homeData} />
+      <Insights homeData={homeData} />
+      <Contact homeData={homeData} />
       <Footer />
     </main>
   );
 }
+

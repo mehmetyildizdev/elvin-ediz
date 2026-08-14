@@ -1,21 +1,30 @@
 'use client';
 
 import { Star, Quote } from 'lucide-react';
-import { TestimonialData } from '@/sanity/lib/data';
+import type { TestimonialData, HomePageData } from '@/sanity/lib/types';
+import { defaultHomePage } from '@/sanity/lib/types';
 import { Carousel } from '@/components/ui/carousel';
 
-export function Testimonials({ testimonials }: { testimonials: TestimonialData[] }) {
+export function Testimonials({
+  testimonials,
+  homeData = defaultHomePage,
+}: {
+  testimonials: TestimonialData[];
+  homeData?: HomePageData;
+}) {
   return (
     <section className="bg-bg-app border-border-subtle border-t px-6 py-20 md:px-12 md:py-32">
       <div className="mx-auto flex max-w-7xl flex-col">
         <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <p className="text-accent mb-3 text-xs font-bold tracking-widest uppercase">
-              CLIENT EXPERIENCES
+              {homeData.testimonialsEyebrow || 'CLIENT EXPERIENCES'}
             </p>
             <h2 className="text-text-main m-0 font-serif text-4xl leading-tight sm:text-5xl md:text-5xl">
-              Trusted by clients <br />
-              <span className="text-accent font-serif italic">across the globe.</span>
+              {homeData.testimonialsTitleMain || 'Trusted by clients'} <br />
+              <span className="text-accent font-serif italic">
+                {homeData.testimonialsTitleAccent || 'across the globe.'}
+              </span>
             </h2>
           </div>
           <a

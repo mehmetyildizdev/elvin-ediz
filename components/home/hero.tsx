@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUpRight, Plane } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { HomePageData, defaultHomePage } from '@/sanity/lib/data';
+import type { HomePageData } from '@/sanity/lib/types';
+import { defaultHomePage } from '@/sanity/lib/types';
 
 export function Hero({ homeData = defaultHomePage }: { homeData?: HomePageData }) {
   const currentYear = new Date().getFullYear();
@@ -20,24 +21,20 @@ export function Hero({ homeData = defaultHomePage }: { homeData?: HomePageData }
               {homeData.heroEyebrow}
             </p>
             <h1 className="mb-6 font-serif text-5xl leading-tight font-light tracking-tight sm:text-6xl lg:text-7xl">
-              {homeData.heroTitle.split('.')[0]}
-              <br />
-              <span className="text-accent font-serif italic">
-                {homeData.heroTitle.includes('.') ? homeData.heroTitle.split('.')[1] || 'starts here.' : ''}
-              </span>
+              {homeData.heroTitle}
             </h1>
             <p className="text-text-on-dark-muted mb-9 max-w-lg text-base leading-relaxed sm:text-lg">
               {homeData.heroSubtitle}
             </p>
             <div className="flex flex-wrap items-center gap-6">
               <Button href={homeData.heroPrimaryCtaLink || 'https://wa.me/16475681009'} variant="primary" size="md">
-                Free Consultation <ArrowUpRight size={16} />
+                {homeData.heroPrimaryCtaText || 'Free Consultation'} <ArrowUpRight size={16} />
               </Button>
               <a
-                href="#services"
+                href={homeData.heroSecondaryCtaLink || '#services'}
                 className="border-border-on-dark text-text-on-dark hover:text-accent hover:border-accent inline-flex items-center gap-2 border-b pb-1.5 text-xs font-semibold tracking-wider uppercase transition-colors"
               >
-                {homeData.heroSecondaryCtaText} <ArrowDown size={15} />
+                {homeData.heroSecondaryCtaText || 'Explore services'} <ArrowDown size={15} />
               </a>
             </div>
           </div>

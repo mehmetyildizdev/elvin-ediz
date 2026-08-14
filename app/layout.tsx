@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Playfair_Display } from 'next/font/google';
+import { draftMode } from 'next/headers';
+import { VisualEditing } from 'next-sanity/visual-editing';
+import { SanityLive } from '@/sanity/lib/live';
 import './globals.css';
 
 const sans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' });
@@ -13,10 +16,15 @@ export const metadata: Metadata = {
   description: 'Personalized Canadian immigration guidance from Nazly Sunguroglu, RCIC.',
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const { isEnabled } = await draftMode();
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${sans.variable} ${serif.variable}`}>{children}</body>
+      <body className={`${sans.variable} ${serif.variable}`}>
+        {children}
+        <SanityLive />
+        {isEnabled && <VisualEditing />}
+      </body>
     </html>
   );
 }

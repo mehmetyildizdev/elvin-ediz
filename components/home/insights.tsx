@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import type { HomePageData } from '@/sanity/lib/types';
+import { defaultHomePage } from '@/sanity/lib/types';
 
 const articles = [
   {
@@ -22,24 +24,27 @@ const articles = [
   },
 ];
 
-export function Insights() {
+export function Insights({ homeData = defaultHomePage }: { homeData?: HomePageData }) {
   return (
     <section className="bg-bg-app px-6 py-20 md:px-12 md:py-32" id="insights">
       <div className="mx-auto flex max-w-7xl flex-col">
         <div className="border-border-subtle mb-12 flex flex-col justify-between gap-4 border-b pb-6 sm:flex-row sm:items-end">
           <div>
             <p className="text-accent mb-3 text-xs font-bold tracking-widest uppercase">
-              THE LATEST
+              {homeData.insightsEyebrow || 'THE LATEST'}
             </p>
             <h2 className="text-text-main m-0 font-serif text-4xl leading-tight sm:text-5xl md:text-5xl">
-              Fresh <span className="text-accent font-serif italic">perspective.</span>
+              {homeData.insightsTitleMain || 'Fresh'}{' '}
+              <span className="text-accent font-serif italic">
+                {homeData.insightsTitleAccent || 'perspective.'}
+              </span>
             </h2>
           </div>
           <Link
-            href="/insights"
+            href={homeData.insightsViewAllLink || '/insights'}
             className="text-text-main border-border-subtle hover:border-accent hover:text-accent inline-flex items-center gap-1.5 self-start border-b pb-1.5 text-xs font-bold tracking-widest uppercase transition-all duration-200"
           >
-            View all insights <ArrowUpRight size={16} />
+            {homeData.insightsViewAllText || 'View all insights'} <ArrowUpRight size={16} />
           </Link>
         </div>
 

@@ -1,4 +1,4 @@
-import { createClient } from '@sanity/client';
+import { getSanityClient } from '@/sanity/lib/data';
 
 type FAQ = { _key: string; question: string; answer: string };
 const fallback: FAQ[] = [
@@ -29,23 +29,16 @@ const fallback: FAQ[] = [
 ];
 
 export async function SanityFAQ() {
-  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
   let items = fallback;
-  if (projectId && !projectId.startsWith('replace-')) {
+  const client = await getSanityClient();
+  if (client) {
     try {
-      const client = createClient({
-        projectId,
-        dataset,
-        apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-07-14',
-        useCdn: true,
-      });
       const response = await client.fetch<FAQ[]>(
-        '*[_type == "faqPage" && _id == "faqPage"][0].items[]{_key, question, answer}'
+        '*[_type == "faqPage"][0].items[]{_key, question, answer}'
       );
       if (response?.length) items = response;
     } catch {
-      /* Keep the useful fallback while Studio is not configured. */
+      /* Keep the fallback */
     }
   }
   return (

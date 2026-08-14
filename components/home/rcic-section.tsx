@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { HomePageData, defaultHomePage } from '@/sanity/lib/data';
-import { UserCheck, Globe2, School, GraduationCap, FileCheck, ArrowUpRight } from 'lucide-react';
+import type { HomePageData } from '@/sanity/lib/types';
+import { defaultHomePage } from '@/sanity/lib/types';
+import { getIconComponent } from '@/sanity/lib/iconLibrary';
+import { ArrowUpRight, UserCheck } from 'lucide-react';
 
 export function RcicSection({ homeData = defaultHomePage }: { homeData?: HomePageData }) {
-  const statsList = homeData.stats || defaultHomePage.stats;
-
-  const statIcons = [UserCheck, Globe2, School, GraduationCap, FileCheck];
+  const rawStats = homeData.stats?.length ? homeData.stats : defaultHomePage.stats || [];
+  const statsList = rawStats.filter(
+    (stat) => stat && (stat.number?.trim() || stat.label?.trim())
+  );
 
   return (
     <section className="bg-bg-primary text-text-on-dark relative overflow-hidden px-6 py-20 md:px-12 md:py-28" id="who-are-we">
@@ -26,8 +29,16 @@ export function RcicSection({ homeData = defaultHomePage }: { homeData?: HomePag
               {homeData.strategyEyebrow || 'WHO ARE WE?'}
             </p>
             <h2 className="mb-6 font-serif text-4xl leading-tight text-white sm:text-5xl md:text-5xl">
-              Elvin Ediz <br />
-              <span className="text-accent font-serif font-normal italic">Immigration Services</span>
+              {homeData.strategyTitle ? (
+                <>
+                  {homeData.strategyTitle}
+                </>
+              ) : (
+                <>
+                  Elvin Ediz <br />
+                  <span className="text-accent font-serif font-normal italic">Immigration Services</span>
+                </>
+              )}
             </h2>
 
             <div className="text-text-on-dark-muted space-y-4 text-base leading-relaxed">
@@ -40,14 +51,14 @@ export function RcicSection({ homeData = defaultHomePage }: { homeData?: HomePag
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button href="https://wa.me/16475681009" variant="primary" size="md">
-                Free Consultation <ArrowUpRight size={16} />
+              <Button href={homeData.whoAreWePrimaryCtaLink || 'https://wa.me/16475681009'} variant="primary" size="md">
+                {homeData.whoAreWePrimaryCtaText || 'Free Consultation'} <ArrowUpRight size={16} />
               </Button>
               <a
-                href="#contact"
+                href={homeData.whoAreWeSecondaryCtaLink || '#contact'}
                 className="border-border-on-dark text-text-on-dark hover:text-accent hover:border-accent inline-flex items-center gap-2 border-b pb-1 text-xs font-semibold uppercase tracking-wider transition-colors"
               >
-                Send a Message
+                {homeData.whoAreWeSecondaryCtaText || 'Send a Message'}
               </a>
             </div>
           </div>
@@ -67,12 +78,11 @@ export function RcicSection({ homeData = defaultHomePage }: { homeData?: HomePag
               </div>
               <div className="border-border-on-dark/20 mt-6 border-t pt-4">
                 <span className="text-accent text-xs font-bold uppercase tracking-widest">
-                  CICC REGISTERED & APPROVED
+                  {homeData.ciccBadgeTitle || 'CICC REGISTERED & APPROVED'}
                 </span>
-                <p className="text-text-on-dark-muted mt-1 text-xs leading-relaxed">
-                  Regulated Canadian Immigration Consultant (RCIC)
-                  <br />
-                  Member of the College of Immigration and Citizenship Consultants.
+                <p className="text-text-on-dark-muted mt-1 text-xs leading-relaxed whitespace-pre-line">
+                  {homeData.ciccBadgeSubtitle ||
+                    'Regulated Canadian Immigration Consultant (RCIC)\nMember of the College of Immigration and Citizenship Consultants.'}
                 </p>
               </div>
             </div>
@@ -82,9 +92,9 @@ export function RcicSection({ homeData = defaultHomePage }: { homeData?: HomePag
         {/* RCIC Statistics Counters Bar */}
         <div className="border-border-on-dark/20 bg-bg-surface/10 mt-16 grid grid-cols-2 divide-x divide-y divide-border-on-dark/20 rounded-sm border backdrop-blur-xs md:grid-cols-5 md:divide-y-0">
           {statsList.map((stat, i) => {
-            const Icon = statIcons[i % statIcons.length];
+            const Icon = getIconComponent(stat.icon) || UserCheck;
             return (
-              <div key={i} className="flex flex-col items-center justify-center p-6 text-center">
+              <div key={stat.label || i} className="flex flex-col items-center justify-center p-6 text-center">
                 <Icon size={26} className="text-accent mb-2.5 opacity-90" />
                 <span className="text-white font-serif text-3xl font-bold md:text-4xl">
                   {stat.number}
@@ -100,3 +110,4 @@ export function RcicSection({ homeData = defaultHomePage }: { homeData?: HomePag
     </section>
   );
 }
+
