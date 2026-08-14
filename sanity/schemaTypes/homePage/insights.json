@@ -1,0 +1,38 @@
+{
+  "group": {
+    "name": "insights",
+    "title": "Insights"
+  },
+  "fields": {
+    "insightsEyebrow": {
+      "name": "insightsEyebrow",
+      "title": "Section Eyebrow",
+      "type": "string",
+      "initialValue": "THE LATEST"
+    },
+    "insightsTitleMain": {
+      "name": "insightsTitleMain",
+      "title": "Main Title (Line 1)",
+      "type": "string",
+      "initialValue": "Fresh"
+    },
+    "insightsTitleAccent": {
+      "name": "insightsTitleAccent",
+      "title": "Accent Title (Line 2)",
+      "type": "string",
+      "initialValue": "perspective."
+    },
+    "insightsViewAllText": {
+      "name": "insightsViewAllText",
+      "title": "View All Link Label",
+      "type": "string",
+      "initialValue": "View all insights"
+    },
+    "insightsViewAllLink": {
+      "name": "insightsViewAllLink",
+      "title": "View All Link URL",
+      "type": "string",
+      "initialValue": "/insights"
+    }
+  }
+}

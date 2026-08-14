@@ -1,0 +1,45 @@
+{
+  "group": {
+    "name": "services",
+    "title": "Services"
+  },
+  "fields": {
+    "servicesEyebrow": {
+      "name": "servicesEyebrow",
+      "title": "Section Eyebrow",
+      "type": "string",
+      "initialValue": "IMMIGRATION PATHWAYS"
+    },
+    "servicesTitleMain": {
+      "name": "servicesTitleMain",
+      "title": "Main Title (Line 1)",
+      "type": "string",
+      "initialValue": "Choose your"
+    },
+    "servicesTitleAccent": {
+      "name": "servicesTitleAccent",
+      "title": "Accent Title (Line 2)",
+      "type": "string",
+      "initialValue": "immigration plan."
+    },
+    "servicesDescription": {
+      "name": "servicesDescription",
+      "title": "Section Description",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "We personalize your immigration plan to suit your needs and goals. Your pathway to Canada is divided into distinct, clear categories."
+    },
+    "servicesViewAllText": {
+      "name": "servicesViewAllText",
+      "title": "View All Link Label",
+      "type": "string",
+      "initialValue": "View all 5 pathways →"
+    },
+    "servicesViewAllLink": {
+      "name": "servicesViewAllLink",
+      "title": "View All Link URL",
+      "type": "string",
+      "initialValue": "/services"
+    }
+  }
+}

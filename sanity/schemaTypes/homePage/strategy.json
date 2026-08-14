@@ -1,0 +1,52 @@
+{
+  "group": {
+    "name": "strategy",
+    "title": "Strategy"
+  },
+  "fields": {
+    "aboutEyebrow": {
+      "name": "aboutEyebrow",
+      "title": "Strategy Eyebrow Text",
+      "type": "string",
+      "initialValue": "ELVIN EDIZ IMMIGRATION SERVICES"
+    },
+    "aboutTitleMain": {
+      "name": "aboutTitleMain",
+      "title": "Strategy Title (Line 1)",
+      "type": "string",
+      "initialValue": "Our"
+    },
+    "aboutTitleAccent": {
+      "name": "aboutTitleAccent",
+      "title": "Strategy Accent Title (Line 2)",
+      "type": "string",
+      "initialValue": "Strategy"
+    },
+    "aboutQuoteParagraph": {
+      "name": "aboutQuoteParagraph",
+      "title": "Highlighted Italic Quote",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "We believe Canadian immigration should be empowering, not overwhelming."
+    },
+    "aboutBodyParagraph": {
+      "name": "aboutBodyParagraph",
+      "title": "Main Body Paragraph",
+      "type": "text",
+      "rows": 4,
+      "initialValue": "With personalized assessment and clear strategic direction, we help individuals, students, professionals, and families navigate Canadian immigration regulations with confidence."
+    },
+    "aboutCtaText": {
+      "name": "aboutCtaText",
+      "title": "CTA Button Label",
+      "type": "string",
+      "initialValue": "Free Consultation"
+    },
+    "aboutCtaLink": {
+      "name": "aboutCtaLink",
+      "title": "CTA Button Link",
+      "type": "string",
+      "initialValue": "https://wa.me/16475681009"
+    }
+  }
+}

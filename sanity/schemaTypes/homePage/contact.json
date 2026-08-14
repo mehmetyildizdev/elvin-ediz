@@ -1,0 +1,57 @@
+{
+  "group": {
+    "name": "contact",
+    "title": "Contact"
+  },
+  "fields": {
+    "contactEyebrow": {
+      "name": "contactEyebrow",
+      "title": "Section Eyebrow",
+      "type": "string",
+      "initialValue": "READY WHEN YOU ARE"
+    },
+    "contactTitleMain": {
+      "name": "contactTitleMain",
+      "title": "Main Title",
+      "type": "string",
+      "initialValue": "Let's talk about\nwhat's"
+    },
+    "contactTitleAccent": {
+      "name": "contactTitleAccent",
+      "title": "Accent Title",
+      "type": "string",
+      "initialValue": "next."
+    },
+    "contactDescription": {
+      "name": "contactDescription",
+      "title": "Section Description",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "Whether you have a clear plan or are just beginning to explore, reaching out for a free consultation is a good place to start."
+    },
+    "contactSubmitButtonText": {
+      "name": "contactSubmitButtonText",
+      "title": "Submit Button Label",
+      "type": "string",
+      "initialValue": "Free Consultation Request"
+    },
+    "contactDisclaimer": {
+      "name": "contactDisclaimer",
+      "title": "Form Disclaimer Notice",
+      "type": "string",
+      "initialValue": "By submitting, you agree to be contacted by Elvin Ediz Immigration Services."
+    },
+    "contactServiceOptions": {
+      "name": "contactServiceOptions",
+      "title": "Form Dropdown Service Options",
+      "type": "array",
+      "initialValue": [
+        "Study in Canada",
+        "Work & Careers",
+        "Family Sponsorship",
+        "Permanent Residence",
+        "Other"
+      ]
+    }
+  }
+}

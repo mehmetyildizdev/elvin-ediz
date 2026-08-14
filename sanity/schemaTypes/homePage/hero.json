@@ -1,0 +1,59 @@
+{
+  "group": {
+    "name": "hero",
+    "title": "Hero",
+    "default": true
+  },
+  "fields": {
+    "heroEyebrow": {
+      "name": "heroEyebrow",
+      "title": "Eyebrow Text",
+      "type": "string",
+      "initialValue": "ELVIN EDIZ IMMIGRATION SERVICES"
+    },
+    "heroTitle": {
+      "name": "heroTitle",
+      "title": "Main Headline",
+      "description": "Tip: Use a dot (.) to style the second sentence with accent italics",
+      "type": "string",
+      "initialValue": "Your Canadian story. starts here."
+    },
+    "heroSubtitle": {
+      "name": "heroSubtitle",
+      "title": "Subtitle Description",
+      "type": "text",
+      "rows": 2,
+      "initialValue": "Clear, compassionate, and regulated Canadian immigration guidance tailored to the life you are ready to build in Canada."
+    },
+    "heroPrimaryCtaText": {
+      "name": "heroPrimaryCtaText",
+      "title": "Primary Button Label",
+      "type": "string",
+      "initialValue": "Free Consultation"
+    },
+    "heroPrimaryCtaLink": {
+      "name": "heroPrimaryCtaLink",
+      "title": "Primary Button Link / WhatsApp",
+      "type": "string",
+      "initialValue": "https://wa.me/16475681009"
+    },
+    "heroSecondaryCtaText": {
+      "name": "heroSecondaryCtaText",
+      "title": "Secondary Link Label",
+      "type": "string",
+      "initialValue": "Explore services"
+    },
+    "heroSecondaryCtaLink": {
+      "name": "heroSecondaryCtaLink",
+      "title": "Secondary Link Target",
+      "type": "string",
+      "initialValue": "#services"
+    },
+    "badgeText": {
+      "name": "badgeText",
+      "title": "Compass Badge Text",
+      "type": "string",
+      "initialValue": "EST. 2018"
+    }
+  }
+}

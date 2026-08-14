@@ -1,0 +1,54 @@
+{
+  "group": {
+    "name": "process",
+    "title": "Process"
+  },
+  "fields": {
+    "processEyebrow": {
+      "name": "processEyebrow",
+      "title": "Section Eyebrow",
+      "type": "string",
+      "initialValue": "THE ELVIN EDIZ WAY"
+    },
+    "processTitleMain": {
+      "name": "processTitleMain",
+      "title": "Main Title (Line 1)",
+      "type": "string",
+      "initialValue": "Less uncertainty."
+    },
+    "processTitleAccent": {
+      "name": "processTitleAccent",
+      "title": "Accent Title (Line 2)",
+      "type": "string",
+      "initialValue": "More momentum."
+    },
+    "processSteps": {
+      "name": "processSteps",
+      "title": "Process Steps",
+      "type": "array",
+      "itemNumberName": "number",
+      "itemNumberTitle": "Step Index (e.g. 01)",
+      "itemTitleName": "title",
+      "itemTitleTitle": "Step Title",
+      "itemTextName": "text",
+      "itemTextTitle": "Step Description",
+      "initialValue": [
+        {
+          "number": "01",
+          "title": "Start with a conversation",
+          "text": "We listen to your plans, questions, and circumstances."
+        },
+        {
+          "number": "02",
+          "title": "Find your right pathway",
+          "text": "Together, we map out an approach that makes sense for you."
+        },
+        {
+          "number": "03",
+          "title": "Move forward with confidence",
+          "text": "We help you prepare, submit, and understand what comes next."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "group": {
+    "name": "trustBar",
+    "title": "Trust Bar"
+  },
+  "fields": {
+    "trustBarItems": {
+      "name": "trustBarItems",
+      "title": "Credential Badges",
+      "description": "The horizontal trust badges displayed below the hero",
+      "type": "array",
+      "itemNumberName": "number",
+      "itemNumberTitle": "Number / Prefix (e.g. 01)",
+      "itemTextName": "text",
+      "itemTextTitle": "Badge Label",
+      "itemIconName": "icon",
+      "itemIconTitle": "Badge Icon (Optional)",
+      "iconOptions": [
+        { "title": "None / Use Number", "value": "none" },
+        { "title": "Shield Check (Regulated / Secure)", "value": "shield" },
+        { "title": "User Check (Personal Guidance)", "value": "user-check" },
+        { "title": "Check Circle (Clear Steps)", "value": "check" },
+        { "title": "Map Pin (Canada-Wide)", "value": "map-pin" },
+        { "title": "Globe (International)", "value": "globe" },
+        { "title": "Award (Excellence)", "value": "award" },
+        { "title": "Clock (Timely Support)", "value": "clock" }
+      ],
+      "initialValue": [
+        { "number": "01", "text": "CICC Regulated Consultant", "icon": "shield" },
+        { "number": "02", "text": "Personalized Guidance", "icon": "user-check" },
+        { "number": "03", "text": "Clear Next Steps", "icon": "check" },
+        { "number": "04", "text": "Canada-Wide Service", "icon": "map-pin" }
+      ]
+    }
+  }
+}

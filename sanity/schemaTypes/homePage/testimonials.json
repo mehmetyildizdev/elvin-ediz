@@ -1,0 +1,26 @@
+{
+  "group": {
+    "name": "testimonials",
+    "title": "Reviews"
+  },
+  "fields": {
+    "testimonialsEyebrow": {
+      "name": "testimonialsEyebrow",
+      "title": "Section Eyebrow",
+      "type": "string",
+      "initialValue": "CLIENT EXPERIENCES"
+    },
+    "testimonialsTitleMain": {
+      "name": "testimonialsTitleMain",
+      "title": "Main Title (Line 1)",
+      "type": "string",
+      "initialValue": "Trusted by clients"
+    },
+    "testimonialsTitleAccent": {
+      "name": "testimonialsTitleAccent",
+      "title": "Accent Title (Line 2)",
+      "type": "string",
+      "initialValue": "across the globe."
+    }
+  }
+}
