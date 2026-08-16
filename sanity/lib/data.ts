@@ -6,6 +6,8 @@ import {
   backupStaff,
   backupServices,
   backupTestimonials,
+  backupInsightsPage,
+  backupPosts,
 } from './backupData';
 import type {
   SiteSettingsData,
@@ -13,6 +15,9 @@ import type {
   ServiceData,
   StaffData,
   TestimonialData,
+  InsightsPageData,
+  PostData,
+  PostKind,
 } from './types';
 
 export * from './types';
@@ -70,11 +75,16 @@ export async function fetchHomePage(): Promise<HomePageData> {
   if (!client) return backupHomePage;
   try {
     const data = await client.fetch<Partial<HomePageData>>(
-      `*[_type == "homePage"][0]`,
+      `*[_type == "homePage"][0] {
+        ...,
+        "ciccBadgeImageUrl": ciccBadgeImage.asset->url,
+        "whoAreWeImageUrl": whoAreWeImage.asset->url,
+        "aboutImageUrl": aboutImage.asset->url
+      }`,
       {},
       fetchOptions
     );
-    if (data && data.heroTitle) return { ...backupHomePage, ...data };
+    if (data && (data.heroTitle || data.strategyTitle || data.strategyEyebrow)) return { ...backupHomePage, ...data };
   } catch (err) {
     console.error('Error fetching homePage from Sanity:', err);
   }
@@ -155,3 +165,80 @@ export async function fetchTestimonials(): Promise<TestimonialData[]> {
   }
   return backupTestimonials;
 }
+
+export async function fetchInsightsPage(): Promise<InsightsPageData> {
+  const client = await getSanityClient();
+  if (!client) return backupInsightsPage;
+  try {
+    const data = await client.fetch<Partial<InsightsPageData>>(
+      `*[_type == "insightsPage"][0]`,
+      {},
+      fetchOptions
+    );
+    if (data && (data.titleMain || data.eyebrow)) return { ...backupInsightsPage, ...data };
+  } catch (err) {
+    console.error('Error fetching insightsPage from Sanity:', err);
+  }
+  return backupInsightsPage;
+}
+
+export async function fetchPosts(kind?: PostKind | string): Promise<PostData[]> {
+  const client = await getSanityClient();
+  if (!client) {
+    if (!kind) return backupPosts;
+    return backupPosts.filter((p) => p.kind === kind);
+  }
+  try {
+    const query = kind
+      ? `*[_type == "post" && kind == $kind] | order(publishedAt desc) {
+          ...,
+          "slug": slug.current,
+          "coverImageUrl": coverImage.asset->url,
+          "authorName": coalesce(customAuthorName, author->name, authorName, "Nazly Sunguroglu, RCIC"),
+          "authorRole": coalesce(customAuthorRole, author->role, authorRole, "Regulated Canadian Immigration Consultant"),
+          "authorPhotoUrl": author->photo.asset->url
+        }`
+      : `*[_type == "post"] | order(publishedAt desc) {
+          ...,
+          "slug": slug.current,
+          "coverImageUrl": coverImage.asset->url,
+          "authorName": coalesce(customAuthorName, author->name, authorName, "Nazly Sunguroglu, RCIC"),
+          "authorRole": coalesce(customAuthorRole, author->role, authorRole, "Regulated Canadian Immigration Consultant"),
+          "authorPhotoUrl": author->photo.asset->url
+        }`;
+    const data = await client.fetch<PostData[]>(
+      query,
+      kind ? { kind } : {},
+      fetchOptions
+    );
+    if (data?.length) return data;
+  } catch (err) {
+    console.error('Error fetching posts from Sanity:', err);
+  }
+  if (!kind) return backupPosts;
+  return backupPosts.filter((p) => p.kind === kind);
+}
+
+export async function fetchPostBySlug(slug: string): Promise<PostData | null> {
+  const client = await getSanityClient();
+  if (!client) return backupPosts.find((p) => p.slug === slug) || null;
+  try {
+    const data = await client.fetch<PostData>(
+      `*[_type == "post" && slug.current == $slug][0] {
+        ...,
+        "slug": slug.current,
+        "coverImageUrl": coverImage.asset->url,
+        "authorName": coalesce(customAuthorName, author->name, authorName, "Nazly Sunguroglu, RCIC"),
+        "authorRole": coalesce(customAuthorRole, author->role, authorRole, "Regulated Canadian Immigration Consultant"),
+        "authorPhotoUrl": author->photo.asset->url
+      }`,
+      { slug },
+      fetchOptions
+    );
+    if (data) return data;
+  } catch (err) {
+    console.error('Error fetching post by slug from Sanity:', err);
+  }
+  return backupPosts.find((p) => p.slug === slug) || null;
+}
+

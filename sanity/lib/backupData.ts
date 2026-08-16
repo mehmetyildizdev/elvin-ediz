@@ -4,6 +4,8 @@ import type {
   StaffData,
   ServiceData,
   TestimonialData,
+  InsightsPageData,
+  PostData,
 } from './types';
 
 export const backupSiteSettings: SiteSettingsData = {
@@ -67,6 +69,7 @@ export const backupHomePage: HomePageData = {
   whoAreWePrimaryCtaLink: 'https://wa.me/16475681009',
   whoAreWeSecondaryCtaText: 'Send a Message',
   whoAreWeSecondaryCtaLink: '#contact',
+  ciccBadgeImageUrl: '/rcic_logo.png',
   ciccBadgeTitle: 'CICC REGISTERED & APPROVED',
   ciccBadgeSubtitle:
     'Regulated Canadian Immigration Consultant (RCIC)\nMember of the College of Immigration and Citizenship Consultants.',
@@ -278,3 +281,157 @@ export const backupTestimonials: TestimonialData[] = [
       'Nazli is super kind, helpful, and always easy to reach. This made the whole visa process so much less stressful. I’d highly recommend her to anyone!',
   },
 ];
+
+export const backupInsightsPage: InsightsPageData = {
+  eyebrow: 'PERSPECTIVE & GUIDANCE',
+  titleMain: 'Knowledge & Guidance for your',
+  titleAccent: 'Canadian journey.',
+  description:
+    'In-depth strategic insights, practical immigration guides, policy announcements, and Canadian immigration news from Elvin Ediz Immigration Services.',
+
+  insightsEyebrow: 'IN-DEPTH PERSPECTIVE',
+  insightsTitleMain: 'Featured',
+  insightsTitleAccent: 'Insights',
+  insightsDescription: 'Thought leadership and strategic perspectives on Canadian immigration pathways.',
+
+  infoEyebrow: 'PRACTICAL GUIDES & INFO',
+  infoTitleMain: 'Immigration',
+  infoTitleAccent: 'Knowledge Base',
+  infoDescription: 'Actionable explanations, checklists, and key application criteria answered clearly.',
+
+  announcementsEyebrow: 'OFFICIAL NOTICES',
+  announcementsTitle: 'Announcements',
+  announcementsEmptyMessage: 'No urgent announcements at this time.',
+
+  newsEyebrow: 'LATEST UPDATES',
+  newsTitle: 'Immigration News',
+  newsEmptyMessage: 'No recent news articles yet.',
+
+  consultationEyebrow: 'Direct Consultation',
+  consultationTitle: 'Have a specific question about your case?',
+  consultationDescription:
+    'Connect with Nazly Sunguroglu, RCIC for a one-on-one assessment of your Canadian immigration pathway.',
+  consultationButtonText: 'Message on WhatsApp',
+  consultationButtonLink: 'https://wa.me/16475681009',
+};
+
+export const backupPosts: PostData[] = [
+  // Insights
+  {
+    _id: 'post-1',
+    slug: 'planning-your-next-move-to-canada',
+    kind: 'insight',
+    title: 'What to know before planning your next move to Canada',
+    excerpt:
+      'A grounded starting point for exploring your future in Canada, navigating CRS draws, and understanding program requirements.',
+    publishedAt: '2026-06-12T10:00:00.000Z',
+    authorName: 'Nazly Sunguroglu',
+    authorRole: 'RCIC Consultant',
+  },
+  {
+    _id: 'post-2',
+    slug: 'making-your-study-plan-achievable',
+    kind: 'insight',
+    title: 'Making your Canadian study plan feel more achievable',
+    excerpt:
+      'How to choose the right Designated Learning Institution (DLI), understand post-graduation work permits (PGWP), and budget realistically.',
+    publishedAt: '2026-05-28T14:30:00.000Z',
+    authorName: 'Nazly Sunguroglu',
+    authorRole: 'RCIC Consultant',
+  },
+  {
+    _id: 'post-3',
+    slug: 'navigating-express-entry-category-based-selection',
+    kind: 'insight',
+    title: 'Strategic Guide to Category-Based Express Entry Selections',
+    excerpt:
+      'Understanding priority occupation categories including STEM, healthcare, trades, and French-language proficiency in Express Entry.',
+    publishedAt: '2026-05-15T09:00:00.000Z',
+    authorName: 'Nazly Sunguroglu',
+    authorRole: 'RCIC Consultant',
+  },
+
+  // Information Guides
+  {
+    _id: 'post-4',
+    slug: 'questions-before-your-application',
+    kind: 'information',
+    title: 'Three crucial questions to ask before beginning your application',
+    excerpt:
+      'Clarity at the beginning prevents costly delays: timeline expectations, document readiness, and principal applicant eligibility.',
+    publishedAt: '2026-05-09T11:00:00.000Z',
+    authorName: 'Elvin Ediz Immigration Team',
+    authorRole: 'Advisory Board',
+  },
+  {
+    _id: 'post-5',
+    slug: 'visitor-visa-document-checklist-guide',
+    kind: 'information',
+    title: 'Visitor Visa Document Audit: Preventing Common Refusal Grounds',
+    excerpt:
+      'An itemized checklist covering proof of financial support, ties to your home country, and invitation letter formulation.',
+    publishedAt: '2026-04-20T08:00:00.000Z',
+    authorName: 'Elvin Ediz Immigration Team',
+    authorRole: 'Advisory Board',
+  },
+  {
+    _id: 'post-6',
+    slug: 'spousal-sponsorship-eligibility-roadmap',
+    kind: 'information',
+    title: 'Spousal Sponsorship Roadmap: In-Canada vs Outside-Canada Applications',
+    excerpt:
+      'Step-by-step breakdown of processing timelines, open work permit eligibility, and relationship genuineness documentation.',
+    publishedAt: '2026-04-02T13:00:00.000Z',
+    authorName: 'Elvin Ediz Immigration Team',
+    authorRole: 'Advisory Board',
+  },
+
+  // Announcements
+  {
+    _id: 'post-7',
+    slug: 'ircc-updates-study-permit-financial-requirements',
+    kind: 'announcement',
+    title: 'IRCC Cost-of-Living Financial Requirement Update for Study Permits',
+    excerpt:
+      'Effective immediately, all study permit applicants must verify updated cost-of-living funds alongside first-year tuition fees.',
+    publishedAt: '2026-06-01T12:00:00.000Z',
+    authorName: 'Elvin Ediz Immigration',
+    authorRole: 'Office Announcement',
+  },
+  {
+    _id: 'post-8',
+    slug: 'summer-consultation-schedule-and-online-intake',
+    kind: 'announcement',
+    title: 'Extended Online Consultation Hours & Direct WhatsApp Intake Active',
+    excerpt:
+      'Our team is offering extended consultation slots for fall semester student admissions and LMIA assessments.',
+    publishedAt: '2026-05-20T10:00:00.000Z',
+    authorName: 'Elvin Ediz Immigration',
+    authorRole: 'Office Announcement',
+  },
+
+  // News
+  {
+    _id: 'post-9',
+    slug: 'canada-immigration-levels-plan-key-highlights',
+    kind: 'news',
+    title: 'Canada Immigration Levels Plan: Targeted PR Admissions & Provincial Allocations',
+    excerpt:
+      'Federal projections highlight sustained focus on in-country temporary resident transitions and regional economic growth.',
+    publishedAt: '2026-06-10T16:00:00.000Z',
+    sourceURL: 'https://www.canada.ca/en/immigration-refugees-citizenship.html',
+    authorName: 'Immigration Newsroom',
+  },
+  {
+    _id: 'post-10',
+    slug: 'ontario-oinp-draw-announces-invitations-for-tech-health',
+    kind: 'news',
+    title: 'Ontario Immigrant Nominee Program (OINP) Issues Targeted Invitations',
+    excerpt:
+      'The latest provincial draw issued notifications of interest to skilled candidates in high-demand technology and healthcare sectors.',
+    publishedAt: '2026-06-04T15:00:00.000Z',
+    sourceURL: 'https://www.ontario.ca/page/oinp-express-entry-notifications-interest',
+    authorName: 'Immigration Newsroom',
+  },
+];
+
