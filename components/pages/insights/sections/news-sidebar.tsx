@@ -1,0 +1,96 @@
+import Link from 'next/link';
+import { ArrowUpRight, ExternalLink, Newspaper } from 'lucide-react';
+import type { InsightsPageData, PostData } from '@/sanity/lib/types';
+import { cleanStega, formatDate } from '../utils';
+
+interface NewsSidebarProps {
+  insightsPageData: InsightsPageData;
+  posts: PostData[];
+}
+
+export function NewsSidebar({ insightsPageData, posts }: NewsSidebarProps) {
+  return (
+    <div
+      id="news-sidebar"
+      className="border-border-subtle bg-bg-surface flex flex-col rounded-sm border p-6 shadow-xs"
+    >
+      <div className="border-border-subtle mb-6 flex items-center justify-between border-b pb-4">
+        <div className="flex items-center gap-2">
+          <span className="bg-accent/15 text-accent flex h-7 w-7 items-center justify-center rounded-full">
+            <Newspaper size={14} />
+          </span>
+          <div>
+            <span className="text-accent block text-[10px] font-bold tracking-widest uppercase">
+              {insightsPageData.newsEyebrow || 'LATEST UPDATES'}
+            </span>
+            <h3 className="text-text-main font-serif text-lg font-semibold">
+              {insightsPageData.newsTitle || 'Immigration News'}
+            </h3>
+          </div>
+        </div>
+        <Link
+          href="/news"
+          className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent rounded-full px-2.5 py-0.5 text-[10px] font-bold transition-colors"
+          title="See all news"
+        >
+          {posts.length} All →
+        </Link>
+      </div>
+
+      {posts.length > 0 ? (
+        <div className="divide-border-subtle flex flex-col divide-y">
+          {posts.map((post) => (
+            <article key={post._id || post.slug} className="group py-4 first:pt-0 last:pb-0">
+              <div className="mb-1.5 flex items-center justify-between text-[11px]">
+                <span className="text-accent text-[10px] font-semibold tracking-wider uppercase">
+                  {post.category || post.sourceName || 'Canada News'}
+                </span>
+                {post.publishedAt && (
+                  <span className="text-text-muted text-[11px]">{formatDate(post.publishedAt)}</span>
+                )}
+              </div>
+
+              <h4 className="text-text-main group-hover:text-accent font-serif text-sm leading-snug font-semibold transition-colors">
+                <Link href={`/news/${cleanStega(post.slug)}`}>{post.title}</Link>
+              </h4>
+
+              {post.excerpt && (
+                <p className="text-text-muted mt-1.5 line-clamp-2 text-xs leading-relaxed">
+                  {post.excerpt}
+                </p>
+              )}
+
+              <div className="mt-3 flex items-center justify-between">
+                <Link
+                  href={`/news/${cleanStega(post.slug)}`}
+                  className="text-accent group/btn inline-flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase"
+                >
+                  Read story
+                  <ArrowUpRight
+                    size={12}
+                    className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                  />
+                </Link>
+
+                {post.sourceURL && (
+                  <a
+                    href={post.sourceURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-[10px] transition-colors"
+                  >
+                    Source <ExternalLink size={10} />
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p className="text-text-muted text-xs">
+          {insightsPageData.newsEmptyMessage || 'No recent news articles yet.'}
+        </p>
+      )}
+    </div>
+  );
+}

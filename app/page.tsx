@@ -23,11 +23,13 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function Home() {
-  const settings = await fetchSiteSettings();
-  const homeData = await fetchHomePage();
-  const services = await fetchServices();
-  const testimonials = await fetchTestimonials();
-  const staff = await fetchStaff();
+  const [settings, homeData, services, testimonials, staff] = await Promise.all([
+    fetchSiteSettings(),
+    fetchHomePage(),
+    fetchServices(),
+    fetchTestimonials(),
+    fetchStaff(),
+  ]);
 
   return (
     <main>
@@ -40,9 +42,11 @@ export default async function Home() {
       <Testimonials testimonials={testimonials} homeData={homeData} />
       <Process homeData={homeData} />
       <Insights homeData={homeData} />
-      <Contact homeData={homeData} />
+      <Contact homeData={homeData} services={services} />
       <Footer />
     </main>
   );
 }
+
+
 

@@ -1,30 +1,31 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import type { HomePageData } from '@/sanity/lib/types';
-import { defaultHomePage } from '@/sanity/lib/types';
+import { defaultHomePage, defaultPosts } from '@/sanity/lib/types';
+import { fetchPosts } from '@/sanity/lib/data';
 
-const articles = [
-  {
-    tag: 'IMMIGRATION NEWS',
-    date: 'JUNE 12, 2026',
-    title: 'What to know before planning your next move to Canada',
-    slug: 'planning-your-next-move-to-canada',
-  },
-  {
-    tag: 'STUDY PERMITS',
-    date: 'MAY 28, 2026',
-    title: 'Making your Canadian study plan feel more achievable',
-    slug: 'making-your-study-plan-achievable',
-  },
-  {
-    tag: 'GUIDANCE',
-    date: 'MAY 09, 2026',
-    title: 'Three questions to ask before beginning your application',
-    slug: 'questions-before-your-application',
-  },
-];
+export async function Insights({ homeData = defaultHomePage }: { homeData?: HomePageData }) {
+  const fetchedPosts = await fetchPosts('insight');
+  const displayPosts =
+    fetchedPosts && fetchedPosts.length > 0
+      ? fetchedPosts.slice(0, 3)
+      : defaultPosts.filter((p) => p.kind === 'insight').slice(0, 3);
 
-export function Insights({ homeData = defaultHomePage }: { homeData?: HomePageData }) {
+
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return '';
+    try {
+      return new Date(dateStr).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
   return (
     <section className="bg-bg-app px-6 py-20 md:px-12 md:py-32" id="insights">
       <div className="mx-auto flex max-w-7xl flex-col">
@@ -49,28 +50,41 @@ export function Insights({ homeData = defaultHomePage }: { homeData?: HomePageDa
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {articles.map((article, i) => (
+          {displayPosts.map((post, i) => (
             <article
               className="group border-border-subtle bg-bg-surface flex flex-col overflow-hidden rounded-sm border p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
-              key={article.title}
+              key={post._id || post.slug}
             >
-              <div className="bg-bg-primary/10 text-accent group-hover:bg-bg-primary/15 mb-5 flex h-44 items-center justify-center rounded-sm font-serif text-5xl italic transition-colors select-none">
-                <span>{i === 0 ? 'CA' : i === 1 ? 'EDU' : '✦'}</span>
+              <div className="bg-bg-primary/10 text-accent group-hover:bg-bg-primary/15 relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-sm font-serif text-5xl italic transition-colors select-none">
+                {post.coverImageUrl ? (
+                  <Image
+                    src={post.coverImageUrl}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <span>{i === 0 ? 'CA' : i === 1 ? 'EDU' : '✦'}</span>
+                )}
               </div>
 
               <div className="text-accent mb-3 flex items-center justify-between text-xs font-bold tracking-widest uppercase">
-                {article.tag}
-                <span className="text-text-muted font-sans font-normal">{article.date}</span>
+                <span>{post.kind}</span>
+                {post.publishedAt && (
+                  <span className="text-text-muted font-sans font-normal lowercase">
+                    {formatDate(post.publishedAt)}
+                  </span>
+                )}
               </div>
 
               <h3 className="text-text-main group-hover:text-accent mb-5 font-serif text-lg leading-snug font-semibold transition-colors duration-200 md:text-xl">
-                {article.title}
+                {post.title}
               </h3>
 
               <Link
-                href={`/insights/${article.slug}`}
+                href={`/insights/${post.slug}`}
                 className="text-accent group/btn mt-auto inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase"
-                aria-label={`Read ${article.title}`}
+                aria-label={`Read ${post.title}`}
               >
                 Read more
                 <ArrowUpRight
@@ -85,3 +99,4 @@ export function Insights({ homeData = defaultHomePage }: { homeData?: HomePageDa
     </section>
   );
 }
+
