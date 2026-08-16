@@ -1,25 +1,24 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { PageHeader } from '@/components/ui/page-header';
-import { InsightsGrid } from '@/components/pages/insights/grid';
-import { fetchSiteSettings } from '@/sanity/lib/data';
+import { NewsList } from '@/components/pages/news/list';
+import { fetchSiteSettings, fetchInsightsPage, fetchPosts } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function NewsPage() {
   const settings = await fetchSiteSettings();
+  const insightsPageData = await fetchInsightsPage();
+  const posts = await fetchPosts();
 
   return (
     <>
       <Header settings={settings} />
       <main>
-        <PageHeader
-          eyebrow="IMMIGRATION NEWS"
-          title="What is happening"
-          accent="in Canada."
-          copy="Practical, approachable updates from Elvin Ediz Immigration Services."
-        />
-        <InsightsGrid kind="news" />
+        <NewsList insightsPageData={insightsPageData} posts={posts} />
       </main>
       <Footer />
     </>
   );
 }
+
