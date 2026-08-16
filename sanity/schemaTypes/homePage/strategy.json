@@ -16,6 +16,30 @@
       "type": "string",
       "initialValue": "Our"
     },
+    "aboutImage": {
+      "name": "aboutImage",
+      "title": "Strategy Section Image / Photo",
+      "description": "Upload a custom photo/portrait for the Strategy section. If left blank, falls back to the Staff Member photo or /nazly-profile-picture.png.",
+      "type": "image"
+    },
+    "aboutLeaderName": {
+      "name": "aboutLeaderName",
+      "title": "Leader Name (Optional Override)",
+      "description": "Optional override for the person's name (e.g., 'Nazly Sunguroglu (RCIC)').",
+      "type": "string"
+    },
+    "aboutLeaderRole": {
+      "name": "aboutLeaderRole",
+      "title": "Leader Role (Optional Override)",
+      "description": "Optional override for the role (e.g., 'Regulated Canadian Immigration Consultant').",
+      "type": "string"
+    },
+    "aboutLeaderSubtitle": {
+      "name": "aboutLeaderSubtitle",
+      "title": "Leader Subtitle (Optional Override)",
+      "description": "Optional override for the subtitle (e.g., 'Founder of Elvin Ediz Immigration Services').",
+      "type": "string"
+    },
     "aboutTitleAccent": {
       "name": "aboutTitleAccent",
       "title": "Strategy Accent Title (Line 2)",

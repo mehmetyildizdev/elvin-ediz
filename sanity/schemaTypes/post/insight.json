@@ -1,0 +1,45 @@
+{
+  "group": {
+    "name": "insightSection",
+    "title": "03. Insight Section"
+  },
+  "fields": {
+    "authorOversightIcon": {
+      "name": "authorOversightIcon",
+      "title": "Oversight Box Icon",
+      "type": "string",
+      "initialValue": "shield"
+    },
+    "authorOversightTitle": {
+      "name": "authorOversightTitle",
+      "title": "Oversight Box Title",
+      "type": "string",
+      "initialValue": "Author Oversight"
+    },
+    "authorOversightSubtitle": {
+      "name": "authorOversightSubtitle",
+      "title": "Oversight License / Badge Text",
+      "type": "string",
+      "initialValue": "CICC Licensed #R533968"
+    },
+    "authorOversightText": {
+      "name": "authorOversightText",
+      "title": "Oversight Description",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto."
+    },
+    "authorOversightCtaText": {
+      "name": "authorOversightCtaText",
+      "title": "Oversight Button Label",
+      "type": "string",
+      "initialValue": "Consult on this topic"
+    },
+    "authorOversightCtaLink": {
+      "name": "authorOversightCtaLink",
+      "title": "Oversight Button Link",
+      "type": "string",
+      "initialValue": "https://wa.me/16475681009"
+    }
+  }
+}

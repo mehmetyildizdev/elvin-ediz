@@ -1,0 +1,32 @@
+{
+  "group": {
+    "name": "insights",
+    "title": "02. Insights Section"
+  },
+  "fields": {
+    "insightsEyebrow": {
+      "name": "insightsEyebrow",
+      "title": "Insights Eyebrow",
+      "type": "string",
+      "initialValue": "IN-DEPTH ARTICLES"
+    },
+    "insightsTitleMain": {
+      "name": "insightsTitleMain",
+      "title": "Insights Title Main",
+      "type": "string",
+      "initialValue": "Featured"
+    },
+    "insightsTitleAccent": {
+      "name": "insightsTitleAccent",
+      "title": "Insights Title Accent",
+      "type": "string",
+      "initialValue": "Insights"
+    },
+    "insightsDescription": {
+      "name": "insightsDescription",
+      "title": "Insights Section Description",
+      "type": "string",
+      "initialValue": "Thought leadership and strategic perspectives on Canadian immigration pathways."
+    }
+  }
+}

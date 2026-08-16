@@ -1,0 +1,24 @@
+{
+  "group": {
+    "name": "author",
+    "title": "02. Author & Meta"
+  },
+  "fields": {
+    "author": {
+      "name": "author",
+      "title": "Author (Staff Member)",
+      "type": "reference",
+      "to": [{ "type": "staffMember" }]
+    },
+    "customAuthorName": {
+      "name": "customAuthorName",
+      "title": "Custom Author Name (Optional Override)",
+      "type": "string"
+    },
+    "customAuthorRole": {
+      "name": "customAuthorRole",
+      "title": "Custom Author Role (Optional Override)",
+      "type": "string"
+    }
+  }
+}

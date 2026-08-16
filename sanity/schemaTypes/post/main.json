@@ -1,0 +1,51 @@
+{
+  "group": {
+    "name": "main",
+    "title": "01. Content",
+    "default": true
+  },
+  "fields": {
+    "title": {
+      "name": "title",
+      "title": "Title",
+      "type": "string"
+    },
+    "slug": {
+      "name": "slug",
+      "title": "Slug",
+      "type": "slug"
+    },
+    "kind": {
+      "name": "kind",
+      "title": "Post Type",
+      "type": "string",
+      "initialValue": "insight"
+    },
+    "iconName": {
+      "name": "iconName",
+      "title": "Post Badge Icon",
+      "type": "string"
+    },
+    "excerpt": {
+      "name": "excerpt",
+      "title": "Short Introduction",
+      "type": "text",
+      "rows": 3
+    },
+    "coverImage": {
+      "name": "coverImage",
+      "title": "Cover Image",
+      "type": "image"
+    },
+    "content": {
+      "name": "content",
+      "title": "Body Content",
+      "type": "array"
+    },
+    "publishedAt": {
+      "name": "publishedAt",
+      "title": "Publish Date",
+      "type": "datetime"
+    }
+  }
+}

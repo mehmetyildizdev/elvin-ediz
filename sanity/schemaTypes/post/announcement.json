@@ -1,0 +1,56 @@
+{
+  "group": {
+    "name": "announcementSection",
+    "title": "03. Announcement Section"
+  },
+  "fields": {
+    "effectiveDate": {
+      "name": "effectiveDate",
+      "title": "Effective Date",
+      "type": "date"
+    },
+    "announcementNoticeIcon": {
+      "name": "announcementNoticeIcon",
+      "title": "Notice Header Icon",
+      "type": "string",
+      "initialValue": "bell"
+    },
+    "announcementNoticeEyebrow": {
+      "name": "announcementNoticeEyebrow",
+      "title": "Notice Eyebrow",
+      "type": "string",
+      "initialValue": "Official Notice & Bulletin"
+    },
+    "announcementNoticeTitle": {
+      "name": "announcementNoticeTitle",
+      "title": "Notice Organization Title",
+      "type": "string",
+      "initialValue": "Elvin Ediz Immigration Advisory"
+    },
+    "announcementActionTitle": {
+      "name": "announcementActionTitle",
+      "title": "Action Box Heading",
+      "type": "string",
+      "initialValue": "Client Action Recommended:"
+    },
+    "announcementActionText": {
+      "name": "announcementActionText",
+      "title": "Action Box Instructions",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "Existing clients whose applications are directly affected by this notice will be contacted individually by our case processing team. If you have upcoming deadlines or queries, please reach out via your client communication channel."
+    },
+    "announcementCtaButtonText": {
+      "name": "announcementCtaButtonText",
+      "title": "Notice Button Text",
+      "type": "string",
+      "initialValue": "Inquire on WhatsApp"
+    },
+    "announcementCtaButtonLink": {
+      "name": "announcementCtaButtonLink",
+      "title": "Notice Button Link",
+      "type": "string",
+      "initialValue": "https://wa.me/16475681009"
+    }
+  }
+}

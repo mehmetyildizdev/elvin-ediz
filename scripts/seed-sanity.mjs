@@ -364,7 +364,258 @@ Our personalized approach believes that Pragmatism is the key to handling your c
     ],
   };
 
-  const docs = [siteSettings, homePage, staffNazly, ...services, ...testimonials, faqPage];
+  // 7. Insights Page Singleton
+  const insightsPage = {
+    _id: 'insightsPage',
+    _type: 'insightsPage',
+    eyebrow: 'PERSPECTIVE & UPDATES',
+    titleMain: 'Knowledge & Guidance for your',
+    titleAccent: 'Canadian journey.',
+    description:
+      'In-depth strategic insights, practical immigration guides, policy announcements, and Canadian immigration news from Elvin Ediz Immigration Services.',
+    insightsEyebrow: 'IN-DEPTH ARTICLES',
+    insightsTitleMain: 'Featured',
+    insightsTitleAccent: 'Insights',
+    insightsDescription:
+      'Thought leadership and strategic perspectives on Canadian immigration pathways.',
+    infoEyebrow: 'PRACTICAL GUIDES & INFO',
+    infoTitleMain: 'Immigration',
+    infoTitleAccent: 'Knowledge Base',
+    infoDescription:
+      'Actionable explanations, checklists, and key application questions answered clearly.',
+    announcementsEyebrow: 'OFFICIAL NOTICES',
+    announcementsTitle: 'Announcements',
+    announcementsEmptyMessage: 'No urgent announcements at this time.',
+    newsEyebrow: 'LATEST UPDATES',
+    newsTitle: 'Immigration News',
+    newsEmptyMessage: 'No recent news articles yet.',
+    consultationEyebrow: 'Direct Consultation',
+    consultationTitle: 'Have a specific question about your case?',
+    consultationDescription:
+      'Connect with Nazly Sunguroglu, RCIC for a one-on-one assessment of your Canadian immigration pathway.',
+    consultationButtonText: 'Message on WhatsApp',
+    consultationButtonLink: 'https://wa.me/16475681009',
+  };
+
+  // 8. Sample Posts
+  const posts = [
+    {
+      _id: 'post-planning-your-next-move-to-canada',
+      _type: 'post',
+      title: 'What to know before planning your next move to Canada',
+      slug: { _type: 'slug', current: 'planning-your-next-move-to-canada' },
+      kind: 'insight',
+      iconName: 'sparkles',
+      excerpt:
+        'A grounded starting point for exploring your future in Canada, navigating CRS draws, and understanding program requirements.',
+      publishedAt: '2026-06-12T10:00:00.000Z',
+      author: { _type: 'reference', _ref: 'staff-nazly' },
+      authorOversightIcon: 'shield',
+      authorOversightTitle: 'Author Oversight',
+      authorOversightSubtitle: 'CICC Licensed #R533968',
+      authorOversightText:
+        'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
+      authorOversightCtaText: 'Consult on this topic',
+      authorOversightCtaLink: 'https://wa.me/16475681009',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'Navigating Canadian immigration pathways requires aligning personal qualifications with current federal and provincial policy directives. From Comprehensive Ranking System (CRS) score optimization to strategic provincial nomination selections, every decision impacts your application timeline.',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+    {
+      _id: 'post-making-your-study-plan-achievable',
+      _type: 'post',
+      title: 'Making your Canadian study plan feel more achievable',
+      slug: { _type: 'slug', current: 'making-your-study-plan-achievable' },
+      kind: 'insight',
+      iconName: 'graduation-cap',
+      excerpt:
+        'How to choose the right Designated Learning Institution (DLI), understand post-graduation work permits (PGWP), and budget realistically.',
+      publishedAt: '2026-05-28T14:30:00.000Z',
+      author: { _type: 'reference', _ref: 'staff-nazly' },
+      authorOversightIcon: 'user-check',
+      authorOversightTitle: 'Author Oversight',
+      authorOversightSubtitle: 'CICC Licensed #R533968',
+      authorOversightText:
+        'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
+      authorOversightCtaText: 'Consult on this topic',
+      authorOversightCtaLink: 'https://wa.me/16475681009',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'Applicants who assess their documentation upfront and understand IRCC evaluation standards position themselves for a clearer, more predictable process.',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+    {
+      _id: 'post-questions-before-your-application',
+      _type: 'post',
+      title: 'Three crucial questions to ask before beginning your application',
+      slug: { _type: 'slug', current: 'questions-before-your-application' },
+      kind: 'information',
+      iconName: 'book-open',
+      excerpt:
+        'Clarity at the beginning prevents costly delays: timeline expectations, document readiness, and principal applicant eligibility.',
+      publishedAt: '2026-05-09T11:00:00.000Z',
+      authorName: 'Elvin Ediz Immigration Advisory',
+      authorRole: 'Document & Case Processing Team',
+      checklistIcon: 'file-check',
+      checklistTitle: 'Guide Summary & Action Checklist',
+      checklistDescription:
+        'Review this verified checklist before initiating your application to prevent common IRCC processing delays and documentation errors.',
+      checklistItems: [
+        'Verify Primary Applicant Eligibility & TEER Classification',
+        'Conduct Comprehensive Financial Proof & Bank Audit',
+        'Gather Police Clearances & Upfront Medical Certificates',
+        'Ensure Certified Translations for All Non-English Documents',
+      ],
+      infoCtaTitle: 'Need assistance with this documentation?',
+      infoCtaSubtitle: 'Our team provides complete document audits and file representation.',
+      infoCtaButtonText: 'Schedule Audit',
+      infoCtaButtonLink: 'https://wa.me/16475681009',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'Preparation is the most critical stage of any Canadian visa or permanent residence application. Taking a structured approach minimizes back-and-forth correspondence with visa officers.',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+    {
+      _id: 'post-ircc-updates-study-permit-financial-requirements',
+      _type: 'post',
+      title: 'IRCC Cost-of-Living Financial Requirement Update for Study Permits',
+      slug: { _type: 'slug', current: 'ircc-updates-study-permit-financial-requirements' },
+      kind: 'announcement',
+      iconName: 'bell',
+      excerpt:
+        'Effective immediately, all study permit applicants must verify updated cost-of-living funds alongside first-year tuition fees.',
+      publishedAt: '2026-06-01T12:00:00.000Z',
+      effectiveDate: '2026-06-01',
+      authorName: 'Elvin Ediz Immigration Advisory',
+      authorRole: 'Official Bulletins',
+      announcementNoticeIcon: 'bell',
+      announcementNoticeEyebrow: 'Official Notice & Bulletin',
+      announcementNoticeTitle: 'Elvin Ediz Immigration Advisory',
+      announcementActionTitle: 'Client Action Recommended:',
+      announcementActionText:
+        'Existing clients whose applications are directly affected by this notice will be contacted individually by our case processing team. If you have upcoming deadlines or queries, please reach out via your client communication channel.',
+      announcementCtaButtonText: 'Inquire on WhatsApp',
+      announcementCtaButtonLink: 'https://wa.me/16475681009',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'Please take note of this official announcement regarding policy procedures and updated financial requirements from Immigration, Refugees and Citizenship Canada (IRCC).',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+    {
+      _id: 'post-canada-tech-jobs-regional-hubs-growth',
+      _type: 'post',
+      title: 'Canada’s Tech Corridors Expand Outside Toronto: Emerging Opportunities in Calgary and Halifax',
+      slug: { _type: 'slug', current: 'canada-tech-jobs-regional-hubs-growth' },
+      kind: 'news',
+      category: 'Tech & Career',
+      iconName: 'laptop',
+      sourceName: 'Financial Post',
+      sourceURL: 'https://financialpost.com',
+      readTime: '4 min read',
+      excerpt:
+        'New venture funding and provincial talent attraction incentives are accelerating tech hiring across Alberta and Atlantic Canada.',
+      editorialNote:
+        'Candidates in STEM and software sectors can benefit greatly from accelerated provincial nomination streams in Alberta and Nova Scotia.',
+      publishedAt: '2026-06-14T15:30:00.000Z',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'Canada’s regional technology ecosystem is undergoing rapid decentralization as secondary metropolitan hubs offer competitive living costs and targeted provincial tech pilot streams.',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+    {
+      _id: 'post-canadian-summer-living-cost-trends',
+      _type: 'post',
+      title: 'Settling in Canada: Essential Seasonal Living and Housing Trends Across Major Metros',
+      slug: { _type: 'slug', current: 'canadian-summer-living-cost-trends' },
+      kind: 'news',
+      category: 'Canada Living',
+      iconName: 'home',
+      sourceName: 'Daily Hive Toronto',
+      sourceURL: 'https://dailyhive.com',
+      readTime: '3 min read',
+      excerpt:
+        'An overview of seasonal rent adjustments, transit improvements, and community integration programs for new residents arriving this season.',
+      editorialNote:
+        'Budgeting for first-year accommodation and tenant insurance is a crucial early step for new work permit and study permit holders.',
+      publishedAt: '2026-06-08T09:15:00.000Z',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'Navigating life as a new resident in Canada involves understanding local rental markets, public transit options, and municipal community resources.',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+  ];
+
+  const docs = [
+    siteSettings,
+    homePage,
+    insightsPage,
+    staffNazly,
+    ...services,
+    ...testimonials,
+    faqPage,
+    ...posts,
+  ];
 
   for (const doc of docs) {
     await client.createOrReplace(doc);
@@ -381,3 +632,4 @@ seed().catch((err) => {
   console.error('❌ Seeding failed:', err);
   process.exit(1);
 });
+

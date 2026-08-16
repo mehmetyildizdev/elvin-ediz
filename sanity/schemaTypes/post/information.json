@@ -1,0 +1,62 @@
+{
+  "group": {
+    "name": "informationSection",
+    "title": "03. Information Section"
+  },
+  "fields": {
+    "checklistIcon": {
+      "name": "checklistIcon",
+      "title": "Checklist Header Icon",
+      "type": "string",
+      "initialValue": "book-open"
+    },
+    "checklistTitle": {
+      "name": "checklistTitle",
+      "title": "Checklist Title",
+      "type": "string",
+      "initialValue": "Guide Summary & Action Checklist"
+    },
+    "checklistDescription": {
+      "name": "checklistDescription",
+      "title": "Checklist Description",
+      "type": "text",
+      "rows": 2,
+      "initialValue": "Review this verified checklist before initiating your application to prevent common IRCC processing delays and documentation errors."
+    },
+    "checklistItems": {
+      "name": "checklistItems",
+      "title": "Action Checklist Items",
+      "type": "array",
+      "initialValue": [
+        "Verify Primary Applicant Eligibility & TEER Classification",
+        "Conduct Comprehensive Financial Proof & Bank Audit",
+        "Gather Police Clearances & Upfront Medical Certificates",
+        "Ensure Certified Translations for All Non-English Documents"
+      ]
+    },
+    "infoCtaTitle": {
+      "name": "infoCtaTitle",
+      "title": "Audit Box Title",
+      "type": "string",
+      "initialValue": "Need assistance with this documentation?"
+    },
+    "infoCtaSubtitle": {
+      "name": "infoCtaSubtitle",
+      "title": "Audit Box Subtitle",
+      "type": "string",
+      "initialValue": "Our team provides complete document audits and file representation."
+    },
+    "infoCtaButtonText": {
+      "name": "infoCtaButtonText",
+      "title": "Audit Button Text",
+      "type": "string",
+      "initialValue": "Schedule Audit"
+    },
+    "infoCtaButtonLink": {
+      "name": "infoCtaButtonLink",
+      "title": "Audit Button Link",
+      "type": "string",
+      "initialValue": "https://wa.me/16475681009"
+    }
+  }
+}

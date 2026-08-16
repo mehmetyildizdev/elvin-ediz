@@ -54,6 +54,12 @@
       "type": "string",
       "initialValue": "#contact"
     },
+    "ciccBadgeImage": {
+      "name": "ciccBadgeImage",
+      "title": "CICC Badge / RCIC Logo Image",
+      "description": "Upload a custom badge or logo image from Sanity. If not uploaded, defaults to /rcic_logo.png.",
+      "type": "image"
+    },
     "ciccBadgeTitle": {
       "name": "ciccBadgeTitle",
       "title": "CICC Badge Title",

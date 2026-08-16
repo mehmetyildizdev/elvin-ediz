@@ -64,6 +64,14 @@ export const whoAreWeFields = [
     initialValue: config.fields.whoAreWeSecondaryCtaLink.initialValue,
   }),
   defineField({
+    name: config.fields.ciccBadgeImage.name,
+    title: config.fields.ciccBadgeImage.title,
+    description: config.fields.ciccBadgeImage.description,
+    type: 'image',
+    options: { hotspot: true },
+    group: config.group.name,
+  }),
+  defineField({
     name: config.fields.ciccBadgeTitle.name,
     title: config.fields.ciccBadgeTitle.title,
     type: 'string',

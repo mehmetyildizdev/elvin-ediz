@@ -1,5 +1,6 @@
 import { siteSettings } from './siteSettings';
 import { homePage } from './homePage';
+import { insightsPage } from './insightsPage';
 import { aboutPage } from './aboutPage';
 import { service } from './service';
 import { testimonial } from './testimonial';
@@ -11,6 +12,7 @@ import { appointment } from './appointment';
 export const schemaTypes = [
   siteSettings,
   homePage,
+  insightsPage,
   aboutPage,
   service,
   testimonial,
@@ -19,3 +21,4 @@ export const schemaTypes = [
   post,
   appointment,
 ];
+

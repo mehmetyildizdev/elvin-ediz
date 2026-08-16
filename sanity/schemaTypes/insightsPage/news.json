@@ -1,0 +1,26 @@
+{
+  "group": {
+    "name": "news",
+    "title": "05. News Sidebar"
+  },
+  "fields": {
+    "newsEyebrow": {
+      "name": "newsEyebrow",
+      "title": "News Eyebrow",
+      "type": "string",
+      "initialValue": "LATEST UPDATES"
+    },
+    "newsTitle": {
+      "name": "newsTitle",
+      "title": "News Title",
+      "type": "string",
+      "initialValue": "Immigration News"
+    },
+    "newsEmptyMessage": {
+      "name": "newsEmptyMessage",
+      "title": "Empty State Message",
+      "type": "string",
+      "initialValue": "No recent news articles yet."
+    }
+  }
+}

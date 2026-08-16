@@ -1,0 +1,26 @@
+{
+  "group": {
+    "name": "announcements",
+    "title": "04. Announcements Sidebar"
+  },
+  "fields": {
+    "announcementsEyebrow": {
+      "name": "announcementsEyebrow",
+      "title": "Announcements Eyebrow",
+      "type": "string",
+      "initialValue": "OFFICIAL NOTICES"
+    },
+    "announcementsTitle": {
+      "name": "announcementsTitle",
+      "title": "Announcements Title",
+      "type": "string",
+      "initialValue": "Announcements"
+    },
+    "announcementsEmptyMessage": {
+      "name": "announcementsEmptyMessage",
+      "title": "Empty State Message",
+      "type": "string",
+      "initialValue": "No urgent announcements at this time."
+    }
+  }
+}

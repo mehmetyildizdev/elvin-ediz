@@ -8,6 +8,7 @@ import { HomeIcon } from '@sanity/icons/Home';
 import { CaseIcon } from '@sanity/icons/Case';
 import { StarIcon } from '@sanity/icons/Star';
 import { CogIcon } from '@sanity/icons/Cog';
+import { EarthGlobeIcon } from '@sanity/icons/EarthGlobe';
 import type { StructureBuilder, StructureResolver } from 'sanity/structure';
 
 const postList = (
@@ -40,6 +41,15 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         .title('Home Page')
         .icon(HomeIcon)
         .child(S.document().schemaType('homePage').documentId('homePage').title('Home Page Content')),
+      S.listItem()
+        .title('Insights & Updates Page')
+        .icon(EarthGlobeIcon)
+        .child(
+          S.document()
+            .schemaType('insightsPage')
+            .documentId('insightsPage')
+            .title('Insights Page Content')
+        ),
       S.listItem()
         .title('Q&A / FAQs')
         .icon(HelpCircleIcon)

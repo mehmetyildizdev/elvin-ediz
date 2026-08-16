@@ -1,0 +1,39 @@
+{
+  "group": {
+    "name": "consultation",
+    "title": "06. Sidebar Consultation Card"
+  },
+  "fields": {
+    "consultationEyebrow": {
+      "name": "consultationEyebrow",
+      "title": "Consultation Eyebrow",
+      "type": "string",
+      "initialValue": "Direct Consultation"
+    },
+    "consultationTitle": {
+      "name": "consultationTitle",
+      "title": "Consultation Title",
+      "type": "string",
+      "initialValue": "Have a specific question about your case?"
+    },
+    "consultationDescription": {
+      "name": "consultationDescription",
+      "title": "Consultation Description",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "Connect with Nazly Sunguroglu, RCIC for a one-on-one assessment of your Canadian immigration pathway."
+    },
+    "consultationButtonText": {
+      "name": "consultationButtonText",
+      "title": "Button Text",
+      "type": "string",
+      "initialValue": "Message on WhatsApp"
+    },
+    "consultationButtonLink": {
+      "name": "consultationButtonLink",
+      "title": "Button Link (WhatsApp or Page)",
+      "type": "string",
+      "initialValue": "https://wa.me/16475681009"
+    }
+  }
+}

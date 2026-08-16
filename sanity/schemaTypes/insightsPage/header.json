@@ -1,0 +1,34 @@
+{
+  "group": {
+    "name": "header",
+    "title": "01. Page Header",
+    "default": true
+  },
+  "fields": {
+    "eyebrow": {
+      "name": "eyebrow",
+      "title": "Header Eyebrow",
+      "type": "string",
+      "initialValue": "PERSPECTIVE & UPDATES"
+    },
+    "titleMain": {
+      "name": "titleMain",
+      "title": "Header Main Title",
+      "type": "string",
+      "initialValue": "Knowledge & Guidance for your"
+    },
+    "titleAccent": {
+      "name": "titleAccent",
+      "title": "Header Accent Title",
+      "type": "string",
+      "initialValue": "Canadian journey."
+    },
+    "description": {
+      "name": "description",
+      "title": "Header Description / Subtitle",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "In-depth insights, practical immigration guides, policy announcements, and the latest Canadian immigration news from Elvin Ediz Immigration Services."
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "group": {
+    "name": "information",
+    "title": "03. Information Guides"
+  },
+  "fields": {
+    "infoEyebrow": {
+      "name": "infoEyebrow",
+      "title": "Information Eyebrow",
+      "type": "string",
+      "initialValue": "PRACTICAL GUIDES & INFO"
+    },
+    "infoTitleMain": {
+      "name": "infoTitleMain",
+      "title": "Information Title Main",
+      "type": "string",
+      "initialValue": "Immigration"
+    },
+    "infoTitleAccent": {
+      "name": "infoTitleAccent",
+      "title": "Information Title Accent",
+      "type": "string",
+      "initialValue": "Knowledge Base"
+    },
+    "infoDescription": {
+      "name": "infoDescription",
+      "title": "Information Section Description",
+      "type": "string",
+      "initialValue": "Actionable explanations, checklists, and key application questions answered clearly."
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "group": {
+    "name": "newsSection",
+    "title": "03. News & Media Section"
+  },
+  "fields": {
+    "category": {
+      "name": "category",
+      "title": "News Topic / Category",
+      "type": "string",
+      "initialValue": "Canada Living & Economy"
+    },
+    "sourceName": {
+      "name": "sourceName",
+      "title": "News Source / Publisher Name",
+      "type": "string",
+      "initialValue": "Global News Canada"
+    },
+    "sourceURL": {
+      "name": "sourceURL",
+      "title": "Original News Article URL",
+      "type": "url"
+    },
+    "readTime": {
+      "name": "readTime",
+      "title": "Estimated Read Time",
+      "type": "string",
+      "initialValue": "3 min read"
+    },
+    "editorialNote": {
+      "name": "editorialNote",
+      "title": "Consultant / Advisory Note (Optional)",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "A helpful read for prospective newcomers planning their relocation and career transition across Canadian provinces."
+    }
+  }
+}

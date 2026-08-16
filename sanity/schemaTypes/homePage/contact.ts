@@ -47,17 +47,4 @@ export const contactFields = [
     group: config.group.name,
     initialValue: config.fields.contactDisclaimer.initialValue,
   }),
-  defineField({
-    name: config.fields.contactServiceOptions.name,
-    title: config.fields.contactServiceOptions.title,
-    type: 'array',
-    of: [
-      defineArrayMember({
-        type: 'string',
-        validation: (Rule) => Rule.required().error('Option label cannot be empty'),
-      }),
-    ],
-    group: config.group.name,
-    initialValue: config.fields.contactServiceOptions.initialValue,
-  }),
 ];
