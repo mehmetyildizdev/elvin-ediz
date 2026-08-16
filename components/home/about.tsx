@@ -12,6 +12,10 @@ export function About({
   homeData?: HomePageData;
 }) {
   const leader = staff[0] || defaultStaff[0];
+  const photoSrc = homeData.aboutImageUrl || leader?.photoUrl || '/nazly-profile-picture.png';
+  const leaderName = homeData.aboutLeaderName || `${leader?.name || 'Nazly Sunguroglu'} (${leader?.designation || 'RCIC'})`;
+  const leaderRole = homeData.aboutLeaderRole || leader?.role || 'Regulated Canadian Immigration Consultant';
+  const leaderSubtitle = homeData.aboutLeaderSubtitle || leader?.subtitle || 'Founder of Elvin Ediz Immigration Services';
 
   return (
     <section className="bg-bg-surface px-6 py-20 md:px-12 md:py-32" id="about">
@@ -20,8 +24,8 @@ export function About({
         <div className="flex flex-col lg:col-span-5">
           <div className="bg-bg-app relative aspect-4/5 w-full overflow-hidden rounded-sm border border-border-subtle shadow-lg">
             <Image
-              src={leader.photoUrl || '/nazly-profile-picture.png'}
-              alt={`${leader.name} (${leader.designation || 'RCIC'})`}
+              src={photoSrc}
+              alt={leaderName}
               fill
               sizes="(max-width: 1024px) 100vw, 420px"
               className="object-cover object-center"
@@ -30,13 +34,13 @@ export function About({
           </div>
           <div className="mt-5 flex flex-col gap-1">
             <h3 className="text-text-main font-serif text-2xl font-bold tracking-tight">
-              {leader.name} ({leader.designation || 'RCIC'})
+              {leaderName}
             </h3>
             <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">
-              {leader.role}
+              {leaderRole}
             </p>
             <p className="text-text-muted text-xs opacity-90">
-              {leader.subtitle}
+              {leaderSubtitle}
             </p>
           </div>
         </div>

@@ -2,10 +2,11 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { ContactInfo } from '@/components/pages/contact/info';
 import { ConsultationForm } from '@/components/home/contact';
-import { fetchSiteSettings } from '@/sanity/lib/data';
+import { fetchSiteSettings, fetchServices } from '@/sanity/lib/data';
 
 export default async function ContactPage() {
   const settings = await fetchSiteSettings();
+  const services = await fetchServices();
 
   return (
     <>
@@ -16,7 +17,7 @@ export default async function ContactPage() {
             <ContactInfo />
           </div>
           <div className="bg-bg-surface/10 border-border-on-dark rounded-sm border p-6 backdrop-blur-xs sm:p-10 lg:col-span-7">
-            <ConsultationForm />
+            <ConsultationForm services={services} />
           </div>
         </div>
       </main>

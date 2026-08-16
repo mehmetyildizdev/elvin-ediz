@@ -10,7 +10,7 @@ const themeConfig: Record<Theme, { name: string; bg: string; accent: string }> =
   evergreen: { name: 'Evergreen', bg: 'bg-[#0f2c28]', accent: 'border-[#c85a32]' },
   pacific: { name: 'Pacific', bg: 'bg-[#0f1b2d]', accent: 'border-[#d47a22]' },
   maple: { name: 'Maple', bg: 'bg-[#2a181a]', accent: 'border-[#b83a2e]' },
-  slate: { name: 'Slate Dark', bg: 'bg-[#1a2026]', accent: 'border-[#e28b38]' },
+  slate: { name: 'Slate Dark', bg: 'bg-[#1a2026]', accent: 'border-[#8e361b]' },
 };
 
 export function ThemeSwitcher() {

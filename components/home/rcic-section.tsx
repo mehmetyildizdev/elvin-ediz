@@ -68,8 +68,8 @@ export function RcicSection({ homeData = defaultHomePage }: { homeData?: HomePag
             <div className="border-border-on-dark/30 bg-bg-surface/10 flex flex-col items-center justify-center rounded-sm border p-8 text-center backdrop-blur-md transition-transform hover:scale-[1.02]">
               <div className="relative h-44 w-full max-w-xs sm:h-52">
                 <Image
-                  src="/rcic_logo.png"
-                  alt="Regulated Canadian Immigration Consultant (RCIC) CICC"
+                  src={homeData.ciccBadgeImageUrl || homeData.whoAreWeImageUrl || '/rcic_logo.png'}
+                  alt={homeData.ciccBadgeTitle || 'Regulated Canadian Immigration Consultant (RCIC) CICC'}
                   fill
                   sizes="(max-width: 768px) 100vw, 320px"
                   className="object-contain"

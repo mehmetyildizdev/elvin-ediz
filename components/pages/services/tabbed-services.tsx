@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, ArrowUpRight, ShieldCheck, Sparkles, PhoneCall } from 'lucide-react';
@@ -195,6 +196,20 @@ export function TabbedServices({
                   </span>
                 </div>
               </div>
+
+              {/* Cover Image */}
+              {activeService.coverImageUrl && (
+                <div className="relative mt-6 h-56 sm:h-72 w-full overflow-hidden rounded-md border border-border-subtle shadow-sm">
+                  <Image
+                    src={activeService.coverImageUrl}
+                    alt={activeService.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 800px"
+                    className="object-cover object-center"
+                    priority
+                  />
+                </div>
+              )}
 
               {/* Main Summary */}
               <div className="py-6">

@@ -2,10 +2,16 @@
 
 import { FormEvent, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import type { HomePageData } from '@/sanity/lib/types';
-import { defaultHomePage } from '@/sanity/lib/types';
+import type { HomePageData, ServiceData } from '@/sanity/lib/types';
+import { defaultHomePage, defaultServices } from '@/sanity/lib/types';
 
-export function Contact({ homeData = defaultHomePage }: { homeData?: HomePageData }) {
+export function Contact({
+  homeData = defaultHomePage,
+  services = defaultServices,
+}: {
+  homeData?: HomePageData;
+  services?: ServiceData[];
+}) {
   return (
     <section
       className="bg-bg-primary text-text-on-dark px-6 py-16 md:px-12 md:py-24"
@@ -29,28 +35,28 @@ export function Contact({ homeData = defaultHomePage }: { homeData?: HomePageDat
         </div>
 
         <div className="bg-bg-surface/10 border-border-on-dark rounded-sm border p-6 backdrop-blur-xs sm:p-10 lg:col-span-7">
-          <ConsultationForm homeData={homeData} />
+          <ConsultationForm homeData={homeData} services={services} />
         </div>
       </div>
     </section>
   );
 }
 
-export function ConsultationForm({ homeData = defaultHomePage }: { homeData?: HomePageData }) {
+export function ConsultationForm({
+  homeData = defaultHomePage,
+  services = defaultServices,
+}: {
+  homeData?: HomePageData;
+  services?: ServiceData[];
+}) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const rawServiceOptions = homeData.contactServiceOptions?.length
-    ? homeData.contactServiceOptions
-    : defaultHomePage.contactServiceOptions || [
-        'Study in Canada',
-        'Work & Careers',
-        'Family Sponsorship',
-        'Permanent Residence',
-        'Other',
-      ];
 
-  const serviceOptions = rawServiceOptions.filter(
-    (opt) => typeof opt === 'string' && opt.trim().length > 0
-  );
+  // Derive service dropdown options dynamically from the Services in Sanity
+  const serviceList = (services?.length ? services : defaultServices)
+    .map((s) => s.title)
+    .filter((title): title is string => typeof title === 'string' && title.trim().length > 0);
+
+  const serviceOptions = Array.from(new Set([...serviceList, 'Other']));
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

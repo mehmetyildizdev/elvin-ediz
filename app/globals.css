@@ -45,7 +45,7 @@
       transform: translateY(0px) rotate(-35deg);
     }
     50% {
-      transform: translateY(12px) rotate(-30deg);
+      transform: translateY(12px) rotate(-33deg);
     }
   }
   @keyframes compass-spin {
@@ -139,16 +139,16 @@
   --text-on-dark: #f0f4f8;
   --text-on-dark-muted: #94a3b8;
 
-  --accent: #e28b38;
-  --accent-hover: #d27926;
-  --accent-fg: #12161a;
+  --accent: #8e361b;
+  --accent-hover: #782c14;
+  --accent-fg: #ffffff;
 
   --border-subtle: rgba(240, 244, 248, 0.12);
   --border-on-dark: rgba(240, 244, 248, 0.15);
   --placeholder-on-dark: rgba(240, 244, 248, 0.45);
   --card-bg-dark: rgba(255, 255, 255, 0.04);
 
-  --hero-glow: radial-gradient(circle at 80% 30%, rgba(226, 139, 56, 0.15), transparent 45%);
+  --hero-glow: radial-gradient(circle at 80% 30%, rgba(142, 54, 27, 0.22), transparent 45%);
 }
 
 * {
