@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, PhoneCall, ShieldCheck } from 'lucide-react';
-import { ServiceData } from '@/sanity/lib/data';
+import { ServiceData, SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
 import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
-import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
 import { Button } from '@/components/ui/button';
 import { PageHeader } from '@/components/ui/page-header';
 

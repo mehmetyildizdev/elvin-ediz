@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { StaffData, HomePageData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultStaff, defaultHomePage, defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 
 export function About({
   staff = defaultStaff,
@@ -71,7 +71,7 @@ export function About({
 
           <div className="flex items-center gap-4">
             <Button
-              href={homeData.aboutCtaLink || getWhatsAppUrl(settings?.whatsappNumber)}
+              href={resolveCtaLink(homeData.aboutCtaLink, settings?.whatsappNumber)}
               variant="primary"
               size="md"
               className="self-start"

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ChevronRight, CheckCircle2 } from 'lucide-react';
-import { ServiceData, defaultServices } from '@/sanity/lib/data';
+import { ServiceData, defaultServices } from '@/sanity/lib/types';
 
 export function ServicesGrid({ services = defaultServices }: { services?: ServiceData[] }) {
   return (

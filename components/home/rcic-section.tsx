@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import type { HomePageData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultHomePage, defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 import { ArrowUpRight, UserCheck } from 'lucide-react';
 
@@ -58,7 +58,7 @@ export function RcicSection({
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button href={homeData.whoAreWePrimaryCtaLink || getWhatsAppUrl(settings?.whatsappNumber)} variant="primary" size="md">
+              <Button href={resolveCtaLink(homeData.whoAreWePrimaryCtaLink, settings?.whatsappNumber)} variant="primary" size="md">
                 {homeData.whoAreWePrimaryCtaText || 'Free Consultation'} <ArrowUpRight size={16} />
               </Button>
               <a

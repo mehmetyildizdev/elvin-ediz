@@ -3,7 +3,7 @@ import { Bell } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { Button } from '@/components/ui/button';
 import { portableTextComponents } from './portable-text';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
@@ -86,7 +86,7 @@ export function AnnouncementNotice({
           ← See all recent announcements
         </Link>
         <Button
-          href={post.announcementCtaButtonLink || getWhatsAppUrl(settings?.whatsappNumber)}
+          href={resolveCtaLink(post.announcementCtaButtonLink, settings?.whatsappNumber)}
           variant="outline-on-light"
           size="sm"
         >

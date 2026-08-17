@@ -2,7 +2,7 @@ import { ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { Button } from '@/components/ui/button';
 import { portableTextComponents } from './portable-text';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
@@ -76,10 +76,11 @@ export function InsightArticle({ post, settings = defaultSiteSettings }: Insight
           </p>
 
           <Button
-            href={
-              post.authorOversightCtaLink ||
-              getWhatsAppUrl(settings?.whatsappNumber, `Hello Nazly, I would like to consult regarding: ${post.title}`)
-            }
+            href={resolveCtaLink(
+              post.authorOversightCtaLink,
+              settings?.whatsappNumber,
+              `Hello Nazly, I would like to consult regarding: ${post.title}`
+            )}
             variant="primary"
             size="sm"
             className="w-full"

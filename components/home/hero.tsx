@@ -3,7 +3,7 @@ import { ArrowDown, ArrowUpRight, Plane } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { HomePageData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultHomePage, defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 
 export function Hero({
   homeData = defaultHomePage,
@@ -52,7 +52,7 @@ export function Hero({
             </p>
             <div className="flex flex-wrap items-center gap-6">
               <Button
-                href={homeData.heroPrimaryCtaLink || getWhatsAppUrl(settings?.whatsappNumber)}
+                href={resolveCtaLink(homeData.heroPrimaryCtaLink, settings?.whatsappNumber)}
                 variant="primary"
                 size="md"
               >

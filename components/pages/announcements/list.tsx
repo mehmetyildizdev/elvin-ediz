@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Bell, Calendar } from 'lucide-react';
 import type { InsightsPageData, PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultInsightsPage, defaultPosts, defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { PageHeader } from '@/components/ui/page-header';
 import { cleanStega, formatDate } from '../insights/utils';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
@@ -137,7 +137,7 @@ export function AnnouncementsList({
                         </Link>
 
                         <a
-                          href={post.announcementCtaButtonLink || getWhatsAppUrl(settings?.whatsappNumber)}
+                          href={resolveCtaLink(post.announcementCtaButtonLink, settings?.whatsappNumber)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-xs font-medium transition-colors"

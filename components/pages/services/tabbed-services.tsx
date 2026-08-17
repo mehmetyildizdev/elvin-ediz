@@ -7,7 +7,7 @@ import { CheckCircle2, ArrowUpRight, ShieldCheck, Sparkles, PhoneCall } from 'lu
 import { Button } from '@/components/ui/button';
 import type { ServiceData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 
@@ -272,13 +272,11 @@ export function TabbedServices({
                 </div>
 
                 <Button
-                  href={
-                    activeService.ctaButtonLink ||
-                    getWhatsAppUrl(
-                      settings?.whatsappNumber,
-                      `Hello Nazly, I would like guidance on ${activeService.title}.`
-                    )
-                  }
+                  href={resolveCtaLink(
+                    activeService.ctaButtonLink,
+                    settings?.whatsappNumber,
+                    `Hello Nazly, I would like guidance on ${activeService.title}.`
+                  )}
                   variant="primary"
                   size="md"
                   className="shrink-0"
