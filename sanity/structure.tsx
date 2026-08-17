@@ -10,6 +10,7 @@ import { CaseIcon } from '@sanity/icons/Case';
 import { StarIcon } from '@sanity/icons/Star';
 import { CogIcon } from '@sanity/icons/Cog';
 import { EarthGlobeIcon } from '@sanity/icons/EarthGlobe';
+import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import type { StructureBuilder, StructureResolver } from 'sanity/structure';
 
 const postList = (
@@ -85,5 +86,36 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
       S.divider(),
       S.listItem()
         .title('Form Appointments')
-        .child(S.documentTypeList('appointment').title('Appointments')),
+        .icon(EnvelopeIcon)
+        .child(
+          S.list()
+            .title('Form Inquiries & Leads')
+            .items([
+              S.listItem()
+                .title('🟢 New Inquiries')
+                .child(
+                  S.documentList()
+                    .title('New Inquiries (Needs Attention)')
+                    .filter('_type == "appointment" && (status == "New" || !defined(status))')
+                    .defaultOrdering([{ field: 'receivedAt', direction: 'desc' }])
+                ),
+              S.listItem()
+                .title('⚪ Contacted')
+                .child(
+                  S.documentList()
+                    .title('Contacted Leads (Handled)')
+                    .filter('_type == "appointment" && status == "Contacted"')
+                    .defaultOrdering([{ field: 'receivedAt', direction: 'desc' }])
+                ),
+              S.divider(),
+              S.listItem()
+                .title('📋 All Inquiries')
+                .child(
+                  S.documentList()
+                    .title('All Form Inquiries')
+                    .filter('_type == "appointment"')
+                    .defaultOrdering([{ field: 'receivedAt', direction: 'desc' }])
+                ),
+            ])
+        ),
     ]);
