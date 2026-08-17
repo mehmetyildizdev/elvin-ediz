@@ -5,7 +5,9 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, ArrowUpRight, ShieldCheck, Sparkles, PhoneCall } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { ServiceData } from '@/sanity/lib/types';
+import type { ServiceData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 
@@ -65,9 +67,11 @@ const portableTextComponents: PortableTextComponents = {
 
 export function TabbedServices({
   services = [],
+  settings = defaultSiteSettings,
   initialTab,
 }: {
   services: ServiceData[];
+  settings?: SiteSettingsData;
   initialTab?: string;
 }) {
   const searchParams = useSearchParams();
@@ -270,9 +274,10 @@ export function TabbedServices({
                 <Button
                   href={
                     activeService.ctaButtonLink ||
-                    `https://wa.me/16475681009?text=Hello%20Nazly,%20I%20would%20like%20guidance%20on%20${encodeURIComponent(
-                      activeService.title
-                    )}.`
+                    getWhatsAppUrl(
+                      settings?.whatsappNumber,
+                      `Hello Nazly, I would like guidance on ${activeService.title}.`
+                    )
                   }
                   variant="primary"
                   size="md"

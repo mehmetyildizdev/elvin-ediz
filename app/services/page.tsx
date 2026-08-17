@@ -24,11 +24,11 @@ export default async function ServicesPage() {
           copy="Personalized Canadian immigration guidance for the next chapter you are ready to build."
         />
         <Suspense fallback={<div className="py-20 text-center text-text-muted">Loading pathways...</div>}>
-          <TabbedServices services={services} />
+          <TabbedServices services={services} settings={settings} />
         </Suspense>
-        <ServicesCallout />
+        <ServicesCallout settings={settings} />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

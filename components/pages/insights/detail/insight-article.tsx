@@ -1,15 +1,18 @@
 import { ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
-import type { PostData } from '@/sanity/lib/types';
+import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 import { Button } from '@/components/ui/button';
 import { portableTextComponents } from './portable-text';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 
 interface InsightArticleProps {
   post: PostData;
+  settings?: SiteSettingsData;
 }
 
-export function InsightArticle({ post }: InsightArticleProps) {
+export function InsightArticle({ post, settings = defaultSiteSettings }: InsightArticleProps) {
   const OversightIcon = getIconComponent(post.authorOversightIcon) || ShieldCheck;
 
   return (
@@ -73,7 +76,10 @@ export function InsightArticle({ post }: InsightArticleProps) {
           </p>
 
           <Button
-            href={post.authorOversightCtaLink || 'https://wa.me/16475681009'}
+            href={
+              post.authorOversightCtaLink ||
+              getWhatsAppUrl(settings?.whatsappNumber, `Hello Nazly, I would like to consult regarding: ${post.title}`)
+            }
             variant="primary"
             size="sm"
             className="w-full"

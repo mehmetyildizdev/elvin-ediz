@@ -1,10 +1,17 @@
 import Image from 'next/image';
 import { ArrowDown, ArrowUpRight, Plane } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { HomePageData } from '@/sanity/lib/types';
-import { defaultHomePage } from '@/sanity/lib/types';
+import type { HomePageData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultHomePage, defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 
-export function Hero({ homeData = defaultHomePage }: { homeData?: HomePageData }) {
+export function Hero({
+  homeData = defaultHomePage,
+  settings = defaultSiteSettings,
+}: {
+  homeData?: HomePageData;
+  settings?: SiteSettingsData;
+}) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -45,7 +52,7 @@ export function Hero({ homeData = defaultHomePage }: { homeData?: HomePageData }
             </p>
             <div className="flex flex-wrap items-center gap-6">
               <Button
-                href={homeData.heroPrimaryCtaLink || 'https://wa.me/16475681009'}
+                href={homeData.heroPrimaryCtaLink || getWhatsAppUrl(settings?.whatsappNumber)}
                 variant="primary"
                 size="md"
               >

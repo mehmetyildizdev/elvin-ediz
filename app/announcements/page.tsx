@@ -15,9 +15,9 @@ export default async function AnnouncementsPage() {
     <>
       <Header settings={settings} />
       <main>
-        <AnnouncementsList insightsPageData={insightsPageData} posts={posts} />
+        <AnnouncementsList insightsPageData={insightsPageData} posts={posts} settings={settings} />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

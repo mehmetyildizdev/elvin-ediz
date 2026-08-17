@@ -21,7 +21,7 @@ export default async function ContactPage() {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

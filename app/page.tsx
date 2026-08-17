@@ -34,16 +34,16 @@ export default async function Home() {
   return (
     <main>
       <Header settings={settings} />
-      <Hero homeData={homeData} />
+      <Hero homeData={homeData} settings={settings} />
       <TrustBar homeData={homeData} />
       <Services services={services} homeData={homeData} />
-      <RcicSection homeData={homeData} />
-      <About staff={staff} homeData={homeData} />
+      <RcicSection homeData={homeData} settings={settings} />
+      <About staff={staff} homeData={homeData} settings={settings} />
       <Testimonials testimonials={testimonials} homeData={homeData} />
       <Process homeData={homeData} />
       <Insights homeData={homeData} />
       <Contact homeData={homeData} services={services} />
-      <Footer />
+      <Footer settings={settings} />
     </main>
   );
 }

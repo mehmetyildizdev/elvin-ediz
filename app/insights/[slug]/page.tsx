@@ -15,9 +15,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     <>
       <Header settings={settings} />
       <main>
-        <InsightsDetail post={post} slug={slug} />
+        <InsightsDetail post={post} slug={slug} settings={settings} />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

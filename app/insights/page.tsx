@@ -15,9 +15,9 @@ export default async function InsightsPage() {
     <>
       <Header settings={settings} />
       <main>
-        <InsightsHub insightsPageData={insightsPageData} posts={posts} />
+        <InsightsHub insightsPageData={insightsPageData} posts={posts} settings={settings} />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

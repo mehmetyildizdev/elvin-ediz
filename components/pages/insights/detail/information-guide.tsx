@@ -1,12 +1,15 @@
 import { BookOpen, CheckCircle2 } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
-import type { PostData } from '@/sanity/lib/types';
+import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 import { Button } from '@/components/ui/button';
 import { portableTextComponents } from './portable-text';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 
 interface InformationGuideProps {
   post: PostData;
+  settings?: SiteSettingsData;
 }
 
 const defaultChecklist = [
@@ -16,7 +19,10 @@ const defaultChecklist = [
   'Ensure Certified Translations for All Non-English Documents',
 ];
 
-export function InformationGuide({ post }: InformationGuideProps) {
+export function InformationGuide({
+  post,
+  settings = defaultSiteSettings,
+}: InformationGuideProps) {
   const items = post.checklistItems && post.checklistItems.length > 0 ? post.checklistItems : defaultChecklist;
   const ChecklistIcon = getIconComponent(post.checklistIcon) || BookOpen;
 
@@ -84,7 +90,10 @@ export function InformationGuide({ post }: InformationGuideProps) {
             </p>
           </div>
           <Button
-            href={post.infoCtaButtonLink || 'https://wa.me/16475681009'}
+            href={
+              post.infoCtaButtonLink ||
+              getWhatsAppUrl(settings?.whatsappNumber, `Hello Nazly, I would like guidance on: ${post.title}`)
+            }
             variant="primary"
             size="sm"
           >

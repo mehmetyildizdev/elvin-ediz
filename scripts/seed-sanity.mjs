@@ -47,8 +47,8 @@ async function seed() {
     phone: '(647) 568 1009',
     officeHours: 'Mon - Fri: 09:00am - 4:00pm',
     address: 'Toronto, Ontario, Canada',
-    consultationLink: 'https://wa.me/16475681009',
-    whatsappNumber: 'https://wa.me/16475681009',
+    consultationLink: '/contact',
+    whatsappNumber: '123456789',
     linkedinUrl: 'https://www.linkedin.com/in/nazly-sunguroglu-31574455/',
     instagramUrl: 'https://www.instagram.com/elvinedizimmigration/',
     headerNav: [
@@ -72,7 +72,7 @@ async function seed() {
     heroSubtitle:
       'Clear, compassionate, and regulated Canadian immigration guidance tailored to the life you are ready to build in Canada.',
     heroPrimaryCtaText: 'Free Consultation',
-    heroPrimaryCtaLink: 'https://wa.me/16475681009',
+    heroPrimaryCtaLink: 'https://wa.me/123456789',
     heroSecondaryCtaText: 'Explore services',
     heroSecondaryCtaLink: '#services',
     badgeText: 'EST. 2018',
@@ -102,7 +102,7 @@ async function seed() {
     strategyParagraph2:
       'Every profile is assessed with direct oversight from an RCIC, ensuring your submission meets current IRCC criteria and minimizes avoidable processing delays.',
     whoAreWePrimaryCtaText: 'Free Consultation',
-    whoAreWePrimaryCtaLink: 'https://wa.me/16475681009',
+    whoAreWePrimaryCtaLink: 'https://wa.me/123456789',
     whoAreWeSecondaryCtaText: 'Send a Message',
     whoAreWeSecondaryCtaLink: '#contact',
     ciccBadgeTitle: 'CICC REGISTERED & APPROVED',
@@ -125,7 +125,7 @@ async function seed() {
     aboutBodyParagraph:
       'With personalized assessment and clear strategic direction, we help individuals, students, professionals, and families navigate Canadian immigration regulations with confidence.',
     aboutCtaText: 'Free Consultation',
-    aboutCtaLink: 'https://wa.me/16475681009',
+    aboutCtaLink: 'https://wa.me/123456789',
 
     // 05. Testimonials Header
     testimonialsEyebrow: 'CLIENT EXPERIENCES',
@@ -394,7 +394,7 @@ Our personalized approach believes that Pragmatism is the key to handling your c
     consultationDescription:
       'Connect with Nazly Sunguroglu, RCIC for a one-on-one assessment of your Canadian immigration pathway.',
     consultationButtonText: 'Message on WhatsApp',
-    consultationButtonLink: 'https://wa.me/16475681009',
+    consultationButtonLink: 'https://wa.me/123456789',
   };
 
   // 8. Sample Posts
@@ -416,7 +416,7 @@ Our personalized approach believes that Pragmatism is the key to handling your c
       authorOversightText:
         'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
       authorOversightCtaText: 'Consult on this topic',
-      authorOversightCtaLink: 'https://wa.me/16475681009',
+      authorOversightCtaLink: 'https://wa.me/123456789',
       content: [
         {
           _key: 'b1',
@@ -449,7 +449,7 @@ Our personalized approach believes that Pragmatism is the key to handling your c
       authorOversightText:
         'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
       authorOversightCtaText: 'Consult on this topic',
-      authorOversightCtaLink: 'https://wa.me/16475681009',
+      authorOversightCtaLink: 'https://wa.me/123456789',
       content: [
         {
           _key: 'b1',
@@ -490,7 +490,7 @@ Our personalized approach believes that Pragmatism is the key to handling your c
       infoCtaTitle: 'Need assistance with this documentation?',
       infoCtaSubtitle: 'Our team provides complete document audits and file representation.',
       infoCtaButtonText: 'Schedule Audit',
-      infoCtaButtonLink: 'https://wa.me/16475681009',
+      infoCtaButtonLink: 'https://wa.me/123456789',
       content: [
         {
           _key: 'b1',
@@ -526,7 +526,7 @@ Our personalized approach believes that Pragmatism is the key to handling your c
       announcementActionText:
         'Existing clients whose applications are directly affected by this notice will be contacted individually by our case processing team. If you have upcoming deadlines or queries, please reach out via your client communication channel.',
       announcementCtaButtonText: 'Inquire on WhatsApp',
-      announcementCtaButtonLink: 'https://wa.me/16475681009',
+      announcementCtaButtonLink: 'https://wa.me/123456789',
       content: [
         {
           _key: 'b1',

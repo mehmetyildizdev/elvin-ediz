@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 
-export function Footer() {
+export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSettingsData }) {
+  const consultationHref = settings?.whatsappNumber
+    ? getWhatsAppUrl(settings.whatsappNumber)
+    : settings?.consultationLink || getWhatsAppUrl();
+
   return (
     <footer className="bg-bg-primary text-text-on-dark w-full">
       <div className="border-border-on-dark/20 border-b px-6 py-17.5 md:px-12">
@@ -10,7 +16,7 @@ export function Footer() {
             <Link href="/" className="inline-block transition-opacity hover:opacity-95">
               <Image
                 src="/white-logo-for-elvinediz.png"
-                alt="Elvin Ediz"
+                alt={settings?.siteTitle || 'Elvin Ediz'}
                 width={178}
                 height={55}
                 className="h-auto w-42.5"
@@ -57,29 +63,29 @@ export function Footer() {
               Connect
             </span>
             <a
-              href="mailto:info@elvinediz.com"
+              href={`mailto:${settings?.contactEmail || 'info@elvinediz.com'}`}
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
-              info@elvinediz.com
+              {settings?.contactEmail || 'info@elvinediz.com'}
             </a>
             <a
-              href="https://wa.me/16475681009"
+              href={consultationHref}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
               Free Consultation
             </a>
-            <span className="opacity-80">Toronto, Canada</span>
+            <span className="opacity-80">{settings?.address || 'Toronto, Canada'}</span>
           </div>
         </div>
       </div>
 
       <div className="bg-bg-primary text-text-on-dark-muted/70 px-6 py-5 text-xs font-medium tracking-wider uppercase md:px-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 md:flex-row">
-          <span>© {new Date().getFullYear()} Elvin Ediz Immigration Services.</span>
+          <span>{settings?.copyrightText || `© ${new Date().getFullYear()} Elvin Ediz Immigration Services.`}</span>
           <span className="text-center md:text-right">
-            Regulated Canadian Immigration Consultant (RCIC)
+            {settings?.footerNotice || 'Regulated Canadian Immigration Consultant (RCIC)'}
           </span>
         </div>
       </div>

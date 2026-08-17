@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Clock, ExternalLink, Globe, MessageSquare, Newspaper, Tag } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
-import type { PostData } from '@/sanity/lib/types';
+import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 import { Button } from '@/components/ui/button';
 import { portableTextComponents } from './portable-text';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 
 interface NewsStoryProps {
   post: PostData;
+  settings?: SiteSettingsData;
 }
 
-export function NewsStory({ post }: NewsStoryProps) {
+export function NewsStory({ post, settings = defaultSiteSettings }: NewsStoryProps) {
   const NewsIcon = getIconComponent(post.iconName) || Newspaper;
 
   return (
@@ -128,7 +131,7 @@ export function NewsStory({ post }: NewsStoryProps) {
               Reach out to our team for tailored guidance on studying, working, or settling in Canada.
             </p>
             <a
-              href="https://wa.me/16475681009"
+              href={getWhatsAppUrl(settings?.whatsappNumber, 'Hello Nazly, I have questions regarding immigration to Canada.')}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-accent hover:bg-accent-hover text-bg-primary mt-2 inline-flex items-center justify-center gap-1.5 rounded-xs px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-colors"

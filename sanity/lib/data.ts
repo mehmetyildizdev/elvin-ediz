@@ -242,3 +242,5 @@ export async function fetchPostBySlug(slug: string): Promise<PostData | null> {
   return backupPosts.find((p) => p.slug === slug) || null;
 }
 
+export * from './whatsapp';
+

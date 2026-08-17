@@ -1,10 +1,20 @@
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, PhoneCall, ShieldCheck } from 'lucide-react';
 import { ServiceData } from '@/sanity/lib/data';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
 import { Button } from '@/components/ui/button';
 import { PageHeader } from '@/components/ui/page-header';
 
-export function ServiceDetail({ service, slug }: { service?: ServiceData | null; slug: string }) {
+export function ServiceDetail({
+  service,
+  slug,
+  settings = defaultSiteSettings,
+}: {
+  service?: ServiceData | null;
+  slug: string;
+  settings?: SiteSettingsData;
+}) {
   const displayTitle = service?.title || slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const displaySummary = service?.summary || 'Comprehensive Canadian immigration consultation and representation.';
   const features = service?.features || [
@@ -12,6 +22,11 @@ export function ServiceDetail({ service, slug }: { service?: ServiceData | null;
     'CICC Authorized Legal Representation',
     'Customized Application Strategy',
   ];
+
+  const consultationHref = getWhatsAppUrl(
+    settings?.whatsappNumber,
+    `Hello Nazly, I would like guidance on ${displayTitle}.`
+  );
 
   return (
     <main>
@@ -83,15 +98,15 @@ export function ServiceDetail({ service, slug }: { service?: ServiceData | null;
                 </p>
               </div>
 
-              <Button href="https://wa.me/16475681009" variant="primary" size="md" className="w-full">
+              <Button href={consultationHref} variant="primary" size="md" className="w-full">
                 <PhoneCall size={16} /> Free Consultation
               </Button>
 
               <div className="border-border-on-dark/20 border-t pt-4 text-xs">
                 <p className="text-text-on-dark-muted">
-                  <strong>Office Location:</strong> Toronto, Ontario, Canada
+                  <strong>Office Location:</strong> {settings?.address || 'Toronto, Ontario, Canada'}
                   <br />
-                  <strong>Direct Line / WhatsApp:</strong> (647) 568 1009
+                  <strong>Direct Line / WhatsApp:</strong> {settings?.phone || settings?.whatsappNumber || '123456789'}
                 </p>
               </div>
             </div>

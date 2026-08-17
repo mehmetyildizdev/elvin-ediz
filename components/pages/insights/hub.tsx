@@ -1,5 +1,5 @@
-import type { InsightsPageData, PostData } from '@/sanity/lib/types';
-import { defaultInsightsPage, defaultPosts } from '@/sanity/lib/types';
+import type { InsightsPageData, PostData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultInsightsPage, defaultPosts, defaultSiteSettings } from '@/sanity/lib/types';
 import { PageHeader } from '@/components/ui/page-header';
 import { cleanStega } from './utils';
 import { FeaturedInsights } from './sections/featured-insights';
@@ -11,11 +11,13 @@ import { ConsultationCard } from './sections/consultation-card';
 interface InsightsHubProps {
   insightsPageData?: InsightsPageData;
   posts?: PostData[];
+  settings?: SiteSettingsData;
 }
 
 export function InsightsHub({
   insightsPageData = defaultInsightsPage,
   posts = [],
+  settings = defaultSiteSettings,
 }: InsightsHubProps) {
   // Use posts if available, otherwise fallback to defaults so cards are never blank
   const allPosts = posts && posts.length > 0 ? posts : defaultPosts;
@@ -62,7 +64,7 @@ export function InsightsHub({
             <div className="flex flex-col gap-10 lg:col-span-4">
               <AnnouncementsSidebar insightsPageData={insightsPageData} posts={announcementPosts} />
               <NewsSidebar insightsPageData={insightsPageData} posts={newsPosts} />
-              <ConsultationCard insightsPageData={insightsPageData} />
+              <ConsultationCard insightsPageData={insightsPageData} settings={settings} />
             </div>
           </div>
         </div>

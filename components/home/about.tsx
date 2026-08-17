@@ -1,15 +1,18 @@
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { StaffData, HomePageData } from '@/sanity/lib/types';
-import { defaultStaff, defaultHomePage } from '@/sanity/lib/types';
+import type { StaffData, HomePageData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultStaff, defaultHomePage, defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 
 export function About({
   staff = defaultStaff,
   homeData = defaultHomePage,
+  settings = defaultSiteSettings,
 }: {
   staff?: StaffData[];
   homeData?: HomePageData;
+  settings?: SiteSettingsData;
 }) {
   const leader = staff[0] || defaultStaff[0];
   const photoSrc = homeData.aboutImageUrl || leader?.photoUrl || '/nazly-profile-picture.png';
@@ -68,7 +71,7 @@ export function About({
 
           <div className="flex items-center gap-4">
             <Button
-              href={homeData.aboutCtaLink || 'https://wa.me/16475681009'}
+              href={homeData.aboutCtaLink || getWhatsAppUrl(settings?.whatsappNumber)}
               variant="primary"
               size="md"
               className="self-start"

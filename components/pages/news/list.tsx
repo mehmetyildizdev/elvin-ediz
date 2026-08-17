@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, ArrowUpRight, Clock, ExternalLink, Globe, Newspaper, Sparkles, Tag } from 'lucide-react';
-import type { InsightsPageData, PostData } from '@/sanity/lib/types';
-import { defaultInsightsPage, defaultPosts } from '@/sanity/lib/types';
+import type { InsightsPageData, PostData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultInsightsPage, defaultPosts, defaultSiteSettings } from '@/sanity/lib/types';
 import { PageHeader } from '@/components/ui/page-header';
 import { cleanStega, formatDate } from '../insights/utils';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
@@ -11,9 +11,14 @@ import { ConsultationCard } from '../insights/sections/consultation-card';
 interface NewsListProps {
   insightsPageData?: InsightsPageData;
   posts?: PostData[];
+  settings?: SiteSettingsData;
 }
 
-export function NewsList({ insightsPageData = defaultInsightsPage, posts = [] }: NewsListProps) {
+export function NewsList({
+  insightsPageData = defaultInsightsPage,
+  posts = [],
+  settings = defaultSiteSettings,
+}: NewsListProps) {
   const allPosts = posts && posts.length > 0 ? posts : defaultPosts;
 
   // Filter for news only
@@ -217,7 +222,7 @@ export function NewsList({ insightsPageData = defaultInsightsPage, posts = [] }:
 
             {/* RIGHT SIDEBAR (4 cols): Consultation Card */}
             <div className="flex flex-col gap-8 lg:col-span-4">
-              <ConsultationCard insightsPageData={insightsPageData} />
+              <ConsultationCard insightsPageData={insightsPageData} settings={settings} />
             </div>
           </div>
         </div>

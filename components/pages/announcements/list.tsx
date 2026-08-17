@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Bell, Calendar } from 'lucide-react';
-import type { InsightsPageData, PostData } from '@/sanity/lib/types';
-import { defaultInsightsPage, defaultPosts } from '@/sanity/lib/types';
+import type { InsightsPageData, PostData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultInsightsPage, defaultPosts, defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 import { PageHeader } from '@/components/ui/page-header';
 import { cleanStega, formatDate } from '../insights/utils';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
@@ -10,11 +11,13 @@ import { ConsultationCard } from '../insights/sections/consultation-card';
 interface AnnouncementsListProps {
   insightsPageData?: InsightsPageData;
   posts?: PostData[];
+  settings?: SiteSettingsData;
 }
 
 export function AnnouncementsList({
   insightsPageData = defaultInsightsPage,
   posts = [],
+  settings = defaultSiteSettings,
 }: AnnouncementsListProps) {
   const allPosts = posts && posts.length > 0 ? posts : defaultPosts;
 
@@ -134,7 +137,7 @@ export function AnnouncementsList({
                         </Link>
 
                         <a
-                          href={post.announcementCtaButtonLink || 'https://wa.me/16475681009'}
+                          href={post.announcementCtaButtonLink || getWhatsAppUrl(settings?.whatsappNumber)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-xs font-medium transition-colors"
@@ -161,7 +164,7 @@ export function AnnouncementsList({
 
             {/* RIGHT SIDEBAR: Consultation Card */}
             <div className="flex flex-col gap-8 lg:col-span-4">
-              <ConsultationCard insightsPageData={insightsPageData} />
+              <ConsultationCard insightsPageData={insightsPageData} settings={settings} />
             </div>
           </div>
         </div>

@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { Bell } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
-import type { PostData } from '@/sanity/lib/types';
+import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 import { Button } from '@/components/ui/button';
 import { portableTextComponents } from './portable-text';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
@@ -10,9 +12,14 @@ import { formatDate } from '../utils';
 interface AnnouncementNoticeProps {
   post: PostData;
   formattedDate?: string;
+  settings?: SiteSettingsData;
 }
 
-export function AnnouncementNotice({ post, formattedDate }: AnnouncementNoticeProps) {
+export function AnnouncementNotice({
+  post,
+  formattedDate,
+  settings = defaultSiteSettings,
+}: AnnouncementNoticeProps) {
   const NoticeIcon = getIconComponent(post.announcementNoticeIcon) || Bell;
 
   const displayEffectiveDate = post.effectiveDate
@@ -79,7 +86,7 @@ export function AnnouncementNotice({ post, formattedDate }: AnnouncementNoticePr
           ← See all recent announcements
         </Link>
         <Button
-          href={post.announcementCtaButtonLink || 'https://wa.me/16475681009'}
+          href={post.announcementCtaButtonLink || getWhatsAppUrl(settings?.whatsappNumber)}
           variant="outline-on-light"
           size="sm"
         >

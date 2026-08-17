@@ -55,8 +55,9 @@
     "infoCtaButtonLink": {
       "name": "infoCtaButtonLink",
       "title": "Audit Button Link",
+      "description": "Optional custom URL or leave blank to use Site Settings WhatsApp number",
       "type": "string",
-      "initialValue": "https://wa.me/16475681009"
+      "initialValue": ""
     }
   }
 }

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, Bell, BookOpen, Calendar, ExternalLink, Newspaper, Sparkles } from 'lucide-react';
-import type { PostData } from '@/sanity/lib/types';
+import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultSiteSettings } from '@/sanity/lib/types';
 import { PageHeader } from '@/components/ui/page-header';
 import { cleanStega, formatDate } from './utils';
 import { InsightArticle } from './detail/insight-article';
@@ -14,9 +15,14 @@ import { getIconComponent } from '@/sanity/lib/iconLibrary';
 interface InsightsDetailProps {
   post: PostData | null;
   slug: string;
+  settings?: SiteSettingsData;
 }
 
-export function InsightsDetail({ post, slug }: InsightsDetailProps) {
+export function InsightsDetail({
+  post,
+  slug,
+  settings = defaultSiteSettings,
+}: InsightsDetailProps) {
   if (!post) {
     return (
       <div className="flex min-h-[60vh] flex-col justify-center">
@@ -166,12 +172,12 @@ export function InsightsDetail({ post, slug }: InsightsDetailProps) {
           </div>
         )}
 
-        {kind === 'insight' && <InsightArticle post={post} />}
-        {kind === 'information' && <InformationGuide post={post} />}
+        {kind === 'insight' && <InsightArticle post={post} settings={settings} />}
+        {kind === 'information' && <InformationGuide post={post} settings={settings} />}
         {kind === 'announcement' && (
-          <AnnouncementNotice post={post} formattedDate={formattedDate} />
+          <AnnouncementNotice post={post} formattedDate={formattedDate} settings={settings} />
         )}
-        {kind === 'news' && <NewsStory post={post} />}
+        {kind === 'news' && <NewsStory post={post} settings={settings} />}
       </section>
     </div>
   );

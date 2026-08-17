@@ -34,8 +34,9 @@
     "heroPrimaryCtaLink": {
       "name": "heroPrimaryCtaLink",
       "title": "Primary Button Link / WhatsApp",
+      "description": "Optional custom URL or leave blank to use Site Settings WhatsApp number",
       "type": "string",
-      "initialValue": "https://wa.me/16475681009"
+      "initialValue": ""
     },
     "heroSecondaryCtaText": {
       "name": "heroSecondaryCtaText",

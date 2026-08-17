@@ -1,7 +1,11 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 
-export function ServicesCallout() {
+export function ServicesCallout({ settings = defaultSiteSettings }: { settings?: SiteSettingsData }) {
+  const consultationHref = getWhatsAppUrl(settings?.whatsappNumber);
+
   return (
     <section className="bg-bg-primary text-text-on-dark px-6 py-20 md:px-12 md:py-24">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
@@ -18,7 +22,7 @@ export function ServicesCallout() {
           </h2>
         </div>
         <Button
-          href="https://wa.me/16475681009"
+          href={consultationHref}
           variant="primary"
           size="md"
           className="self-start whitespace-nowrap md:self-center"

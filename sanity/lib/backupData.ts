@@ -14,8 +14,8 @@ export const backupSiteSettings: SiteSettingsData = {
   phone: '(647) 568 1009',
   officeHours: 'Mon - Fri: 09:00am - 4:00pm',
   address: 'Toronto, Ontario, Canada',
-  consultationLink: 'https://wa.me/16475681009',
-  whatsappNumber: 'https://wa.me/16475681009',
+  consultationLink: 'https://wa.me/123456789',
+  whatsappNumber: '123456789',
   linkedinUrl: 'https://www.linkedin.com/in/nazly-sunguroglu-31574455/',
   instagramUrl: 'https://www.instagram.com/elvinedizimmigration/',
   headerNav: [
@@ -36,7 +36,7 @@ export const backupHomePage: HomePageData = {
   heroSubtitle:
     'Clear, compassionate, and regulated Canadian immigration guidance tailored to the life you are ready to build in Canada.',
   heroPrimaryCtaText: 'Free Consultation',
-  heroPrimaryCtaLink: 'https://wa.me/16475681009',
+  heroPrimaryCtaLink: 'https://wa.me/123456789',
   heroSecondaryCtaText: 'Explore services',
   heroSecondaryCtaLink: '#services',
   badgeText: 'EST. 2018',
@@ -66,7 +66,7 @@ export const backupHomePage: HomePageData = {
   strategyParagraph2:
     'Every profile is assessed with direct oversight from an RCIC, ensuring your submission meets current IRCC criteria and minimizes avoidable processing delays.',
   whoAreWePrimaryCtaText: 'Free Consultation',
-  whoAreWePrimaryCtaLink: 'https://wa.me/16475681009',
+  whoAreWePrimaryCtaLink: 'https://wa.me/123456789',
   whoAreWeSecondaryCtaText: 'Send a Message',
   whoAreWeSecondaryCtaLink: '#contact',
   ciccBadgeImageUrl: '/rcic_logo.png',
@@ -90,7 +90,7 @@ export const backupHomePage: HomePageData = {
   aboutBodyParagraph:
     'With personalized assessment and clear strategic direction, we help individuals, students, professionals, and families navigate Canadian immigration regulations with confidence.',
   aboutCtaText: 'Free Consultation',
-  aboutCtaLink: 'https://wa.me/16475681009',
+  aboutCtaLink: 'https://wa.me/123456789',
 
   // 05. Testimonials
   testimonialsEyebrow: 'CLIENT EXPERIENCES',
@@ -312,7 +312,7 @@ export const backupInsightsPage: InsightsPageData = {
   consultationDescription:
     'Connect with Nazly Sunguroglu, RCIC for a one-on-one assessment of your Canadian immigration pathway.',
   consultationButtonText: 'Message on WhatsApp',
-  consultationButtonLink: 'https://wa.me/16475681009',
+  consultationButtonLink: 'https://wa.me/123456789',
 };
 
 export const backupPosts: PostData[] = [

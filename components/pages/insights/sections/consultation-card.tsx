@@ -1,11 +1,21 @@
 import { ArrowUpRight, ShieldCheck } from 'lucide-react';
-import type { InsightsPageData } from '@/sanity/lib/types';
+import type { InsightsPageData, SiteSettingsData } from '@/sanity/lib/types';
+import { defaultSiteSettings } from '@/sanity/lib/types';
+import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 
 interface ConsultationCardProps {
   insightsPageData: InsightsPageData;
+  settings?: SiteSettingsData;
 }
 
-export function ConsultationCard({ insightsPageData }: ConsultationCardProps) {
+export function ConsultationCard({
+  insightsPageData,
+  settings = defaultSiteSettings,
+}: ConsultationCardProps) {
+  const buttonHref =
+    insightsPageData.consultationButtonLink ||
+    getWhatsAppUrl(settings?.whatsappNumber);
+
   return (
     <div className="bg-bg-primary text-text-on-dark flex flex-col gap-4 rounded-sm p-6 shadow-lg">
       <div className="flex items-center gap-2">
@@ -22,7 +32,7 @@ export function ConsultationCard({ insightsPageData }: ConsultationCardProps) {
           'Connect with Nazly Sunguroglu, RCIC for a one-on-one assessment of your Canadian immigration pathway.'}
       </p>
       <a
-        href={insightsPageData.consultationButtonLink || 'https://wa.me/16475681009'}
+        href={buttonHref}
         target="_blank"
         rel="noopener noreferrer"
         className="bg-accent hover:bg-accent-hover text-bg-primary mt-2 inline-flex items-center justify-center gap-2 rounded-xs px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-colors"

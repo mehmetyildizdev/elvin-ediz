@@ -15,9 +15,9 @@ export default async function NewsPage() {
     <>
       <Header settings={settings} />
       <main>
-        <NewsList insightsPageData={insightsPageData} posts={posts} />
+        <NewsList insightsPageData={insightsPageData} posts={posts} settings={settings} />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

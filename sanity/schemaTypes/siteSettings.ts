@@ -44,9 +44,10 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'whatsappNumber',
-      title: 'WhatsApp Number / Link',
+      title: 'WhatsApp Number',
+      description: 'Enter WhatsApp phone number (e.g. 123456789). The website will automatically format WhatsApp chat links using this number.',
       type: 'string',
-      initialValue: 'https://wa.me/16475681009',
+      initialValue: '123456789',
     }),
     defineField({
       name: 'linkedinUrl',
