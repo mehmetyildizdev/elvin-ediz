@@ -16,6 +16,7 @@ import {
   fetchHomePage,
   fetchServices,
   fetchTestimonials,
+  fetchGoogleReviews,
   fetchStaff,
 } from '@/sanity/lib/data';
 
@@ -23,11 +24,12 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function Home() {
-  const [settings, homeData, services, testimonials, staff] = await Promise.all([
+  const [settings, homeData, services, testimonials, googleReviews, staff] = await Promise.all([
     fetchSiteSettings(),
     fetchHomePage(),
     fetchServices(),
     fetchTestimonials(),
+    fetchGoogleReviews(),
     fetchStaff(),
   ]);
 
@@ -39,7 +41,11 @@ export default async function Home() {
       <Services services={services} homeData={homeData} />
       <RcicSection homeData={homeData} settings={settings} />
       <About staff={staff} homeData={homeData} settings={settings} />
-      <Testimonials testimonials={testimonials} homeData={homeData} />
+      <Testimonials
+        testimonials={testimonials}
+        googleReviews={googleReviews}
+        homeData={homeData}
+      />
       <Process homeData={homeData} />
       <Insights homeData={homeData} />
       <Contact homeData={homeData} services={services} />

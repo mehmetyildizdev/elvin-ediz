@@ -1,1 +1,4 @@
-export { default, dynamic, revalidate } from '../privacy/page';
+export { default } from '../privacy/page';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+

@@ -71,9 +71,18 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         .icon(CaseIcon)
         .child(S.documentTypeList('service').title('Immigration Services')),
       S.listItem()
-        .title('Client Testimonials & Google Reviews')
+        .title('Google Reviews (Synced)')
         .icon(StarIcon)
-        .child(S.documentTypeList('testimonial').title('Client Testimonials')),
+        .child(
+          S.document()
+            .schemaType('googleReviews')
+            .documentId('googleReviews')
+            .title('Google Reviews & Rating')
+        ),
+      S.listItem()
+        .title('Curated Testimonials (Manual)')
+        .icon(StarIcon)
+        .child(S.documentTypeList('testimonial').title('Curated Testimonials')),
       S.listItem()
         .title('Team / Staff')
         .icon(UserIcon)

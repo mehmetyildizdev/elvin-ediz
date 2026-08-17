@@ -1,0 +1,39 @@
+name: Sync Google Reviews to Sanity
+
+on:
+  # Manual trigger only from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  sync-reviews:
+    name: Scrape & Sync Google Reviews
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Install Chrome binary for Puppeteer
+        run: pnpm exec puppeteer browsers install chrome
+
+      - name: Run Google Reviews Sync
+        env:
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID || 'hn097odi' }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET || 'production' }}
+          SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_EDITOR_TOKEN || secrets.SANITY_API_WRITE_TOKEN }}
+        run: node scripts/sync-google-reviews.mjs

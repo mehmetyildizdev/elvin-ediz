@@ -151,8 +151,10 @@
   --hero-glow: radial-gradient(circle at 80% 30%, rgba(142, 54, 27, 0.22), transparent 45%);
 }
 
-* {
-  box-sizing: border-box;
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {

@@ -4,6 +4,7 @@ import {
   backupStaff,
   backupServices,
   backupTestimonials,
+  backupGoogleReviews,
   backupInsightsPage,
   backupPosts,
   backupFaqPage,
@@ -47,6 +48,27 @@ export interface TestimonialData {
   location: string;
   quote: string;
   rating: number;
+}
+
+export interface GoogleReviewItem {
+  _key?: string;
+  author: string;
+  avatarUrl?: string;
+  rating: number;
+  date?: string;
+  quote?: string;
+  highlight?: boolean;
+}
+
+export interface GoogleReviewsData {
+  _id?: string;
+  businessName: string;
+  rating: number;
+  totalReviews: number;
+  googleMapsUrl?: string;
+  writeReviewUrl?: string;
+  lastSyncedAt?: string;
+  reviews: GoogleReviewItem[];
 }
 
 export interface StaffData {
@@ -313,6 +335,7 @@ export const defaultHomePage = backupHomePage;
 export const defaultServices = backupServices;
 export const defaultStaff = backupStaff;
 export const defaultTestimonials = backupTestimonials;
+export const defaultGoogleReviews = backupGoogleReviews;
 export const defaultInsightsPage = backupInsightsPage;
 export const defaultPosts = backupPosts;
 export const defaultFaqPage: FaqPageData = backupFaqPage;

@@ -9,6 +9,7 @@ import { faqPage } from './faqPage';
 import { privacyPage } from './privacyPage';
 import { post } from './post';
 import { appointment } from './appointment';
+import { googleReviews } from './googleReviews';
 
 export const schemaTypes = [
   siteSettings,
@@ -22,4 +23,5 @@ export const schemaTypes = [
   privacyPage,
   post,
   appointment,
+  googleReviews,
 ];

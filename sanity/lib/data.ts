@@ -6,6 +6,7 @@ import {
   backupStaff,
   backupServices,
   backupTestimonials,
+  backupGoogleReviews,
   backupInsightsPage,
   backupPosts,
   backupFaqPage,
@@ -17,6 +18,7 @@ import type {
   ServiceData,
   StaffData,
   TestimonialData,
+  GoogleReviewsData,
   InsightsPageData,
   PostData,
   PostKind,
@@ -168,6 +170,31 @@ export async function fetchTestimonials(): Promise<TestimonialData[]> {
     console.error('Error fetching testimonials from Sanity:', err);
   }
   return backupTestimonials;
+}
+
+export async function fetchGoogleReviews(): Promise<GoogleReviewsData> {
+  const client = await getSanityClient();
+  if (!client) return backupGoogleReviews;
+  try {
+    const data = await client.fetch<GoogleReviewsData>(
+      `*[_type == "googleReviews"][0] {
+        _id,
+        businessName,
+        rating,
+        totalReviews,
+        googleMapsUrl,
+        writeReviewUrl,
+        lastSyncedAt,
+        reviews
+      }`,
+      {},
+      fetchOptions
+    );
+    if (data && data.reviews?.length) return { ...backupGoogleReviews, ...data };
+  } catch (err) {
+    console.error('Error fetching googleReviews from Sanity:', err);
+  }
+  return backupGoogleReviews;
 }
 
 export async function fetchInsightsPage(): Promise<InsightsPageData> {

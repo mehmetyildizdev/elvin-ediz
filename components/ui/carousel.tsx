@@ -17,60 +17,76 @@ export function Carousel<T>({
   items,
   renderItem,
   autoPlay = true,
-  autoPlayInterval = 5000,
+  autoPlayInterval = 5500,
   className = '',
   showControls = true,
   showDots = true,
 }: CarouselProps<T>) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [pageSize, setPageSize] = useState(3);
+  const [isAnimating, setIsAnimating] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
   const total = items.length;
 
-  // We clone items to allow seamless infinite loop wrap-around
-  const extendedItems = total > 0 ? [...items, ...items, ...items] : [];
-  const offsetIndex = total + currentIndex;
+  // Responsive page size detection
+  useEffect(() => {
+    function updatePageSize() {
+      const w = window.innerWidth;
+      if (w < 768) {
+        setPageSize(1);
+      } else if (w < 1024) {
+        setPageSize(2);
+      } else {
+        setPageSize(3);
+      }
+    }
+    updatePageSize();
+    window.addEventListener('resize', updatePageSize);
+    return () => window.removeEventListener('resize', updatePageSize);
+  }, []);
+
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+  // Reset page if pageSize changes and exceeds totalPages
+  useEffect(() => {
+    if (currentPage >= totalPages) {
+      setCurrentPage(0);
+    }
+  }, [currentPage, totalPages]);
+
+  const triggerPageChange = useCallback(
+    (newPage: number) => {
+      if (isAnimating) return;
+      setIsAnimating(true);
+      setCurrentPage(newPage);
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 350);
+    },
+    [isAnimating]
+  );
 
   const next = useCallback(() => {
-    if (!isTransitioning) return;
-    setCurrentIndex((prev) => prev + 1);
-  }, [isTransitioning]);
+    if (totalPages <= 1) return;
+    triggerPageChange((currentPage + 1) % totalPages);
+  }, [currentPage, totalPages, triggerPageChange]);
 
   const prev = useCallback(() => {
-    if (!isTransitioning) return;
-    setCurrentIndex((prev) => prev - 1);
-  }, [isTransitioning]);
+    if (totalPages <= 1) return;
+    triggerPageChange((currentPage - 1 + totalPages) % totalPages);
+  }, [currentPage, totalPages, triggerPageChange]);
 
-  // Reset index seamlessly when reaching clone boundaries
+  // Autoplay
   useEffect(() => {
-    if (currentIndex >= total) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(0);
-      }, 450);
-      return () => clearTimeout(timer);
-    }
-    if (currentIndex < -total) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(0);
-      }, 450);
-      return () => clearTimeout(timer);
-    }
-    setIsTransitioning(true);
-  }, [currentIndex, total]);
-
-  // Autoplay handler
-  useEffect(() => {
-    if (!autoPlay || isPaused || total <= 1) return;
+    if (!autoPlay || isPaused || totalPages <= 1) return;
     const timer = setInterval(() => {
       next();
     }, autoPlayInterval);
     return () => clearInterval(timer);
-  }, [autoPlay, autoPlayInterval, isPaused, next, total]);
+  }, [autoPlay, autoPlayInterval, isPaused, next, totalPages]);
 
   // Touch Swipe handlers
   function handleTouchStart(e: React.TouchEvent) {
@@ -84,11 +100,8 @@ export function Carousel<T>({
   function handleTouchEnd() {
     if (!touchStartX.current || !touchEndX.current) return;
     const distance = touchStartX.current - touchEndX.current;
-    const isLeftSwipe = distance > 40;
-    const isRightSwipe = distance < -40;
-
-    if (isLeftSwipe) next();
-    if (isRightSwipe) prev();
+    if (distance > 40) next();
+    if (distance < -40) prev();
 
     touchStartX.current = null;
     touchEndX.current = null;
@@ -96,78 +109,81 @@ export function Carousel<T>({
 
   if (!total) return null;
 
-  const activeDotIndex = ((currentIndex % total) + total) % total;
+  // Windowed visible slice: ONLY the active cards are rendered in the DOM
+  // This completely eliminates off-screen DOM overflow that causes Sanity Visual Editing jitter
+  const startIndex = currentPage * pageSize;
+  const currentItems = items.slice(startIndex, startIndex + pageSize);
 
   return (
     <div
-      className={`relative w-full ${className}`}
+      className={`relative w-full max-w-full overflow-hidden select-none ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Carousel Track Window */}
-      <div className="w-full overflow-hidden py-4">
+      {/* Active Grid Window */}
+      <div className="w-full py-3">
         <div
-          className={`flex [--carousel-step:100%] md:[--carousel-step:50%] lg:[--carousel-step:33.333333%] ${
-            isTransitioning ? 'transition-transform duration-500 ease-out' : 'transition-none'
+          className={`grid grid-cols-1 gap-4 transition-opacity duration-350 ease-out md:grid-cols-2 lg:grid-cols-3 ${
+            isAnimating ? 'opacity-40 scale-[0.99]' : 'opacity-100 scale-100'
           }`}
-          style={{
-            transform: `translateX(calc(-${offsetIndex} * var(--carousel-step)))`,
-          }}
         >
-          {extendedItems.map((item, idx) => (
-            <div
-              key={`${idx}-${(item as any)?._id || idx}`}
-              className="w-full shrink-0 px-3.5 md:w-1/2 lg:w-1/3"
-            >
-              {renderItem(item, idx % total)}
-            </div>
-          ))}
+          {currentItems.map((item, idx) => {
+            const actualIndex = startIndex + idx;
+            return (
+              <div
+                key={`${actualIndex}-${(item as any)?._key || (item as any)?._id || actualIndex}`}
+                className="w-full max-w-full"
+              >
+                {renderItem(item, actualIndex)}
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* Navigation Controls & Dots Header/Footer */}
       {(showControls || showDots) && (
-        <div className="mt-6 flex items-center justify-between gap-4 px-2">
+        <div className="mt-4 flex items-center justify-between gap-4 px-1">
           {/* Dots Indicator */}
           {showDots && (
-            <div className="flex items-center gap-2">
-              {Array.from({ length: total }).map((_, i) => (
+            <div className="flex items-center gap-1.5 py-1">
+              {Array.from({ length: totalPages }).map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => {
-                    setIsTransitioning(true);
-                    setCurrentIndex(i);
-                  }}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    activeDotIndex === i
-                      ? 'bg-accent w-8'
-                      : 'bg-border-subtle hover:bg-text-muted/40 w-2.5'
+                  type="button"
+                  onClick={() => triggerPageChange(i)}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    currentPage === i
+                      ? 'bg-accent w-6'
+                      : 'bg-border-subtle hover:bg-text-muted/50 w-2'
                   }`}
-                  aria-label={`Go to slide ${i + 1}`}
+                  aria-label={`Go to page ${i + 1}`}
                 />
               ))}
             </div>
           )}
 
           {/* Prev / Next Arrows */}
-          {showControls && (
-            <div className="flex items-center gap-2">
+          {showControls && totalPages > 1 && (
+            <div className="flex items-center gap-2 shrink-0">
               <button
+                type="button"
                 onClick={prev}
-                className="border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent flex h-10 w-10 items-center justify-center rounded-full border transition-colors shadow-xs cursor-pointer"
-                aria-label="Previous slide"
+                className="border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent flex h-9 w-9 items-center justify-center rounded-full border transition-colors shadow-xs cursor-pointer active:scale-95"
+                aria-label="Previous page"
               >
-                <ChevronLeft size={18} />
+                <ChevronLeft size={16} />
               </button>
               <button
+                type="button"
                 onClick={next}
-                className="border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent flex h-10 w-10 items-center justify-center rounded-full border transition-colors shadow-xs cursor-pointer"
-                aria-label="Next slide"
+                className="border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent flex h-9 w-9 items-center justify-center rounded-full border transition-colors shadow-xs cursor-pointer active:scale-95"
+                aria-label="Next page"
               >
-                <ChevronRight size={18} />
+                <ChevronRight size={16} />
               </button>
             </div>
           )}
