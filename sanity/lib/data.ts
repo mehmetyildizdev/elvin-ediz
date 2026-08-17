@@ -5,6 +5,7 @@ import {
   backupHomePage,
   backupStaff,
   backupServices,
+  backupServicesPage,
   backupTestimonials,
   backupGoogleReviews,
   backupInsightsPage,
@@ -16,6 +17,7 @@ import type {
   SiteSettingsData,
   HomePageData,
   ServiceData,
+  ServicesPageData,
   StaffData,
   TestimonialData,
   GoogleReviewsData,
@@ -134,6 +136,24 @@ export async function fetchServices(): Promise<ServiceData[]> {
     console.error('Error fetching services from Sanity:', err);
   }
   return backupServices;
+}
+
+export async function fetchServicesPage(): Promise<ServicesPageData> {
+  const client = await getSanityClient();
+  if (!client) return backupServicesPage;
+  try {
+    const data = await client.fetch<ServicesPageData>(
+      `*[_type == "servicesPage" || _id == "servicesPage"][0] {
+        _id, eyebrow, titleMain, titleAccent, description
+      }`,
+      {},
+      fetchOptions
+    );
+    if (data && data.titleMain) return data;
+  } catch (err) {
+    console.error('Error fetching services page header from Sanity:', err);
+  }
+  return backupServicesPage;
 }
 
 export async function fetchServiceBySlug(slug: string): Promise<ServiceData | null> {

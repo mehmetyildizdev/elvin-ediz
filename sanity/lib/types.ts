@@ -289,6 +289,15 @@ export interface FaqItem {
   answer: any[] | string;
 }
 
+export interface ServicesPageData {
+  _id?: string;
+  eyebrow: string;
+  titleMain: string;
+  titleAccent: string;
+  description: string;
+}
+
+
 export interface FaqPageData {
   // 01. Page Header
   eyebrow?: string;

@@ -10,12 +10,14 @@ import { privacyPage } from './privacyPage';
 import { post } from './post';
 import { appointment } from './appointment';
 import { googleReviews } from './googleReviews';
+import { servicesPage } from './servicesPage';
 
 export const schemaTypes = [
   siteSettings,
   homePage,
   insightsPage,
   aboutPage,
+  servicesPage,
   service,
   testimonial,
   staffMember,

@@ -196,12 +196,12 @@ export function TabbedServices({
 
               {/* Detailed Overview / Body (Portable Text from Sanity Studio) */}
               {activeService.body && Array.isArray(activeService.body) && activeService.body.length > 0 && (
-                <div className="border-t border-border-subtle py-6">
-                  <h3 className="text-text-main mb-4 text-xs font-bold tracking-widest uppercase">
-                    Detailed Information
+                <div className="border-t border-border-subtle py-8">
+                  <h3 className="text-accent mb-6 text-xs font-bold tracking-widest uppercase">
+                    Detailed Pathway Overview
                   </h3>
                   <div className="prose-content">
-                    <PortableTextRenderer value={activeService.body} />
+                    <PortableTextRenderer value={activeService.body} size="base" />
                   </div>
                 </div>
               )}

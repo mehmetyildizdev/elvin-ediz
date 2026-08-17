@@ -80,47 +80,49 @@ export const createPortableTextComponents = (
     },
     block: {
       h2: ({ children }) => (
-        <h2 className="text-text-main mt-10 mb-4 font-serif text-2xl font-semibold sm:text-3xl">
+        <h2 className="text-text-main mt-8 mb-4 font-serif text-2xl font-semibold sm:text-3xl first:mt-0">
           {children}
         </h2>
       ),
       h3: ({ children }) => (
-        <h3 className="text-text-main mt-8 mb-3 font-serif text-xl font-semibold sm:text-2xl">
+        <h3 className="text-text-main mt-7 mb-3 font-serif text-lg font-semibold sm:text-xl first:mt-0 border-b border-border-subtle/50 pb-2">
           {children}
         </h3>
       ),
       h4: ({ children }) => (
-        <h4 className="text-text-main mt-6 mb-2 font-serif text-lg font-semibold">{children}</h4>
+        <h4 className="text-text-main mt-5 mb-2 font-serif text-base font-semibold first:mt-0">
+          {children}
+        </h4>
       ),
       h5: ({ children }) => (
-        <h5 className="text-text-main mt-4 mb-1.5 font-serif text-base font-semibold">
+        <h5 className="text-text-main mt-4 mb-1.5 font-serif text-sm font-semibold">
           {children}
         </h5>
       ),
       normal: ({ children }) => (
-        <p className={`text-text-muted mb-4 font-sans last:mb-0 ${textSize}`}>{children}</p>
+        <p className={`text-text-muted mb-4 font-sans leading-relaxed last:mb-0 ${textSize}`}>{children}</p>
       ),
       blockquote: ({ children }) => (
-        <blockquote className="border-accent bg-bg-surface text-text-main my-6 border-l-4 py-3 pl-6 font-serif text-base italic sm:text-lg">
+        <blockquote className="border-accent bg-accent/5 text-text-main my-5 border-l-3 py-3.5 px-5 rounded-r-md font-sans text-sm sm:text-base leading-relaxed">
           {children}
         </blockquote>
       ),
     },
     list: {
       bullet: ({ children }) => (
-        <ul className={`text-text-muted my-4 list-disc space-y-2 pl-6 font-sans ${textSize}`}>
+        <ul className={`my-4 space-y-2.5 pl-5 list-disc marker:text-accent font-sans ${textSize}`}>
           {children}
         </ul>
       ),
       number: ({ children }) => (
-        <ol className={`text-text-muted my-4 list-decimal space-y-2 pl-6 font-sans ${textSize}`}>
+        <ol className={`my-4 space-y-2.5 pl-5 list-decimal marker:text-accent font-sans ${textSize}`}>
           {children}
         </ol>
       ),
     },
     listItem: {
-      bullet: ({ children }) => <li className="font-sans leading-relaxed">{children}</li>,
-      number: ({ children }) => <li className="font-sans leading-relaxed">{children}</li>,
+      bullet: ({ children }) => <li className="font-sans leading-relaxed text-text-muted">{children}</li>,
+      number: ({ children }) => <li className="font-sans leading-relaxed text-text-muted">{children}</li>,
     },
     marks: {
       strong: ({ children }) => (

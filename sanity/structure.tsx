@@ -53,6 +53,15 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
             .title('Insights Page Content')
         ),
       S.listItem()
+        .title('Services Page Header')
+        .icon(CaseIcon)
+        .child(
+          S.document()
+            .schemaType('servicesPage')
+            .documentId('servicesPage')
+            .title('Services Page Hero Header')
+        ),
+      S.listItem()
         .title('Q&A / FAQs')
         .icon(HelpCircleIcon)
         .child(S.document().schemaType('faqPage').documentId('faqPage').title('Q&A')),
