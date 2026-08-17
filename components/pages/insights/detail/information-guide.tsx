@@ -85,7 +85,9 @@ export function InformationGuide({
             href={resolveCtaLink(
               post.infoCtaButtonLink,
               settings?.whatsappNumber,
-              `Hello Nazly, I would like guidance on: ${post.title}`
+              post.authorName
+                ? `Hello ${post.authorName.split(',')[0].trim()}, I would like guidance on: ${post.title}`
+                : `Hello, I would like guidance on: ${post.title}`
             )}
             variant="primary"
             size="sm"

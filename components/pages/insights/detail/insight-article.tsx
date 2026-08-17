@@ -79,7 +79,9 @@ export function InsightArticle({ post, settings = defaultSiteSettings }: Insight
             href={resolveCtaLink(
               post.authorOversightCtaLink,
               settings?.whatsappNumber,
-              `Hello Nazly, I would like to consult regarding: ${post.title}`
+              post.authorName
+                ? `Hello ${post.authorName.split(',')[0].trim()}, I would like to consult regarding: ${post.title}`
+                : `Hello, I would like to consult regarding: ${post.title}`
             )}
             variant="primary"
             size="sm"

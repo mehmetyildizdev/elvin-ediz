@@ -137,7 +137,13 @@ export function AnnouncementsList({
                         </Link>
 
                         <a
-                          href={resolveCtaLink(post.announcementCtaButtonLink, settings?.whatsappNumber)}
+                          href={resolveCtaLink(
+                            post.announcementCtaButtonLink,
+                            settings?.whatsappNumber,
+                            post.authorName
+                              ? `Hello ${post.authorName.split(',')[0].trim()}, I have an inquiry regarding the announcement: ${post.title}`
+                              : `Hello, I have an inquiry regarding the announcement: ${post.title}`
+                          )}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-xs font-medium transition-colors"

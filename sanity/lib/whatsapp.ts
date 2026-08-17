@@ -1,4 +1,32 @@
 /**
+ * Checks if an input string is a custom URL/scheme rather than a WhatsApp link/number.
+ */
+function isNonWhatsAppLink(input: string): boolean {
+  if (!input) return false;
+  const trimmed = input.trim();
+  if (trimmed.includes('wa.me') || trimmed.includes('whatsapp.com')) {
+    return false;
+  }
+  return (
+    trimmed.startsWith('/') ||
+    trimmed.startsWith('#') ||
+    trimmed.startsWith('mailto:') ||
+    trimmed.startsWith('tel:') ||
+    trimmed.startsWith('http://') ||
+    trimmed.startsWith('https://') ||
+    (trimmed.includes('@') && !trimmed.includes(' ') && !trimmed.includes('/'))
+  );
+}
+
+function formatCustomLink(input: string): string {
+  const trimmed = input.trim();
+  if (trimmed.includes('@') && !trimmed.startsWith('mailto:') && !trimmed.includes('/') && !trimmed.startsWith('http')) {
+    return `mailto:${trimmed}`;
+  }
+  return trimmed;
+}
+
+/**
  * Normalizes a phone number, raw string, or URL into a direct WhatsApp chat link (wa.me).
  * Supports plain phone numbers (e.g. '123456789', '+1 234 567 89'),
  * existing wa.me links, or custom URLs.
@@ -17,13 +45,9 @@ export function getWhatsAppUrl(
       : `https://wa.me/${fallbackNumber}`;
   }
 
-  // If it's an external custom URL other than wa.me (e.g. "/contact" or non-WhatsApp url)
-  if (
-    (input.startsWith('/') || input.startsWith('http://') || input.startsWith('https://')) &&
-    !input.includes('wa.me') &&
-    !input.includes('whatsapp.com')
-  ) {
-    return input;
+  // If it's an external custom URL/scheme (e.g. "/contact", "mailto:...", "#contact")
+  if (isNonWhatsAppLink(input)) {
+    return formatCustomLink(input);
   }
 
   // Extract clean digits (e.g. "123456789", "+1 234 567 89" -> "123456789")
@@ -39,9 +63,11 @@ export function getWhatsAppUrl(
 }
 
 /**
- * Resolves a CTA link: If a custom internal/external page link is provided (/contact, https://...),
- * it is preserved. If the CTA link is empty or is a WhatsApp link (like old wa.me), it uses the
- * dynamic Site Settings WhatsApp number.
+ * Resolves a CTA link:
+ * 1. If empty, falls back to the dynamic Site Settings WhatsApp number.
+ * 2. If a custom URL/scheme is set (/contact, mailto:..., tel:..., #contact, https://...), respects it.
+ * 3. If a customized WhatsApp link is set (https://wa.me/...), respects it.
+ * 4. If a custom phone number is entered on this button, formats a WhatsApp link for that number.
  */
 export function resolveCtaLink(
   customLink?: string | null,
@@ -50,17 +76,23 @@ export function resolveCtaLink(
 ): string {
   const link = (customLink || '').trim();
 
-  // If a custom non-whatsapp URL is set (e.g. /contact, /services, https://calendly.com), respect it
-  if (
-    link &&
-    (link.startsWith('/') || link.startsWith('http://') || link.startsWith('https://')) &&
-    !link.includes('wa.me') &&
-    !link.includes('whatsapp.com')
-  ) {
+  // If the field is empty, fallback to the dynamic Site Settings WhatsApp number
+  if (!link) {
+    return getWhatsAppUrl(whatsappNumber, message);
+  }
+
+  // If a custom non-whatsapp URL/scheme is set (e.g. mailto:..., /contact, /services, #contact), respect it
+  if (isNonWhatsAppLink(link)) {
+    return formatCustomLink(link);
+  }
+
+  // If the user entered a custom WhatsApp URL specifically on this CTA (e.g. https://wa.me/...), respect it!
+  if (link.includes('wa.me') || link.includes('whatsapp.com')) {
     return link;
   }
 
-  // Otherwise, use the dynamic WhatsApp number from site settings
-  return getWhatsAppUrl(whatsappNumber, message);
+  // If the user typed a specific phone number into this CTA field
+  return getWhatsAppUrl(link, message);
 }
+
 

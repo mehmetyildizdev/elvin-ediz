@@ -86,7 +86,13 @@ export function AnnouncementNotice({
           ← See all recent announcements
         </Link>
         <Button
-          href={resolveCtaLink(post.announcementCtaButtonLink, settings?.whatsappNumber)}
+          href={resolveCtaLink(
+            post.announcementCtaButtonLink,
+            settings?.whatsappNumber,
+            post.authorName
+              ? `Hello ${post.authorName.split(',')[0].trim()}, I have an inquiry regarding the announcement: ${post.title}`
+              : `Hello, I have an inquiry regarding the announcement: ${post.title}`
+          )}
           variant="outline-on-light"
           size="sm"
         >

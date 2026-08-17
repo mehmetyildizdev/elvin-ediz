@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, PhoneCall, ShieldCheck } from 'lucide-react';
 import { ServiceData, SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { Button } from '@/components/ui/button';
 import { PageHeader } from '@/components/ui/page-header';
 
@@ -22,9 +22,10 @@ export function ServiceDetail({
     'Customized Application Strategy',
   ];
 
-  const consultationHref = getWhatsAppUrl(
+  const consultationHref = resolveCtaLink(
+    service?.ctaButtonLink,
     settings?.whatsappNumber,
-    `Hello Nazly, I would like guidance on ${displayTitle}.`
+    `Hello, I would like guidance on: ${displayTitle}.`
   );
 
   return (

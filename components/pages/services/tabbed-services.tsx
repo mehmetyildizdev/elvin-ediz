@@ -275,7 +275,7 @@ export function TabbedServices({
                   href={resolveCtaLink(
                     activeService.ctaButtonLink,
                     settings?.whatsappNumber,
-                    `Hello Nazly, I would like guidance on ${activeService.title}.`
+                    `Hello, I would like guidance on: ${activeService.title}.`
                   )}
                   variant="primary"
                   size="md"

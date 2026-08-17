@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowUpRight, Clock, ExternalLink, Globe, MessageSquare, New
 import { PortableText } from '@portabletext/react';
 import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
-import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
+import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { Button } from '@/components/ui/button';
 import { portableTextComponents } from './portable-text';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
@@ -130,14 +130,20 @@ export function NewsStory({ post, settings = defaultSiteSettings }: NewsStoryPro
             <p className="text-text-on-dark-muted text-xs leading-relaxed">
               Reach out to our team for tailored guidance on studying, working, or settling in Canada.
             </p>
-            <a
-              href={getWhatsAppUrl(settings?.whatsappNumber, 'Hello Nazly, I have questions regarding immigration to Canada.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-accent hover:bg-accent-hover text-bg-primary mt-2 inline-flex items-center justify-center gap-1.5 rounded-xs px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-colors"
+            <Button
+              href={resolveCtaLink(
+                null,
+                settings?.whatsappNumber,
+                post.authorName
+                  ? `Hello ${post.authorName.split(',')[0].trim()}, I have questions regarding: ${post.title}`
+                  : `Hello, I have questions regarding: ${post.title}`
+              )}
+              variant="primary"
+              size="sm"
+              className="mt-2 w-full"
             >
               Ask on WhatsApp <ArrowUpRight size={14} />
-            </a>
+            </Button>
           </div>
         </div>
       </div>

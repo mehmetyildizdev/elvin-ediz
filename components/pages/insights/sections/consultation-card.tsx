@@ -2,6 +2,7 @@ import { ArrowUpRight, ShieldCheck } from 'lucide-react';
 import type { InsightsPageData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
 import { resolveCtaLink } from '@/sanity/lib/whatsapp';
+import { Button } from '@/components/ui/button';
 
 interface ConsultationCardProps {
   insightsPageData: InsightsPageData;
@@ -32,15 +33,15 @@ export function ConsultationCard({
         {insightsPageData.consultationDescription ||
           'Connect with Nazly Sunguroglu, RCIC for a one-on-one assessment of your Canadian immigration pathway.'}
       </p>
-      <a
+      <Button
         href={buttonHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-accent hover:bg-accent-hover text-bg-primary mt-2 inline-flex items-center justify-center gap-2 rounded-xs px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-colors"
+        variant="primary"
+        size="sm"
+        className="mt-2 w-full"
       >
         {insightsPageData.consultationButtonText || 'Message on WhatsApp'}{' '}
         <ArrowUpRight size={14} />
-      </a>
+      </Button>
     </div>
   );
 }

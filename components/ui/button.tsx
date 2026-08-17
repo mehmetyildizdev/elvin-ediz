@@ -50,11 +50,12 @@ export function Button({
   const combinedClasses = `${baseClasses} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
   if (href) {
-    const isExternal = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('https://wa.me');
+    const isExternal = href.startsWith('http') || href.startsWith('//');
+    const isScheme = href.startsWith('mailto:') || href.startsWith('tel:');
     const computedTarget = target || (isExternal ? '_blank' : undefined);
     const computedRel = rel || (isExternal ? 'noopener noreferrer' : undefined);
 
-    if (isExternal) {
+    if (isExternal || isScheme) {
       return (
         <a
           href={href}
