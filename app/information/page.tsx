@@ -1,6 +1,6 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { InsightsHub } from '@/components/pages/insights/hub';
+import { InformationList } from '@/components/pages/information/list';
 import { fetchSiteSettings, fetchInsightsPage, fetchPosts } from '@/sanity/lib/data';
 
 export const dynamic = 'force-dynamic';
@@ -15,7 +15,7 @@ export default async function InformationPage() {
     <>
       <Header settings={settings} />
       <main>
-        <InsightsHub insightsPageData={insightsPageData} posts={posts} settings={settings} />
+        <InformationList insightsPageData={insightsPageData} posts={posts} settings={settings} />
       </main>
       <Footer settings={settings} />
     </>

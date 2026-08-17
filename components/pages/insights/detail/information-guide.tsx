@@ -1,4 +1,5 @@
-import { BookOpen, CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, ArrowUpRight, BookOpen, CheckCircle2 } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
@@ -95,6 +96,22 @@ export function InformationGuide({
             {post.infoCtaButtonText || 'Schedule Audit'}
           </Button>
         </div>
+      </div>
+
+      {/* Bottom Navigation Row */}
+      <div className="border-border-subtle flex flex-wrap items-center justify-between gap-4 border-t pt-6">
+        <Link
+          href="/information"
+          className="text-text-muted hover:text-accent inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase transition-colors"
+        >
+          <ArrowLeft size={15} /> Back to all information guides
+        </Link>
+        <Link
+          href="/insights"
+          className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase transition-colors"
+        >
+          Explore Insights Hub <ArrowUpRight size={13} />
+        </Link>
       </div>
     </div>
   );

@@ -54,7 +54,7 @@ export function AnnouncementsSidebar({ insightsPageData, posts }: AnnouncementsS
               </div>
 
               <h4 className="text-text-main group-hover:text-accent font-serif text-base leading-snug font-semibold transition-colors">
-                <Link href={`/insights/${cleanStega(post.slug)}`}>{post.title}</Link>
+                <Link href={`/announcements/${cleanStega(post.slug)}`}>{post.title}</Link>
               </h4>
 
               {post.excerpt && (
@@ -64,7 +64,7 @@ export function AnnouncementsSidebar({ insightsPageData, posts }: AnnouncementsS
               )}
 
               <Link
-                href={`/insights/${cleanStega(post.slug)}`}
+                href={`/announcements/${cleanStega(post.slug)}`}
                 className="text-accent group/btn mt-3 inline-flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase"
               >
                 View announcement

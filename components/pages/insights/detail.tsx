@@ -54,6 +54,24 @@ export function InsightsDetail({
           ? 'information'
           : 'insight';
 
+  const listHref =
+    kind === 'information'
+      ? '/information'
+      : kind === 'news'
+        ? '/news'
+        : kind === 'announcement'
+          ? '/announcements'
+          : '/insights';
+
+  const listLabel =
+    kind === 'information'
+      ? 'Back to information guides'
+      : kind === 'news'
+        ? 'Back to news'
+        : kind === 'announcement'
+          ? 'Back to announcements'
+          : 'Back to insights & updates';
+
   const formattedDate = formatDate(post.publishedAt, {
     month: 'long',
     day: 'numeric',
@@ -69,33 +87,45 @@ export function InsightsDetail({
         <div className="mx-auto max-w-4xl">
           {/* Navigation Breadcrumb */}
           <Link
-            href="/insights"
+            href={listHref}
             className="text-text-muted hover:text-accent mb-8 inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase transition-colors"
           >
-            <ArrowLeft size={15} /> Back to insights & updates
+            <ArrowLeft size={15} /> {listLabel}
           </Link>
 
           {/* Type Badge & Meta */}
           <div className="mb-4 flex flex-wrap items-center gap-3">
             {kind === 'insight' && (
-              <span className="bg-accent/15 text-accent border-accent/30 rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase">
+              <Link
+                href="/insights"
+                className="bg-accent/15 text-accent hover:bg-accent/25 border-accent/30 rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
+              >
                 {CustomIcon ? <CustomIcon size={13} /> : <Sparkles size={13} />} Insight Article
-              </span>
+              </Link>
             )}
             {kind === 'information' && (
-              <span className="bg-bg-primary/10 text-accent border-border-subtle rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase">
+              <Link
+                href="/information"
+                className="bg-bg-primary/10 text-accent hover:bg-accent/15 border-border-subtle rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
+              >
                 {CustomIcon ? <CustomIcon size={13} /> : <BookOpen size={13} />} Practical Guide
-              </span>
+              </Link>
             )}
             {kind === 'announcement' && (
-              <span className="bg-accent/20 text-accent border-accent/40 rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase">
+              <Link
+                href="/announcements"
+                className="bg-accent/20 text-accent hover:bg-accent/30 border-accent/40 rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
+              >
                 {CustomIcon ? <CustomIcon size={13} /> : <Bell size={13} />} Official Notice
-              </span>
+              </Link>
             )}
             {kind === 'news' && (
-              <span className="bg-bg-primary/10 text-text-main border-border-subtle rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase">
+              <Link
+                href="/news"
+                className="bg-bg-primary/10 text-text-main hover:text-accent border-border-subtle rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
+              >
                 {CustomIcon ? <CustomIcon size={13} /> : <Newspaper size={13} />} Immigration News
-              </span>
+              </Link>
             )}
 
             {formattedDate && (

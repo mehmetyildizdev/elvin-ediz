@@ -22,6 +22,13 @@ export function InformationGuides({ insightsPageData, posts }: InformationGuides
               {insightsPageData.infoTitleAccent || 'Knowledge Base'}
             </span>
           </h2>
+          <Link
+            href="/information"
+            className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent rounded-full px-3 py-1 text-xs font-bold transition-colors"
+            title="See all information guides"
+          >
+            All Guides →
+          </Link>
         </div>
         {insightsPageData.infoDescription && (
           <p className="text-text-muted text-sm leading-relaxed">
@@ -53,7 +60,7 @@ export function InformationGuides({ insightsPageData, posts }: InformationGuides
 
               {/* Title */}
               <h3 className="text-text-main group-hover:text-accent mb-3 font-serif text-xl leading-snug font-semibold transition-colors duration-200 sm:text-2xl">
-                <Link href={`/insights/${cleanStega(post.slug)}`}>{post.title}</Link>
+                <Link href={`/information/${cleanStega(post.slug)}`}>{post.title}</Link>
               </h3>
 
               {/* Excerpt */}
@@ -67,7 +74,7 @@ export function InformationGuides({ insightsPageData, posts }: InformationGuides
                   Curated by Elvin Ediz Immigration Advisory
                 </span>
                 <Link
-                  href={`/insights/${cleanStega(post.slug)}`}
+                  href={`/information/${cleanStega(post.slug)}`}
                   className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
                 >
                   Explore guide
