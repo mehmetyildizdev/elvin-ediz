@@ -1,3 +1,4 @@
+import { LockIcon } from '@sanity/icons/Lock';
 import { AddDocumentIcon } from '@sanity/icons/AddDocument';
 import { BellIcon } from '@sanity/icons/Bell';
 import { DocumentTextIcon } from '@sanity/icons/DocumentText';
@@ -54,6 +55,15 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         .title('Q&A / FAQs')
         .icon(HelpCircleIcon)
         .child(S.document().schemaType('faqPage').documentId('faqPage').title('Q&A')),
+      S.listItem()
+        .title('Privacy Policy')
+        .icon(LockIcon)
+        .child(
+          S.document()
+            .schemaType('privacyPage')
+            .documentId('privacyPage')
+            .title('Privacy Policy Content')
+        ),
       S.divider(),
       S.listItem()
         .title('Immigration Services')

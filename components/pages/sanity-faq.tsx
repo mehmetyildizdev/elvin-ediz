@@ -1,46 +1,10 @@
-import { getSanityClient } from '@/sanity/lib/data';
-
-type FAQ = { _key: string; question: string; answer: string };
-const fallback: FAQ[] = [
-  {
-    _key: 'pathway',
-    question: 'How do I know which immigration pathway is right for me?',
-    answer:
-      'Each situation is unique. A consultation helps identify the most relevant options, the information to prepare, and the right next step for your circumstances.',
-  },
-  {
-    _key: 'study',
-    question: 'Can I study and work in Canada?',
-    answer:
-      'Your eligibility and conditions depend on your individual circumstances and current official IRCC requirements.',
-  },
-  {
-    _key: 'pr-process',
-    question: 'What is the processing time for Canadian Permanent Residency?',
-    answer:
-      'Processing times vary by category (Express Entry, Provincial Nominees, Family Sponsorship). We evaluate your eligibility to choose the fastest viable stream.',
-  },
-  {
-    _key: 'consultation',
-    question: 'What happens during an initial consultation with Nazly (RCIC)?',
-    answer:
-      'We review your profile, goals, work experience, and educational background to present legal options, required documents, and a structured timeline.',
-  },
-];
+import { fetchFaqPage } from '@/sanity/lib/data';
+import { PortableTextRenderer } from '@/components/ui/portable-text';
 
 export async function SanityFAQ() {
-  let items = fallback;
-  const client = await getSanityClient();
-  if (client) {
-    try {
-      const response = await client.fetch<FAQ[]>(
-        '*[_type == "faqPage"][0].items[]{_key, question, answer}'
-      );
-      if (response?.length) items = response;
-    } catch {
-      /* Keep the fallback */
-    }
-  }
+  const faqPageData = await fetchFaqPage();
+  const items = faqPageData.items || [];
+
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col">
       {items.map((item, index) => (
@@ -55,9 +19,9 @@ export async function SanityFAQ() {
               +
             </span>
           </summary>
-          <p className="text-text-muted mt-4 max-w-3xl pl-1 text-sm leading-relaxed sm:text-base">
-            {item.answer}
-          </p>
+          <div className="text-text-muted mt-4 max-w-3xl pl-1 text-sm leading-relaxed font-sans sm:text-base">
+            <PortableTextRenderer value={item.answer} size="sm" />
+          </div>
         </details>
       ))}
     </div>

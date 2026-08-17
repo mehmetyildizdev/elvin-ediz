@@ -24,7 +24,10 @@
     "next-sanity": "^13.3.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
     "sanity": "^6.5.0",
+    "sanity-plugin-markdown": "^9.0.11",
     "styled-components": "^6.1.19",
     "typescript": "^6.0.0"
   },

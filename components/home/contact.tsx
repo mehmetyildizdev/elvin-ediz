@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import type { HomePageData, ServiceData } from '@/sanity/lib/types';
 import { defaultHomePage, defaultServices } from '@/sanity/lib/types';
@@ -173,9 +174,29 @@ export function ConsultationForm({
         </p>
       )}
 
-      <small className="text-text-on-dark-muted/80 mt-2 text-xs leading-relaxed select-none">
-        {homeData.contactDisclaimer ||
-          'By submitting, you agree to be contacted by Elvin Ediz Immigration Services.'}
+      <small className="text-text-on-dark-muted/80 mt-2 text-xs leading-relaxed">
+        {homeData.contactDisclaimer ? (
+          <>
+            {homeData.contactDisclaimer}{' '}
+            <Link
+              href="/privacy"
+              className="text-accent underline underline-offset-2 hover:opacity-80 transition-opacity"
+            >
+              Privacy Policy
+            </Link>
+          </>
+        ) : (
+          <>
+            By submitting, you agree to our{' '}
+            <Link
+              href="/privacy"
+              className="text-accent underline underline-offset-2 hover:opacity-80 transition-opacity"
+            >
+              Privacy Policy
+            </Link>{' '}
+            and to be contacted by Elvin Ediz Immigration Services.
+          </>
+        )}
       </small>
     </form>
   );

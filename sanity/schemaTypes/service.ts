@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { CodeIcon } from '@sanity/icons/Code';
 import { VisualIconPicker } from '../components/VisualIconPicker';
 
 export const service = defineType({
@@ -56,7 +57,35 @@ export const service = defineType({
       name: 'body',
       title: 'Detailed Overview / Body',
       type: 'array',
-      of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }],
+      of: [
+        { type: 'block' },
+        { type: 'image', options: { hotspot: true } },
+        {
+          type: 'object',
+          name: 'markdownBlock',
+          title: 'Markdown',
+          icon: CodeIcon,
+          fields: [
+            defineField({
+              name: 'content',
+              type: 'markdown',
+              title: 'Markdown Content',
+            }),
+          ],
+          preview: {
+            select: {
+              content: 'content',
+            },
+            prepare({ content }) {
+              return {
+                title: 'Markdown Block',
+                subtitle: content ? content.slice(0, 60) : 'Empty markdown content',
+                media: CodeIcon,
+              };
+            },
+          },
+        },
+      ],
     }),
     defineField({
       name: 'ctaTitle',

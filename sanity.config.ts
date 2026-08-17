@@ -2,10 +2,11 @@ import { defineConfig, TemplateItem } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { presentationTool, defineLocations } from 'sanity/presentation';
+import { markdownSchema } from 'sanity-plugin-markdown';
 import { schemaTypes } from './sanity/schemaTypes';
 import { structure } from './sanity/structure';
 
-const singletonTypes = new Set(['homePage', 'insightsPage', 'faqPage', 'siteSettings']);
+const singletonTypes = new Set(['homePage', 'insightsPage', 'faqPage', 'privacyPage', 'siteSettings']);
 
 export default defineConfig({
   name: 'elvin-ediz',
@@ -14,6 +15,7 @@ export default defineConfig({
   dataset: process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   plugins: [
     structureTool({ structure }),
+    markdownSchema(),
     presentationTool({
       previewUrl: {
         origin: process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000',
@@ -24,13 +26,19 @@ export default defineConfig({
       resolve: {
         locations: {
           homePage: defineLocations({
-            locations: [{ title: 'Home Page', href: '/' }],
+            locations: [
+              { title: 'Home Page', href: '/' },
+              { title: 'Contact Page', href: '/contact' },
+            ],
           }),
           insightsPage: defineLocations({
             locations: [{ title: 'Insights & Updates Hub', href: '/insights' }],
           }),
           faqPage: defineLocations({
             locations: [{ title: 'Q&A Page', href: '/questions' }],
+          }),
+          privacyPage: defineLocations({
+            locations: [{ title: 'Privacy Policy Page', href: '/privacy' }],
           }),
           siteSettings: defineLocations({
             locations: [

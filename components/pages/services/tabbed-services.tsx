@@ -9,61 +9,8 @@ import type { ServiceData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
 import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
-import { PortableText, type PortableTextComponents } from '@portabletext/react';
+import { PortableTextRenderer } from '@/components/ui/portable-text';
 
-const portableTextComponents: PortableTextComponents = {
-  block: {
-    h1: ({ children }) => (
-      <h1 className="text-text-main font-serif text-2xl font-semibold mt-6 mb-3 first:mt-0">{children}</h1>
-    ),
-    h2: ({ children }) => (
-      <h2 className="text-text-main font-serif text-xl font-semibold mt-6 mb-3 first:mt-0">{children}</h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="text-text-main font-serif text-lg font-semibold mt-5 mb-2 first:mt-0">{children}</h3>
-    ),
-    h4: ({ children }) => (
-      <h4 className="text-text-main font-semibold text-base mt-4 mb-2 first:mt-0">{children}</h4>
-    ),
-    normal: ({ children }) => (
-      <p className="text-text-muted text-base leading-relaxed mb-4 last:mb-0">{children}</p>
-    ),
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-accent pl-4 my-4 italic text-text-muted">
-        {children}
-      </blockquote>
-    ),
-  },
-  list: {
-    bullet: ({ children }) => (
-      <ul className="list-disc pl-5 my-4 space-y-2 text-text-muted">{children}</ul>
-    ),
-    number: ({ children }) => (
-      <ol className="list-decimal pl-5 my-4 space-y-2 text-text-muted">{children}</ol>
-    ),
-  },
-  listItem: {
-    bullet: ({ children }) => <li className="leading-relaxed">{children}</li>,
-    number: ({ children }) => <li className="leading-relaxed">{children}</li>,
-  },
-  marks: {
-    strong: ({ children }) => <strong className="text-text-main font-semibold">{children}</strong>,
-    em: ({ children }) => <em className="italic">{children}</em>,
-    link: ({ value, children }) => {
-      const target = (value?.href || '').startsWith('http') ? '_blank' : undefined;
-      return (
-        <a
-          href={value?.href}
-          target={target}
-          rel={target === '_blank' ? 'noindex nofollow noreferrer' : undefined}
-          className="text-accent underline underline-offset-4 hover:text-accent-hover transition-colors"
-        >
-          {children}
-        </a>
-      );
-    },
-  },
-};
 
 export function TabbedServices({
   services = [],
@@ -254,7 +201,7 @@ export function TabbedServices({
                     Detailed Information
                   </h3>
                   <div className="prose-content">
-                    <PortableText value={activeService.body} components={portableTextComponents} />
+                    <PortableTextRenderer value={activeService.body} />
                   </div>
                 </div>
               )}

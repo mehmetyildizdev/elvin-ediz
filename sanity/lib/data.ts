@@ -8,6 +8,8 @@ import {
   backupTestimonials,
   backupInsightsPage,
   backupPosts,
+  backupFaqPage,
+  backupPrivacyPage,
 } from './backupData';
 import type {
   SiteSettingsData,
@@ -18,6 +20,8 @@ import type {
   InsightsPageData,
   PostData,
   PostKind,
+  FaqPageData,
+  PrivacyPageData,
 } from './types';
 
 export * from './types';
@@ -240,6 +244,42 @@ export async function fetchPostBySlug(slug: string): Promise<PostData | null> {
     console.error('Error fetching post by slug from Sanity:', err);
   }
   return backupPosts.find((p) => p.slug === slug) || null;
+}
+
+export async function fetchFaqPage(): Promise<FaqPageData> {
+  const client = await getSanityClient();
+  if (!client) return backupFaqPage;
+  try {
+    const data = await client.fetch<Partial<FaqPageData>>(
+      `*[_type == "faqPage"][0]`,
+      {},
+      fetchOptions
+    );
+    if (data && (data.titleMain || data.eyebrow || data.items?.length)) {
+      return { ...backupFaqPage, ...data };
+    }
+  } catch (err) {
+    console.error('Error fetching faqPage from Sanity:', err);
+  }
+  return backupFaqPage;
+}
+
+export async function fetchPrivacyPage(): Promise<PrivacyPageData> {
+  const client = await getSanityClient();
+  if (!client) return backupPrivacyPage;
+  try {
+    const data = await client.fetch<Partial<PrivacyPageData>>(
+      `*[_type == "privacyPage"][0]`,
+      {},
+      fetchOptions
+    );
+    if (data && (data.titleMain || data.eyebrow || data.commitmentTitle || data.content?.length)) {
+      return { ...backupPrivacyPage, ...data };
+    }
+  } catch (err) {
+    console.error('Error fetching privacyPage from Sanity:', err);
+  }
+  return backupPrivacyPage;
 }
 
 export * from './whatsapp';

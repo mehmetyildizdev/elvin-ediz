@@ -6,6 +6,8 @@ import {
   backupTestimonials,
   backupInsightsPage,
   backupPosts,
+  backupFaqPage,
+  backupPrivacyPage,
 } from './backupData';
 
 export interface SiteSettingsData {
@@ -258,6 +260,54 @@ export interface InsightsPageData {
   consultationButtonLink: string;
 }
 
+export interface FaqItem {
+  _key?: string;
+  question: string;
+  category?: string;
+  answer: any[] | string;
+}
+
+export interface FaqPageData {
+  // 01. Page Header
+  eyebrow?: string;
+  titleMain?: string;
+  titleAccent?: string;
+  description?: string;
+
+  // 02. FAQ Items
+  items?: FaqItem[];
+
+  // 03. Consultation Callout
+  ctaEyebrow?: string;
+  ctaTitle?: string;
+  ctaDescription?: string;
+  ctaButtonText?: string;
+  ctaButtonLink?: string;
+}
+
+export interface PrivacyPageData {
+  // 01. Page Header
+  eyebrow?: string;
+  titleMain?: string;
+  titleAccent?: string;
+  description?: string;
+
+  // 02. Commitment Box
+  commitmentTitle?: string;
+  commitmentText?: string;
+
+  // 03. Content
+  content?: any[];
+
+  // 04. Inquiries Box
+  inquiryTitle?: string;
+  inquiryDescription?: string;
+  companyName?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+}
+
 export const defaultSiteSettings = backupSiteSettings;
 export const defaultHomePage = backupHomePage;
 export const defaultServices = backupServices;
@@ -265,5 +315,7 @@ export const defaultStaff = backupStaff;
 export const defaultTestimonials = backupTestimonials;
 export const defaultInsightsPage = backupInsightsPage;
 export const defaultPosts = backupPosts;
+export const defaultFaqPage: FaqPageData = backupFaqPage;
+export const defaultPrivacyPage: PrivacyPageData = backupPrivacyPage;
 
 

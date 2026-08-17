@@ -6,6 +6,7 @@ import { service } from './service';
 import { testimonial } from './testimonial';
 import { staffMember } from './staffMember';
 import { faqPage } from './faqPage';
+import { privacyPage } from './privacyPage';
 import { post } from './post';
 import { appointment } from './appointment';
 
@@ -18,7 +19,7 @@ export const schemaTypes = [
   testimonial,
   staffMember,
   faqPage,
+  privacyPage,
   post,
   appointment,
 ];
-

@@ -1,4 +1,5 @@
 import { defineField } from 'sanity';
+import { CodeIcon } from '@sanity/icons/Code';
 import config from './main.json';
 import { VisualIconPicker } from '../../components/VisualIconPicker';
 
@@ -66,7 +67,42 @@ export const mainFields = [
     title: config.fields.content.title,
     type: 'array',
     group: config.group.name,
-    of: [{ type: 'block' }],
+    of: [
+      { type: 'block' },
+      {
+        type: 'image',
+        options: { hotspot: true },
+        fields: [
+          { name: 'alt', type: 'string', title: 'Alternative text' },
+          { name: 'caption', type: 'string', title: 'Caption' },
+        ],
+      },
+      {
+        type: 'object',
+        name: 'markdownBlock',
+        title: 'Markdown',
+        icon: CodeIcon,
+        fields: [
+          {
+            name: 'content',
+            type: 'markdown',
+            title: 'Markdown Content',
+          },
+        ],
+        preview: {
+          select: {
+            content: 'content',
+          },
+          prepare({ content }) {
+            return {
+              title: 'Markdown Block',
+              subtitle: content ? content.slice(0, 60) : 'Empty markdown content',
+              media: CodeIcon,
+            };
+          },
+        },
+      },
+    ],
   }),
   defineField({
     name: config.fields.publishedAt.name,
