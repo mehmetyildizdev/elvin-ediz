@@ -61,11 +61,13 @@ export function InsightsHub({
             </div>
 
             {/* RIGHT SIDEBAR COLUMN (4 cols): Announcements, News & Consultation */}
-            <div className="flex flex-col gap-10 lg:col-span-4">
-              <AnnouncementsSidebar insightsPageData={insightsPageData} posts={announcementPosts} />
-              <NewsSidebar insightsPageData={insightsPageData} posts={newsPosts} />
-              <ConsultationCard insightsPageData={insightsPageData} settings={settings} />
-            </div>
+            <aside className="lg:col-span-4">
+              <div className="border-border-subtle bg-bg-surface divide-border-subtle flex flex-col divide-y rounded-sm border shadow-xs">
+                <AnnouncementsSidebar insightsPageData={insightsPageData} posts={announcementPosts} />
+                <NewsSidebar insightsPageData={insightsPageData} posts={newsPosts} />
+                <ConsultationCard insightsPageData={insightsPageData} settings={settings} variant="embedded" />
+              </div>
+            </aside>
           </div>
         </div>
       </section>

@@ -6,14 +6,18 @@ import { cleanStega, formatDate } from '../utils';
 interface AnnouncementsSidebarProps {
   insightsPageData: InsightsPageData;
   posts: PostData[];
+  maxItems?: number;
 }
 
-export function AnnouncementsSidebar({ insightsPageData, posts }: AnnouncementsSidebarProps) {
+export function AnnouncementsSidebar({
+  insightsPageData,
+  posts,
+  maxItems = 3,
+}: AnnouncementsSidebarProps) {
+  const displayedPosts = posts.slice(0, maxItems);
+
   return (
-    <div
-      id="announcements-sidebar"
-      className="border-border-subtle bg-bg-surface flex flex-col rounded-sm border p-6 shadow-xs"
-    >
+    <div id="announcements-sidebar" className="flex flex-col p-6 sm:p-7">
       <div className="border-border-subtle mb-6 flex items-center justify-between border-b pb-4">
         <div className="flex items-center gap-2">
           <span className="bg-accent/15 text-accent flex h-7 w-7 items-center justify-center rounded-full">
@@ -33,13 +37,13 @@ export function AnnouncementsSidebar({ insightsPageData, posts }: AnnouncementsS
           className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent rounded-full px-2.5 py-0.5 text-[10px] font-bold transition-colors"
           title="See all announcements"
         >
-          {posts.length} All →
+          All →
         </Link>
       </div>
 
-      {posts.length > 0 ? (
+      {displayedPosts.length > 0 ? (
         <div className="flex flex-col gap-4">
-          {posts.map((post) => (
+          {displayedPosts.map((post) => (
             <article
               key={post._id || post.slug}
               className="group border-border-subtle/70 bg-bg-app hover:border-accent/50 flex flex-col rounded-sm border p-4 transition-all duration-200 hover:shadow-xs"

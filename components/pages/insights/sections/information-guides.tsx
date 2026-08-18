@@ -6,9 +6,16 @@ import { cleanStega, formatDate } from '../utils';
 interface InformationGuidesProps {
   insightsPageData: InsightsPageData;
   posts: PostData[];
+  maxItems?: number;
 }
 
-export function InformationGuides({ insightsPageData, posts }: InformationGuidesProps) {
+export function InformationGuides({
+  insightsPageData,
+  posts,
+  maxItems = 3,
+}: InformationGuidesProps) {
+  const displayedPosts = posts.slice(0, maxItems);
+
   return (
     <div id="information-section" className="flex flex-col">
       <div className="border-border-subtle mb-8 flex flex-col justify-between gap-3 border-b pb-5">
@@ -37,9 +44,9 @@ export function InformationGuides({ insightsPageData, posts }: InformationGuides
         )}
       </div>
 
-      {posts.length > 0 ? (
+      {displayedPosts.length > 0 ? (
         <div className="grid grid-cols-1 gap-5">
-          {posts.map((post) => (
+          {displayedPosts.map((post) => (
             <article
               key={post._id || post.slug}
               className="group border-border-subtle hover:border-accent/40 bg-bg-surface/80 relative flex flex-col justify-between rounded-sm border p-6 transition-all duration-300 hover:shadow-md md:p-8"

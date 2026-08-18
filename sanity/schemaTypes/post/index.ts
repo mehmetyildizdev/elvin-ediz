@@ -18,6 +18,23 @@ export const post = defineType({
   name: config.name,
   title: config.title,
   type: 'document',
+  initialValue: async (_params, context) => {
+    let authorRef = { _type: 'reference', _ref: 'staff-nazly' };
+    try {
+      const client = context.getClient({ apiVersion: '2024-01-01' });
+      const staff = await client.fetch(
+        `*[_type == "staffMember" && (name match "*Nazly*" || _id == "staff-nazly")][0]{ _id }`
+      );
+      if (staff?._id) {
+        authorRef = { _type: 'reference', _ref: staff._id };
+      }
+    } catch {
+      // fallback
+    }
+    return {
+      author: authorRef,
+    };
+  },
   groups: [
     { ...mainGroup, icon: DocumentTextIcon },
     { ...authorGroup, icon: UserIcon },

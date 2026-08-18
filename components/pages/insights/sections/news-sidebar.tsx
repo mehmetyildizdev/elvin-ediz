@@ -6,14 +6,18 @@ import { cleanStega, formatDate } from '../utils';
 interface NewsSidebarProps {
   insightsPageData: InsightsPageData;
   posts: PostData[];
+  maxItems?: number;
 }
 
-export function NewsSidebar({ insightsPageData, posts }: NewsSidebarProps) {
+export function NewsSidebar({
+  insightsPageData,
+  posts,
+  maxItems = 3,
+}: NewsSidebarProps) {
+  const displayedPosts = posts.slice(0, maxItems);
+
   return (
-    <div
-      id="news-sidebar"
-      className="border-border-subtle bg-bg-surface flex flex-col rounded-sm border p-6 shadow-xs"
-    >
+    <div id="news-sidebar" className="flex flex-col p-6 sm:p-7">
       <div className="border-border-subtle mb-6 flex items-center justify-between border-b pb-4">
         <div className="flex items-center gap-2">
           <span className="bg-accent/15 text-accent flex h-7 w-7 items-center justify-center rounded-full">
@@ -33,13 +37,13 @@ export function NewsSidebar({ insightsPageData, posts }: NewsSidebarProps) {
           className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent rounded-full px-2.5 py-0.5 text-[10px] font-bold transition-colors"
           title="See all news"
         >
-          {posts.length} All →
+          All →
         </Link>
       </div>
 
-      {posts.length > 0 ? (
+      {displayedPosts.length > 0 ? (
         <div className="divide-border-subtle flex flex-col divide-y">
-          {posts.map((post) => (
+          {displayedPosts.map((post) => (
             <article key={post._id || post.slug} className="group py-4 first:pt-0 last:pb-0">
               <div className="mb-1.5 flex items-center justify-between text-[11px]">
                 <span className="text-accent text-[10px] font-semibold tracking-wider uppercase">

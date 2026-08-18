@@ -1,12 +1,17 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, ArrowUpRight, Clock, ExternalLink, Globe, Newspaper, Sparkles, Tag } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Clock, ExternalLink, Globe, Newspaper } from 'lucide-react';
 import type { InsightsPageData, PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultInsightsPage, defaultPosts, defaultSiteSettings } from '@/sanity/lib/types';
 import { PageHeader } from '@/components/ui/page-header';
 import { cleanStega, formatDate } from '../insights/utils';
-import { getIconComponent } from '@/sanity/lib/iconLibrary';
 import { ConsultationCard } from '../insights/sections/consultation-card';
+import { Pagination } from '@/components/ui/pagination';
+
+const ITEMS_PER_PAGE = 5;
 
 interface NewsListProps {
   insightsPageData?: InsightsPageData;
@@ -19,6 +24,7 @@ export function NewsList({
   posts = [],
   settings = defaultSiteSettings,
 }: NewsListProps) {
+  const [currentPage, setCurrentPage] = useState(1);
   const allPosts = posts && posts.length > 0 ? posts : defaultPosts;
 
   // Filter for news only
@@ -27,8 +33,17 @@ export function NewsList({
     return k === 'news';
   });
 
-  const featuredPost = newsPosts[0];
-  const remainingPosts = newsPosts.slice(1);
+  const totalPages = Math.ceil(newsPosts.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedPosts = newsPosts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const featuredPost = currentPage === 1 ? paginatedPosts[0] : null;
+  const gridPosts = currentPage === 1 ? paginatedPosts.slice(1) : paginatedPosts;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div>
@@ -52,17 +67,21 @@ export function NewsList({
               <ArrowLeft size={15} /> Back to insights & updates
             </Link>
 
-            <span className="text-text-muted text-xs">
-              Showing {newsPosts.length} curated stories
-            </span>
+            {newsPosts.length > 0 && (
+              <span className="text-text-muted text-xs">
+                {newsPosts.length > ITEMS_PER_PAGE
+                  ? `Showing ${startIndex + 1}–${Math.min(startIndex + ITEMS_PER_PAGE, newsPosts.length)} of ${newsPosts.length} curated stories`
+                  : `Showing ${newsPosts.length} ${newsPosts.length === 1 ? 'curated story' : 'curated stories'}`}
+              </span>
+            )}
           </div>
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
             {/* LEFT COLUMN: News Feed (8 cols) */}
             <div className="flex flex-col gap-10 lg:col-span-8">
-              {newsPosts.length > 0 ? (
+              {paginatedPosts.length > 0 ? (
                 <>
-                  {/* FEATURED / LEAD NEWS STORY */}
+                  {/* FEATURED / LEAD NEWS STORY (Page 1 only) */}
                   {featuredPost && (
                     <article className="group border-border-subtle hover:border-accent/40 bg-bg-surface overflow-hidden rounded-sm border transition-all duration-300 hover:shadow-lg">
                       {featuredPost.coverImageUrl && (
@@ -146,65 +165,68 @@ export function NewsList({
                     </article>
                   )}
 
-                  {/* REMAINING NEWS STORIES GRID */}
-                  {remainingPosts.length > 0 && (
+                  {/* REMAINING / GRID NEWS STORIES */}
+                  {gridPosts.length > 0 && (
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                      {remainingPosts.map((post) => {
-                        const NewsIcon = getIconComponent(post.iconName) || Newspaper;
-
-                        return (
-                          <article
-                            key={post._id || post.slug}
-                            className="group border-border-subtle hover:border-accent/40 bg-bg-surface flex flex-col justify-between rounded-sm border p-6 transition-all duration-300 hover:shadow-md"
-                          >
-                            <div>
-                              {/* Meta strip */}
-                              <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-[11px]">
-                                <span className="bg-bg-app border-border-subtle text-accent rounded-xs border px-2 py-0.5 font-bold tracking-wider uppercase text-[10px]">
-                                  {post.category || 'News'}
-                                </span>
-                                {post.publishedAt && (
-                                  <span className="text-text-muted">{formatDate(post.publishedAt)}</span>
-                                )}
-                              </div>
-
-                              {/* Title */}
-                              <h3 className="text-text-main group-hover:text-accent mb-3 font-serif text-lg leading-snug font-semibold transition-colors">
-                                <Link href={`/news/${cleanStega(post.slug)}`}>{post.title}</Link>
-                              </h3>
-
-                              {/* Excerpt */}
-                              {post.excerpt && (
-                                <p className="text-text-muted mb-4 line-clamp-3 text-xs leading-relaxed">
-                                  {post.excerpt}
-                                </p>
+                      {gridPosts.map((post) => (
+                        <article
+                          key={post._id || post.slug}
+                          className="group border-border-subtle hover:border-accent/40 bg-bg-surface flex flex-col justify-between rounded-sm border p-6 transition-all duration-300 hover:shadow-md"
+                        >
+                          <div>
+                            {/* Meta strip */}
+                            <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-[11px]">
+                              <span className="bg-bg-app border-border-subtle text-accent rounded-xs border px-2 py-0.5 font-bold tracking-wider uppercase text-[10px]">
+                                {post.category || 'News'}
+                              </span>
+                              {post.publishedAt && (
+                                <span className="text-text-muted">{formatDate(post.publishedAt)}</span>
                               )}
                             </div>
 
-                            {/* Bottom row */}
-                            <div className="border-border-subtle/60 mt-4 flex items-center justify-between border-t pt-3">
-                              <Link
-                                href={`/news/${cleanStega(post.slug)}`}
-                                className="text-accent group/btn inline-flex items-center gap-1 text-xs font-bold tracking-widest uppercase"
-                              >
-                                Read
-                                <ArrowUpRight
-                                  size={13}
-                                  className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-                                />
-                              </Link>
+                            {/* Title */}
+                            <h3 className="text-text-main group-hover:text-accent mb-3 font-serif text-lg leading-snug font-semibold transition-colors">
+                              <Link href={`/news/${cleanStega(post.slug)}`}>{post.title}</Link>
+                            </h3>
 
-                              {post.sourceName && (
-                                <span className="text-text-muted text-[11px] truncate max-w-30">
-                                  {post.sourceName}
-                                </span>
-                              )}
-                            </div>
-                          </article>
-                        );
-                      })}
+                            {/* Excerpt */}
+                            {post.excerpt && (
+                              <p className="text-text-muted mb-4 line-clamp-3 text-xs leading-relaxed">
+                                {post.excerpt}
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Bottom row */}
+                          <div className="border-border-subtle/60 mt-4 flex items-center justify-between border-t pt-3">
+                            <Link
+                              href={`/news/${cleanStega(post.slug)}`}
+                              className="text-accent group/btn inline-flex items-center gap-1 text-xs font-bold tracking-widest uppercase"
+                            >
+                              Read
+                              <ArrowUpRight
+                                size={13}
+                                className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                              />
+                            </Link>
+
+                            {post.sourceName && (
+                              <span className="text-text-muted text-[11px] truncate max-w-30">
+                                {post.sourceName}
+                              </span>
+                            )}
+                          </div>
+                        </article>
+                      ))}
                     </div>
                   )}
+
+                  {/* Pagination Controls */}
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                  />
                 </>
               ) : (
                 <div className="border-border-subtle bg-bg-surface rounded-sm border border-dashed p-12 text-center">
