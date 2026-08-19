@@ -6,9 +6,11 @@ node_modules
 *.tsbuildinfo
 tsconfig.tsbuildinfo
 
-# next.js build output
+# next.js & cloudflare build output
 .next
 out
+.open-next
+.wrangler
 
 # environment files
 .env
