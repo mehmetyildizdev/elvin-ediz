@@ -12,7 +12,6 @@
     "lint": "next lint",
     "studio": "sanity dev",
     "studio:deploy": "node --env-file-if-exists=.env.local ./node_modules/sanity/bin/sanity deploy",
-    "sync:reviews": "node scripts/sync-google-reviews.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -28,8 +27,6 @@
     "next-sanity": "^13.3.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
     "sanity": "^6.5.0",
     "sanity-plugin-markdown": "^9.0.11",
     "styled-components": "^6.1.19",
@@ -42,7 +39,6 @@
     "@types/react": "^19.2.0",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "puppeteer": "^25.7.0",
     "tailwindcss": "^4.3.2",
     "wrangler": "^4.124.0"
   }

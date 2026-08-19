@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import {
   PortableText as SanityPortableText,
   type PortableTextComponents,
@@ -56,8 +54,8 @@ export const createPortableTextComponents = (
         const content = typeof value === 'string' ? value : value?.content || value?.markdown || '';
         if (!content) return null;
         return (
-          <div className={`prose-custom my-4 font-sans ${textSize}`}>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          <div className={`prose-custom my-4 font-sans whitespace-pre-wrap ${textSize}`}>
+            {content}
           </div>
         );
       },
@@ -65,8 +63,8 @@ export const createPortableTextComponents = (
         const content = typeof value === 'string' ? value : value?.content || value?.markdown || '';
         if (!content) return null;
         return (
-          <div className={`prose-custom my-4 font-sans ${textSize}`}>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          <div className={`prose-custom my-4 font-sans whitespace-pre-wrap ${textSize}`}>
+            {content}
           </div>
         );
       },
@@ -175,11 +173,11 @@ export function PortableTextRenderer({
 }: PortableTextRendererProps) {
   if (!value) return null;
 
-  // If a raw string is passed, render with Markdown support
+  // If a raw string is passed, render with lightweight formatting
   if (typeof value === 'string') {
     return (
-      <div className={`text-text-muted font-sans leading-relaxed ${className}`}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{value}</ReactMarkdown>
+      <div className={`text-text-muted font-sans leading-relaxed whitespace-pre-wrap ${className}`}>
+        {value}
       </div>
     );
   }
