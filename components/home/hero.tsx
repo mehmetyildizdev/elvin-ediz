@@ -21,13 +21,23 @@ export function Hero({
     >
       {/* Background Banner with Lowered Opacity and Ambient Glow */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
+        {/* Mobile Background Banner */}
         <Image
-          src="/canada-banner.jfif"
+          src="/canada-banner-m.webp"
           alt="Canada banner landscape"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-15"
+          className="object-cover object-center opacity-15 md:hidden"
+        />
+        {/* Desktop Background Banner */}
+        <Image
+          src="/canada-banner.webp"
+          alt="Canada banner landscape"
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center opacity-15 md:block"
         />
         <div
           className="absolute inset-0"
@@ -71,10 +81,10 @@ export function Hero({
             <div className="border-border-on-dark text-text-on-dark animate-compass-drift relative flex h-75 w-75 items-center justify-center rounded-full border md:h-88 md:w-88">
               <div className="border-border-on-dark animate-compass-spin absolute h-55 w-55 rounded-full border border-dashed md:h-65 md:w-65" />
 
-              <i className="text-text-on-dark-muted absolute top-18 right-24 rotate-38 font-sans text-xs font-semibold tracking-widest not-italic">
+              <i className="text-text-on-dark-muted absolute top-16 right-20 rotate-35 font-sans text-xs font-semibold tracking-widest not-italic md:top-18 md:right-24 md:rotate-38">
                 N
               </i>
-              <b className="text-text-on-dark-muted absolute bottom-36 left-8 rotate-77 font-sans text-xs font-semibold tracking-widest">
+              <b className="text-text-on-dark-muted absolute bottom-30 left-6 rotate-77 font-sans text-xs font-semibold tracking-widest md:bottom-36 md:left-8">
                 CANADA
               </b>
 

@@ -33,8 +33,8 @@
   --color-brand-primary-placeholder: var(--placeholder-on-dark);
   --color-brand-primary-card: var(--card-bg-dark);
 
-  --font-sans: var(--font-sans), Arial, sans-serif;
-  --font-serif: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-family-sans);
+  --font-serif: var(--font-family-serif);
 
   --animate-compass-drift: compass-drift 8s ease-in-out infinite;
   --animate-compass-spin: compass-spin 90s linear infinite;
@@ -56,6 +56,58 @@
       transform: rotate(360deg);
     }
   }
+}
+
+/* Typography Pairings */
+:root,
+[data-font='classic'],
+html[data-font='classic'] {
+  --font-family-sans: var(--font-dm-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-serif: var(--font-playfair), Georgia, Cambria, 'Times New Roman', serif;
+}
+
+[data-font='modern'],
+html[data-font='modern'] {
+  --font-family-sans: var(--font-jakarta), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-serif: var(--font-lora), Georgia, Cambria, 'Times New Roman', serif;
+}
+
+[data-font='diplomat'],
+[data-font='executive'],
+html[data-font='diplomat'],
+html[data-font='executive'] {
+  --font-family-sans: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-serif: var(--font-dm-serif), Georgia, Cambria, 'Times New Roman', serif;
+}
+
+[data-font='heritage'],
+html[data-font='heritage'] {
+  --font-family-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-serif: var(--font-merriweather), Georgia, Cambria, 'Times New Roman', serif;
+}
+
+/* Explicit class mappings to ensure total dynamic responsiveness */
+.font-sans {
+  font-family: var(--font-family-sans);
+}
+
+.font-serif {
+  font-family: var(--font-family-serif);
+}
+
+/* Font preview classes */
+.font-preview-classic {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+.font-preview-modern {
+  font-family: var(--font-lora), Georgia, serif;
+}
+.font-preview-diplomat,
+.font-preview-executive {
+  font-family: var(--font-dm-serif), Georgia, serif;
+}
+.font-preview-heritage {
+  font-family: var(--font-merriweather), Georgia, serif;
 }
 
 /* Theme 1: Evergreen (Default) - Forest Green & Warm Ivory */
@@ -154,14 +206,14 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   background-color: var(--bg-app);
   color: var(--text-main);
-  font-family: var(--font-sans);
+  font-family: var(--font-family-sans);
   transition:
     background-color 0.4s ease,
     color 0.4s ease,
@@ -188,7 +240,7 @@ p {
 h1,
 h2,
 h3 {
-  font-family: var(--font-serif);
+  font-family: var(--font-family-serif);
   font-weight: 500;
   letter-spacing: -0.02em;
 }

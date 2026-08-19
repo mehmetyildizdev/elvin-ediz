@@ -13,8 +13,8 @@ export function TrustBar({ homeData = defaultHomePage }: { homeData?: HomePageDa
   );
 
   return (
-    <section className="bg-bg-surface border-border-subtle border-b px-6 py-6 backdrop-blur-xs md:px-12">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-2 gap-y-4 md:grid-cols-4">
+    <section className="bg-bg-surface border-border-subtle border-b px-4 py-5 backdrop-blur-xs sm:px-6 md:px-12">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-3 sm:gap-y-4 md:grid-cols-4">
         {items.map((item, i) => {
           const IconComp = getIconComponent(item.icon);
           const displayPrefix = item.number || `0${i + 1}`;
@@ -22,16 +22,20 @@ export function TrustBar({ homeData = defaultHomePage }: { homeData?: HomePageDa
           return (
             <div
               key={item._key || item.text || i}
-              className="text-text-main border-border-subtle flex items-center justify-center gap-3 px-4 text-xs font-bold tracking-widest uppercase transition-all duration-300 last:border-r-0 hover:scale-105 md:border-r"
+              className="group border-border-subtle flex items-center justify-start gap-2.5 px-2.5 py-1.5 transition-colors duration-200 odd:border-r sm:gap-3 sm:px-4 md:justify-center md:odd:border-r-0 md:border-r md:last:border-r-0"
             >
               {IconComp ? (
-                <span className="text-accent flex items-center justify-center">
-                  <IconComp size={20} className="shrink-0" />
+                <span className="border-accent/20 bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300">
+                  <IconComp size={16} className="shrink-0 transition-transform duration-300 group-hover:scale-110" />
                 </span>
               ) : (
-                <span className="text-accent font-serif text-lg font-semibold">{displayPrefix}</span>
+                <span className="border-accent/20 bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full border font-serif text-xs font-semibold transition-all duration-300">
+                  {displayPrefix}
+                </span>
               )}
-              <span className="text-center md:text-left">{item.text}</span>
+              <span className="text-text-main group-hover:text-accent text-left text-xs font-semibold tracking-wider uppercase transition-colors duration-200 leading-snug">
+                {item.text}
+              </span>
             </div>
           );
         })}
