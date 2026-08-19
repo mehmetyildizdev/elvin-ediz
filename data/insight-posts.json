@@ -1,0 +1,342 @@
+[
+  {
+    "_id": "post-insight-express-entry-category-based-selection",
+    "_type": "post",
+    "title": "Navigating Express Entry Category-Based Selection: Strategic Occupations & French Advantage",
+    "slug": {
+      "_type": "slug",
+      "current": "navigating-express-entry-category-based-selection"
+    },
+    "kind": "insight",
+    "category": "Express Entry & PR",
+    "iconName": "sparkles",
+    "excerpt": "An in-depth analysis of targeted draws for STEM, Healthcare, Trades, and French language proficiency under Canada's Category-Based Express Entry system.",
+    "publishedAt": "2026-08-18T14:00:00.000Z",
+    "author": {
+      "_type": "reference",
+      "_ref": "staff-nazly"
+    },
+    "authorOversightIcon": "sparkles",
+    "authorOversightTitle": "Author Oversight",
+    "authorOversightSubtitle": "CICC Licensed #R533968",
+    "authorOversightText": "Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.",
+    "authorOversightCtaText": "Consult on Express Entry",
+    "authorOversightCtaLink": "https://wa.me/123456789",
+    "content": [
+      {
+        "_key": "b1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c1",
+            "_type": "span",
+            "marks": [],
+            "text": "Express Entry category-based selection rounds represent the most transformative shift in economic immigration since the introduction of the Comprehensive Ranking System (CRS). Unlike standard all-program draws that often require CRS scores exceeding 520, category-specific rounds invite candidates with lower CRS thresholds (often between 430 and 480) based on targeted national economic priorities."
+          }
+        ]
+      },
+      {
+        "_key": "b2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c2",
+            "_type": "span",
+            "marks": [],
+            "text": "IRCC prioritizes six designated categories: French-language proficiency, healthcare occupations, STEM professions, skilled trades, transport occupations, and agriculture/agri-food. Among these, achieving NCLC Level 7 in French remains the single highest-yield strategy, granting up to 50 additional CRS points and opening access to ultra-low French-specific invitation rounds."
+          }
+        ]
+      },
+      {
+        "_key": "b3",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c3",
+            "_type": "span",
+            "marks": [],
+            "text": "To qualify for category-based draws, candidates must accumulate at least 6 months of continuous, full-time (or equivalent part-time) work experience within a single eligible NOC TEER code over the past 3 years. Meticulous alignment between your reference letter duties and the ESDC lead statement is essential to withstand IRCC officer scrutiny."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "post-insight-making-study-plan-achievable-pgwp",
+    "_type": "post",
+    "title": "Strategic Planning for Canadian Study Permits, DLIs, and PGWP Eligibility Regulations",
+    "slug": {
+      "_type": "slug",
+      "current": "making-your-study-plan-achievable"
+    },
+    "kind": "insight",
+    "category": "Study in Canada & PGWP",
+    "iconName": "graduation-cap",
+    "excerpt": "A realistic roadmap to choosing accredited Designated Learning Institutions, managing Provincial Attestation Letters (PAL), and structuring post-graduation work permit transitions.",
+    "publishedAt": "2026-08-16T11:30:00.000Z",
+    "author": {
+      "_type": "reference",
+      "_ref": "staff-nazly"
+    },
+    "authorOversightIcon": "school",
+    "authorOversightTitle": "Author Oversight",
+    "authorOversightSubtitle": "CICC Licensed #R533968",
+    "authorOversightText": "Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.",
+    "authorOversightCtaText": "Consult on Study Pathways",
+    "authorOversightCtaLink": "https://wa.me/123456789",
+    "content": [
+      {
+        "_key": "b1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c1",
+            "_type": "span",
+            "marks": [],
+            "text": "International education in Canada has entered a new era characterized by federal intake caps, mandatory Provincial Attestation Letters (PAL/TAL), and stricter Post-Graduation Work Permit (PGWP) eligibility criteria. Successful applicants must now adopt a long-term strategic perspective that integrates academic selection directly with post-graduation immigration pathways."
+          }
+        ]
+      },
+      {
+        "_key": "b2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c2",
+            "_type": "span",
+            "marks": [],
+            "text": "Prospective students must verify that their chosen Designated Learning Institution (DLI) and specific study program qualify for PGWP issuance. Programs delivered under curriculum licensing agreements between public and private colleges are no longer eligible for PGWPs, making institution selection paramount for anyone intending to transition to permanent residence."
+          }
+        ]
+      },
+      {
+        "_key": "b3",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c3",
+            "_type": "span",
+            "marks": [],
+            "text": "When compiling your study permit application, establishing a credible dual-intent narrative in your Statement of Purpose (SOP) is critical under Section 22(2) of the IRPA. Demonstrating unencumbered living funds and explaining how your Canadian qualification directly enhances your earning potential abroad creates a resilient application that satisfies visa officer bona fide tests."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "post-insight-lmia-employer-compliance-global-talent",
+    "_type": "post",
+    "title": "Employer Compliance & LMIA Navigation: Pathways for High-Wage, Global Talent, and Intra-Company Transferees",
+    "slug": {
+      "_type": "slug",
+      "current": "lmia-employer-compliance-and-global-talent-pathways"
+    },
+    "kind": "insight",
+    "category": "Work Permits & LMIA",
+    "iconName": "briefcase",
+    "excerpt": "Essential guidance for Canadian employers and international professionals on Labour Market Impact Assessments (LMIA), prevailing wage calculations, and compliance audits.",
+    "publishedAt": "2026-08-14T09:15:00.000Z",
+    "author": {
+      "_type": "reference",
+      "_ref": "staff-nazly"
+    },
+    "authorOversightIcon": "briefcase",
+    "authorOversightTitle": "Author Oversight",
+    "authorOversightSubtitle": "CICC Licensed #R533968",
+    "authorOversightText": "Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.",
+    "authorOversightCtaText": "Consult on LMIA & Work Permits",
+    "authorOversightCtaLink": "https://wa.me/123456789",
+    "content": [
+      {
+        "_key": "b1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c1",
+            "_type": "span",
+            "marks": [],
+            "text": "For Canadian employers seeking specialized talent and foreign professionals aiming to secure work authorization, navigating the Labour Market Impact Assessment (LMIA) process through ESDC is a central milestone. Recent policy adjustments have sharpened the distinction between High-Wage and Low-Wage streams, tying wage requirements directly to provincial median hourly earnings."
+          }
+        ]
+      },
+      {
+        "_key": "b2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c2",
+            "_type": "span",
+            "marks": [],
+            "text": "Employers utilizing the Global Talent Stream (GTS) benefit from accelerated 10-day LMIA processing standards for in-demand tech and engineering occupations, provided they commit to a Labour Market Benefits Plan (LMBP) that fosters skills transfer and Canadian job creation. Meanwhile, standard streams require 4 consecutive weeks of advertising across Job Bank and two national platforms."
+          }
+        ]
+      },
+      {
+        "_key": "b3",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c3",
+            "_type": "span",
+            "marks": [],
+            "text": "Maintaining rigorous compliance documentation under Sections 209.2 and 209.3 of the IRPR is vital. Employers must preserve payroll records, job descriptions, and benefit packages for six years to prepare for random ESDC administrative inspections. Where applicable, exploring LMIA-exempt intra-company transfers (C12) or free trade agreements (CUSMA/CETA) offers streamlined alternatives."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "post-insight-spousal-sponsorship-inland-vs-outland",
+    "_type": "post",
+    "title": "Deconstructing Spousal Sponsorship: Inland vs. Outland Streams, Dual Intent, and Open Work Permits",
+    "slug": {
+      "_type": "slug",
+      "current": "spousal-sponsorship-inland-vs-outland-strategic-guide"
+    },
+    "kind": "insight",
+    "category": "Family & Spousal Sponsorship",
+    "iconName": "heart",
+    "excerpt": "A strategic comparison of Inland and Outland family sponsorship routes, covering open work permit eligibility, travel restrictions, and evidentiary milestones.",
+    "publishedAt": "2026-08-10T16:45:00.000Z",
+    "author": {
+      "_type": "reference",
+      "_ref": "staff-nazly"
+    },
+    "authorOversightIcon": "heart",
+    "authorOversightTitle": "Author Oversight",
+    "authorOversightSubtitle": "CICC Licensed #R533968",
+    "authorOversightText": "Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.",
+    "authorOversightCtaText": "Consult on Spousal Sponsorship",
+    "authorOversightCtaLink": "https://wa.me/123456789",
+    "content": [
+      {
+        "_key": "b1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c1",
+            "_type": "span",
+            "marks": [],
+            "text": "Reconnecting with a partner in Canada is protected under Canada's statutory family reunification principles. However, choosing between the Spouse or Common-Law Partner in Canada Class (Inland) and the Family Class (Outland) involves critical strategic trade-offs regarding physical presence, processing speeds, and work rights."
+          }
+        ]
+      },
+      {
+        "_key": "b2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c2",
+            "_type": "span",
+            "marks": [],
+            "text": "Inland applications allow the sponsored partner to apply for a Spousal Open Work Permit (SOWP) as soon as Acknowledgement of Receipt (AOR) is issued, allowing lawful employment during the 10-12 month processing cycle. However, the applicant must maintain continuous residence in Canada; international departures carry the risk of re-entry refusal, which could invalidate an inland filing."
+          }
+        ]
+      },
+      {
+        "_key": "b3",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c3",
+            "_type": "span",
+            "marks": [],
+            "text": "Conversely, Outland sponsorship offers full freedom of international travel and preserves the statutory right of appeal to the Immigration Appeal Division (IAD) in the event of an adverse decision. Regardless of stream, establishing a cohesive evidentiary portfolio under Section 4 of the IRPR—combining joint tenancy, shared banking, social milestones, and statutory declarations—is the decisive factor in securing approval."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "post-insight-pnp-strategies-ontario-bc-alberta",
+    "_type": "post",
+    "title": "Unlocking Provincial Nominee Programs: Strategic Pathways across Ontario (OINP), BC PNP, and Alberta",
+    "slug": {
+      "_type": "slug",
+      "current": "pnp-strategies-ontario-bc-alberta-nominations"
+    },
+    "kind": "insight",
+    "category": "Provincial Nominee (PNP)",
+    "iconName": "map-pin",
+    "excerpt": "How provincial nomination streams offer 600-point Comprehensive Ranking System (CRS) advantages, targeted tech and healthcare draws, and regional settlement pathways across Canada.",
+    "publishedAt": "2026-08-06T13:20:00.000Z",
+    "author": {
+      "_type": "reference",
+      "_ref": "staff-nazly"
+    },
+    "authorOversightIcon": "map-pin",
+    "authorOversightTitle": "Author Oversight",
+    "authorOversightSubtitle": "CICC Licensed #R533968",
+    "authorOversightText": "Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.",
+    "authorOversightCtaText": "Consult on PNP Streams",
+    "authorOversightCtaLink": "https://wa.me/123456789",
+    "content": [
+      {
+        "_key": "b1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c1",
+            "_type": "span",
+            "marks": [],
+            "text": "While federal Express Entry cut-offs remain elevated, Provincial Nominee Programs (PNPs) have become Canada's foremost vehicle for economic immigration. Securing an enhanced provincial nomination grants 600 additional CRS points, effectively guaranteeing an Invitation to Apply (ITA) in the subsequent federal draw."
+          }
+        ]
+      },
+      {
+        "_key": "b2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c2",
+            "_type": "span",
+            "marks": [],
+            "text": "Each province structures its streams to address regional demographic and labor shortages. Ontario (OINP) operates robust Human Capital Priorities and Employer Job Offer streams targeting tech and healthcare workers; British Columbia (BC PNP) emphasizes its dedicated Tech and Healthcare targeted draws; and Alberta (AAIP) provides accessible pathways for candidates with dedicated provincial job offers and accelerated tourism/hospitality allocations."
+          }
+        ]
+      },
+      {
+        "_key": "b3",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "c3",
+            "_type": "span",
+            "marks": [],
+            "text": "Strategic PNP candidates should register Expressions of Interest (EOI) across multiple provincial scoring grids where eligibility exists. Demonstrating bona fide ties to the nominating province—through past education, Canadian employment, or family connections—is critical to satisfying provincial residency intent declarations under Section 87 of the IRPR."
+          }
+        ]
+      }
+    ]
+  }
+]

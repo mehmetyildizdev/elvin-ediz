@@ -49,7 +49,7 @@ export function InsightsGrid({ kind }: { kind: PostKind }) {
                 </div>
 
                 <div className="text-accent mb-2.5 text-xs font-bold tracking-widest uppercase">
-                  {post.kind}
+                  {(post as any).category || post.kind}
                 </div>
 
                 <h2 className="text-text-main group-hover:text-accent mb-3 font-serif text-lg leading-snug font-semibold transition-colors duration-200 md:text-xl">

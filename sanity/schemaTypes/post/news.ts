@@ -5,15 +5,6 @@ export const newsSectionGroup = config.group;
 
 export const newsSectionFields = [
   defineField({
-    name: config.fields.category.name,
-    title: config.fields.category.title,
-    type: 'string',
-    group: config.group.name,
-    hidden: ({ document }) => document?.kind !== 'news',
-    initialValue: config.fields.category.initialValue,
-    description: 'e.g. Canada Living, Job Market, Economy, Education, Provincial Spotlight, Travel',
-  }),
-  defineField({
     name: config.fields.sourceName.name,
     title: config.fields.sourceName.title,
     type: 'string',

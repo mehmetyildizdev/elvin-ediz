@@ -100,7 +100,7 @@ export function InsightsDetail({
                 href="/insights"
                 className="bg-accent/15 text-accent hover:bg-accent/25 border-accent/30 rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
               >
-                {CustomIcon ? <CustomIcon size={13} /> : <Sparkles size={13} />} Insight Article
+                {CustomIcon ? <CustomIcon size={13} /> : <Sparkles size={13} />} {post.category || 'Insight Article'}
               </Link>
             )}
             {kind === 'information' && (

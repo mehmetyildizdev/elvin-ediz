@@ -17,7 +17,7 @@ export function AnnouncementsSidebar({
   const displayedPosts = posts.slice(0, maxItems);
 
   return (
-    <div id="announcements-sidebar" className="flex flex-col p-6 sm:p-7">
+    <div id="announcements-sidebar" className="flex h-full flex-col p-6 sm:p-7">
       <div className="border-border-subtle mb-6 flex items-center justify-between border-b pb-4">
         <div className="flex items-center gap-2">
           <span className="bg-accent/15 text-accent flex h-7 w-7 items-center justify-center rounded-full">
@@ -42,30 +42,32 @@ export function AnnouncementsSidebar({
       </div>
 
       {displayedPosts.length > 0 ? (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-1 flex-col justify-between gap-4">
           {displayedPosts.map((post) => (
             <article
               key={post._id || post.slug}
-              className="group border-border-subtle/70 bg-bg-app hover:border-accent/50 flex flex-col rounded-sm border p-4 transition-all duration-200 hover:shadow-xs"
+              className="group border-border-subtle/70 bg-bg-app hover:border-accent/50 flex flex-1 flex-col justify-between rounded-sm border p-4 transition-all duration-200 hover:shadow-xs"
             >
-              <div className="mb-2 flex items-center justify-between text-[11px]">
-                <span className="bg-accent/20 text-accent rounded-xs px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase">
-                  Notice
-                </span>
-                {post.publishedAt && (
-                  <span className="text-text-muted text-[11px]">{formatDate(post.publishedAt)}</span>
+              <div>
+                <div className="mb-2 flex items-center justify-between text-[11px]">
+                  <span className="bg-accent/15 text-accent border-accent/25 rounded-full border px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase">
+                    Official Notice
+                  </span>
+                  {post.publishedAt && (
+                    <span className="text-text-muted text-[11px]">{formatDate(post.publishedAt)}</span>
+                  )}
+                </div>
+
+                <h4 className="text-text-main group-hover:text-accent font-serif text-base leading-snug font-semibold transition-colors">
+                  <Link href={`/announcements/${cleanStega(post.slug)}`}>{post.title}</Link>
+                </h4>
+
+                {post.excerpt && (
+                  <p className="text-text-muted mt-2 line-clamp-2 text-xs leading-relaxed">
+                    {post.excerpt}
+                  </p>
                 )}
               </div>
-
-              <h4 className="text-text-main group-hover:text-accent font-serif text-base leading-snug font-semibold transition-colors">
-                <Link href={`/announcements/${cleanStega(post.slug)}`}>{post.title}</Link>
-              </h4>
-
-              {post.excerpt && (
-                <p className="text-text-muted mt-2 line-clamp-2 text-xs leading-relaxed">
-                  {post.excerpt}
-                </p>
-              )}
 
               <Link
                 href={`/announcements/${cleanStega(post.slug)}`}

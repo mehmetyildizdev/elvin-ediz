@@ -69,7 +69,7 @@ export async function Insights({ homeData = defaultHomePage }: { homeData?: Home
               </div>
 
               <div className="text-accent mb-3 flex items-center justify-between text-xs font-bold tracking-widest uppercase">
-                <span>{post.kind}</span>
+                <span>{post.category || 'Insight'}</span>
                 {post.publishedAt && (
                   <span className="text-text-muted font-sans font-normal lowercase">
                     {formatDate(post.publishedAt)}

@@ -4,12 +4,6 @@
     "title": "03. News & Media Section"
   },
   "fields": {
-    "category": {
-      "name": "category",
-      "title": "News Topic / Category",
-      "type": "string",
-      "initialValue": "Canada Living & Economy"
-    },
     "sourceName": {
       "name": "sourceName",
       "title": "News Source / Publisher Name",

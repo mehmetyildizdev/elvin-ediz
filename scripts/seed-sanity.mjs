@@ -463,22 +463,23 @@ Our personalized approach believes that Pragmatism is the key to handling your c
   // 8. Sample Posts
   const posts = [
     {
-      _id: 'post-planning-your-next-move-to-canada',
+      _id: 'post-insight-express-entry-category-based-selection',
       _type: 'post',
-      title: 'What to know before planning your next move to Canada',
-      slug: { _type: 'slug', current: 'planning-your-next-move-to-canada' },
+      title: 'Navigating Express Entry Category-Based Selection: Strategic Occupations & French Advantage',
+      slug: { _type: 'slug', current: 'navigating-express-entry-category-based-selection' },
       kind: 'insight',
+      category: 'Express Entry & PR',
       iconName: 'sparkles',
       excerpt:
-        'A grounded starting point for exploring your future in Canada, navigating CRS draws, and understanding program requirements.',
-      publishedAt: '2026-06-12T10:00:00.000Z',
+        "An in-depth analysis of targeted draws for STEM, Healthcare, Trades, and French language proficiency under Canada's Category-Based Express Entry system.",
+      publishedAt: '2026-08-18T14:00:00.000Z',
       author: { _type: 'reference', _ref: 'staff-nazly' },
-      authorOversightIcon: 'shield',
+      authorOversightIcon: 'sparkles',
       authorOversightTitle: 'Author Oversight',
       authorOversightSubtitle: 'CICC Licensed #R533968',
       authorOversightText:
         'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
-      authorOversightCtaText: 'Consult on this topic',
+      authorOversightCtaText: 'Consult on Express Entry',
       authorOversightCtaLink: 'https://wa.me/123456789',
       content: [
         {
@@ -488,7 +489,7 @@ Our personalized approach believes that Pragmatism is the key to handling your c
             {
               _key: 'c1',
               _type: 'span',
-              text: 'Navigating Canadian immigration pathways requires aligning personal qualifications with current federal and provincial policy directives. From Comprehensive Ranking System (CRS) score optimization to strategic provincial nomination selections, every decision impacts your application timeline.',
+              text: 'Express Entry category-based selection rounds represent the most transformative shift in economic immigration since the introduction of the Comprehensive Ranking System (CRS). Unlike standard all-program draws that often require CRS scores exceeding 520, category-specific rounds invite candidates with lower CRS thresholds (often between 430 and 480) based on targeted national economic priorities.',
             },
           ],
           style: 'normal',
@@ -496,22 +497,23 @@ Our personalized approach believes that Pragmatism is the key to handling your c
       ],
     },
     {
-      _id: 'post-making-your-study-plan-achievable',
+      _id: 'post-insight-making-study-plan-achievable-pgwp',
       _type: 'post',
-      title: 'Making your Canadian study plan feel more achievable',
+      title: 'Strategic Planning for Canadian Study Permits, DLIs, and PGWP Eligibility Regulations',
       slug: { _type: 'slug', current: 'making-your-study-plan-achievable' },
       kind: 'insight',
+      category: 'Study in Canada & PGWP',
       iconName: 'graduation-cap',
       excerpt:
-        'How to choose the right Designated Learning Institution (DLI), understand post-graduation work permits (PGWP), and budget realistically.',
-      publishedAt: '2026-05-28T14:30:00.000Z',
+        'A realistic roadmap to choosing accredited Designated Learning Institutions, managing Provincial Attestation Letters (PAL), and structuring post-graduation work permit transitions.',
+      publishedAt: '2026-08-16T11:30:00.000Z',
       author: { _type: 'reference', _ref: 'staff-nazly' },
-      authorOversightIcon: 'user-check',
+      authorOversightIcon: 'school',
       authorOversightTitle: 'Author Oversight',
       authorOversightSubtitle: 'CICC Licensed #R533968',
       authorOversightText:
         'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
-      authorOversightCtaText: 'Consult on this topic',
+      authorOversightCtaText: 'Consult on Study Pathways',
       authorOversightCtaLink: 'https://wa.me/123456789',
       content: [
         {
@@ -521,7 +523,109 @@ Our personalized approach believes that Pragmatism is the key to handling your c
             {
               _key: 'c1',
               _type: 'span',
-              text: 'Applicants who assess their documentation upfront and understand IRCC evaluation standards position themselves for a clearer, more predictable process.',
+              text: 'International education in Canada has entered a new era characterized by federal intake caps, mandatory Provincial Attestation Letters (PAL/TAL), and stricter Post-Graduation Work Permit (PGWP) eligibility criteria.',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+    {
+      _id: 'post-insight-lmia-employer-compliance-global-talent',
+      _type: 'post',
+      title: 'Employer Compliance & LMIA Navigation: Pathways for High-Wage, Global Talent, and Intra-Company Transferees',
+      slug: { _type: 'slug', current: 'lmia-employer-compliance-and-global-talent-pathways' },
+      kind: 'insight',
+      category: 'Work Permits & LMIA',
+      iconName: 'briefcase',
+      excerpt:
+        'Essential guidance for Canadian employers and international professionals on Labour Market Impact Assessments (LMIA), prevailing wage calculations, and compliance audits.',
+      publishedAt: '2026-08-14T09:15:00.000Z',
+      author: { _type: 'reference', _ref: 'staff-nazly' },
+      authorOversightIcon: 'briefcase',
+      authorOversightTitle: 'Author Oversight',
+      authorOversightSubtitle: 'CICC Licensed #R533968',
+      authorOversightText:
+        'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
+      authorOversightCtaText: 'Consult on LMIA & Work Permits',
+      authorOversightCtaLink: 'https://wa.me/123456789',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'For Canadian employers seeking specialized talent and foreign professionals aiming to secure work authorization, navigating the Labour Market Impact Assessment (LMIA) process through ESDC is a central milestone.',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+    {
+      _id: 'post-insight-spousal-sponsorship-inland-vs-outland',
+      _type: 'post',
+      title: 'Deconstructing Spousal Sponsorship: Inland vs. Outland Streams, Dual Intent, and Open Work Permits',
+      slug: { _type: 'slug', current: 'spousal-sponsorship-inland-vs-outland-strategic-guide' },
+      kind: 'insight',
+      category: 'Family & Spousal Sponsorship',
+      iconName: 'heart',
+      excerpt:
+        'A strategic comparison of Inland and Outland family sponsorship routes, covering open work permit eligibility, travel restrictions, and evidentiary milestones.',
+      publishedAt: '2026-08-10T16:45:00.000Z',
+      author: { _type: 'reference', _ref: 'staff-nazly' },
+      authorOversightIcon: 'heart',
+      authorOversightTitle: 'Author Oversight',
+      authorOversightSubtitle: 'CICC Licensed #R533968',
+      authorOversightText:
+        'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
+      authorOversightCtaText: 'Consult on Spousal Sponsorship',
+      authorOversightCtaLink: 'https://wa.me/123456789',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'Reconnecting with a partner in Canada is protected under Canada statutory family reunification principles under the Spouse or Common-Law Partner in Canada Class (Inland) and Family Class (Outland).',
+            },
+          ],
+          style: 'normal',
+        },
+      ],
+    },
+    {
+      _id: 'post-insight-pnp-strategies-ontario-bc-alberta',
+      _type: 'post',
+      title: 'Unlocking Provincial Nominee Programs: Strategic Pathways across Ontario (OINP), BC PNP, and Alberta',
+      slug: { _type: 'slug', current: 'pnp-strategies-ontario-bc-alberta-nominations' },
+      kind: 'insight',
+      category: 'Provincial Nominee (PNP)',
+      iconName: 'map-pin',
+      excerpt:
+        'How provincial nomination streams offer 600-point Comprehensive Ranking System (CRS) advantages, targeted tech and healthcare draws, and regional settlement pathways across Canada.',
+      publishedAt: '2026-08-06T13:20:00.000Z',
+      author: { _type: 'reference', _ref: 'staff-nazly' },
+      authorOversightIcon: 'map-pin',
+      authorOversightTitle: 'Author Oversight',
+      authorOversightSubtitle: 'CICC Licensed #R533968',
+      authorOversightText:
+        'Every insight is reviewed under the direct supervision of Nazly Sunguroglu, RCIC, founder of Elvin Ediz Immigration Services in Toronto.',
+      authorOversightCtaText: 'Consult on PNP Streams',
+      authorOversightCtaLink: 'https://wa.me/123456789',
+      content: [
+        {
+          _key: 'b1',
+          _type: 'block',
+          children: [
+            {
+              _key: 'c1',
+              _type: 'span',
+              text: 'While federal Express Entry cut-offs remain elevated, Provincial Nominee Programs (PNPs) have become Canada foremost vehicle for economic immigration, guaranteeing 600 additional CRS points.',
             },
           ],
           style: 'normal',

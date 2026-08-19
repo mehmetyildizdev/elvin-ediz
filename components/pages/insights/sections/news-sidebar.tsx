@@ -46,7 +46,7 @@ export function NewsSidebar({
           {displayedPosts.map((post) => (
             <article key={post._id || post.slug} className="group py-4 first:pt-0 last:pb-0">
               <div className="mb-1.5 flex items-center justify-between text-[11px]">
-                <span className="text-accent text-[10px] font-semibold tracking-wider uppercase">
+                <span className="bg-bg-app border-border-subtle text-accent rounded-full border px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase">
                   {post.category || post.sourceName || 'Canada News'}
                 </span>
                 {post.publishedAt && (

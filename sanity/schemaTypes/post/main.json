@@ -26,6 +26,11 @@
       "title": "Post Badge Icon",
       "type": "string"
     },
+    "category": {
+      "name": "category",
+      "title": "Category / Topic",
+      "type": "string"
+    },
     "excerpt": {
       "name": "excerpt",
       "title": "Short Introduction",

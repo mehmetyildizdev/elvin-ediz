@@ -18,10 +18,24 @@ export function InformationGuides({
 
   return (
     <div id="information-section" className="flex flex-col">
-      <div className="border-border-subtle mb-8 flex flex-col justify-between gap-3 border-b pb-5">
-        <span className="text-accent text-xs font-bold tracking-widest uppercase">
-          {insightsPageData.infoEyebrow || 'PRACTICAL GUIDES & INFO'}
-        </span>
+      <div className="border-border-subtle mb-8 flex flex-col justify-between gap-3 border-b pb-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="bg-accent/15 text-accent flex h-6 w-6 items-center justify-center rounded-full">
+              <BookOpen size={12} />
+            </span>
+            <span className="text-accent text-[11px] font-bold tracking-widest uppercase">
+              {insightsPageData.infoEyebrow || 'PRACTICAL GUIDES & INFO'}
+            </span>
+          </div>
+          <Link
+            href="/information"
+            className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent border border-accent/20 rounded-full px-3 py-1 text-xs font-bold transition-all hover:shadow-xs"
+            title="See all information guides"
+          >
+            All Guides →
+          </Link>
+        </div>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 className="text-text-main font-serif text-3xl font-light tracking-tight sm:text-4xl">
             {insightsPageData.infoTitleMain || 'Immigration'}{' '}
@@ -29,16 +43,9 @@ export function InformationGuides({
               {insightsPageData.infoTitleAccent || 'Knowledge Base'}
             </span>
           </h2>
-          <Link
-            href="/information"
-            className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent rounded-full px-3 py-1 text-xs font-bold transition-colors"
-            title="See all information guides"
-          >
-            All Guides →
-          </Link>
         </div>
         {insightsPageData.infoDescription && (
-          <p className="text-text-muted text-sm leading-relaxed">
+          <p className="text-text-muted max-w-2xl text-sm leading-relaxed">
             {insightsPageData.infoDescription}
           </p>
         )}
@@ -53,13 +60,13 @@ export function InformationGuides({
             >
               {/* Top Indicator */}
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-                <span className="bg-bg-primary/5 text-accent border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-bold tracking-wider uppercase">
-                  <BookOpen size={13} className="text-accent" />
-                  Guide & Documentation
+                <span className="bg-accent/10 text-accent border-accent/25 inline-flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-[10px] font-bold tracking-wider uppercase">
+                  <BookOpen size={12} className="text-accent" />
+                  Practical Guide
                 </span>
                 {post.publishedAt && (
-                  <span className="text-text-muted flex items-center gap-1 text-xs">
-                    <Calendar size={12} />
+                  <span className="text-text-muted flex items-center gap-1 text-[11px]">
+                    <Calendar size={11} className="opacity-70" />
                     {formatDate(post.publishedAt)}
                   </span>
                 )}

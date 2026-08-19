@@ -47,6 +47,14 @@ export const mainFields = [
     },
   }),
   defineField({
+    name: config.fields.category.name,
+    title: config.fields.category.title,
+    type: 'string',
+    group: config.group.name,
+    description:
+      'e.g. Express Entry & PR, Study in Canada & PGWP, Work Permits & LMIA, Family & Spousal Sponsorship, Provincial Nominee (PNP), Citizenship & Settlement, Canada Living',
+  }),
+  defineField({
     name: config.fields.excerpt.name,
     title: config.fields.excerpt.title,
     type: 'text',
