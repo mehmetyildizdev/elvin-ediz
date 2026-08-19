@@ -60,8 +60,7 @@ export function ConsultationForm({
     setStatus('sending');
     try {
       const data = Object.fromEntries(new FormData(event.currentTarget).entries());
-      const endpoint = process.env.NEXT_PUBLIC_APPOINTMENT_ENDPOINT;
-      if (!endpoint) throw new Error('Appointment endpoint is not configured');
+      const endpoint = process.env.NEXT_PUBLIC_APPOINTMENT_ENDPOINT || '/api/appointment';
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },

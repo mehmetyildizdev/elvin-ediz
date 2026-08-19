@@ -2,33 +2,20 @@
 
 ## Stack
 
-- **Next.js + Tailwind** public website, deployable as a static Cloudflare Pages site.
-- **Sanity Studio** for the client’s content editing.
-- **Cloudflare Worker + KV** for the daily immigration-news feed and the AI “Make a post” action.
+- **Next.js + Tailwind** website hosted on Cloudflare (OpenNext).
+- **Sanity Studio** for content management.
 
 ## Sanity Studio
 
-The Studio is intentionally small. It does not expose authors, categories, or tags.
+The Studio is intentionally streamlined:
 
-1. **Create a post** — direct buttons for Insight, News post, Announcement, and Information post.
-2. Separate lists for each post type.
-3. **Immigration News** — a temporary, daily refreshed Google News list. Selecting **Make a post** creates a Sanity news draft using the configured AI provider.
-4. **Q&A** — one document with simple question/answer objects, ready to render as an accordion on the website.
+1. **Posts & Insights** — direct creation and management for Insights, News, Announcements, and Information articles.
+2. **Q&A** — managed Q&A items rendered dynamically on the website.
+3. **Services & Reviews** — manageable service packages and synced Google Reviews.
+4. **Form Appointments** — incoming consultation requests submitted through the website.
 5. **Team** and **Site settings**.
 
-Author information is not a Sanity document. It belongs in the website configuration and is applied consistently by the frontend whenever a post shows an author.
-
-Set `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`, and `SANITY_STUDIO_NEWSROOM_URL` before running or deploying the Studio. The schema and desk structure are in `sanity.config.ts` and `sanity/`.
-
-## Newsroom Worker
-
-The Worker is at `workers/newsroom`. Create the KV namespace, add its ID to `workers/newsroom/wrangler.jsonc`, and set these Worker secrets:
-
-- `SANITY_WRITE_TOKEN` — Sanity Editor write token
-- `AI_API_KEY`
-- Optional: `AI_API_URL`, `AI_MODEL`
-
-The Cron trigger refreshes the KV cache once a day. The feed is never permanently stored; only a client-selected item is written to Sanity as a draft. See [workers/newsroom/README.md](workers/newsroom/README.md).
+Set `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` before running or deploying the Studio. The schema and desk structure are in `sanity.config.ts` and `sanity/`.
 
 ## Local setup
 
