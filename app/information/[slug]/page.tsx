@@ -12,13 +12,17 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [settings, post] = await Promise.all([fetchSiteSettings(), fetchPostBySlug(slug)]);
+  const decodedSlug = decodeURIComponent(slug);
+  const [settings, post] = await Promise.all([
+    fetchSiteSettings(),
+    fetchPostBySlug(decodedSlug),
+  ]);
 
   return (
     <>
       <Header settings={settings} />
       <main>
-        <InsightsDetail post={post} slug={slug} settings={settings} />
+        <InsightsDetail post={post} slug={decodedSlug} settings={settings} />
       </main>
       <Footer settings={settings} />
     </>

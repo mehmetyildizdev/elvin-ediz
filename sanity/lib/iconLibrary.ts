@@ -1,9 +1,11 @@
 import type { LucideIcon } from 'lucide-react';
 
 // Lightweight helper to remove Sanity stega metadata characters without importing Next.js packages into Vite Studio
-function cleanStega(value: string): string {
-  if (typeof value !== 'string') return value;
-  return value
+function cleanStega(value?: any): string {
+  if (!value) return '';
+  const str = typeof value === 'string' ? value : value?.current || String(value);
+  if (typeof str !== 'string') return '';
+  return str
     .replace(/[\u200B-\u200D\uFEFF\uFE00-\uFE0F]/g, '')
     .replace(/[\u{E0000}-\u{E007F}]/gu, '')
     .trim();

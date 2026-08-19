@@ -1,7 +1,8 @@
-// Lightweight helper to remove invisible Sanity Stega encoding characters for robust logic & URLs
-export function cleanStega(value?: string): string {
-  if (!value || typeof value !== 'string') return '';
-  return value
+export function cleanStega(value?: any): string {
+  if (!value) return '';
+  const str = typeof value === 'string' ? value : value?.current || String(value);
+  if (typeof str !== 'string') return '';
+  return str
     .replace(/[\u200B-\u200D\uFEFF\uFE00-\uFE0F]/g, '')
     .replace(/[\u{E0000}-\u{E007F}]/gu, '')
     .trim()

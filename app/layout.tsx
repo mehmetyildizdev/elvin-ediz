@@ -63,7 +63,13 @@ export const metadata: Metadata = {
 const fontClasses = `${dmSans.variable} ${playfair.variable} ${jakarta.variable} ${lora.variable} ${manrope.variable} ${dmSerif.variable} ${inter.variable} ${merriweather.variable}`;
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const { isEnabled } = await draftMode();
+  let isEnabled = false;
+  try {
+    const draft = await draftMode();
+    isEnabled = draft?.isEnabled ?? false;
+  } catch {
+    isEnabled = false;
+  }
   const isDev = process.env.NODE_ENV === 'development';
 
   return (
@@ -87,8 +93,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <body className={fontClasses}>
         {children}
         <ThemeSwitcher />
-        {/* Real-time live listener during local development only */}
-        {isDev && <SanityLive />}
+        {/* Real-time live listener for draft mode & local development */}
+        {(isDev || isEnabled) && <SanityLive />}
         {/* Click-to-edit highlight overlays in draft mode / Presentation Tool */}
         {isEnabled && <VisualEditing />}
       </body>
