@@ -6,14 +6,13 @@ import { fetchSiteSettings, fetchPostBySlug, fetchPosts } from '@/sanity/lib/dat
 export const revalidate = 1209600; // 2 weeks
 
 export async function generateStaticParams() {
-  const posts = await fetchPosts('information');
-  return posts.map((p) => ({ slug: p.slug }));
+  const posts = await fetchPosts();
+  return posts.filter((p) => Boolean(p.slug)).map((p) => ({ slug: p.slug }));
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const settings = await fetchSiteSettings();
-  const post = await fetchPostBySlug(slug);
+  const [settings, post] = await Promise.all([fetchSiteSettings(), fetchPostBySlug(slug)]);
 
   return (
     <>
