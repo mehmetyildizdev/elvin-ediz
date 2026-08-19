@@ -6,8 +6,7 @@ import { PageHeader } from '@/components/ui/page-header';
 import { PortableTextRenderer } from '@/components/ui/portable-text';
 import { fetchSiteSettings, fetchPrivacyPage } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
 
 export default async function PrivacyPolicyPage() {
   const settings = await fetchSiteSettings();

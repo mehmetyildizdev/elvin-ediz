@@ -48,12 +48,24 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
     apple: '/favicon.png',
   },
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 const fontClasses = `${dmSans.variable} ${playfair.variable} ${jakarta.variable} ${lora.variable} ${manrope.variable} ${dmSerif.variable} ${inter.variable} ${merriweather.variable}`;
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const { isEnabled } = await draftMode();
+  const isDev = process.env.NODE_ENV === 'development';
+
   return (
     <html lang="en" className={fontClasses} suppressHydrationWarning>
       <head>
@@ -75,7 +87,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <body className={fontClasses}>
         {children}
         <ThemeSwitcher />
-        <SanityLive />
+        {/* Real-time live listener during local development only */}
+        {isDev && <SanityLive />}
+        {/* Click-to-edit highlight overlays in draft mode / Presentation Tool */}
         {isEnabled && <VisualEditing />}
       </body>
     </html>

@@ -36,5 +36,4 @@ jobs:
           NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
           NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
           SANITY_EDITOR_TOKEN: ${{ secrets.SANITY_EDITOR_TOKEN }}
-          APPOINTMENT_WEBHOOK_URL: ${{ secrets.APPOINTMENT_WEBHOOK_URL }}
         run: pnpm run deploy

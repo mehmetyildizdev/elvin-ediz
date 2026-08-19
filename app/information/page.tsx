@@ -3,8 +3,7 @@ import { Footer } from '@/components/layout/footer';
 import { InformationList } from '@/components/pages/information/list';
 import { fetchSiteSettings, fetchInsightsPage, fetchPosts } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
 
 export default async function InformationPage() {
   const settings = await fetchSiteSettings();

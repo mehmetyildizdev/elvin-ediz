@@ -3,8 +3,7 @@ import { Footer } from '@/components/layout/footer';
 import { AnnouncementsList } from '@/components/pages/announcements/list';
 import { fetchSiteSettings, fetchInsightsPage, fetchPosts } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
 
 export default async function AnnouncementsPage() {
   const settings = await fetchSiteSettings();

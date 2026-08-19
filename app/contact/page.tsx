@@ -4,8 +4,7 @@ import { ContactInfo } from '@/components/pages/contact/info';
 import { ConsultationForm } from '@/components/home/contact';
 import { fetchSiteSettings, fetchServices, fetchHomePage } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
 
 export default async function ContactPage() {
   const settings = await fetchSiteSettings();

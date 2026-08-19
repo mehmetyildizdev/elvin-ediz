@@ -1,10 +1,14 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { InsightsDetail } from '@/components/pages/insights/detail';
-import { fetchSiteSettings, fetchPostBySlug } from '@/sanity/lib/data';
+import { fetchSiteSettings, fetchPostBySlug, fetchPosts } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
+
+export async function generateStaticParams() {
+  const posts = await fetchPosts('information');
+  return posts.map((p) => ({ slug: p.slug }));
+}
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

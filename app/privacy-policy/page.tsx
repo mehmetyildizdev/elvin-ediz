@@ -1,4 +1,3 @@
 export { default } from '../privacy/page';
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
 

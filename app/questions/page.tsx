@@ -4,8 +4,7 @@ import { PageHeader } from '@/components/ui/page-header';
 import { QuestionsList } from '@/components/pages/questions/list';
 import { fetchSiteSettings, fetchFaqPage } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
 
 export default async function QuestionsPage() {
   const settings = await fetchSiteSettings();

@@ -60,7 +60,8 @@ export async function getSanityClient() {
   });
 }
 
-const fetchOptions = { next: { revalidate: 0 } };
+const isDev = process.env.NODE_ENV === 'development';
+const fetchOptions = { next: { revalidate: isDev ? 0 : 1209600, tags: ['sanity'] } };
 
 export async function fetchSiteSettings(): Promise<SiteSettingsData> {
   const client = await getSanityClient();

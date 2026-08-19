@@ -20,8 +20,7 @@ import {
   fetchStaff,
 } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
 
 export default async function Home() {
   const [settings, homeData, services, testimonials, googleReviews, staff] = await Promise.all([

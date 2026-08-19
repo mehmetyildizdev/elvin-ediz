@@ -6,8 +6,7 @@ import { TabbedServices } from '@/components/pages/services/tabbed-services';
 import { ServicesCallout } from '@/components/pages/services/callout';
 import { fetchSiteSettings, fetchServices, fetchServicesPage } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 1209600; // 2 weeks
 
 export default async function ServicesPage() {
   const [settings, services, servicesPageData] = await Promise.all([

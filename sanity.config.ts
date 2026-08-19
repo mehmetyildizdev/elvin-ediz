@@ -6,11 +6,29 @@ import { markdownSchema } from 'sanity-plugin-markdown';
 import { schemaTypes } from './sanity/schemaTypes';
 import { structure } from './sanity/structure';
 
+import { StudioLogo, StudioIcon } from './sanity/components/StudioLogo';
+
 const singletonTypes = new Set(['homePage', 'insightsPage', 'faqPage', 'privacyPage', 'siteSettings']);
+
+const getPreviewOrigin = () => {
+  if (
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ) {
+    return 'http://localhost:3000';
+  }
+  return process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000';
+};
 
 export default defineConfig({
   name: 'elvin-ediz',
   title: 'Elvin Ediz Immigration Services',
+  icon: StudioIcon,
+  studio: {
+    components: {
+      logo: StudioLogo,
+    },
+  },
   projectId: process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
   dataset: process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   plugins: [
@@ -18,7 +36,7 @@ export default defineConfig({
     markdownSchema(),
     presentationTool({
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000',
+        origin: getPreviewOrigin(),
         previewMode: {
           enable: '/api/draft',
         },
@@ -52,7 +70,7 @@ export default defineConfig({
               slug: 'slug.current',
               kind: 'kind',
             },
-            resolve: (doc) => {
+            resolve: (doc: Record<string, any> | null | undefined) => {
               const kind = doc?.kind || 'insight';
               const basePath =
                 kind === 'news'
@@ -86,7 +104,7 @@ export default defineConfig({
               title: 'title',
               slug: 'slug.current',
             },
-            resolve: (doc) => ({
+            resolve: (doc: Record<string, any> | null | undefined) => ({
               locations: [
                 {
                   title: doc?.title || 'Service',
