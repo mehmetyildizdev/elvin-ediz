@@ -21,6 +21,7 @@ out
 
 # sanity build output
 .sanity
+dist
 
 # logs & system files
 *.log

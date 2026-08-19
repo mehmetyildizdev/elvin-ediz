@@ -1,44 +1,112 @@
 # Elvin Ediz Immigration Services
 
-## Stack
+Web application and content management system for **Elvin Ediz Immigration Services**.
 
-- **Next.js + Tailwind** website hosted on Cloudflare (OpenNext).
-- **Sanity Studio** for content management.
+---
 
-## Sanity Studio
+## 🌐 Live Environments
 
-The Studio is intentionally streamlined:
+- **Public Website (Cloudflare)**: [https://elvin-ediz.memostar91.workers.dev/](https://elvin-ediz.memostar91.workers.dev/)
+- **Sanity Studio (CMS)**: [https://elvin-ediz.sanity.studio/](https://elvin-ediz.sanity.studio/)
 
-1. **Posts & Insights** — direct creation and management for Insights, News, Announcements, and Information articles.
-2. **Q&A** — managed Q&A items rendered dynamically on the website.
-3. **Services & Reviews** — manageable service packages and synced Google Reviews.
-4. **Form Appointments** — incoming consultation requests submitted through the website.
-5. **Team** and **Site settings**.
+---
 
-Set `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` before running or deploying the Studio. The schema and desk structure are in `sanity.config.ts` and `sanity/`.
+## 🛠️ Architecture & Tech Stack
 
-## Local setup
+- **Frontend & Server Framework**: [Next.js](https://nextjs.org/) (App Router, Server Components, TypeScript, Tailwind CSS).
+- **Edge Deployment**: [Cloudflare Workers](https://workers.cloudflare.com/) via [@opennextjs/cloudflare](https://opennext.js.org/cloudflare).
+- **Headless Content Management**: [Sanity.io](https://www.sanity.io/) (v6 Studio hosted on `sanity.studio`).
+- **Form Submissions**: Native Next.js server route (`/api/appointment`) directly saving incoming client inquiries into the Sanity dataset with optional notification webhooks.
+- **Review Automation**: Automated Puppeteer script for syncing verified Google Business reviews to Sanity (`scripts/sync-google-reviews.mjs`).
 
-1. Copy `.env.example` to `.env.local`.
-2. Install packages with `pnpm install`.
-3. Run the website with `pnpm dev`.
-4. Run Sanity Studio with `pnpm studio` (or `cd sanity && pnpm dev`).
+---
 
-## Sanity Live Editing & Cache Architecture
+## 📁 Sanity Studio Content Structure
 
-### 1. Real-Time Live Editing (Presentation & Studio)
-Live visual editing and sub-second previews are powered by two complementary layers:
+The Studio is streamlined for fast, intuitive content management:
 
-- **`<VisualEditing />`** (`next-sanity/visual-editing` in [`app/layout.tsx`](app/layout.tsx)):
-  Attaches postMessage event listeners between Sanity Studio's Presentation iframe and the Next.js app. It enables interactive click-to-edit overlays and mutates text nodes in the DOM in real time as you type.
-- **`<SanityLive />`** (`next-sanity/live` in [`sanity/lib/live.ts`](sanity/lib/live.ts) & [`app/layout.tsx`](app/layout.tsx)):
-  Maintains a real-time Server-Sent Events (SSE) subscription to Sanity dataset mutations. When non-text attributes change (e.g. selecting a new visual icon, reordering list items, or clicking **Publish**), Sanity pushes a listener event that automatically revalidates Next.js Server Components in the background with zero manual page refreshes.
-- **Stega Metadata & `stegaClean`** ([`sanity/lib/iconLibrary.ts`](sanity/lib/iconLibrary.ts)):
-  In draft/live mode, Sanity encodes hidden Stega characters into strings to track document paths. For dictionary lookups (such as dynamic icon resolution), [`stegaClean(name)`](sanity/lib/iconLibrary.ts) strips invisible characters to guarantee exact key matching while preserving Stega tags on visible text nodes.
+1. **Site Settings & Topbar**: Business phone, email, WhatsApp settings, address, and announcement banner text.
+2. **Page Content**: Home page hero/sections, Services hero, Insights & Updates hub, Q&A accordions, and Privacy Policy.
+3. **Immigration Services**: Dedicated catalog of immigration programs, requirements, timelines, and fees.
+4. **Google Reviews & Testimonials**: Synced Google reviews with live ratings plus curated testimonials.
+5. **Insights & Articles**: Direct management for 4 categorized publication feeds:
+   - _Insights_
+   - _News_
+   - _Announcements_
+   - _Information_
+6. **Form Appointments**: Live pipeline for incoming website consultation leads:
+   - `🟢 New Inquiries` (Needs Attention)
+   - `⚪ Contacted` (Handled)
 
-### 2. Cache Resolution & Development Data Sync
-To ensure changes appear immediately during development:
+---
 
-- **Dynamic Fetching**: All GROQ queries in [`sanity/lib/data.ts`](sanity/lib/data.ts) pass `{ next: { revalidate: 0 } }` to avoid Next.js server fetch caching.
-- **CDN Bypass**: [`sanity/lib/data.ts`](sanity/lib/data.ts) automatically sets `useCdn: false` during development (`NODE_ENV === 'development'`) and draft mode to bypass Sanity API Edge CDN propagation latency.
-- **Route Dynamic Rendering**: Key pages ([`app/page.tsx`](app/page.tsx) and [`app/services/page.tsx`](app/services/page.tsx)) export `dynamic = 'force-dynamic'` and `revalidate = 0`.
+## 🚀 Local Development
+
+### 1. Prerequisites
+
+- Node.js `v20+` or `v24+`
+- `pnpm` (`v9` or `v10`)
+
+### 2. Setup Environment
+
+Copy `.env.example` to `.env.local` and set your credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+Key environment variables:
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID
+NEXT_PUBLIC_SANITY_DATASET
+NEXT_PUBLIC_SANITY_API_VERSION
+SANITY_EDITOR_TOKEN
+SANITY_AUTH_TOKEN
+SANITY_STUDIO_PROJECT_ID
+SANITY_STUDIO_DATASET
+SANITY_STUDIO_PREVIEW_URL
+```
+
+### 3. Run Locally
+
+```bash
+# Start website
+pnpm dev
+
+# Start Sanity Studio locally (runs on http://localhost:3333)
+pnpm run studio
+```
+
+---
+
+## 🚢 Deployment
+
+### 1. Website (Cloudflare Workers via OpenNext)
+
+You can deploy directly from your terminal:
+
+```bash
+pnpm run deploy
+```
+
+_Or use the manual GitHub Actions workflow: **Actions ➜ Deploy to Cloudflare ➜ Run workflow**._
+
+### 2. Sanity Studio (Sanity Hosting)
+
+Deploy schema and CMS updates to `https://elvin-ediz.sanity.studio/`:
+
+```bash
+pnpm run studio:deploy
+```
+
+---
+
+## ⚡ Sanity Live Editing & Real-Time Sync
+
+1. **`<VisualEditing />`** (`next-sanity/visual-editing` in [`app/layout.tsx`](app/layout.tsx)):
+   Enables click-to-edit overlays and live DOM mutation previews when browsing the site inside the Sanity Studio Presentation Tool.
+2. **`<SanityLive />`** (`next-sanity/live` in [`sanity/lib/live.ts`](sanity/lib/live.ts) & [`app/layout.tsx`](app/layout.tsx)):
+   Maintains a real-time Server-Sent Events (SSE) subscription to Sanity mutations, updating server components immediately when documents are edited or published without manual refreshes.
+3. **Stega Stripping** ([`sanity/lib/iconLibrary.ts`](sanity/lib/iconLibrary.ts)):
+   Uses `stegaClean()` to ensure invisible metadata characters don't interfere with dynamic icon dictionary mappings and UI logic.

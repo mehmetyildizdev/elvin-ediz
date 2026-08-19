@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "studio": "sanity dev",
-    "studio:deploy": "sanity deploy",
+    "studio:deploy": "node --env-file-if-exists=.env.local ./node_modules/sanity/bin/sanity deploy",
     "sync:reviews": "node scripts/sync-google-reviews.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
