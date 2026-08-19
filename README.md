@@ -6,7 +6,7 @@ Web application and content management system for **Elvin Ediz Immigration Servi
 
 ## 🌐 Live Environments
 
-- **Public Website (Cloudflare)**: [https://elvin-ediz.memostar91.workers.dev/](https://elvin-ediz.memostar91.workers.dev/)
+- **Public Website (Cloudflare)**: [https://elvin-ediz.mehmetyildiz.workers.dev/](https://elvin-ediz.mehmetyildiz.workers.dev/)
 - **Sanity Studio (CMS)**: [https://elvin-ediz.sanity.studio/](https://elvin-ediz.sanity.studio/)
 
 ---
