@@ -1,5 +1,5 @@
 import type { SiteSettingsData } from '../types';
-import { BASE_URL } from './utils';
+import { BASE_URL, stripStega } from './utils';
 
 export interface WebPageJsonLdOptions {
   title: string;
@@ -16,24 +16,27 @@ export interface WebPageJsonLdOptions {
 export function buildWebPageJsonLd(options: WebPageJsonLdOptions) {
   const { title, description, url, type = 'WebPage', settings } = options;
 
-  const fullUrl = `${BASE_URL}${url.startsWith('/') ? url : `/${url}`}`;
-  const siteTitle = settings?.siteTitle || 'Elvin Ediz Immigration Services';
+  const cleanUrl = stripStega(url);
+  const fullUrl = `${BASE_URL}${cleanUrl.startsWith('/') ? cleanUrl : `/${cleanUrl}`}`;
+  const siteTitle = stripStega(settings?.siteTitle) || 'Elvin Ediz Immigration Services';
+  const cleanTitle = stripStega(title);
+  const cleanDescription = stripStega(description);
 
   if (type === 'ContactPage') {
     return {
       '@context': 'https://schema.org',
       '@type': 'ContactPage',
-      name: title,
-      description: description,
+      name: cleanTitle,
+      description: cleanDescription,
       url: fullUrl,
       mainEntity: {
         '@type': 'LegalService',
         name: siteTitle,
-        telephone: settings?.phone || '(647) 568 1009',
-        email: settings?.contactEmail || 'info@elvinediz.com',
+        telephone: stripStega(settings?.phone) || '(647) 568 1009',
+        email: stripStega(settings?.contactEmail) || 'info@elvinediz.com',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: settings?.address || 'Toronto, Ontario, Canada',
+          streetAddress: stripStega(settings?.address) || 'Toronto, Ontario, Canada',
         },
       },
     };
@@ -43,8 +46,8 @@ export function buildWebPageJsonLd(options: WebPageJsonLdOptions) {
     return {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
-      name: title,
-      description: description,
+      name: cleanTitle,
+      description: cleanDescription,
       url: fullUrl,
       mainEntity: {
         '@type': 'Person',
@@ -63,8 +66,8 @@ export function buildWebPageJsonLd(options: WebPageJsonLdOptions) {
     return {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: title,
-      description: description,
+      name: cleanTitle,
+      description: cleanDescription,
       url: fullUrl,
       isPartOf: {
         '@type': 'WebSite',
@@ -77,8 +80,8 @@ export function buildWebPageJsonLd(options: WebPageJsonLdOptions) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: title,
-    description: description,
+    name: cleanTitle,
+    description: cleanDescription,
     url: fullUrl,
     isPartOf: {
       '@type': 'WebSite',

@@ -1,5 +1,5 @@
 import type { FaqPageData, FaqItem } from '../types';
-import { toPlainText } from './utils';
+import { toPlainText, stripStega } from './utils';
 
 /**
  * Builds Schema.org FAQPage schema with question/answer pairs
@@ -14,7 +14,7 @@ export function buildFaqJsonLd(faqPageData?: FaqPageData) {
     '@type': 'FAQPage',
     mainEntity: items.map((item) => ({
       '@type': 'Question',
-      name: item.question,
+      name: stripStega(item.question),
       acceptedAnswer: {
         '@type': 'Answer',
         text: toPlainText(item.answer),

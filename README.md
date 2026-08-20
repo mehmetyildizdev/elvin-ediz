@@ -134,3 +134,23 @@ When editors publish content in Sanity Studio, Next.js instantly purges the cach
    - **HTTP method**: `POST`
    - **Secret**: Set a secret matching your `SANITY_REVALIDATE_SECRET` environment variable.
 
+---
+
+## 🎯 3-Tier Automated SEO Fallback System
+
+The application implements an automated, zero-friction SEO architecture in [`sanity/lib/seo`](sanity/lib/seo). Editors can publish content without filling out any SEO fields, while search engines and social platforms receive 100% complete metadata and structured data:
+
+1. **Tier 1: Document Content Fallbacks (Automatic)**
+   - **Meta Title**: Generated from the document's main `title` / `heroTitle` and formatted with the site template.
+   - **Meta Description**: Automatically extracted from `excerpt`, summary, or lead body paragraphs.
+   - **Social Share Images**: Uses the document's uploaded `coverImage` or feature photo.
+   - **Canonical URL**: Dynamically generated from the clean URL slug (`https://elvinediz.com/insights/[slug]`).
+   - **Structured Data (JSON-LD)**: Automatically compiles Schema.org graphs (`Article`, `NewsArticle`, `LegalService`, `FAQPage`, `WebPage`) with author (`Nazly Sunguroglu, RCIC`), publisher, timestamps, and logo.
+
+2. **Tier 2: Global Site Defaults**
+   - If document-level fields (like cover image or excerpt) are empty, metadata seamlessly falls back to global values in **Site Settings** (`defaultMetaTitle`, `defaultMetaDescription`, `defaultOgImageUrl`, `siteKeywords`).
+
+3. **Tier 3: Explicit Studio Overrides (Optional)**
+   - Editors can open the **SEO & Social Sharing** tab on any document in Sanity Studio to supply custom search titles, custom descriptions, social preview banners, or search engine indexing directives (`noIndex` / `noFollow`).
+
+

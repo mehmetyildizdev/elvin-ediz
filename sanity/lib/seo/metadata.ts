@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import type { SeoData, SiteSettingsData } from '../types';
-import { BASE_URL } from './utils';
+import { BASE_URL, stripStega } from './utils';
 
 export interface PageMetadataOptions {
   pageTitle?: string;
@@ -35,45 +35,47 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
     authors,
   } = options;
 
-  const siteTitle = settings?.siteTitle || 'Elvin Ediz Immigration Services';
+  const siteTitle = stripStega(settings?.siteTitle) || 'Elvin Ediz Immigration Services';
 
   // 01. Title Resolution
-  const rawTitle = seo?.metaTitle?.trim() || pageTitle?.trim() || settings?.defaultMetaTitle || siteTitle;
-  const resolvedTitle =
-    rawTitle.includes('|') || rawTitle === siteTitle
-      ? rawTitle
-      : `${rawTitle} | ${siteTitle}`;
+  // Next.js layout uses `title.template: '%s | Elvin Ediz Immigration Services'`.
+  // Returning rawTitle lets Next.js format the title once with no duplicates.
+  // If the title already contains '|' or matches siteTitle, we use { absolute: rawTitle }.
+  const rawTitle = stripStega(seo?.metaTitle || pageTitle || settings?.defaultMetaTitle) || siteTitle;
+  const isCustomOrFullTitle = rawTitle.includes('|') || rawTitle === siteTitle;
+  const resolvedTitle = isCustomOrFullTitle ? { absolute: rawTitle } : rawTitle;
 
   // 02. Description Resolution
   const resolvedDescription =
-    seo?.metaDescription?.trim() ||
-    pageDescription?.trim() ||
-    settings?.defaultMetaDescription ||
+    stripStega(seo?.metaDescription) ||
+    stripStega(pageDescription) ||
+    stripStega(settings?.defaultMetaDescription) ||
     'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC in Toronto, Ontario.';
 
   // 03. Social Share Image Resolution
   const resolvedOgImage =
-    seo?.ogImageUrl ||
-    pageCoverImageUrl ||
-    settings?.defaultOgImageUrl ||
+    stripStega(seo?.ogImageUrl) ||
+    stripStega(pageCoverImageUrl) ||
+    stripStega(settings?.defaultOgImageUrl) ||
     '/favicon.png';
 
-  // 04. Social Title & Description (with platform-specific overrides if provided)
-  const ogTitle = seo?.ogTitle?.trim() || resolvedTitle;
-  const ogDescription = seo?.ogDescription?.trim() || resolvedDescription;
+  // 04. Social Title & Description (OG & Twitter do not inherit template, so ensure brand is present)
+  const fullBrandedTitle = isCustomOrFullTitle ? rawTitle : `${rawTitle} | ${siteTitle}`;
+  const ogTitle = stripStega(seo?.ogTitle) || fullBrandedTitle;
+  const ogDescription = stripStega(seo?.ogDescription) || resolvedDescription;
 
   // 05. Keywords
-  const mergedKeywords = Array.from(
-    new Set([
-      ...(seo?.keywords || []),
-      ...keywords,
-      ...(settings?.siteKeywords || []),
-    ])
-  );
+  const rawKeywords = [
+    ...(seo?.keywords || []),
+    ...keywords,
+    ...(settings?.siteKeywords || []),
+  ].map((k) => stripStega(k)).filter(Boolean);
+
+  const mergedKeywords = Array.from(new Set(rawKeywords));
 
   // 06. Canonical URL
   const canonicalUrl =
-    seo?.canonicalUrl?.trim() ||
+    stripStega(seo?.canonicalUrl) ||
     (canonicalPath ? `${BASE_URL}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}` : undefined);
 
   // 07. Search Engine Directives
@@ -92,15 +94,15 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
       siteName: siteTitle,
       locale: 'en_CA',
       type: type,
-      ...(type === 'article' && publishedTime ? { publishedTime } : {}),
-      ...(type === 'article' && authors?.length ? { authors } : {}),
+      ...(type === 'article' && publishedTime ? { publishedTime: stripStega(publishedTime) } : {}),
+      ...(type === 'article' && authors?.length ? { authors: authors.map((a) => stripStega(a)) } : {}),
       images: resolvedOgImage
         ? [
             {
               url: resolvedOgImage,
               width: 1200,
               height: 630,
-              alt: seo?.metaTitle || resolvedTitle,
+              alt: stripStega(seo?.metaTitle) || fullBrandedTitle,
             },
           ]
         : [],
@@ -123,7 +125,7 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
       },
     },
     verification: settings?.googleSiteVerification
-      ? { google: settings.googleSiteVerification }
+      ? { google: stripStega(settings.googleSiteVerification) }
       : undefined,
   };
 }

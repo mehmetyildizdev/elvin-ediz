@@ -1,12 +1,12 @@
 import type { SiteSettingsData } from '../types';
-import { BASE_URL } from './utils';
+import { BASE_URL, stripStega } from './utils';
 
 /**
  * Builds Schema.org Organization, LegalService & WebSite schema
  * Applicable for: Home & Brand ("Organization")
  */
 export function buildOrganizationJsonLd(settings?: SiteSettingsData) {
-  const siteTitle = settings?.siteTitle || 'Elvin Ediz Immigration Services';
+  const siteTitle = stripStega(settings?.siteTitle) || 'Elvin Ediz Immigration Services';
 
   return {
     '@context': 'https://schema.org',
@@ -17,13 +17,13 @@ export function buildOrganizationJsonLd(settings?: SiteSettingsData) {
         name: siteTitle,
         url: BASE_URL,
         logo: `${BASE_URL}/favicon.png`,
-        image: settings?.defaultOgImageUrl || `${BASE_URL}/favicon.png`,
-        telephone: settings?.phone || '(647) 568 1009',
-        email: settings?.contactEmail || 'info@elvinediz.com',
+        image: stripStega(settings?.defaultOgImageUrl) || `${BASE_URL}/favicon.png`,
+        telephone: stripStega(settings?.phone) || '(647) 568 1009',
+        email: stripStega(settings?.contactEmail) || 'info@elvinediz.com',
         priceRange: '$$',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: settings?.address || 'Toronto, Ontario, Canada',
+          streetAddress: stripStega(settings?.address) || 'Toronto, Ontario, Canada',
           addressLocality: 'Toronto',
           addressRegion: 'ON',
           addressCountry: 'CA',
@@ -42,7 +42,7 @@ export function buildOrganizationJsonLd(settings?: SiteSettingsData) {
             'Spousal & Family Sponsorship',
           ],
         },
-        sameAs: [settings?.linkedinUrl, settings?.instagramUrl].filter(Boolean),
+        sameAs: [stripStega(settings?.linkedinUrl), stripStega(settings?.instagramUrl)].filter(Boolean),
       },
       {
         '@type': 'WebSite',
@@ -50,7 +50,7 @@ export function buildOrganizationJsonLd(settings?: SiteSettingsData) {
         url: BASE_URL,
         name: siteTitle,
         description:
-          settings?.defaultMetaDescription ||
+          stripStega(settings?.defaultMetaDescription) ||
           'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC.',
         publisher: {
           '@id': `${BASE_URL}/#organization`,

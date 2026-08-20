@@ -1,5 +1,5 @@
 import type { ServiceData, SiteSettingsData } from '../types';
-import { BASE_URL } from './utils';
+import { BASE_URL, stripStega } from './utils';
 
 /**
  * Builds Schema.org Service schema for single pathways or service directory
@@ -10,20 +10,22 @@ export function buildServiceJsonLd(
   settings?: SiteSettingsData
 ) {
   const list = Array.isArray(services) ? services : [services];
+  const siteTitle = stripStega(settings?.siteTitle) || 'Elvin Ediz Immigration Services';
 
   if (list.length === 1) {
     const s = list[0];
-    const serviceUrl = `${BASE_URL}/services?tab=${s.slug}`;
+    const cleanSlug = stripStega(s.slug);
+    const serviceUrl = `${BASE_URL}/services?tab=${cleanSlug}`;
 
     return {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: s.title,
-      description: s.summary,
+      name: stripStega(s.title),
+      description: stripStega(s.summary),
       serviceType: 'Canadian Immigration Consulting',
       provider: {
         '@type': 'LegalService',
-        name: settings?.siteTitle || 'Elvin Ediz Immigration Services',
+        name: siteTitle,
         url: BASE_URL,
       },
       areaServed: {
@@ -34,7 +36,7 @@ export function buildServiceJsonLd(
       offers: s.features?.length
         ? {
             '@type': 'Offer',
-            description: s.features.join(', '),
+            description: s.features.map((f) => stripStega(f)).join(', '),
           }
         : undefined,
     };
@@ -51,12 +53,12 @@ export function buildServiceJsonLd(
       position: index + 1,
       item: {
         '@type': 'Service',
-        name: s.title,
-        description: s.summary,
-        url: `${BASE_URL}/services?tab=${s.slug}`,
+        name: stripStega(s.title),
+        description: stripStega(s.summary),
+        url: `${BASE_URL}/services?tab=${stripStega(s.slug)}`,
         provider: {
           '@type': 'LegalService',
-          name: settings?.siteTitle || 'Elvin Ediz Immigration Services',
+          name: siteTitle,
         },
       },
     })),

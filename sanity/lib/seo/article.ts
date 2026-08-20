@@ -1,5 +1,5 @@
 import type { PostData, SiteSettingsData } from '../types';
-import { BASE_URL } from './utils';
+import { BASE_URL, stripStega, toPlainText } from './utils';
 
 /**
  * Builds Schema.org Article or NewsArticle schema
@@ -10,15 +10,17 @@ export function buildArticleJsonLd(
   settings?: SiteSettingsData,
   forceNews?: boolean
 ) {
-  const structuredType = post.seo?.structuredDataType || 'auto';
+  const structuredType = stripStega(post.seo?.structuredDataType) || 'auto';
+  const postKind = stripStega(post.kind);
   const isNews =
     forceNews ??
-    (structuredType === 'NewsArticle' || (structuredType === 'auto' && post.kind === 'news'));
+    (structuredType === 'NewsArticle' || (structuredType === 'auto' && postKind === 'news'));
   const type = isNews ? 'NewsArticle' : 'Article';
 
-  const postUrl = `${BASE_URL}/insights/${post.slug}`;
-  const authorName = post.authorName || 'Nazly Sunguroglu, RCIC';
-  const authorRole = post.authorRole || 'Regulated Canadian Immigration Consultant';
+  const cleanSlug = stripStega(post.slug);
+  const postUrl = `${BASE_URL}/insights/${cleanSlug}`;
+  const authorName = stripStega(post.authorName) || 'Nazly Sunguroglu, RCIC';
+  const authorRole = stripStega(post.authorRole) || 'Regulated Canadian Immigration Consultant';
 
   return {
     '@context': 'https://schema.org',
@@ -27,11 +29,11 @@ export function buildArticleJsonLd(
       '@type': 'WebPage',
       '@id': postUrl,
     },
-    headline: post.title,
-    description: post.excerpt || post.title,
-    image: post.coverImageUrl ? [post.coverImageUrl] : undefined,
-    datePublished: post.publishedAt || new Date().toISOString(),
-    dateModified: post.publishedAt || new Date().toISOString(),
+    headline: stripStega(post.title),
+    description: stripStega(toPlainText(post.excerpt || post.title)),
+    image: post.coverImageUrl ? [stripStega(post.coverImageUrl)] : undefined,
+    datePublished: stripStega(post.publishedAt) || new Date().toISOString(),
+    dateModified: stripStega(post.publishedAt) || new Date().toISOString(),
     author: {
       '@type': 'Person',
       name: authorName,
@@ -40,20 +42,20 @@ export function buildArticleJsonLd(
     },
     publisher: {
       '@type': 'Organization',
-      name: settings?.siteTitle || 'Elvin Ediz Immigration Services',
+      name: stripStega(settings?.siteTitle) || 'Elvin Ediz Immigration Services',
       logo: {
         '@type': 'ImageObject',
         url: `${BASE_URL}/favicon.png`,
       },
     },
-    articleSection: post.category || 'Canadian Immigration',
+    articleSection: stripStega(post.category) || 'Canadian Immigration',
     inLanguage: 'en-CA',
     ...(isNews && post.sourceName
       ? {
           sourceOrganization: {
             '@type': 'NewsMediaOrganization',
-            name: post.sourceName,
-            url: post.sourceURL || undefined,
+            name: stripStega(post.sourceName),
+            url: stripStega(post.sourceURL) || undefined,
           },
         }
       : {}),
