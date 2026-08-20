@@ -6,7 +6,7 @@ Web application and content management system for **Elvin Ediz Immigration Servi
 
 ## 🌐 Live Environments
 
-- **Public Website (Cloudflare)**: [https://elvin-ediz.mehmetyildiz.workers.dev/](https://elvin-ediz.mehmetyildiz.workers.dev/)
+- **Public Website (Vercel)**: [https://elvin-ediz.vercel.app/](https://elvin-ediz.vercel.app/)
 - **Sanity Studio (CMS)**: [https://elvin-ediz.sanity.studio/](https://elvin-ediz.sanity.studio/)
 
 ---
@@ -14,10 +14,9 @@ Web application and content management system for **Elvin Ediz Immigration Servi
 ## 🛠️ Architecture & Tech Stack
 
 - **Frontend & Server Framework**: [Next.js](https://nextjs.org/) (App Router, Server Components, TypeScript, Tailwind CSS).
-- **Edge Deployment**: [Cloudflare Workers](https://workers.cloudflare.com/) via [@opennextjs/cloudflare](https://opennext.js.org/cloudflare).
+- **Hosting & Serverless Platform**: [Vercel](https://vercel.com/) (Native Next.js ISR, automatic edge caching & GitHub deployment).
 - **Headless Content Management**: [Sanity.io](https://www.sanity.io/) (v6 Studio hosted on `sanity.studio`).
 - **Form Submissions**: Native Next.js server route (`/api/appointment`) directly saving incoming client inquiries into the Sanity dataset with optional notification webhooks.
-- **Review Automation**: Automated Puppeteer script for syncing verified Google Business reviews to Sanity (`scripts/sync-google-reviews.mjs`).
 
 ---
 
@@ -28,7 +27,7 @@ The Studio is streamlined for fast, intuitive content management:
 1. **Site Settings & Topbar**: Business phone, email, WhatsApp settings, address, and announcement banner text.
 2. **Page Content**: Home page hero/sections, Services hero, Insights & Updates hub, Q&A accordions, and Privacy Policy.
 3. **Immigration Services**: Dedicated catalog of immigration programs, requirements, timelines, and fees.
-4. **Google Reviews & Testimonials**: Synced Google reviews with live ratings plus curated testimonials.
+4. **Google Reviews & Testimonials**: Client reviews with live ratings plus curated testimonials.
 5. **Insights & Articles**: Direct management for 4 categorized publication feeds:
    - _Insights_
    - _News_
@@ -58,20 +57,19 @@ cp .env.example .env.local
 Key environment variables:
 
 ```env
-NEXT_PUBLIC_SANITY_PROJECT_ID
-NEXT_PUBLIC_SANITY_DATASET
-NEXT_PUBLIC_SANITY_API_VERSION
-SANITY_EDITOR_TOKEN
-SANITY_AUTH_TOKEN
-SANITY_STUDIO_PROJECT_ID
-SANITY_STUDIO_DATASET
-SANITY_STUDIO_PREVIEW_URL
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2026-07-14
+SANITY_EDITOR_TOKEN=your_sanity_token
+SANITY_STUDIO_PROJECT_ID=your_project_id
+SANITY_STUDIO_DATASET=production
+SANITY_STUDIO_PREVIEW_URL=https://your-site.vercel.app
 ```
 
 ### 3. Run Locally
 
 ```bash
-# Start website
+# Start website (http://localhost:3000)
 pnpm dev
 
 # Start Sanity Studio locally (runs on http://localhost:3333)
@@ -82,15 +80,16 @@ pnpm run studio
 
 ## 🚢 Deployment
 
-### 1. Website (Cloudflare Workers via OpenNext)
+### 1. Website (Vercel)
 
-You can deploy directly from your terminal:
+The website deploys automatically on every `git push` to the `main` branch via Vercel's GitHub integration.
 
-```bash
-pnpm run deploy
-```
-
-_Or use the manual GitHub Actions workflow: **Actions ➜ Deploy to Cloudflare ➜ Run workflow**._
+To configure your Vercel project:
+1. Connect repository on [vercel.com](https://vercel.com).
+2. Set the Environment Variables:
+   - `NEXT_PUBLIC_SANITY_PROJECT_ID`
+   - `NEXT_PUBLIC_SANITY_DATASET`
+   - `SANITY_EDITOR_TOKEN` *(or `SANITY_API_READ_TOKEN`)*
 
 ### 2. Sanity Studio (Sanity Hosting)
 
@@ -102,11 +101,14 @@ pnpm run studio:deploy
 
 ---
 
-## ⚡ Sanity Live Editing & Real-Time Sync
+## ⚡ Sanity Visual Editing & Live Preview
 
 1. **`<VisualEditing />`** (`next-sanity/visual-editing` in [`app/layout.tsx`](app/layout.tsx)):
-   Enables click-to-edit overlays and live DOM mutation previews when browsing the site inside the Sanity Studio Presentation Tool.
+   Enables click-to-edit overlays and live DOM element selection when browsing the site inside the Sanity Studio Presentation Tool.
 2. **`<SanityLive />`** (`next-sanity/live` in [`sanity/lib/live.ts`](sanity/lib/live.ts) & [`app/layout.tsx`](app/layout.tsx)):
-   Maintains a real-time Server-Sent Events (SSE) subscription to Sanity mutations, updating server components immediately when documents are edited or published without manual refreshes.
-3. **Stega Stripping** ([`sanity/lib/iconLibrary.ts`](sanity/lib/iconLibrary.ts)):
-   Uses `stegaClean()` to ensure invisible metadata characters don't interfere with dynamic icon dictionary mappings and UI logic.
+   Maintains a real-time Server-Sent Events (SSE) subscription in Draft Mode, reflecting changes live in the Studio preview window.
+3. **Draft Mode Expiration**:
+   - For demo and review sessions, the draft preview cookie (`__prerender_bypass`) in [`app/api/draft/route.ts`](app/api/draft/route.ts) is configured to automatically expire after **1 hour (3600s)**.
+   - You can manually disable draft mode anytime by visiting [`/api/disable-draft`](app/api/disable-draft/route.ts).
+4. **Stega Stripping** ([`components/pages/insights/utils.ts`](components/pages/insights/utils.ts) & [`sanity/lib/iconLibrary.ts`](sanity/lib/iconLibrary.ts)):
+   Uses `cleanStega()` to ensure invisible metadata characters don't interfere with dynamic icon dictionary mappings and URL slugs.
