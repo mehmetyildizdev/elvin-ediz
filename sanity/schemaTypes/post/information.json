@@ -1,7 +1,7 @@
 {
   "group": {
-    "name": "informationSection",
-    "title": "03. Information Section"
+    "name": "typeConfig",
+    "title": "02. Type Settings"
   },
   "fields": {
     "checklistIcon": {

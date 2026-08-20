@@ -1,0 +1,14 @@
+{
+  "group": {
+    "name": "seo",
+    "title": "10. SEO & Social"
+  },
+  "fields": {
+    "seo": {
+      "name": "seo",
+      "title": "Home Page SEO & Social Share",
+      "type": "seo",
+      "description": "Search engine metadata and social preview overrides specifically for the website homepage."
+    }
+  }
+}

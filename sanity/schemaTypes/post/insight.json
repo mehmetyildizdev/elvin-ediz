@@ -1,7 +1,7 @@
 {
   "group": {
-    "name": "insightSection",
-    "title": "03. Insight Section"
+    "name": "typeConfig",
+    "title": "02. Type Settings"
   },
   "fields": {
     "authorOversightIcon": {

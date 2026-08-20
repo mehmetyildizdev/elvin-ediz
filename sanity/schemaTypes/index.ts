@@ -10,9 +10,11 @@ import { privacyPage } from './privacyPage';
 import { post } from './post';
 import { appointment } from './appointment';
 import { googleReviews } from './googleReviews';
+import { seo } from './objects/seo';
 import { servicesPage } from './servicesPage';
 
 export const schemaTypes = [
+  seo,
   siteSettings,
   homePage,
   insightsPage,

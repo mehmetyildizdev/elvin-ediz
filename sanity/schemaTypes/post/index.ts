@@ -1,18 +1,16 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { UserIcon } from '@sanity/icons/User';
 import { SparklesIcon } from '@sanity/icons/Sparkles';
-import { InfoOutlineIcon } from '@sanity/icons/InfoOutline';
-import { BellIcon } from '@sanity/icons/Bell';
-import { DocumentsIcon } from '@sanity/icons/Documents';
+import { SearchIcon } from '@sanity/icons/Search';
 
 import config from './index.json';
 import { mainGroup, mainFields } from './main';
 import { authorGroup, authorFields } from './author';
-import { insightSectionGroup, insightSectionFields } from './insight';
-import { informationSectionGroup, informationSectionFields } from './information';
-import { announcementSectionGroup, announcementSectionFields } from './announcement';
-import { newsSectionGroup, newsSectionFields } from './news';
+import { insightSectionFields } from './insight';
+import { informationSectionFields } from './information';
+import { announcementSectionFields } from './announcement';
+import { newsSectionFields } from './news';
 
 export const post = defineType({
   name: config.name,
@@ -37,11 +35,9 @@ export const post = defineType({
   },
   groups: [
     { ...mainGroup, icon: DocumentTextIcon },
+    { name: 'typeConfig', title: '02. Type Settings', icon: SparklesIcon },
     { ...authorGroup, icon: UserIcon },
-    { ...insightSectionGroup, icon: SparklesIcon },
-    { ...informationSectionGroup, icon: InfoOutlineIcon },
-    { ...announcementSectionGroup, icon: BellIcon },
-    { ...newsSectionGroup, icon: DocumentsIcon },
+    { name: 'seo', title: '04. SEO & Social', icon: SearchIcon },
   ],
   fields: [
     ...mainFields,
@@ -50,6 +46,13 @@ export const post = defineType({
     ...informationSectionFields,
     ...announcementSectionFields,
     ...newsSectionFields,
+    defineField({
+      name: 'seo',
+      title: 'SEO & Social Media Settings',
+      type: 'seo',
+      group: 'seo',
+      description: 'Custom metadata, search engine snippets, and social share previews for this post.',
+    }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'kind', media: 'coverImage' },

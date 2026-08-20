@@ -1,7 +1,7 @@
 {
   "group": {
-    "name": "announcementSection",
-    "title": "03. Announcement Section"
+    "name": "typeConfig",
+    "title": "02. Type Settings"
   },
   "fields": {
     "effectiveDate": {

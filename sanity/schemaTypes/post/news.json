@@ -1,7 +1,7 @@
 {
   "group": {
-    "name": "newsSection",
-    "title": "03. News & Media Section"
+    "name": "typeConfig",
+    "title": "02. Type Settings"
   },
   "fields": {
     "sourceName": {

@@ -8,6 +8,7 @@ import { StarIcon } from '@sanity/icons/Star';
 import { ClockIcon } from '@sanity/icons/Clock';
 import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
+import { SearchIcon } from '@sanity/icons/Search';
 
 import config from './index.json';
 import { heroGroup, heroFields } from './hero';
@@ -19,6 +20,7 @@ import { testimonialsGroup, testimonialsFields } from './testimonials';
 import { processGroup, processFields } from './process';
 import { insightsGroup, insightsFields } from './insights';
 import { contactGroup, contactFields } from './contact';
+import { seoGroup, seoFields } from './seo';
 
 export const homePage = defineType({
   name: config.name,
@@ -34,6 +36,7 @@ export const homePage = defineType({
     { ...processGroup, icon: ClockIcon },
     { ...insightsGroup, icon: DocumentTextIcon },
     { ...contactGroup, icon: EnvelopeIcon },
+    { ...seoGroup, icon: SearchIcon },
   ],
   fields: [
     ...heroFields,
@@ -45,6 +48,7 @@ export const homePage = defineType({
     ...processFields,
     ...insightsFields,
     ...contactFields,
+    ...seoFields,
   ],
 });
 

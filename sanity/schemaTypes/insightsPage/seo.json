@@ -1,0 +1,14 @@
+{
+  "group": {
+    "name": "seo",
+    "title": "07. SEO & Social"
+  },
+  "fields": {
+    "seo": {
+      "name": "seo",
+      "title": "Insights Hub SEO & Social Share",
+      "type": "seo",
+      "description": "Search engine snippet and social media cards for the Insights & News Hub page (/insights)."
+    }
+  }
+}

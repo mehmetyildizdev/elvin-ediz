@@ -3,6 +3,7 @@ import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { LockIcon } from '@sanity/icons/Lock';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import { CodeIcon } from '@sanity/icons/Code';
+import { SearchIcon } from '@sanity/icons/Search';
 
 export const privacyPage = defineType({
   name: 'privacyPage',
@@ -13,6 +14,7 @@ export const privacyPage = defineType({
     { name: 'commitment', title: '02. Commitment Box', icon: LockIcon },
     { name: 'body', title: '03. Policy Content', icon: DocumentTextIcon },
     { name: 'inquiry', title: '04. Contact & Inquiries', icon: EnvelopeIcon },
+    { name: 'seo', title: '05. SEO & Social', icon: SearchIcon },
   ],
   fields: [
     // 01. Page Header
@@ -191,6 +193,13 @@ export const privacyPage = defineType({
       type: 'string',
       group: 'inquiry',
       initialValue: 'Toronto, Ontario, Canada',
+    }),
+    defineField({
+      name: 'seo',
+      title: 'Privacy Policy SEO & Social Share',
+      type: 'seo',
+      group: 'seo',
+      description: 'Search engine metadata and social preview for the Privacy Policy page (/privacy-policy).',
     }),
   ],
 });

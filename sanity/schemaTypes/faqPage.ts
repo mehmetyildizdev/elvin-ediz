@@ -3,6 +3,7 @@ import { HelpCircleIcon } from '@sanity/icons/HelpCircle';
 import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import { CodeIcon } from '@sanity/icons/Code';
+import { SearchIcon } from '@sanity/icons/Search';
 
 export const faqPage = defineType({
   name: 'faqPage',
@@ -12,6 +13,7 @@ export const faqPage = defineType({
     { name: 'header', title: '01. Page Header', icon: DocumentTextIcon, default: true },
     { name: 'faqs', title: '02. Questions & Answers', icon: HelpCircleIcon },
     { name: 'cta', title: '03. Consultation Callout', icon: EnvelopeIcon },
+    { name: 'seo', title: '04. SEO & Social', icon: SearchIcon },
   ],
   fields: [
     // 01. Page Header
@@ -204,6 +206,14 @@ export const faqPage = defineType({
       title: 'Callout Button Link (Optional)',
       description: 'Custom link URL or leave blank to open WhatsApp consultation.',
       type: 'string',
+      group: 'cta',
+    }),
+    defineField({
+      name: 'seo',
+      title: 'Q&A / FAQs Page SEO & Social Share',
+      type: 'seo',
+      group: 'seo',
+      description: 'Search engine metadata and social preview for the FAQ / Q&A page (/questions).',
     }),
   ],
 });
