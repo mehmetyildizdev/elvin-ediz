@@ -54,7 +54,9 @@ export async function getSanityClient() {
     perspective: isDraft ? 'drafts' : 'published',
     stega: {
       enabled: isDraft,
-      studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333',
+      studioUrl:
+        process.env.NEXT_PUBLIC_SANITY_STUDIO_URL ||
+        (isDev ? 'http://localhost:3333' : 'https://elvin-ediz.sanity.studio'),
     },
     token: isDraft ? (process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_API_READ_TOKEN) : undefined,
   });
