@@ -11,6 +11,20 @@ import {
   backupPrivacyPage,
 } from './backupData';
 
+export interface SeoData {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogImage?: any;
+  ogImageUrl?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  keywords?: string[];
+  canonicalUrl?: string;
+  structuredDataType?: string;
+  noIndex?: boolean;
+  noFollow?: boolean;
+}
+
 export interface SiteSettingsData {
   siteTitle: string;
   contactEmail: string;
@@ -24,6 +38,13 @@ export interface SiteSettingsData {
   headerNav: Array<{ label: string; href: string }>;
   footerNotice: string;
   copyrightText: string;
+  defaultMetaTitle?: string;
+  titleTemplate?: string;
+  defaultMetaDescription?: string;
+  defaultOgImage?: any;
+  defaultOgImageUrl?: string;
+  siteKeywords?: string[];
+  googleSiteVerification?: string;
 }
 
 export interface ServiceData {
@@ -40,6 +61,7 @@ export interface ServiceData {
   ctaSubtitle?: string;
   ctaButtonText?: string;
   ctaButtonLink?: string;
+  seo?: SeoData;
 }
 
 export interface TestimonialData {
@@ -180,6 +202,7 @@ export interface HomePageData {
   contactSubmitButtonText?: string;
   contactDisclaimer?: string;
   contactServiceOptions?: string[];
+  seo?: SeoData;
 }
 
 export type PostKind = 'insight' | 'news' | 'announcement' | 'information';
@@ -243,6 +266,8 @@ export interface PostData {
   newsImpactText?: string;
   newsCtaButtonText?: string;
   newsCtaButtonLink?: string;
+
+  seo?: SeoData;
 }
 
 export interface InsightsPageData {
@@ -280,6 +305,8 @@ export interface InsightsPageData {
   consultationDescription: string;
   consultationButtonText: string;
   consultationButtonLink: string;
+
+  seo?: SeoData;
 }
 
 export interface FaqItem {
@@ -295,6 +322,7 @@ export interface ServicesPageData {
   titleMain: string;
   titleAccent: string;
   description: string;
+  seo?: SeoData;
 }
 
 
@@ -314,6 +342,8 @@ export interface FaqPageData {
   ctaDescription?: string;
   ctaButtonText?: string;
   ctaButtonLink?: string;
+
+  seo?: SeoData;
 }
 
 export interface PrivacyPageData {
@@ -337,6 +367,8 @@ export interface PrivacyPageData {
   email?: string;
   phone?: string;
   address?: string;
+
+  seo?: SeoData;
 }
 
 export const defaultSiteSettings = backupSiteSettings;

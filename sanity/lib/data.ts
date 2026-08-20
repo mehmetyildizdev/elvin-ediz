@@ -70,7 +70,10 @@ export async function fetchSiteSettings(): Promise<SiteSettingsData> {
   if (!client) return backupSiteSettings;
   try {
     const data = await client.fetch<Partial<SiteSettingsData>>(
-      `*[_type == "siteSettings"][0]`,
+      `*[_type == "siteSettings"][0] {
+        ...,
+        "defaultOgImageUrl": defaultOgImage.asset->url
+      }`,
       {},
       fetchOptions
     );
@@ -90,7 +93,11 @@ export async function fetchHomePage(): Promise<HomePageData> {
         ...,
         "ciccBadgeImageUrl": ciccBadgeImage.asset->url,
         "whoAreWeImageUrl": whoAreWeImage.asset->url,
-        "aboutImageUrl": aboutImage.asset->url
+        "aboutImageUrl": aboutImage.asset->url,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
       }`,
       {},
       fetchOptions
@@ -129,7 +136,11 @@ export async function fetchServices(): Promise<ServiceData[]> {
       `*[_type == "service"] | order(order asc) {
         _id, title, "slug": slug.current, order, iconName, summary, features, body,
         ctaTitle, ctaSubtitle, ctaButtonText, ctaButtonLink,
-        "coverImageUrl": coverImage.asset->url
+        "coverImageUrl": coverImage.asset->url,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
       }`,
       {},
       fetchOptions
@@ -147,7 +158,11 @@ export async function fetchServicesPage(): Promise<ServicesPageData> {
   try {
     const data = await client.fetch<ServicesPageData>(
       `*[_type == "servicesPage" || _id == "servicesPage"][0] {
-        _id, eyebrow, titleMain, titleAccent, description
+        _id, eyebrow, titleMain, titleAccent, description,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
       }`,
       {},
       fetchOptions
@@ -167,7 +182,11 @@ export async function fetchServiceBySlug(slug: string): Promise<ServiceData | nu
       `*[_type == "service" && slug.current == $slug][0] {
         _id, title, "slug": slug.current, order, iconName, summary, features, body,
         ctaTitle, ctaSubtitle, ctaButtonText, ctaButtonLink,
-        "coverImageUrl": coverImage.asset->url
+        "coverImageUrl": coverImage.asset->url,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
       }`,
       { slug },
       fetchOptions
@@ -225,7 +244,13 @@ export async function fetchInsightsPage(): Promise<InsightsPageData> {
   if (!client) return backupInsightsPage;
   try {
     const data = await client.fetch<Partial<InsightsPageData>>(
-      `*[_type == "insightsPage"][0]`,
+      `*[_type == "insightsPage"][0] {
+        ...,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
+      }`,
       {},
       fetchOptions
     );
@@ -250,7 +275,11 @@ export async function fetchPosts(kind?: PostKind | string): Promise<PostData[]> 
           "coverImageUrl": coverImage.asset->url,
           "authorName": coalesce(customAuthorName, author->name, authorName, "Nazly Sunguroglu, RCIC"),
           "authorRole": coalesce(customAuthorRole, author->role, authorRole, "Regulated Canadian Immigration Consultant"),
-          "authorPhotoUrl": author->photo.asset->url
+          "authorPhotoUrl": author->photo.asset->url,
+          "seo": seo {
+            ...,
+            "ogImageUrl": ogImage.asset->url
+          }
         }`
       : `*[_type == "post"] | order(publishedAt desc) {
           ...,
@@ -258,7 +287,11 @@ export async function fetchPosts(kind?: PostKind | string): Promise<PostData[]> 
           "coverImageUrl": coverImage.asset->url,
           "authorName": coalesce(customAuthorName, author->name, authorName, "Nazly Sunguroglu, RCIC"),
           "authorRole": coalesce(customAuthorRole, author->role, authorRole, "Regulated Canadian Immigration Consultant"),
-          "authorPhotoUrl": author->photo.asset->url
+          "authorPhotoUrl": author->photo.asset->url,
+          "seo": seo {
+            ...,
+            "ogImageUrl": ogImage.asset->url
+          }
         }`;
     const data = await client.fetch<PostData[]>(
       query,
@@ -284,7 +317,11 @@ export async function fetchPostBySlug(slug: string): Promise<PostData | null> {
         "coverImageUrl": coverImage.asset->url,
         "authorName": coalesce(customAuthorName, author->name, authorName, "Nazly Sunguroglu, RCIC"),
         "authorRole": coalesce(customAuthorRole, author->role, authorRole, "Regulated Canadian Immigration Consultant"),
-        "authorPhotoUrl": author->photo.asset->url
+        "authorPhotoUrl": author->photo.asset->url,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
       }`,
       { slug },
       fetchOptions
@@ -301,7 +338,13 @@ export async function fetchFaqPage(): Promise<FaqPageData> {
   if (!client) return backupFaqPage;
   try {
     const data = await client.fetch<Partial<FaqPageData>>(
-      `*[_type == "faqPage"][0]`,
+      `*[_type == "faqPage"][0] {
+        ...,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
+      }`,
       {},
       fetchOptions
     );
@@ -319,7 +362,13 @@ export async function fetchPrivacyPage(): Promise<PrivacyPageData> {
   if (!client) return backupPrivacyPage;
   try {
     const data = await client.fetch<Partial<PrivacyPageData>>(
-      `*[_type == "privacyPage"][0]`,
+      `*[_type == "privacyPage"][0] {
+        ...,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
+      }`,
       {},
       fetchOptions
     );
