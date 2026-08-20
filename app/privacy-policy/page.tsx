@@ -1,3 +1,7 @@
-export { default } from '../privacy/page';
-export const revalidate = 1209600; // 2 weeks
+import { redirect } from 'next/navigation';
+
+export default function PrivacyPolicyRedirect() {
+  redirect('/privacy');
+}
+
 

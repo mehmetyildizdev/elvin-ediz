@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ShieldCheck, Mail } from 'lucide-react';
 import { Header } from '@/components/layout/header';
@@ -5,15 +6,42 @@ import { Footer } from '@/components/layout/footer';
 import { PageHeader } from '@/components/ui/page-header';
 import { PortableTextRenderer } from '@/components/ui/portable-text';
 import { fetchSiteSettings, fetchPrivacyPage } from '@/sanity/lib/data';
+import { buildPageMetadata, buildPageJsonLd } from '@/sanity/lib/seo';
+import { JsonLd } from '@/components/seo/json-ld';
 
 export const revalidate = 1209600; // 2 weeks
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [settings, privacyData] = await Promise.all([
+    fetchSiteSettings(),
+    fetchPrivacyPage(),
+  ]);
+
+  return buildPageMetadata({
+    pageTitle: `${privacyData.titleMain || 'Privacy'} ${privacyData.titleAccent || 'Policy'}`.trim(),
+    pageDescription: privacyData.description || 'Learn how Elvin Ediz Immigration Services protects and handles your personal information.',
+    seo: privacyData.seo,
+    settings,
+    canonicalPath: '/privacy',
+  });
+}
 
 export default async function PrivacyPolicyPage() {
   const settings = await fetchSiteSettings();
   const privacyData = await fetchPrivacyPage();
 
+  const privacyJsonLd = buildPageJsonLd({
+    title: `${privacyData.titleMain || 'Privacy'} ${privacyData.titleAccent || 'Policy'}`.trim(),
+    description: privacyData.description || 'Privacy policy of Elvin Ediz Immigration Services.',
+    url: '/privacy',
+    defaultType: 'WebPage',
+    structuredDataType: privacyData.seo?.structuredDataType,
+    settings,
+  });
+
   return (
     <>
+      <JsonLd data={privacyJsonLd} />
       <Header settings={settings} />
       <main className="bg-bg-app">
         <PageHeader

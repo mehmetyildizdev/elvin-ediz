@@ -38,8 +38,12 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: 'Elvin Ediz Immigration Services | Your Canadian Story Starts Here',
-  description: 'Personalized Canadian immigration guidance from Nazly Sunguroglu, RCIC.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://elvinediz.com'),
+  title: {
+    template: '%s | Elvin Ediz Immigration Services',
+    default: 'Elvin Ediz Immigration Services | Your Canadian Story Starts Here',
+  },
+  description: 'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC in Toronto, Ontario.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -48,15 +52,13 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
     apple: '/favicon.png',
   },
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
+  openGraph: {
+    type: 'website',
+    locale: 'en_CA',
+    siteName: 'Elvin Ediz Immigration Services',
+    title: 'Elvin Ediz Immigration Services | Your Canadian Story Starts Here',
+    description: 'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC.',
+    images: [{ url: '/favicon.png', width: 512, height: 512, alt: 'Elvin Ediz Immigration Services' }],
   },
 };
 
