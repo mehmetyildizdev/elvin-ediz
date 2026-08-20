@@ -63,7 +63,12 @@ export async function getSanityClient() {
 }
 
 const isDev = process.env.NODE_ENV === 'development';
-const fetchOptions = { next: { revalidate: isDev ? 0 : 1209600, tags: ['sanity'] } };
+const getFetchOptions = (tags: string[]) => ({
+  next: {
+    revalidate: isDev ? 0 : 1209600,
+    tags,
+  },
+});
 
 export async function fetchSiteSettings(): Promise<SiteSettingsData> {
   const client = await getSanityClient();
@@ -75,7 +80,7 @@ export async function fetchSiteSettings(): Promise<SiteSettingsData> {
         "defaultOgImageUrl": defaultOgImage.asset->url
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['siteSettings'])
     );
     if (data && data.siteTitle) return { ...backupSiteSettings, ...data };
   } catch (err) {
@@ -100,7 +105,7 @@ export async function fetchHomePage(): Promise<HomePageData> {
         }
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['homePage'])
     );
     if (data && (data.heroTitle || data.strategyTitle || data.strategyEyebrow)) return { ...backupHomePage, ...data };
   } catch (err) {
@@ -119,7 +124,7 @@ export async function fetchStaff(): Promise<StaffData[]> {
         "photoUrl": photo.asset->url
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['staffMember'])
     );
     if (data?.length) return data;
   } catch (err) {
@@ -143,7 +148,7 @@ export async function fetchServices(): Promise<ServiceData[]> {
         }
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['services'])
     );
     if (data?.length) return data;
   } catch (err) {
@@ -165,7 +170,7 @@ export async function fetchServicesPage(): Promise<ServicesPageData> {
         }
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['servicesPage'])
     );
     if (data && data.titleMain) return data;
   } catch (err) {
@@ -189,7 +194,7 @@ export async function fetchServiceBySlug(slug: string): Promise<ServiceData | nu
         }
       }`,
       { slug },
-      fetchOptions
+      getFetchOptions([`service:${slug}`])
     );
     if (data) return data;
   } catch (err) {
@@ -205,7 +210,7 @@ export async function fetchTestimonials(): Promise<TestimonialData[]> {
     const data = await client.fetch<TestimonialData[]>(
       `*[_type == "testimonial"] | order(order asc) { _id, author, location, quote, rating }`,
       {},
-      fetchOptions
+      getFetchOptions(['testimonial'])
     );
     if (data?.length) return data;
   } catch (err) {
@@ -230,7 +235,7 @@ export async function fetchGoogleReviews(): Promise<GoogleReviewsData> {
         reviews
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['googleReviews'])
     );
     if (data && data.reviews?.length) return { ...backupGoogleReviews, ...data };
   } catch (err) {
@@ -252,7 +257,7 @@ export async function fetchInsightsPage(): Promise<InsightsPageData> {
         }
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['insightsPage'])
     );
     if (data && (data.titleMain || data.eyebrow)) return { ...backupInsightsPage, ...data };
   } catch (err) {
@@ -293,10 +298,11 @@ export async function fetchPosts(kind?: PostKind | string): Promise<PostData[]> 
             "ogImageUrl": ogImage.asset->url
           }
         }`;
+    const tags = ['posts', ...(kind ? [`posts:${kind}`] : [])];
     const data = await client.fetch<PostData[]>(
       query,
       kind ? { kind } : {},
-      fetchOptions
+      getFetchOptions(tags)
     );
     if (data?.length) return data;
   } catch (err) {
@@ -324,7 +330,7 @@ export async function fetchPostBySlug(slug: string): Promise<PostData | null> {
         }
       }`,
       { slug },
-      fetchOptions
+      getFetchOptions([`post:${slug}`])
     );
     if (data) return data;
   } catch (err) {
@@ -346,7 +352,7 @@ export async function fetchFaqPage(): Promise<FaqPageData> {
         }
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['faqPage'])
     );
     if (data && (data.titleMain || data.eyebrow || data.items?.length)) {
       return { ...backupFaqPage, ...data };
@@ -370,7 +376,7 @@ export async function fetchPrivacyPage(): Promise<PrivacyPageData> {
         }
       }`,
       {},
-      fetchOptions
+      getFetchOptions(['privacyPage'])
     );
     if (data && (data.titleMain || data.eyebrow || data.commitmentTitle || data.content?.length)) {
       return { ...backupPrivacyPage, ...data };

@@ -13,9 +13,9 @@ Web application and content management system for **Elvin Ediz Immigration Servi
 
 ## 🛠️ Architecture & Tech Stack
 
-- **Frontend & Server Framework**: [Next.js](https://nextjs.org/) (App Router, Server Components, TypeScript, Tailwind CSS).
-- **Hosting & Serverless Platform**: [Vercel](https://vercel.com/) (Native Next.js ISR, automatic edge caching & GitHub deployment).
-- **Headless Content Management**: [Sanity.io](https://www.sanity.io/) (v6 Studio hosted on `sanity.studio`).
+- **Frontend & Server Framework**: Next.js (App Router, Server Components, TypeScript, Tailwind CSS).
+- **Hosting & Serverless Platform**: Vercel (Native Next.js ISR, automatic edge caching & GitHub deployment).
+- **Headless Content Management**: Sanity.io (v6 Studio hosted on `sanity.studio`).
 - **Form Submissions**: Native Next.js server route (`/api/appointment`) directly saving incoming client inquiries into the Sanity dataset with optional notification webhooks.
 
 ---
@@ -85,11 +85,13 @@ pnpm run studio
 The website deploys automatically on every `git push` to the `main` branch via Vercel's GitHub integration.
 
 To configure your Vercel project:
-1. Connect repository on [vercel.com](https://vercel.com).
+
+1. Connect repository in your Vercel dashboard.
 2. Set the Environment Variables:
    - `NEXT_PUBLIC_SANITY_PROJECT_ID`
    - `NEXT_PUBLIC_SANITY_DATASET`
-   - `SANITY_EDITOR_TOKEN` *(or `SANITY_API_READ_TOKEN`)*
+   - `SANITY_EDITOR_TOKEN` _(or `SANITY_API_READ_TOKEN`)_
+   - `SANITY_REVALIDATE_SECRET`
 
 ### 2. Sanity Studio (Sanity Hosting)
 
@@ -112,3 +114,23 @@ pnpm run studio:deploy
    - You can manually disable draft mode anytime by visiting [`/api/disable-draft`](app/api/disable-draft/route.ts).
 4. **Stega Stripping** ([`components/pages/insights/utils.ts`](components/pages/insights/utils.ts) & [`sanity/lib/iconLibrary.ts`](sanity/lib/iconLibrary.ts)):
    Uses `cleanStega()` to ensure invisible metadata characters don't interfere with dynamic icon dictionary mappings and URL slugs.
+
+---
+
+## 🔄 On-Demand Cache Revalidation (Webhook)
+
+When editors publish content in Sanity Studio, Next.js instantly purges the cached pages and hub listings via the scoped webhook route at [`/api/revalidate`](app/api/revalidate/route.ts).
+
+### Setting up the Webhook in Sanity:
+
+1. Go to Sanity Management Dashboard (`sanity.io/manage`) -> Select your Project -> **API** -> **Webhooks**.
+2. Click **Create Webhook**:
+   - **Name**: `Live Site On-Demand Revalidation`
+   - **URL**: `https://your-domain.com/api/revalidate`
+   - **Dataset**: `production`
+   - **Trigger on**: `Create`, `Update`, `Delete`
+   - **Filter**: `_type in ["post", "service", "homePage", "siteSettings", "staffMember", "testimonial", "googleReviews", "faqPage", "privacyPage", "insightsPage", "servicesPage"]`
+   - **Projection**: `{ _type, "slug": slug.current, kind }`
+   - **HTTP method**: `POST`
+   - **Secret**: Set a secret matching your `SANITY_REVALIDATE_SECRET` environment variable.
+
