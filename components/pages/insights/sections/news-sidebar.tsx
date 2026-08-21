@@ -40,7 +40,7 @@ export function NewsSidebar({
           className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent rounded-full px-2.5 py-0.5 text-[10px] font-bold transition-colors"
           title="See all news"
         >
-          All →
+          {insightsPageData.newsViewAllText || 'All →'}
         </Link>
       </div>
 
@@ -56,7 +56,7 @@ export function NewsSidebar({
                   </span>
                   {post.publishedAt && (
                     <span className="text-text-muted text-[11px]">
-                      {formatDate(post.publishedAt)}
+                      {formatDate(post.publishedAt, undefined, post.language || lang)}
                     </span>
                   )}
                 </div>
@@ -76,7 +76,7 @@ export function NewsSidebar({
                     href={postHref}
                     className="text-accent group/btn inline-flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase"
                   >
-                    Read story
+                    {insightsPageData.newsReadStoryText || 'Read story'}
                     <ArrowUpRight
                       size={12}
                       className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
@@ -90,7 +90,8 @@ export function NewsSidebar({
                       rel="noopener noreferrer"
                       className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-[10px] transition-colors"
                     >
-                      Source <ExternalLink size={10} />
+                      {insightsPageData.newsSourceLabel || 'Source'}{' '}
+                      <ExternalLink size={10} />
                     </a>
                   )}
                 </div>
@@ -99,7 +100,9 @@ export function NewsSidebar({
           })}
         </div>
       ) : (
-        <p className="text-text-muted text-xs">No updates at the moment.</p>
+        <p className="text-text-muted text-xs">
+          {insightsPageData.newsEmptyMessage || 'No recent news articles yet.'}
+        </p>
       )}
     </div>
   );

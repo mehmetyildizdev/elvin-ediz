@@ -25,6 +25,14 @@ function localizeHref(href: string, currentLang: string = 'en'): string {
   return `/${currentLang}${href.startsWith('/') ? href : `/${href}`}`;
 }
 
+const defaultFooterNav = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'Insights', href: '/insights' },
+  { label: 'Q&A', href: '/questions' },
+  { label: 'Privacy Policy', href: '/privacy' },
+];
+
 export function Footer({
   settings = defaultSiteSettings,
   lang = 'en',
@@ -35,6 +43,11 @@ export function Footer({
   const consultationHref = settings?.whatsappNumber
     ? getWhatsAppUrl(settings.whatsappNumber)
     : settings?.consultationLink || getWhatsAppUrl();
+
+  const footerNavLinks =
+    settings?.footerNav && settings.footerNav.length > 0
+      ? settings.footerNav
+      : defaultFooterNav;
 
   return (
     <footer className="bg-bg-primary text-text-on-dark w-full">
@@ -54,50 +67,29 @@ export function Footer({
               />
             </Link>
             <p className="text-text-on-dark-muted max-w-xs text-sm leading-relaxed">
-              Guidance for your next chapter in Canada. Personal, regulated Canadian immigration
-              consulting.
+              {settings?.footerDescription ||
+                'Guidance for your next chapter in Canada. Personal, regulated Canadian immigration consulting.'}
             </p>
           </div>
 
           <div className="flex flex-col gap-3 text-xs">
             <span className="text-text-on-dark-muted mb-1 text-xs font-semibold tracking-widest uppercase">
-              Explore
+              {settings?.footerNavTitle || 'Explore'}
             </span>
-            <Link
-              href={localizeHref('/', lang)}
-              className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
-            >
-              Home
-            </Link>
-            <Link
-              href={localizeHref('/services', lang)}
-              className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
-            >
-              Services
-            </Link>
-            <Link
-              href={localizeHref('/insights', lang)}
-              className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
-            >
-              Insights
-            </Link>
-            <Link
-              href={localizeHref('/questions', lang)}
-              className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
-            >
-              Q&A
-            </Link>
-            <Link
-              href={localizeHref('/privacy', lang)}
-              className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
-            >
-              Privacy Policy
-            </Link>
+            {footerNavLinks.map((item, idx) => (
+              <Link
+                key={item.href ? `${item.href}-${idx}` : idx}
+                href={localizeHref(item.href, lang)}
+                className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
 
           <div className="flex flex-col gap-3 text-xs">
             <span className="text-text-on-dark-muted mb-1 text-xs font-semibold tracking-widest uppercase">
-              Connect
+              {settings?.footerConnectTitle || 'Connect'}
             </span>
             <a
               href={`mailto:${settings?.contactEmail || 'info@elvinediz.com'}`}
@@ -111,7 +103,7 @@ export function Footer({
               rel="noopener noreferrer"
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
-              Free Consultation
+              {settings?.footerConsultationText || 'Free Consultation'}
             </a>
             <span className="opacity-80">{settings?.address || 'Toronto, Canada'}</span>
           </div>
@@ -129,7 +121,7 @@ export function Footer({
               href={localizeHref('/privacy', lang)}
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
-              Privacy Policy
+              {settings?.footerPrivacyText || 'Privacy Policy'}
             </Link>
             <span>•</span>
             <span>

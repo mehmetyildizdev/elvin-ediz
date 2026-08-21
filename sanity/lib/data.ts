@@ -205,7 +205,7 @@ export async function fetchServicesPage(lang: string = 'en'): Promise<ServicesPa
         *[_type == "servicesPage" && (language == "en" || !defined(language))][0],
         *[_type == "servicesPage" || _id == "servicesPage"][0]
       ) {
-        _id, eyebrow, titleMain, titleAccent, description,
+        ...,
         "seo": seo {
           ...,
           "ogImageUrl": ogImage.asset->url

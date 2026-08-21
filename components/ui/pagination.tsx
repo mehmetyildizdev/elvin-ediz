@@ -7,6 +7,8 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  prevText?: string;
+  nextText?: string;
   className?: string;
 }
 
@@ -14,6 +16,8 @@ export function Pagination({
   currentPage,
   totalPages,
   onPageChange,
+  prevText = 'Prev',
+  nextText = 'Next',
   className = '',
 }: PaginationProps) {
   if (totalPages <= 1) return null;
@@ -66,7 +70,7 @@ export function Pagination({
         aria-label="Go to previous page"
       >
         <ChevronLeft size={14} />
-        <span className="hidden sm:inline">Prev</span>
+        <span className="hidden sm:inline">{prevText || 'Prev'}</span>
       </button>
 
       {/* Page Numbers */}
@@ -110,7 +114,7 @@ export function Pagination({
         className="border-border-subtle bg-bg-surface hover:border-accent hover:text-accent text-text-main inline-flex h-9 cursor-pointer items-center gap-1 rounded-sm border px-3 text-xs font-semibold tracking-wider uppercase transition-all duration-200 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40"
         aria-label="Go to next page"
       >
-        <span className="hidden sm:inline">Next</span>
+        <span className="hidden sm:inline">{nextText || 'Next'}</span>
         <ChevronRight size={14} />
       </button>
     </nav>

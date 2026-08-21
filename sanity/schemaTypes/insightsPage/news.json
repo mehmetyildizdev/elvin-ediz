@@ -1,7 +1,7 @@
 {
   "group": {
     "name": "news",
-    "title": "05. News Sidebar"
+    "title": "06. News Sidebar"
   },
   "fields": {
     "newsEyebrow": {
@@ -15,6 +15,36 @@
       "title": "News Title",
       "type": "string",
       "initialValue": "Immigration News"
+    },
+    "newsViewAllText": {
+      "name": "newsViewAllText",
+      "title": "Header 'All →' Button Label",
+      "type": "string",
+      "initialValue": "All →"
+    },
+    "newsFeaturedBadgeText": {
+      "name": "newsFeaturedBadgeText",
+      "title": "Featured Story 'Featured News' Badge",
+      "type": "string",
+      "initialValue": "Featured News"
+    },
+    "newsReadStoryText": {
+      "name": "newsReadStoryText",
+      "title": "Card 'Read story' Action Label",
+      "type": "string",
+      "initialValue": "Read story"
+    },
+    "newsReadActionText": {
+      "name": "newsReadActionText",
+      "title": "Grid Card 'Read' Action Label",
+      "type": "string",
+      "initialValue": "Read"
+    },
+    "newsSourceLabel": {
+      "name": "newsSourceLabel",
+      "title": "Card 'Source' Link Label",
+      "type": "string",
+      "initialValue": "Source"
     },
     "newsEmptyMessage": {
       "name": "newsEmptyMessage",

@@ -24,11 +24,33 @@ export function getLocalizedPostHref(
   return `${kind}/${slug}`;
 }
 
-export function formatDate(dateStr?: string, options?: Intl.DateTimeFormatOptions): string {
+const localeMap: Record<string, string> = {
+  tr: 'tr-TR',
+  en: 'en-US',
+  fr: 'fr-FR',
+  ar: 'ar-SA',
+  es: 'es-ES',
+  zh: 'zh-CN',
+  fa: 'fa-IR',
+  ru: 'ru-RU',
+  pt: 'pt-BR',
+};
+
+export function getLocale(lang: string = 'en'): string {
+  const clean = cleanStega(lang);
+  return localeMap[clean] || clean || 'en-US';
+}
+
+export function formatDate(
+  dateStr?: string,
+  options?: Intl.DateTimeFormatOptions,
+  lang: string = 'en'
+): string {
   if (!dateStr) return '';
   try {
+    const locale = getLocale(lang);
     return new Date(dateStr).toLocaleDateString(
-      'en-US',
+      locale,
       options || {
         month: 'short',
         day: 'numeric',

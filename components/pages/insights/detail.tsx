@@ -91,11 +91,15 @@ export function InsightsDetail({
           ? 'Back to announcements'
           : 'Back to insights & updates';
 
-  const formattedDate = formatDate(post.publishedAt, {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  const formattedDate = formatDate(
+    post.publishedAt,
+    {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    },
+    post.language || activeLang
+  );
 
   const CustomIcon = getIconComponent(post.iconName);
 

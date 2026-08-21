@@ -33,6 +33,12 @@
       "title": "View All Link URL",
       "type": "string",
       "initialValue": "/insights"
+    },
+    "insightsReadMoreText": {
+      "name": "insightsReadMoreText",
+      "title": "Post Card 'Read More' Button Label",
+      "type": "string",
+      "initialValue": "Read more"
     }
   }
 }

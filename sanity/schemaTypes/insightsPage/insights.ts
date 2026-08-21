@@ -3,33 +3,13 @@ import config from './insights.json';
 
 export const insightsSectionGroup = config.group;
 
-export const insightsSectionFields = [
+export const insightsSectionFields = Object.values(config.fields).map((f: any) =>
   defineField({
-    name: config.fields.insightsEyebrow.name,
-    title: config.fields.insightsEyebrow.title,
-    type: 'string',
+    name: f.name,
+    title: f.title,
+    type: f.type,
+    ...(f.rows ? { rows: f.rows } : {}),
     group: config.group.name,
-    initialValue: config.fields.insightsEyebrow.initialValue,
-  }),
-  defineField({
-    name: config.fields.insightsTitleMain.name,
-    title: config.fields.insightsTitleMain.title,
-    type: 'string',
-    group: config.group.name,
-    initialValue: config.fields.insightsTitleMain.initialValue,
-  }),
-  defineField({
-    name: config.fields.insightsTitleAccent.name,
-    title: config.fields.insightsTitleAccent.title,
-    type: 'string',
-    group: config.group.name,
-    initialValue: config.fields.insightsTitleAccent.initialValue,
-  }),
-  defineField({
-    name: config.fields.insightsDescription.name,
-    title: config.fields.insightsDescription.title,
-    type: 'string',
-    group: config.group.name,
-    initialValue: config.fields.insightsDescription.initialValue,
-  }),
-];
+    initialValue: f.initialValue,
+  })
+);

@@ -1,0 +1,68 @@
+{
+  "group": {
+    "name": "categoryNav",
+    "title": "02. Category Navigation & Pagination"
+  },
+  "fields": {
+    "categoryNavLabel": {
+      "name": "categoryNavLabel",
+      "title": "Nav Bar Prefix Label",
+      "type": "string",
+      "initialValue": "Browse By Category:"
+    },
+    "categoryInsightsLabel": {
+      "name": "categoryInsightsLabel",
+      "title": "Insights Pill Label",
+      "type": "string",
+      "initialValue": "Featured Insights"
+    },
+    "categoryGuidesLabel": {
+      "name": "categoryGuidesLabel",
+      "title": "Practical Guides Pill Label",
+      "type": "string",
+      "initialValue": "Practical Guides"
+    },
+    "categoryAnnouncementsLabel": {
+      "name": "categoryAnnouncementsLabel",
+      "title": "Official Notices Pill Label",
+      "type": "string",
+      "initialValue": "Official Notices"
+    },
+    "categoryNewsLabel": {
+      "name": "categoryNewsLabel",
+      "title": "Immigration News Pill Label",
+      "type": "string",
+      "initialValue": "Immigration News"
+    },
+    "categoryQaPrompt": {
+      "name": "categoryQaPrompt",
+      "title": "Q&A Right Side Prompt Link",
+      "type": "string",
+      "initialValue": "Have a specific question? Visit Q&A →"
+    },
+    "sectionDividerBadgeText": {
+      "name": "sectionDividerBadgeText",
+      "title": "Middle Divider Badge Text",
+      "type": "string",
+      "initialValue": "Knowledge Base & Community Updates"
+    },
+    "paginationPrevText": {
+      "name": "paginationPrevText",
+      "title": "Pagination 'Previous' Button Label",
+      "type": "string",
+      "initialValue": "Prev"
+    },
+    "paginationNextText": {
+      "name": "paginationNextText",
+      "title": "Pagination 'Next' Button Label",
+      "type": "string",
+      "initialValue": "Next"
+    },
+    "breadcrumbBackToHubText": {
+      "name": "breadcrumbBackToHubText",
+      "title": "Breadcrumb 'Back to insights & updates' Label",
+      "type": "string",
+      "initialValue": "Back to insights & updates"
+    }
+  }
+}

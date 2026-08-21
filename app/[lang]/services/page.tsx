@@ -75,9 +75,13 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
         <Suspense
           fallback={<div className="text-text-muted py-20 text-center">Loading pathways...</div>}
         >
-          <TabbedServices services={services} settings={settings} />
+          <TabbedServices
+            services={services}
+            settings={settings}
+            pageData={servicesPageData}
+          />
         </Suspense>
-        <ServicesCallout settings={settings} />
+        <ServicesCallout settings={settings} pageData={servicesPageData} />
       </main>
     </>
   );

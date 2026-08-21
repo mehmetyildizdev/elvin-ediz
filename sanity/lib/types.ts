@@ -36,6 +36,12 @@ export interface SiteSettingsData {
   linkedinUrl: string;
   instagramUrl: string;
   headerNav: Array<{ label: string; href: string }>;
+  footerDescription?: string;
+  footerNavTitle?: string;
+  footerNav?: Array<{ label: string; href: string }>;
+  footerConnectTitle?: string;
+  footerConsultationText?: string;
+  footerPrivacyText?: string;
   footerNotice: string;
   copyrightText: string;
   defaultMetaTitle?: string;
@@ -145,6 +151,7 @@ export interface HomePageData {
   servicesDescription?: string;
   servicesViewAllText?: string;
   servicesViewAllLink?: string;
+  servicesCardCtaText?: string;
 
   // 03. Who Are We / RCIC Section
   strategyEyebrow?: string;
@@ -180,6 +187,15 @@ export interface HomePageData {
   testimonialsEyebrow?: string;
   testimonialsTitleMain?: string;
   testimonialsTitleAccent?: string;
+  testimonialsGoogleBasedOnText?: string;
+  testimonialsGoogleReviewsCountText?: string;
+  testimonialsGoogleViewButtonText?: string;
+  testimonialsGoogleReviewButtonText?: string;
+  testimonialsGoogleReadMoreText?: string;
+  testimonialsGoogleVerifiedText?: string;
+  testimonialsCuratedTitle?: string;
+  testimonialsCuratedSubtitle?: string;
+  testimonialsCuratedBadgeText?: string;
 
   // 06. Process (How It Works)
   processEyebrow?: string;
@@ -193,13 +209,28 @@ export interface HomePageData {
   insightsTitleAccent?: string;
   insightsViewAllText?: string;
   insightsViewAllLink?: string;
+  insightsReadMoreText?: string;
 
   // 08. Contact Section
   contactEyebrow?: string;
   contactTitleMain?: string;
   contactTitleAccent?: string;
   contactDescription?: string;
+  contactNameLabel?: string;
+  contactNamePlaceholder?: string;
+  contactEmailLabel?: string;
+  contactEmailPlaceholder?: string;
+  contactPhoneLabel?: string;
+  contactPhonePlaceholder?: string;
+  contactOptionalText?: string;
+  contactServiceLabel?: string;
+  contactServicePlaceholder?: string;
+  contactMessageLabel?: string;
+  contactMessagePlaceholder?: string;
   contactSubmitButtonText?: string;
+  contactSubmittingText?: string;
+  contactSuccessMessage?: string;
+  contactErrorMessage?: string;
   contactDisclaimer?: string;
   contactServiceOptions?: string[];
   seo?: SeoData;
@@ -278,29 +309,66 @@ export interface InsightsPageData {
   titleAccent: string;
   description: string;
 
-  // 02. Insights Section
+  // 02. Category Navigation Bar & Pagination
+  categoryNavLabel?: string;
+  categoryInsightsLabel?: string;
+  categoryGuidesLabel?: string;
+  categoryAnnouncementsLabel?: string;
+  categoryNewsLabel?: string;
+  categoryQaPrompt?: string;
+  sectionDividerBadgeText?: string;
+  paginationPrevText?: string;
+  paginationNextText?: string;
+  breadcrumbBackToHubText?: string;
+
+  // 03. Insights Section
   insightsEyebrow: string;
   insightsTitleMain: string;
   insightsTitleAccent: string;
   insightsDescription: string;
+  insightsReadArticleText?: string;
+  insightsEmptyMessage?: string;
 
-  // 03. Information Guides Section
+  // 04. Information Guides Section
   infoEyebrow: string;
   infoTitleMain: string;
   infoTitleAccent: string;
   infoDescription: string;
+  infoViewAllText?: string;
+  infoBadgeText?: string;
+  infoCuratedByText?: string;
+  infoExploreGuideText?: string;
+  infoChecklistStepText?: string;
+  infoChecklistStepsText?: string;
+  infoChecklistKeyItemsTitle?: string;
+  infoViewFullGuideActionText?: string;
+  infoConsultantActionText?: string;
+  infoMorePointsText?: string;
+  infoEmptyMessage?: string;
 
-  // 04. Announcements Section
+  // 05. Announcements Section
   announcementsEyebrow: string;
   announcementsTitle: string;
   announcementsEmptyMessage: string;
+  announcementsViewAllText?: string;
+  announcementsBadgeText?: string;
+  announcementsEffectivePrefix?: string;
+  announcementsActionTitle?: string;
+  announcementsViewActionText?: string;
+  announcementsViewFullActionText?: string;
+  announcementsInquireActionText?: string;
 
-  // 05. News Section
+  // 06. News Section
   newsEyebrow: string;
   newsTitle: string;
   newsEmptyMessage: string;
+  newsViewAllText?: string;
+  newsFeaturedBadgeText?: string;
+  newsReadStoryText?: string;
+  newsReadActionText?: string;
+  newsSourceLabel?: string;
 
-  // 06. Sidebar Consultation Card
+  // 07. Sidebar Consultation Card
   consultationEyebrow: string;
   consultationTitle: string;
   consultationDescription: string;
@@ -323,6 +391,21 @@ export interface ServicesPageData {
   titleMain: string;
   titleAccent: string;
   description: string;
+
+  // 02. Pathways Layout & Labels
+  pathwayNavTitle?: string;
+  pathwayNumberPrefix?: string;
+  rcicAssessedBadgeText?: string;
+  pathwaySummaryTitle?: string;
+  featuresSectionTitle?: string;
+  detailedOverviewTitle?: string;
+
+  // 03. Consultation Callout
+  calloutEyebrow?: string;
+  calloutTitleMain?: string;
+  calloutTitleAccent?: string;
+  calloutButtonText?: string;
+
   seo?: SeoData;
 }
 

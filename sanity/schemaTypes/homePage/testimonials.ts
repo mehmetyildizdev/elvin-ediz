@@ -3,26 +3,13 @@ import config from './testimonials.json';
 
 export const testimonialsGroup = config.group;
 
-export const testimonialsFields = [
+export const testimonialsFields = Object.values(config.fields).map((f: any) =>
   defineField({
-    name: config.fields.testimonialsEyebrow.name,
-    title: config.fields.testimonialsEyebrow.title,
-    type: 'string',
+    name: f.name,
+    title: f.title,
+    type: f.type,
+    ...(f.rows ? { rows: f.rows } : {}),
     group: config.group.name,
-    initialValue: config.fields.testimonialsEyebrow.initialValue,
-  }),
-  defineField({
-    name: config.fields.testimonialsTitleMain.name,
-    title: config.fields.testimonialsTitleMain.title,
-    type: 'string',
-    group: config.group.name,
-    initialValue: config.fields.testimonialsTitleMain.initialValue,
-  }),
-  defineField({
-    name: config.fields.testimonialsTitleAccent.name,
-    title: config.fields.testimonialsTitleAccent.title,
-    type: 'string',
-    group: config.group.name,
-    initialValue: config.fields.testimonialsTitleAccent.initialValue,
-  }),
-];
+    initialValue: f.initialValue,
+  })
+);

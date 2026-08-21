@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, ArrowUpRight, ShieldCheck, Sparkles, PhoneCall } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { ServiceData, SiteSettingsData } from '@/sanity/lib/types';
+import type { ServiceData, SiteSettingsData, ServicesPageData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
 import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
@@ -14,10 +14,12 @@ import { PortableTextRenderer } from '@/components/ui/portable-text';
 export function TabbedServices({
   services = [],
   settings = defaultSiteSettings,
+  pageData,
   initialTab,
 }: {
   services: ServiceData[];
   settings?: SiteSettingsData;
+  pageData?: ServicesPageData;
   initialTab?: string;
 }) {
   const searchParams = useSearchParams();
@@ -66,7 +68,7 @@ export function TabbedServices({
           {/* Left Column: Interactive Vertical Tab List */}
           <nav className="flex flex-row gap-2 overflow-x-auto pb-4 lg:col-span-4 lg:flex-col lg:overflow-visible lg:pb-0">
             <p className="text-text-muted mb-2 hidden text-xs font-bold tracking-widest uppercase lg:block">
-              Select Pathway ({validServices.length})
+              {pageData?.pathwayNavTitle || 'Select Pathway'} ({validServices.length})
             </p>
             {validServices.map((service, index) => {
               const isSelected = service.slug === activeSlug;
@@ -134,7 +136,7 @@ export function TabbedServices({
                   </span>
                   <div>
                     <span className="text-accent text-xs font-bold tracking-widest uppercase">
-                      PATHWAY 0{activeIndex + 1}
+                      {pageData?.pathwayNumberPrefix || 'PATHWAY'} 0{activeIndex + 1}
                     </span>
                     <h2 className="text-text-main font-serif text-2xl font-semibold sm:text-3xl">
                       {activeService.title}
@@ -144,7 +146,7 @@ export function TabbedServices({
 
                 <div className="flex items-center gap-2">
                   <span className="bg-accent/10 text-accent inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold">
-                    <Sparkles size={13} /> RCIC Assessed
+                    <Sparkles size={13} /> {pageData?.rcicAssessedBadgeText || 'RCIC Assessed'}
                   </span>
                 </div>
               </div>
@@ -166,7 +168,7 @@ export function TabbedServices({
               {/* Main Summary */}
               <div className="py-6">
                 <h3 className="text-text-main mb-2 text-xs font-bold tracking-widest uppercase">
-                  Pathway Summary
+                  {pageData?.pathwaySummaryTitle || 'Pathway Summary'}
                 </h3>
                 <p className="text-text-muted text-base leading-relaxed sm:text-lg">
                   {activeService.summary}
@@ -177,7 +179,7 @@ export function TabbedServices({
               {activeService.features && activeService.features.length > 0 && (
                 <div className="border-border-subtle border-t py-6">
                   <h3 className="text-text-main mb-4 text-xs font-bold tracking-widest uppercase">
-                    Key Requirements & Inclusions
+                    {pageData?.featuresSectionTitle || 'Key Requirements & Inclusions'}
                   </h3>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {activeService.features.map((feature, i) => (
@@ -201,7 +203,7 @@ export function TabbedServices({
                 activeService.body.length > 0 && (
                   <div className="border-border-subtle border-t py-8">
                     <h3 className="text-accent mb-6 text-xs font-bold tracking-widest uppercase">
-                      Detailed Pathway Overview
+                      {pageData?.detailedOverviewTitle || 'Detailed Pathway Overview'}
                     </h3>
                     <div className="prose-content">
                       <PortableTextRenderer value={activeService.body} size="base" />

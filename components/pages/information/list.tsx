@@ -68,7 +68,8 @@ export function InformationList({
               href={backHref}
               className="text-text-muted hover:text-accent inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase transition-colors"
             >
-              <ArrowLeft size={15} /> Back to insights & updates
+              <ArrowLeft size={15} />{' '}
+              {insightsPageData.breadcrumbBackToHubText || 'Back to insights & updates'}
             </Link>
 
             {infoPosts.length > 0 && (
@@ -88,7 +89,9 @@ export function InformationList({
                   {paginatedPosts.map((post) => {
                     const GuideIcon = getIconComponent(post.iconName) || BookOpen;
                     const checklistCount = post.checklistItems?.length || 0;
-                    const displayDate = post.publishedAt ? formatDate(post.publishedAt) : null;
+                    const displayDate = post.publishedAt
+                      ? formatDate(post.publishedAt, undefined, post.language || lang)
+                      : null;
                     const postHref = getLocalizedPostHref(post, 'information', lang);
 
                     return (
@@ -100,14 +103,16 @@ export function InformationList({
                         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                           <span className="bg-accent/15 text-accent border-accent/25 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold tracking-wider uppercase">
                             <GuideIcon size={12} className="text-accent shrink-0" />
-                            {post.category || 'Practical Guide'}
+                            {post.category || insightsPageData.infoBadgeText || 'Practical Guide'}
                           </span>
 
                           <div className="flex items-center gap-3">
                             {checklistCount > 0 && (
                               <span className="bg-accent/10 text-accent rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase">
-                                {checklistCount} Checklist{' '}
-                                {checklistCount === 1 ? 'Step' : 'Steps'}
+                                {checklistCount}{' '}
+                                {checklistCount === 1
+                                  ? (insightsPageData.infoChecklistStepText || 'Checklist Step')
+                                  : (insightsPageData.infoChecklistStepsText || 'Checklist Steps')}
                               </span>
                             )}
                             {displayDate && (
@@ -135,7 +140,8 @@ export function InformationList({
                         {post.checklistItems && post.checklistItems.length > 0 && (
                           <div className="border-border-subtle/70 bg-bg-app mb-6 rounded-sm border p-4">
                             <strong className="text-text-main block text-xs font-semibold tracking-wider uppercase">
-                              Key Checklist Items:
+                              {insightsPageData.infoChecklistKeyItemsTitle ||
+                                'Key Checklist Items:'}
                             </strong>
                             <ul className="mt-2 space-y-1.5">
                               {post.checklistItems.slice(0, 3).map((item, idx) => (
@@ -149,8 +155,9 @@ export function InformationList({
                               ))}
                               {post.checklistItems.length > 3 && (
                                 <li className="text-accent pt-1 text-[11px] font-medium">
-                                  + {post.checklistItems.length - 3} more checklist points in full
-                                  guide
+                                  + {post.checklistItems.length - 3}{' '}
+                                  {insightsPageData.infoMorePointsText ||
+                                    'more checklist points in full guide'}
                                 </li>
                               )}
                             </ul>
@@ -163,7 +170,8 @@ export function InformationList({
                             href={postHref}
                             className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
                           >
-                            View full guide & checklist
+                            {insightsPageData.infoViewFullGuideActionText ||
+                              'View full guide & checklist'}
                             <ArrowUpRight
                               size={14}
                               className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
@@ -182,7 +190,9 @@ export function InformationList({
                             rel="noopener noreferrer"
                             className="text-accent bg-accent/10 hover:bg-accent hover:text-bg-primary inline-flex items-center gap-1.5 rounded-sm px-3.5 py-1.5 text-xs font-semibold transition-colors"
                           >
-                            {post.infoCtaButtonText || 'Inquire with Consultant'}
+                            {post.infoCtaButtonText ||
+                              insightsPageData.infoConsultantActionText ||
+                              'Inquire with Consultant'}
                           </a>
                         </div>
                       </article>
@@ -194,6 +204,8 @@ export function InformationList({
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
+                    prevText={insightsPageData.paginationPrevText}
+                    nextText={insightsPageData.paginationNextText}
                   />
                 </div>
               ) : (
@@ -203,7 +215,7 @@ export function InformationList({
                     No practical guides available
                   </h3>
                   <p className="text-text-muted mt-1 text-xs">
-                    {(insightsPageData as any).infoEmptyMessage ||
+                    {insightsPageData.infoEmptyMessage ||
                       'Comprehensive immigration blueprints are currently being prepared.'}
                   </p>
                 </div>

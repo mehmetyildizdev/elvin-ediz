@@ -63,7 +63,7 @@ export function InsightsHub({
           <div className="border-border-subtle/80 bg-bg-surface/90 mb-12 flex flex-col justify-between gap-3.5 rounded-sm border p-4 shadow-2xs backdrop-blur-xs xl:flex-row xl:items-center xl:p-3">
             <div className="flex flex-col gap-2.5 xl:flex-row xl:items-center xl:gap-3">
               <span className="text-text-muted shrink-0 px-0.5 text-[11px] font-bold tracking-wider uppercase select-none xl:px-1">
-                Browse By Category:
+                {insightsPageData.categoryNavLabel || 'Browse By Category:'}
               </span>
               <div className="flex flex-wrap items-center gap-2">
                 <a
@@ -71,7 +71,7 @@ export function InsightsHub({
                   className="bg-accent/10 hover:bg-accent/20 text-accent border-accent/20 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all hover:scale-102"
                 >
                   <Sparkles size={12} className="text-accent" />
-                  Featured Insights
+                  {insightsPageData.categoryInsightsLabel || 'Featured Insights'}
                   {insightPosts.length > 0 && (
                     <span className="bg-accent/20 py-0.2 ml-1 rounded-full px-1.5 text-[10px] font-bold">
                       {insightPosts.length}
@@ -84,7 +84,7 @@ export function InsightsHub({
                   className="hover:border-accent/30 hover:bg-bg-primary/5 text-text-main hover:text-accent border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all hover:scale-102"
                 >
                   <BookOpen size={12} className="text-accent" />
-                  Practical Guides
+                  {insightsPageData.categoryGuidesLabel || 'Practical Guides'}
                   {infoPosts.length > 0 && (
                     <span className="bg-bg-app text-text-muted py-0.2 ml-1 rounded-full px-1.5 text-[10px] font-bold">
                       {infoPosts.length}
@@ -97,7 +97,7 @@ export function InsightsHub({
                   className="hover:border-accent/30 hover:bg-bg-primary/5 text-text-main hover:text-accent border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all hover:scale-102"
                 >
                   <Bell size={12} className="text-accent" />
-                  Official Notices
+                  {insightsPageData.categoryAnnouncementsLabel || 'Official Notices'}
                   {announcementPosts.length > 0 && (
                     <span className="bg-bg-app text-text-muted py-0.2 ml-1 rounded-full px-1.5 text-[10px] font-bold">
                       {announcementPosts.length}
@@ -110,7 +110,7 @@ export function InsightsHub({
                   className="hover:border-accent/30 hover:bg-bg-primary/5 text-text-main hover:text-accent border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all hover:scale-102"
                 >
                   <Newspaper size={12} className="text-accent" />
-                  Immigration News
+                  {insightsPageData.categoryNewsLabel || 'Immigration News'}
                   {newsPosts.length > 0 && (
                     <span className="bg-bg-app text-text-muted py-0.2 ml-1 rounded-full px-1.5 text-[10px] font-bold">
                       {newsPosts.length}
@@ -124,7 +124,7 @@ export function InsightsHub({
               href={getCategoryHref('/questions')}
               className="text-text-muted hover:text-accent hidden shrink-0 items-center gap-1 text-xs font-semibold transition-colors xl:inline-flex"
             >
-              Have a specific question? Visit Q&A →
+              {insightsPageData.categoryQaPrompt || 'Have a specific question? Visit Q&A →'}
             </Link>
           </div>
 
@@ -156,7 +156,10 @@ export function InsightsHub({
               </div>
               <div className="bg-bg-app border-border-subtle text-accent/90 relative flex items-center gap-2.5 rounded-full border px-4 py-1 text-[11px] font-bold tracking-widest uppercase shadow-2xs">
                 <span className="bg-accent h-1.5 w-1.5 rounded-full" />
-                <span>Knowledge Base & Community Updates</span>
+                <span>
+                  {insightsPageData.sectionDividerBadgeText ||
+                    'Knowledge Base & Community Updates'}
+                </span>
                 <span className="bg-accent h-1.5 w-1.5 rounded-full" />
               </div>
             </div>

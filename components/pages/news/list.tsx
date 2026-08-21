@@ -67,7 +67,8 @@ export function NewsList({
               href={backHref}
               className="text-text-muted hover:text-accent inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase transition-colors"
             >
-              <ArrowLeft size={14} /> Back to Insights Hub
+              <ArrowLeft size={14} />{' '}
+              {insightsPageData.breadcrumbBackToHubText || 'Back to insights & updates'}
             </Link>
           </div>
 
@@ -95,7 +96,10 @@ export function NewsList({
                         {/* Meta strip */}
                         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-xs">
                           <span className="bg-accent/10 text-accent border-accent/25 rounded-full border px-3 py-1 font-bold tracking-wider uppercase">
-                            {featuredPost.category || featuredPost.sourceName || 'Featured News'}
+                            {featuredPost.category ||
+                              featuredPost.sourceName ||
+                              insightsPageData.newsFeaturedBadgeText ||
+                              'Featured News'}
                           </span>
 
                           <div className="text-text-muted flex items-center gap-3">
@@ -108,7 +112,11 @@ export function NewsList({
                             {featuredPost.publishedAt && (
                               <span className="flex items-center gap-1">
                                 <Clock size={12} className="opacity-70" />
-                                {formatDate(featuredPost.publishedAt)}
+                                {formatDate(
+                                  featuredPost.publishedAt,
+                                  undefined,
+                                  featuredPost.language || lang
+                                )}
                               </span>
                             )}
                           </div>
@@ -134,7 +142,7 @@ export function NewsList({
                             href={getLocalizedPostHref(featuredPost, 'news', lang)}
                             className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
                           >
-                            Read story
+                            {insightsPageData.newsReadStoryText || 'Read story'}
                             <ArrowUpRight
                               size={14}
                               className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
@@ -161,7 +169,7 @@ export function NewsList({
                               </span>
                               {post.publishedAt && (
                                 <span className="text-text-muted">
-                                  {formatDate(post.publishedAt)}
+                                  {formatDate(post.publishedAt, undefined, post.language || lang)}
                                 </span>
                               )}
                             </div>
@@ -187,7 +195,7 @@ export function NewsList({
                               href={getLocalizedPostHref(post, 'news', lang)}
                               className="text-accent group/btn inline-flex items-center gap-1 text-xs font-bold tracking-widest uppercase"
                             >
-                              Read
+                              {insightsPageData.newsReadActionText || 'Read'}
                               <ArrowUpRight
                                 size={13}
                                 className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
@@ -201,7 +209,8 @@ export function NewsList({
                                 rel="noopener noreferrer"
                                 className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-[11px] transition-colors"
                               >
-                                Source <ExternalLink size={10} />
+                                {insightsPageData.newsSourceLabel || 'Source'}{' '}
+                                <ExternalLink size={10} />
                               </a>
                             )}
                           </div>
@@ -215,6 +224,8 @@ export function NewsList({
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
+                    prevText={insightsPageData.paginationPrevText}
+                    nextText={insightsPageData.paginationNextText}
                   />
                 </div>
               ) : (

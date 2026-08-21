@@ -36,7 +36,7 @@ export function InformationGuides({
             className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent border-accent/20 rounded-full border px-3 py-1 text-xs font-bold transition-all hover:shadow-xs"
             title="See all information guides"
           >
-            All Guides →
+            {insightsPageData.infoViewAllText || 'All Guides →'}
           </Link>
         </div>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -67,12 +67,12 @@ export function InformationGuides({
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                   <span className="bg-accent/10 text-accent border-accent/25 inline-flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-[10px] font-bold tracking-wider uppercase">
                     <BookOpen size={12} className="text-accent" />
-                    Practical Guide
+                    {insightsPageData.infoBadgeText || 'Practical Guide'}
                   </span>
                   {post.publishedAt && (
                     <span className="text-text-muted flex items-center gap-1 text-[11px]">
                       <Calendar size={11} className="opacity-70" />
-                      {formatDate(post.publishedAt)}
+                      {formatDate(post.publishedAt, undefined, post.language || lang)}
                     </span>
                   )}
                 </div>
@@ -90,13 +90,14 @@ export function InformationGuides({
                 {/* Bottom action row */}
                 <div className="border-border-subtle/50 flex items-center justify-between border-t pt-4">
                   <span className="text-text-muted text-xs">
-                    Curated by Elvin Ediz Immigration Advisory
+                    {insightsPageData.infoCuratedByText ||
+                      'Curated by Elvin Ediz Immigration Advisory'}
                   </span>
                   <Link
                     href={postHref}
                     className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
                   >
-                    Explore guide
+                    {insightsPageData.infoExploreGuideText || 'Explore guide'}
                     <ArrowUpRight
                       size={14}
                       className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
@@ -108,7 +109,9 @@ export function InformationGuides({
           })}
         </div>
       ) : (
-        <p className="text-text-muted text-xs">No practical guides found.</p>
+        <p className="text-text-muted text-xs">
+          {insightsPageData.infoEmptyMessage || 'No practical guides found.'}
+        </p>
       )}
     </div>
   );

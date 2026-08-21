@@ -65,7 +65,8 @@ export function AnnouncementsList({
               href={backHref}
               className="text-text-muted hover:text-accent inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase transition-colors"
             >
-              <ArrowLeft size={15} /> Back to insights & updates
+              <ArrowLeft size={15} />{' '}
+              {insightsPageData.breadcrumbBackToHubText || 'Back to insights & updates'}
             </Link>
 
             {announcementPosts.length > 0 && (
@@ -85,9 +86,9 @@ export function AnnouncementsList({
                   {paginatedPosts.map((post) => {
                     const NoticeIcon = getIconComponent(post.iconName) || Bell;
                     const displayEffectiveDate = post.effectiveDate
-                      ? formatDate(post.effectiveDate)
+                      ? formatDate(post.effectiveDate, undefined, post.language || lang)
                       : post.publishedAt
-                        ? formatDate(post.publishedAt)
+                        ? formatDate(post.publishedAt, undefined, post.language || lang)
                         : null;
                     const postHref = getLocalizedPostHref(post, 'announcements', lang);
 
@@ -100,13 +101,16 @@ export function AnnouncementsList({
                         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                           <span className="bg-accent/15 text-accent border-accent/25 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold tracking-wider uppercase">
                             <NoticeIcon size={12} className="text-accent shrink-0" />
-                            {post.category || 'Official Notice'}
+                            {post.category ||
+                              insightsPageData.announcementsBadgeText ||
+                              'Official Notice'}
                           </span>
 
                           {displayEffectiveDate && (
                             <span className="bg-bg-app border-border-subtle text-text-muted flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs">
                               <Calendar size={12} />
-                              Effective: {displayEffectiveDate}
+                              {insightsPageData.announcementsEffectivePrefix || 'Effective:'}{' '}
+                              {displayEffectiveDate}
                             </span>
                           )}
                         </div>
@@ -127,7 +131,9 @@ export function AnnouncementsList({
                         {post.announcementActionText && (
                           <div className="border-border-subtle/70 bg-bg-app mb-6 rounded-sm border p-4 text-xs">
                             <strong className="text-text-main block font-serif font-semibold">
-                              {post.announcementActionTitle || 'Action Recommended:'}
+                              {post.announcementActionTitle ||
+                                insightsPageData.announcementsActionTitle ||
+                                'Action Recommended:'}
                             </strong>
                             <p className="text-text-muted mt-1 line-clamp-2 leading-relaxed">
                               {post.announcementActionText}
@@ -141,7 +147,8 @@ export function AnnouncementsList({
                             href={postHref}
                             className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
                           >
-                            View full notice & action steps
+                            {insightsPageData.announcementsViewFullActionText ||
+                              'View full notice & action steps'}
                             <ArrowUpRight
                               size={14}
                               className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
@@ -160,7 +167,9 @@ export function AnnouncementsList({
                             rel="noopener noreferrer"
                             className="text-accent bg-accent/10 hover:bg-accent hover:text-bg-primary inline-flex items-center gap-1.5 rounded-sm px-3.5 py-1.5 text-xs font-semibold transition-colors"
                           >
-                            {post.announcementCtaButtonText || 'Inquire with RCIC'}
+                            {post.announcementCtaButtonText ||
+                              insightsPageData.announcementsInquireActionText ||
+                              'Inquire with RCIC'}
                           </a>
                         </div>
                       </article>
@@ -172,6 +181,8 @@ export function AnnouncementsList({
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
+                    prevText={insightsPageData.paginationPrevText}
+                    nextText={insightsPageData.paginationNextText}
                   />
                 </div>
               ) : (

@@ -74,7 +74,7 @@ export function Services({
                 </div>
                 <div className="flex justify-end md:col-span-3">
                   <span className="text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold tracking-widest uppercase transition-colors">
-                    Learn more
+                    {homeData.servicesCardCtaText || 'Learn more'}
                     <span className="transition-transform duration-200 group-hover:translate-x-1">
                       →
                     </span>

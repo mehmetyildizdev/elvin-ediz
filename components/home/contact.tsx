@@ -1,7 +1,6 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import type { HomePageData, ServiceData } from '@/sanity/lib/types';
 import { defaultHomePage, defaultServices } from '@/sanity/lib/types';
@@ -78,41 +77,43 @@ export function ConsultationForm({
   return (
     <form onSubmit={submit} className="flex flex-col gap-5">
       <label className="text-accent flex flex-col gap-1.5 text-xs font-bold tracking-widest uppercase">
-        Your name
+        {homeData.contactNameLabel || 'Your name'}
         <input
           name="name"
           required
-          placeholder="How should we call you?"
+          placeholder={homeData.contactNamePlaceholder || 'How should we call you?'}
           className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 focus:border-accent block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:outline-none"
         />
       </label>
 
       <label className="text-accent flex flex-col gap-1.5 text-xs font-bold tracking-widest uppercase">
-        Email address
+        {homeData.contactEmailLabel || 'Email address'}
         <input
           name="email"
           required
           type="email"
-          placeholder="you@example.com"
+          placeholder={homeData.contactEmailPlaceholder || 'you@example.com'}
           className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 focus:border-accent block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:outline-none"
         />
       </label>
 
       <label className="text-accent flex flex-col gap-1.5 text-xs font-bold tracking-widest uppercase">
-        Phone number{' '}
-        <small className="text-text-on-dark-muted font-sans font-normal tracking-normal lowercase">
-          (optional)
-        </small>
+        <span>
+          {homeData.contactPhoneLabel || 'Phone number'}{' '}
+          <small className="text-text-on-dark-muted font-sans font-normal tracking-normal lowercase">
+            {homeData.contactOptionalText || '(optional)'}
+          </small>
+        </span>
         <input
           name="phone"
           type="tel"
-          placeholder="Your preferred number"
+          placeholder={homeData.contactPhonePlaceholder || 'Your preferred number'}
           className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 focus:border-accent block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:outline-none"
         />
       </label>
 
       <label className="text-accent flex flex-col gap-1.5 text-xs font-bold tracking-widest uppercase">
-        What can we help with?
+        {homeData.contactServiceLabel || 'What can we help with?'}
         <select
           name="service"
           required
@@ -120,7 +121,7 @@ export function ConsultationForm({
           className="border-border-on-dark text-text-on-dark focus:border-accent block w-full cursor-pointer rounded-none border-b bg-transparent py-2.5 font-sans text-sm transition-colors focus:outline-none"
         >
           <option value="" disabled className="bg-bg-primary text-text-on-dark">
-            Select a service
+            {homeData.contactServicePlaceholder || 'Select a service'}
           </option>
           {serviceOptions.map((service) => (
             <option key={service} value={service} className="bg-bg-primary text-text-on-dark">
@@ -131,14 +132,16 @@ export function ConsultationForm({
       </label>
 
       <label className="text-accent flex flex-col gap-1.5 text-xs font-bold tracking-widest uppercase">
-        Tell us a little more{' '}
-        <small className="text-text-on-dark-muted font-sans font-normal tracking-normal lowercase">
-          (optional)
-        </small>
+        <span>
+          {homeData.contactMessageLabel || 'Tell us a little more'}{' '}
+          <small className="text-text-on-dark-muted font-sans font-normal tracking-normal lowercase">
+            {homeData.contactOptionalText || '(optional)'}
+          </small>
+        </span>
         <textarea
           name="message"
           rows={3}
-          placeholder="What would you like help with?"
+          placeholder={homeData.contactMessagePlaceholder || 'What would you like help with?'}
           className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 focus:border-accent block min-h-16 w-full resize-y rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:outline-none"
         />
       </label>
@@ -150,45 +153,25 @@ export function ConsultationForm({
         className="mt-3 self-start"
       >
         {status === 'sending'
-          ? 'Sending…'
+          ? homeData.contactSubmittingText || 'Sending…'
           : homeData.contactSubmitButtonText || 'Free Consultation Request'}
         <span className="font-sans">↗</span>
       </Button>
 
       {status === 'success' && (
         <p className="text-text-on-dark mt-1 text-sm font-medium">
-          Thank you — we&apos;ll be in touch soon.
+          {homeData.contactSuccessMessage || "Thank you — we'll be in touch soon."}
         </p>
       )}
       {status === 'error' && (
         <p className="text-text-on-dark-muted mt-1 text-sm font-medium">
-          Something went wrong. Please email us directly.
+          {homeData.contactErrorMessage || 'Something went wrong. Please email us directly.'}
         </p>
       )}
 
       <small className="text-text-on-dark-muted/80 mt-2 text-xs leading-relaxed">
-        {homeData.contactDisclaimer ? (
-          <>
-            {homeData.contactDisclaimer}{' '}
-            <Link
-              href="/privacy"
-              className="text-accent underline underline-offset-2 transition-opacity hover:opacity-80"
-            >
-              Privacy Policy
-            </Link>
-          </>
-        ) : (
-          <>
-            By submitting, you agree to our{' '}
-            <Link
-              href="/privacy"
-              className="text-accent underline underline-offset-2 transition-opacity hover:opacity-80"
-            >
-              Privacy Policy
-            </Link>{' '}
-            and to be contacted by Elvin Ediz Immigration Services.
-          </>
-        )}
+        {homeData.contactDisclaimer ||
+          'By submitting, you agree to be contacted by Elvin Ediz Immigration Services.'}
       </small>
     </form>
   );

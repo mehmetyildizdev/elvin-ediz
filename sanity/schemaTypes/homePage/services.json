@@ -40,6 +40,12 @@
       "title": "View All Link URL",
       "type": "string",
       "initialValue": "/services"
+    },
+    "servicesCardCtaText": {
+      "name": "servicesCardCtaText",
+      "title": "Service Card 'Learn more' Button Label",
+      "type": "string",
+      "initialValue": "Learn more"
     }
   }
 }

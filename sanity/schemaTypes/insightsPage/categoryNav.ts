@@ -1,9 +1,9 @@
 import { defineField } from 'sanity';
-import config from './insights.json';
+import config from './categoryNav.json';
 
-export const insightsGroup = config.group;
+export const categoryNavGroup = config.group;
 
-export const insightsFields = Object.values(config.fields).map((f: any) =>
+export const categoryNavFields = Object.values(config.fields).map((f: any) =>
   defineField({
     name: f.name,
     title: f.title,

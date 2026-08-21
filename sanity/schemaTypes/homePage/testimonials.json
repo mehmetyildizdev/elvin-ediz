@@ -1,7 +1,7 @@
 {
   "group": {
     "name": "testimonials",
-    "title": "Reviews"
+    "title": "Reviews & Testimonials"
   },
   "fields": {
     "testimonialsEyebrow": {
@@ -21,6 +21,60 @@
       "title": "Accent Title (Line 2)",
       "type": "string",
       "initialValue": "across the globe."
+    },
+    "testimonialsGoogleBasedOnText": {
+      "name": "testimonialsGoogleBasedOnText",
+      "title": "Google Card: 'Based on' Prefix",
+      "type": "string",
+      "initialValue": "Based on"
+    },
+    "testimonialsGoogleReviewsCountText": {
+      "name": "testimonialsGoogleReviewsCountText",
+      "title": "Google Card: 'reviews on Google' Suffix",
+      "type": "string",
+      "initialValue": "reviews on Google"
+    },
+    "testimonialsGoogleViewButtonText": {
+      "name": "testimonialsGoogleViewButtonText",
+      "title": "Google Card: 'View on Google' Button Label",
+      "type": "string",
+      "initialValue": "View on Google"
+    },
+    "testimonialsGoogleReviewButtonText": {
+      "name": "testimonialsGoogleReviewButtonText",
+      "title": "Google Card: 'Review Us' Button Label",
+      "type": "string",
+      "initialValue": "Review Us"
+    },
+    "testimonialsGoogleReadMoreText": {
+      "name": "testimonialsGoogleReadMoreText",
+      "title": "Google Card: 'Read on Google Maps' Link Text",
+      "type": "string",
+      "initialValue": "Read on Google Maps"
+    },
+    "testimonialsGoogleVerifiedText": {
+      "name": "testimonialsGoogleVerifiedText",
+      "title": "Google Card: 'Verified Google Review' Badge Text",
+      "type": "string",
+      "initialValue": "Verified Google Review"
+    },
+    "testimonialsCuratedTitle": {
+      "name": "testimonialsCuratedTitle",
+      "title": "Curated Section: Heading",
+      "type": "string",
+      "initialValue": "Additional Client Cases & Feedback"
+    },
+    "testimonialsCuratedSubtitle": {
+      "name": "testimonialsCuratedSubtitle",
+      "title": "Curated Section: Subtitle / Note",
+      "type": "string",
+      "initialValue": "Direct client submissions"
+    },
+    "testimonialsCuratedBadgeText": {
+      "name": "testimonialsCuratedBadgeText",
+      "title": "Curated Card: Badge Text",
+      "type": "string",
+      "initialValue": "Client Case"
     }
   }
 }

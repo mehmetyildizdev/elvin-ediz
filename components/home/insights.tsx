@@ -77,7 +77,7 @@ export async function Insights({
                   <span>{post.category || 'Insight'}</span>
                   {post.publishedAt && (
                     <span className="text-text-muted font-sans font-normal lowercase">
-                      {formatDate(post.publishedAt)}
+                      {formatDate(post.publishedAt, undefined, post.language || lang)}
                     </span>
                   )}
                 </div>
@@ -91,7 +91,7 @@ export async function Insights({
                   className="text-accent group/btn mt-auto inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase"
                   aria-label={`Read ${post.title}`}
                 >
-                  Read more
+                  {homeData.insightsReadMoreText || 'Read more'}
                   <ArrowUpRight
                     size={15}
                     className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"

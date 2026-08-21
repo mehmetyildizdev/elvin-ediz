@@ -1,6 +1,7 @@
 import { defineType } from 'sanity';
 import { EarthGlobeIcon } from '@sanity/icons/EarthGlobe';
 import { DocumentTextIcon } from '@sanity/icons/DocumentText';
+import { FilterIcon } from '@sanity/icons/Filter';
 import { InfoOutlineIcon } from '@sanity/icons/InfoOutline';
 import { BellIcon } from '@sanity/icons/Bell';
 import { DocumentsIcon } from '@sanity/icons/Documents';
@@ -9,6 +10,7 @@ import { SearchIcon } from '@sanity/icons/Search';
 
 import config from './index.json';
 import { headerGroup, headerFields } from './header';
+import { categoryNavGroup, categoryNavFields } from './categoryNav';
 import { insightsSectionGroup, insightsSectionFields } from './insights';
 import { informationGroup, informationFields } from './information';
 import { announcementsGroup, announcementsFields } from './announcements';
@@ -23,6 +25,7 @@ export const insightsPage = defineType({
   type: 'document',
   groups: [
     { ...headerGroup, icon: EarthGlobeIcon },
+    { ...categoryNavGroup, icon: FilterIcon },
     { ...insightsSectionGroup, icon: DocumentTextIcon },
     { ...informationGroup, icon: InfoOutlineIcon },
     { ...announcementsGroup, icon: BellIcon },
@@ -33,6 +36,7 @@ export const insightsPage = defineType({
   fields: [
     languageField,
     ...headerFields,
+    ...categoryNavFields,
     ...insightsSectionFields,
     ...informationFields,
     ...announcementsFields,

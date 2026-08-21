@@ -23,7 +23,11 @@ export function AnnouncementNotice({
   const NoticeIcon = getIconComponent(post.announcementNoticeIcon) || Bell;
 
   const displayEffectiveDate = post.effectiveDate
-    ? formatDate(post.effectiveDate, { month: 'long', day: 'numeric', year: 'numeric' })
+    ? formatDate(
+        post.effectiveDate,
+        { month: 'long', day: 'numeric', year: 'numeric' },
+        post.language
+      )
     : formattedDate;
 
   return (

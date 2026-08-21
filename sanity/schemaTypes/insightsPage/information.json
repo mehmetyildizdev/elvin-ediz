@@ -1,7 +1,7 @@
 {
   "group": {
     "name": "information",
-    "title": "03. Information Guides"
+    "title": "04. Information Guides"
   },
   "fields": {
     "infoEyebrow": {
@@ -27,6 +27,72 @@
       "title": "Information Section Description",
       "type": "string",
       "initialValue": "Actionable explanations, checklists, and key application questions answered clearly."
+    },
+    "infoViewAllText": {
+      "name": "infoViewAllText",
+      "title": "Header 'All Guides →' Button Label",
+      "type": "string",
+      "initialValue": "All Guides →"
+    },
+    "infoBadgeText": {
+      "name": "infoBadgeText",
+      "title": "Card 'Practical Guide' Badge Label",
+      "type": "string",
+      "initialValue": "Practical Guide"
+    },
+    "infoCuratedByText": {
+      "name": "infoCuratedByText",
+      "title": "Card 'Curated by...' Footer Label",
+      "type": "string",
+      "initialValue": "Curated by Elvin Ediz Immigration Advisory"
+    },
+    "infoExploreGuideText": {
+      "name": "infoExploreGuideText",
+      "title": "Card 'Explore guide' Action Label",
+      "type": "string",
+      "initialValue": "Explore guide"
+    },
+    "infoChecklistStepText": {
+      "name": "infoChecklistStepText",
+      "title": "Card 'Checklist Step' (Singular) Label",
+      "type": "string",
+      "initialValue": "Checklist Step"
+    },
+    "infoChecklistStepsText": {
+      "name": "infoChecklistStepsText",
+      "title": "Card 'Checklist Steps' (Plural) Label",
+      "type": "string",
+      "initialValue": "Checklist Steps"
+    },
+    "infoChecklistKeyItemsTitle": {
+      "name": "infoChecklistKeyItemsTitle",
+      "title": "Checklist Preview Header",
+      "type": "string",
+      "initialValue": "Key Checklist Items:"
+    },
+    "infoViewFullGuideActionText": {
+      "name": "infoViewFullGuideActionText",
+      "title": "List Item 'View full guide & checklist' Action Label",
+      "type": "string",
+      "initialValue": "View full guide & checklist"
+    },
+    "infoConsultantActionText": {
+      "name": "infoConsultantActionText",
+      "title": "List Item 'Inquire with Consultant' Action Label",
+      "type": "string",
+      "initialValue": "Inquire with Consultant"
+    },
+    "infoMorePointsText": {
+      "name": "infoMorePointsText",
+      "title": "Checklist 'more checklist points in full guide' Text",
+      "type": "string",
+      "initialValue": "more checklist points in full guide"
+    },
+    "infoEmptyMessage": {
+      "name": "infoEmptyMessage",
+      "title": "Empty State Message",
+      "type": "string",
+      "initialValue": "No practical guides found."
     }
   }
 }

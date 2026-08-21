@@ -1,7 +1,7 @@
 {
   "group": {
     "name": "announcements",
-    "title": "04. Announcements Sidebar"
+    "title": "05. Announcements Sidebar"
   },
   "fields": {
     "announcementsEyebrow": {
@@ -15,6 +15,48 @@
       "title": "Announcements Title",
       "type": "string",
       "initialValue": "Announcements"
+    },
+    "announcementsViewAllText": {
+      "name": "announcementsViewAllText",
+      "title": "Header 'All →' Button Label",
+      "type": "string",
+      "initialValue": "All →"
+    },
+    "announcementsBadgeText": {
+      "name": "announcementsBadgeText",
+      "title": "Card 'Official Notice' Badge Label",
+      "type": "string",
+      "initialValue": "Official Notice"
+    },
+    "announcementsEffectivePrefix": {
+      "name": "announcementsEffectivePrefix",
+      "title": "List Item 'Effective:' Prefix Label",
+      "type": "string",
+      "initialValue": "Effective:"
+    },
+    "announcementsActionTitle": {
+      "name": "announcementsActionTitle",
+      "title": "List Item 'Action Recommended:' Header",
+      "type": "string",
+      "initialValue": "Action Recommended:"
+    },
+    "announcementsViewActionText": {
+      "name": "announcementsViewActionText",
+      "title": "Card 'View announcement' Action Label",
+      "type": "string",
+      "initialValue": "View announcement"
+    },
+    "announcementsViewFullActionText": {
+      "name": "announcementsViewFullActionText",
+      "title": "List Item 'View full notice & action steps' Action Label",
+      "type": "string",
+      "initialValue": "View full notice & action steps"
+    },
+    "announcementsInquireActionText": {
+      "name": "announcementsInquireActionText",
+      "title": "List Item 'Inquire with RCIC' Action Label",
+      "type": "string",
+      "initialValue": "Inquire with RCIC"
     },
     "announcementsEmptyMessage": {
       "name": "announcementsEmptyMessage",

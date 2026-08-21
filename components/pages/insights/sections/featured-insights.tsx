@@ -111,7 +111,7 @@ export function FeaturedInsights({ insightsPageData, posts, lang = 'en' }: Featu
                     {post.publishedAt && (
                       <span className="text-text-muted flex items-center gap-1 text-[11px]">
                         <Calendar size={11} className="opacity-70" />
-                        {formatDate(post.publishedAt)}
+                        {formatDate(post.publishedAt, undefined, post.language || lang)}
                       </span>
                     )}
                   </div>
@@ -133,7 +133,7 @@ export function FeaturedInsights({ insightsPageData, posts, lang = 'en' }: Featu
                     href={postHref}
                     className="text-accent group/btn mt-auto inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase"
                   >
-                    Read article
+                    {insightsPageData.insightsReadArticleText || 'Read article'}
                     <ArrowUpRight
                       size={14}
                       className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
@@ -149,11 +149,15 @@ export function FeaturedInsights({ insightsPageData, posts, lang = 'en' }: Featu
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
+            prevText={insightsPageData.paginationPrevText}
+            nextText={insightsPageData.paginationNextText}
           />
         </>
       ) : (
         <div className="border-border-subtle bg-bg-surface rounded-sm border p-12 text-center">
-          <p className="text-text-muted text-sm">No insight articles available currently.</p>
+          <p className="text-text-muted text-sm">
+            {insightsPageData.insightsEmptyMessage || 'No insight articles available currently.'}
+          </p>
         </div>
       )}
     </div>

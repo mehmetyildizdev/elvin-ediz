@@ -27,6 +27,19 @@ export const backupSiteSettings: SiteSettingsData = {
     { label: 'Q&A', href: '/questions' },
     { label: 'Contact', href: '/contact' },
   ],
+  footerDescription:
+    'Guidance for your next chapter in Canada. Personal, regulated Canadian immigration consulting.',
+  footerNavTitle: 'Explore',
+  footerNav: [
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services' },
+    { label: 'Insights', href: '/insights' },
+    { label: 'Q&A', href: '/questions' },
+    { label: 'Privacy Policy', href: '/privacy' },
+  ],
+  footerConnectTitle: 'Connect',
+  footerConsultationText: 'Free Consultation',
+  footerPrivacyText: 'Privacy Policy',
   footerNotice: 'Regulated Canadian Immigration Consultant (RCIC)',
   copyrightText: `© ${new Date().getFullYear()} Elvin Ediz Immigration Services. All rights reserved.`,
 };
@@ -59,6 +72,7 @@ export const backupHomePage: HomePageData = {
     'We personalize your immigration plan to suit your needs and goals. Your pathway to Canada is divided into distinct, clear categories.',
   servicesViewAllText: 'View all 5 pathways →',
   servicesViewAllLink: '/services',
+  servicesCardCtaText: 'Learn more',
 
   // 03. Who Are We / RCIC Section
   strategyEyebrow: 'WHO ARE WE?',
@@ -97,6 +111,15 @@ export const backupHomePage: HomePageData = {
   testimonialsEyebrow: 'CLIENT EXPERIENCES',
   testimonialsTitleMain: 'Trusted by clients',
   testimonialsTitleAccent: 'across the globe.',
+  testimonialsGoogleBasedOnText: 'Based on',
+  testimonialsGoogleReviewsCountText: 'reviews on Google',
+  testimonialsGoogleViewButtonText: 'View on Google',
+  testimonialsGoogleReviewButtonText: 'Review Us',
+  testimonialsGoogleReadMoreText: 'Read on Google Maps',
+  testimonialsGoogleVerifiedText: 'Verified Google Review',
+  testimonialsCuratedTitle: 'Additional Client Cases & Feedback',
+  testimonialsCuratedSubtitle: 'Direct client submissions',
+  testimonialsCuratedBadgeText: 'Client Case',
 
   // 06. Process (How It Works)
   processEyebrow: 'THE ELVIN EDIZ WAY',
@@ -126,6 +149,7 @@ export const backupHomePage: HomePageData = {
   insightsTitleAccent: 'perspective.',
   insightsViewAllText: 'View all insights',
   insightsViewAllLink: '/insights',
+  insightsReadMoreText: 'Read more',
 
   // 08. Contact
   contactEyebrow: 'READY WHEN YOU ARE',
@@ -133,7 +157,21 @@ export const backupHomePage: HomePageData = {
   contactTitleAccent: 'next.',
   contactDescription:
     'Whether you have a clear plan or are just beginning to explore, reaching out for a free consultation is a good place to start.',
+  contactNameLabel: 'Your name',
+  contactNamePlaceholder: 'How should we call you?',
+  contactEmailLabel: 'Email address',
+  contactEmailPlaceholder: 'you@example.com',
+  contactPhoneLabel: 'Phone number',
+  contactPhonePlaceholder: 'Your preferred number',
+  contactOptionalText: '(optional)',
+  contactServiceLabel: 'What can we help with?',
+  contactServicePlaceholder: 'Select a service',
+  contactMessageLabel: 'Tell us a little more',
+  contactMessagePlaceholder: 'What would you like help with?',
   contactSubmitButtonText: 'Free Consultation Request',
+  contactSubmittingText: 'Sending…',
+  contactSuccessMessage: "Thank you — we'll be in touch soon.",
+  contactErrorMessage: 'Something went wrong. Please email us directly.',
   contactDisclaimer: 'By submitting, you agree to be contacted by Elvin Ediz Immigration Services.',
   contactServiceOptions: [
     'Study in Canada',
@@ -1350,6 +1388,18 @@ export const backupServicesPage: ServicesPageData = {
   titleAccent: 'around you.',
   description:
     'Personalized Canadian immigration guidance for the next chapter you are ready to build.',
+
+  pathwayNavTitle: 'Select Pathway',
+  pathwayNumberPrefix: 'PATHWAY',
+  rcicAssessedBadgeText: 'RCIC Assessed',
+  pathwaySummaryTitle: 'Pathway Summary',
+  featuresSectionTitle: 'Key Requirements & Inclusions',
+  detailedOverviewTitle: 'Detailed Pathway Overview',
+
+  calloutEyebrow: 'NOT SURE WHERE TO BEGIN?',
+  calloutTitleMain: 'We can find the',
+  calloutTitleAccent: 'right starting point.',
+  calloutButtonText: 'Free Consultation',
 };
 
 export const backupInsightsPage: InsightsPageData = {
@@ -1359,25 +1409,61 @@ export const backupInsightsPage: InsightsPageData = {
   description:
     'In-depth strategic insights, practical immigration guides, policy announcements, and Canadian immigration news from Elvin Ediz Immigration Services.',
 
+  categoryNavLabel: 'Browse By Category:',
+  categoryInsightsLabel: 'Featured Insights',
+  categoryGuidesLabel: 'Practical Guides',
+  categoryAnnouncementsLabel: 'Official Notices',
+  categoryNewsLabel: 'Immigration News',
+  categoryQaPrompt: 'Have a specific question? Visit Q&A →',
+  sectionDividerBadgeText: 'Knowledge Base & Community Updates',
+  paginationPrevText: 'Prev',
+  paginationNextText: 'Next',
+  breadcrumbBackToHubText: 'Back to insights & updates',
+
   insightsEyebrow: 'IN-DEPTH PERSPECTIVE',
   insightsTitleMain: 'Featured',
   insightsTitleAccent: 'Insights',
   insightsDescription:
     'Thought leadership and strategic perspectives on Canadian immigration pathways.',
+  insightsReadArticleText: 'Read article',
+  insightsEmptyMessage: 'No insight articles available currently.',
 
   infoEyebrow: 'PRACTICAL GUIDES & INFO',
   infoTitleMain: 'Immigration',
   infoTitleAccent: 'Knowledge Base',
   infoDescription:
     'Actionable explanations, checklists, and key application criteria answered clearly.',
+  infoViewAllText: 'All Guides →',
+  infoBadgeText: 'Practical Guide',
+  infoCuratedByText: 'Curated by Elvin Ediz Immigration Advisory',
+  infoExploreGuideText: 'Explore guide',
+  infoChecklistStepText: 'Checklist Step',
+  infoChecklistStepsText: 'Checklist Steps',
+  infoChecklistKeyItemsTitle: 'Key Checklist Items:',
+  infoViewFullGuideActionText: 'View full guide & checklist',
+  infoConsultantActionText: 'Inquire with Consultant',
+  infoMorePointsText: 'more checklist points in full guide',
+  infoEmptyMessage: 'No practical guides found.',
 
   announcementsEyebrow: 'OFFICIAL NOTICES',
   announcementsTitle: 'Announcements',
   announcementsEmptyMessage: 'No urgent announcements at this time.',
+  announcementsViewAllText: 'All →',
+  announcementsBadgeText: 'Official Notice',
+  announcementsEffectivePrefix: 'Effective:',
+  announcementsActionTitle: 'Action Recommended:',
+  announcementsViewActionText: 'View announcement',
+  announcementsViewFullActionText: 'View full notice & action steps',
+  announcementsInquireActionText: 'Inquire with RCIC',
 
   newsEyebrow: 'LATEST UPDATES',
   newsTitle: 'Immigration News',
   newsEmptyMessage: 'No recent news articles yet.',
+  newsViewAllText: 'All →',
+  newsFeaturedBadgeText: 'Featured News',
+  newsReadStoryText: 'Read story',
+  newsReadActionText: 'Read',
+  newsSourceLabel: 'Source',
 
   consultationEyebrow: 'Direct Consultation',
   consultationTitle: 'Have a specific question about your case?',

@@ -3,26 +3,13 @@ import config from './news.json';
 
 export const newsGroup = config.group;
 
-export const newsFields = [
+export const newsFields = Object.values(config.fields).map((f: any) =>
   defineField({
-    name: config.fields.newsEyebrow.name,
-    title: config.fields.newsEyebrow.title,
-    type: 'string',
+    name: f.name,
+    title: f.title,
+    type: f.type,
+    ...(f.rows ? { rows: f.rows } : {}),
     group: config.group.name,
-    initialValue: config.fields.newsEyebrow.initialValue,
-  }),
-  defineField({
-    name: config.fields.newsTitle.name,
-    title: config.fields.newsTitle.title,
-    type: 'string',
-    group: config.group.name,
-    initialValue: config.fields.newsTitle.initialValue,
-  }),
-  defineField({
-    name: config.fields.newsEmptyMessage.name,
-    title: config.fields.newsEmptyMessage.title,
-    type: 'string',
-    group: config.group.name,
-    initialValue: config.fields.newsEmptyMessage.initialValue,
-  }),
-];
+    initialValue: f.initialValue,
+  })
+);

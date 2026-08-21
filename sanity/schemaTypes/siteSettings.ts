@@ -103,8 +103,79 @@ export const siteSettings = defineType({
             defineField({ name: 'label', title: 'Menu Label', type: 'string' }),
             defineField({ name: 'href', title: 'Link URL', type: 'string' }),
           ],
+          preview: {
+            select: {
+              title: 'label',
+              subtitle: 'href',
+            },
+          },
         }),
       ],
+    }),
+    defineField({
+      name: 'footerDescription',
+      title: 'Footer Brand Tagline / Description',
+      type: 'text',
+      group: 'navigation',
+      rows: 2,
+      initialValue:
+        'Guidance for your next chapter in Canada. Personal, regulated Canadian immigration consulting.',
+    }),
+    defineField({
+      name: 'footerNavTitle',
+      title: 'Footer Navigation Column Title',
+      type: 'string',
+      group: 'navigation',
+      initialValue: 'Explore',
+    }),
+    defineField({
+      name: 'footerNav',
+      title: 'Footer Navigation Links',
+      type: 'array',
+      group: 'navigation',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({ name: 'label', title: 'Link Label', type: 'string' }),
+            defineField({ name: 'href', title: 'Link URL', type: 'string' }),
+          ],
+          preview: {
+            select: {
+              title: 'label',
+              subtitle: 'href',
+            },
+          },
+        }),
+      ],
+      initialValue: [
+        { label: 'Home', href: '/' },
+        { label: 'Services', href: '/services' },
+        { label: 'Insights', href: '/insights' },
+        { label: 'Q&A', href: '/questions' },
+        { label: 'Privacy Policy', href: '/privacy' },
+      ],
+    }),
+    defineField({
+      name: 'footerConnectTitle',
+      title: 'Footer Connect Column Title',
+      type: 'string',
+      group: 'navigation',
+      initialValue: 'Connect',
+    }),
+    defineField({
+      name: 'footerConsultationText',
+      title: 'Footer Consultation Link Text',
+      type: 'string',
+      group: 'navigation',
+      initialValue: 'Free Consultation',
+    }),
+    defineField({
+      name: 'footerPrivacyText',
+      title: 'Footer Privacy Policy Link Text',
+      type: 'string',
+      group: 'navigation',
+      initialValue: 'Privacy Policy',
     }),
     defineField({
       name: 'footerNotice',

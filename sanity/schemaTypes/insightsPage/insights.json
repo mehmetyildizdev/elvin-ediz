@@ -1,7 +1,7 @@
 {
   "group": {
     "name": "insights",
-    "title": "02. Insights Section"
+    "title": "03. Insights Section"
   },
   "fields": {
     "insightsEyebrow": {
@@ -27,6 +27,18 @@
       "title": "Insights Section Description",
       "type": "string",
       "initialValue": "Thought leadership and strategic perspectives on Canadian immigration pathways."
+    },
+    "insightsReadArticleText": {
+      "name": "insightsReadArticleText",
+      "title": "Card 'Read article' Action Label",
+      "type": "string",
+      "initialValue": "Read article"
+    },
+    "insightsEmptyMessage": {
+      "name": "insightsEmptyMessage",
+      "title": "Empty State Message",
+      "type": "string",
+      "initialValue": "No insight articles available currently."
     }
   }
 }

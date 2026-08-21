@@ -1,12 +1,15 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
+import type { SiteSettingsData, ServicesPageData } from '@/sanity/lib/types';
+import { defaultSiteSettings } from '@/sanity/lib/types';
 import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 
 export function ServicesCallout({
   settings = defaultSiteSettings,
+  pageData,
 }: {
   settings?: SiteSettingsData;
+  pageData?: ServicesPageData;
 }) {
   const consultationHref = getWhatsAppUrl(settings?.whatsappNumber);
 
@@ -15,12 +18,14 @@ export function ServicesCallout({
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
         <div>
           <p className="text-accent mb-3 text-xs font-bold tracking-widest uppercase">
-            NOT SURE WHERE TO BEGIN?
+            {pageData?.calloutEyebrow || 'NOT SURE WHERE TO BEGIN?'}
           </p>
           <h2 className="font-serif text-3xl leading-tight font-light sm:text-5xl md:text-5xl">
-            We can find the
+            {pageData?.calloutTitleMain || 'We can find the'}
             <br />
-            <span className="text-accent font-serif font-normal italic">right starting point.</span>
+            <span className="text-accent font-serif font-normal italic">
+              {pageData?.calloutTitleAccent || 'right starting point.'}
+            </span>
           </h2>
         </div>
         <Button
@@ -29,7 +34,7 @@ export function ServicesCallout({
           size="md"
           className="self-start whitespace-nowrap md:self-center"
         >
-          Free Consultation <ArrowUpRight size={16} />
+          {pageData?.calloutButtonText || 'Free Consultation'} <ArrowUpRight size={16} />
         </Button>
       </div>
     </section>

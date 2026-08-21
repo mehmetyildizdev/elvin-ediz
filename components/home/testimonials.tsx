@@ -140,9 +140,9 @@ export function Testimonials({
                   </div>
                 </div>
                 <p className="text-text-muted text-xs font-medium">
-                  Based on{' '}
-                  <strong className="text-text-main font-semibold">{totalReviews}+ reviews</strong>{' '}
-                  on Google
+                  {homeData.testimonialsGoogleBasedOnText || 'Based on'}{' '}
+                  <strong className="text-text-main font-semibold">{totalReviews}+</strong>{' '}
+                  {homeData.testimonialsGoogleReviewsCountText || 'reviews on Google'}
                 </p>
               </div>
             </div>
@@ -154,7 +154,7 @@ export function Testimonials({
                 rel="noopener noreferrer"
                 className="text-text-main hover:text-accent border-border-subtle hover:border-accent inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-semibold tracking-wide transition-colors"
               >
-                <span>View on Google</span>
+                <span>{homeData.testimonialsGoogleViewButtonText || 'View on Google'}</span>
                 <ExternalLink size={12} />
               </a>
               <a
@@ -163,7 +163,7 @@ export function Testimonials({
                 rel="noopener noreferrer"
                 className="bg-accent/10 text-accent hover:bg-accent/20 inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold tracking-wide transition-colors"
               >
-                <span>Review Us</span>
+                <span>{homeData.testimonialsGoogleReviewButtonText || 'Review Us'}</span>
               </a>
             </div>
           </div>
@@ -213,7 +213,7 @@ export function Testimonials({
                         rel="noopener noreferrer"
                         className="text-accent inline-flex items-center gap-1 self-start pt-1 text-[11px] font-medium transition-colors hover:underline"
                       >
-                        <span>Read on Google Maps</span>
+                        <span>{homeData.testimonialsGoogleReadMoreText || 'Read on Google Maps'}</span>
                         <ExternalLink size={10} />
                       </a>
                     </div>
@@ -238,7 +238,7 @@ export function Testimonials({
                             {item.author}
                           </h4>
                           <span className="text-text-muted block truncate text-[10px] leading-tight">
-                            Verified Google Review
+                            {homeData.testimonialsGoogleVerifiedText || 'Verified Google Review'}
                           </span>
                         </div>
                       </div>
@@ -259,10 +259,12 @@ export function Testimonials({
                   <div className="flex items-center gap-2">
                     <MessageSquareQuote size={16} className="text-accent" />
                     <h3 className="text-text-muted font-serif text-xs font-bold tracking-wider uppercase">
-                      Additional Client Cases & Feedback
+                      {homeData.testimonialsCuratedTitle || 'Additional Client Cases & Feedback'}
                     </h3>
                   </div>
-                  <span className="text-text-muted text-[11px]">Direct client submissions</span>
+                  <span className="text-text-muted text-[11px]">
+                    {homeData.testimonialsCuratedSubtitle || 'Direct client submissions'}
+                  </span>
                 </div>
 
                 <Carousel
@@ -301,7 +303,7 @@ export function Testimonials({
                           </span>
                         </div>
                         <span className="text-accent shrink-0 text-[10px] font-bold tracking-wider uppercase">
-                          Client Case
+                          {homeData.testimonialsCuratedBadgeText || 'Client Case'}
                         </span>
                       </div>
                     </article>

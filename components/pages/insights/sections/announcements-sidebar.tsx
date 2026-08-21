@@ -40,7 +40,7 @@ export function AnnouncementsSidebar({
           className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent rounded-full px-2.5 py-0.5 text-[10px] font-bold transition-colors"
           title="See all announcements"
         >
-          All →
+          {insightsPageData.announcementsViewAllText || 'All →'}
         </Link>
       </div>
 
@@ -56,11 +56,11 @@ export function AnnouncementsSidebar({
                 <div>
                   <div className="mb-2 flex items-center justify-between text-[11px]">
                     <span className="bg-accent/15 text-accent border-accent/25 rounded-full border px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase">
-                      Official Notice
+                      {insightsPageData.announcementsBadgeText || 'Official Notice'}
                     </span>
                     {post.publishedAt && (
                       <span className="text-text-muted text-[11px]">
-                        {formatDate(post.publishedAt)}
+                        {formatDate(post.publishedAt, undefined, post.language || lang)}
                       </span>
                     )}
                   </div>
@@ -80,7 +80,7 @@ export function AnnouncementsSidebar({
                   href={postHref}
                   className="text-accent group/btn mt-3 inline-flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase"
                 >
-                  View announcement
+                  {insightsPageData.announcementsViewActionText || 'View announcement'}
                   <ArrowUpRight
                     size={12}
                     className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"

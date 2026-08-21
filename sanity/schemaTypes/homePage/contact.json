@@ -1,7 +1,7 @@
 {
   "group": {
     "name": "contact",
-    "title": "Contact"
+    "title": "Contact & Form"
   },
   "fields": {
     "contactEyebrow": {
@@ -29,11 +29,95 @@
       "rows": 3,
       "initialValue": "Whether you have a clear plan or are just beginning to explore, reaching out for a free consultation is a good place to start."
     },
+    "contactNameLabel": {
+      "name": "contactNameLabel",
+      "title": "Field Label: Full Name",
+      "type": "string",
+      "initialValue": "Your name"
+    },
+    "contactNamePlaceholder": {
+      "name": "contactNamePlaceholder",
+      "title": "Field Placeholder: Full Name",
+      "type": "string",
+      "initialValue": "How should we call you?"
+    },
+    "contactEmailLabel": {
+      "name": "contactEmailLabel",
+      "title": "Field Label: Email Address",
+      "type": "string",
+      "initialValue": "Email address"
+    },
+    "contactEmailPlaceholder": {
+      "name": "contactEmailPlaceholder",
+      "title": "Field Placeholder: Email Address",
+      "type": "string",
+      "initialValue": "you@example.com"
+    },
+    "contactPhoneLabel": {
+      "name": "contactPhoneLabel",
+      "title": "Field Label: Phone Number",
+      "type": "string",
+      "initialValue": "Phone number"
+    },
+    "contactPhonePlaceholder": {
+      "name": "contactPhonePlaceholder",
+      "title": "Field Placeholder: Phone Number",
+      "type": "string",
+      "initialValue": "Your preferred number"
+    },
+    "contactOptionalText": {
+      "name": "contactOptionalText",
+      "title": "Optional Badge Text",
+      "type": "string",
+      "initialValue": "(optional)"
+    },
+    "contactServiceLabel": {
+      "name": "contactServiceLabel",
+      "title": "Field Label: Service Dropdown",
+      "type": "string",
+      "initialValue": "What can we help with?"
+    },
+    "contactServicePlaceholder": {
+      "name": "contactServicePlaceholder",
+      "title": "Dropdown Placeholder: Select a Service",
+      "type": "string",
+      "initialValue": "Select a service"
+    },
+    "contactMessageLabel": {
+      "name": "contactMessageLabel",
+      "title": "Field Label: Message",
+      "type": "string",
+      "initialValue": "Tell us a little more"
+    },
+    "contactMessagePlaceholder": {
+      "name": "contactMessagePlaceholder",
+      "title": "Field Placeholder: Message",
+      "type": "string",
+      "initialValue": "What would you like help with?"
+    },
     "contactSubmitButtonText": {
       "name": "contactSubmitButtonText",
       "title": "Submit Button Label",
       "type": "string",
       "initialValue": "Free Consultation Request"
+    },
+    "contactSubmittingText": {
+      "name": "contactSubmittingText",
+      "title": "Submit Button Label (Sending State)",
+      "type": "string",
+      "initialValue": "Sending…"
+    },
+    "contactSuccessMessage": {
+      "name": "contactSuccessMessage",
+      "title": "Success Feedback Message",
+      "type": "string",
+      "initialValue": "Thank you — we'll be in touch soon."
+    },
+    "contactErrorMessage": {
+      "name": "contactErrorMessage",
+      "title": "Error Feedback Message",
+      "type": "string",
+      "initialValue": "Something went wrong. Please email us directly."
     },
     "contactDisclaimer": {
       "name": "contactDisclaimer",

@@ -64,7 +64,15 @@ export default defineConfig({
             ],
           }),
           insightsPage: defineLocations({
-            locations: [{ title: 'Insights & Updates Hub', href: '/insights' }],
+            locations: [
+              { title: 'Insights & Updates Hub', href: '/insights' },
+              { title: 'Information Guides', href: '/information' },
+              { title: 'Announcements', href: '/announcements' },
+              { title: 'News', href: '/news' },
+            ],
+          }),
+          servicesPage: defineLocations({
+            locations: [{ title: 'Services Page', href: '/services' }],
           }),
           faqPage: defineLocations({
             locations: [{ title: 'Q&A Page', href: '/questions' }],
@@ -75,7 +83,11 @@ export default defineConfig({
           siteSettings: defineLocations({
             locations: [
               { title: 'Home', href: '/' },
+              { title: 'Services', href: '/services' },
               { title: 'Insights', href: '/insights' },
+              { title: 'Q&A', href: '/questions' },
+              { title: 'Privacy Policy', href: '/privacy' },
+              { title: 'Contact', href: '/contact' },
             ],
           }),
           post: defineLocations({
