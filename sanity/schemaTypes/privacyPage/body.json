@@ -1,0 +1,13 @@
+{
+  "group": {
+    "name": "body",
+    "title": "03. Policy Content"
+  },
+  "fields": {
+    "content": {
+      "name": "content",
+      "title": "Policy Body Content (Rich Text / Portable Text)",
+      "type": "array"
+    }
+  }
+}

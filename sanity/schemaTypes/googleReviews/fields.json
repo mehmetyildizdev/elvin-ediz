@@ -1,0 +1,44 @@
+{
+  "fields": {
+    "businessName": {
+      "name": "businessName",
+      "title": "Business Name",
+      "type": "string",
+      "initialValue": "Elvin Ediz Immigration Services",
+      "validation": "required"
+    },
+    "rating": {
+      "name": "rating",
+      "title": "Overall Rating (e.g. 4.9)",
+      "type": "number",
+      "initialValue": 4.9
+    },
+    "totalReviews": {
+      "name": "totalReviews",
+      "title": "Total Review Count",
+      "type": "number",
+      "initialValue": 73
+    },
+    "googleMapsUrl": {
+      "name": "googleMapsUrl",
+      "title": "Google Maps Profile URL",
+      "type": "url",
+      "initialValue": "https://maps.google.com/?q=Elvin+Ediz+Immigration+Services"
+    },
+    "writeReviewUrl": {
+      "name": "writeReviewUrl",
+      "title": "Google Review Link (Leave a Review)",
+      "type": "url"
+    },
+    "lastSyncedAt": {
+      "name": "lastSyncedAt",
+      "title": "Last Synced At",
+      "type": "datetime"
+    },
+    "reviews": {
+      "name": "reviews",
+      "title": "Recent Reviews",
+      "type": "array"
+    }
+  }
+}

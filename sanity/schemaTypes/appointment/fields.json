@@ -1,0 +1,50 @@
+{
+  "fields": {
+    "name": {
+      "name": "name",
+      "title": "Name",
+      "type": "string",
+      "validation": "required"
+    },
+    "email": {
+      "name": "email",
+      "title": "Email",
+      "type": "string",
+      "validation": "email"
+    },
+    "phone": {
+      "name": "phone",
+      "title": "Phone",
+      "type": "string"
+    },
+    "service": {
+      "name": "service",
+      "title": "Service",
+      "type": "string"
+    },
+    "message": {
+      "name": "message",
+      "title": "Message",
+      "type": "text",
+      "rows": 4
+    },
+    "status": {
+      "name": "status",
+      "title": "Status",
+      "type": "string",
+      "initialValue": "New",
+      "options": {
+        "list": [
+          { "title": "🟢 New (Needs Attention)", "value": "New" },
+          { "title": "⚪ Contacted (Handled)", "value": "Contacted" }
+        ],
+        "layout": "radio"
+      }
+    },
+    "receivedAt": {
+      "name": "receivedAt",
+      "title": "Received at",
+      "type": "datetime"
+    }
+  }
+}

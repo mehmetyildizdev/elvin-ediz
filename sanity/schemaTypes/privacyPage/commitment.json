@@ -1,0 +1,21 @@
+{
+  "group": {
+    "name": "commitment",
+    "title": "02. Commitment Box"
+  },
+  "fields": {
+    "commitmentTitle": {
+      "name": "commitmentTitle",
+      "title": "Commitment Box Title",
+      "type": "string",
+      "initialValue": "Commitment to Client Confidentiality"
+    },
+    "commitmentText": {
+      "name": "commitmentText",
+      "title": "Commitment Box Text",
+      "type": "text",
+      "rows": 4,
+      "initialValue": "At Elvin Ediz Immigration Services, led by Nazly Sunguroglu, RCIC (Regulated Canadian Immigration Consultant), protecting your privacy and upholding the highest professional standards of the College of Immigration and Citizenship Consultants (CICC) is fundamental to our practice."
+    }
+  }
+}

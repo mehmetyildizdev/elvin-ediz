@@ -1,0 +1,34 @@
+{
+  "group": {
+    "name": "header",
+    "title": "01. Page Header",
+    "default": true
+  },
+  "fields": {
+    "eyebrow": {
+      "name": "eyebrow",
+      "title": "Header Eyebrow",
+      "type": "string",
+      "initialValue": "COMMON QUESTIONS"
+    },
+    "titleMain": {
+      "name": "titleMain",
+      "title": "Header Title Main",
+      "type": "string",
+      "initialValue": "Clear answers for"
+    },
+    "titleAccent": {
+      "name": "titleAccent",
+      "title": "Header Title Accent",
+      "type": "string",
+      "initialValue": "the road ahead."
+    },
+    "description": {
+      "name": "description",
+      "title": "Header Description",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "Every immigration path is different. These answers offer a helpful place to begin."
+    }
+  }
+}

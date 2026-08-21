@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "author": {
+      "name": "author",
+      "title": "Author / Client Name",
+      "type": "string",
+      "validation": "required"
+    },
+    "location": {
+      "name": "location",
+      "title": "Location / Tag",
+      "type": "string",
+      "placeholder": "e.g. Toronto, Canada or France"
+    },
+    "quote": {
+      "name": "quote",
+      "title": "Review / Quote Content",
+      "type": "text",
+      "rows": 4,
+      "validation": "required"
+    },
+    "rating": {
+      "name": "rating",
+      "title": "Rating (1-5 stars)",
+      "type": "number",
+      "initialValue": 5
+    },
+    "avatar": {
+      "name": "avatar",
+      "title": "Author Photo / Avatar",
+      "type": "image"
+    },
+    "order": {
+      "name": "order",
+      "title": "Display Order",
+      "type": "number",
+      "initialValue": 0
+    }
+  }
+}

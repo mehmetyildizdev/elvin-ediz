@@ -1,0 +1,27 @@
+{
+  "group": {
+    "name": "social",
+    "title": "03. Social & WhatsApp"
+  },
+  "fields": {
+    "whatsappNumber": {
+      "name": "whatsappNumber",
+      "title": "WhatsApp Number",
+      "description": "Enter WhatsApp phone number (e.g. 123456789). The website will automatically format WhatsApp chat links using this number.",
+      "type": "string",
+      "initialValue": "123456789"
+    },
+    "linkedinUrl": {
+      "name": "linkedinUrl",
+      "title": "LinkedIn URL",
+      "type": "url",
+      "initialValue": "https://www.linkedin.com/in/nazly-sunguroglu-31574455/"
+    },
+    "instagramUrl": {
+      "name": "instagramUrl",
+      "title": "Instagram URL",
+      "type": "url",
+      "initialValue": "https://www.instagram.com/elvinedizimmigration/"
+    }
+  }
+}

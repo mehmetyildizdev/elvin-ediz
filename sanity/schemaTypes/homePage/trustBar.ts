@@ -4,11 +4,11 @@ import config from './trustBar.json';
 
 export const trustBarGroup = config.group;
 
-export const trustBarFields = [
+export const trustBarFields = Object.values(config.fields).map((f: any) =>
   defineField({
-    name: config.fields.trustBarItems.name,
-    title: config.fields.trustBarItems.title,
-    description: config.fields.trustBarItems.description,
+    name: f.name,
+    title: f.title,
+    description: f.description,
     type: 'array',
     group: config.group.name,
     of: [
@@ -17,30 +17,30 @@ export const trustBarFields = [
         name: 'trustItem',
         fields: [
           defineField({
-            name: config.fields.trustBarItems.itemNumberName,
-            title: config.fields.trustBarItems.itemNumberTitle,
+            name: f.itemNumberName,
+            title: f.itemNumberTitle,
             type: 'string',
           }),
           defineField({
-            name: config.fields.trustBarItems.itemIconName,
-            title: config.fields.trustBarItems.itemIconTitle,
+            name: f.itemIconName,
+            title: f.itemIconTitle,
             type: 'string',
             components: {
               input: VisualIconPicker,
             },
           }),
           defineField({
-            name: config.fields.trustBarItems.itemTextName,
-            title: config.fields.trustBarItems.itemTextTitle,
+            name: f.itemTextName,
+            title: f.itemTextTitle,
             type: 'string',
             validation: (Rule) => Rule.required().error('Badge label is required'),
           }),
         ],
         preview: {
           select: {
-            title: config.fields.trustBarItems.itemTextName,
-            subtitle: config.fields.trustBarItems.itemNumberName,
-            icon: config.fields.trustBarItems.itemIconName,
+            title: f.itemTextName,
+            subtitle: f.itemNumberName,
+            icon: f.itemIconName,
           },
           prepare({ title, subtitle, icon }) {
             return {
@@ -51,6 +51,6 @@ export const trustBarFields = [
         },
       }),
     ],
-    initialValue: config.fields.trustBarItems.initialValue,
-  }),
-];
+    initialValue: f.initialValue,
+  })
+);

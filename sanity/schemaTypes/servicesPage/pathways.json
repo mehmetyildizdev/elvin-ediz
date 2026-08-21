@@ -1,0 +1,44 @@
+{
+  "group": {
+    "name": "pathways",
+    "title": "02. Pathways Layout & Labels"
+  },
+  "fields": {
+    "pathwayNavTitle": {
+      "name": "pathwayNavTitle",
+      "title": "Pathway Navigation Bar Title",
+      "type": "string",
+      "initialValue": "Select Pathway"
+    },
+    "pathwayNumberPrefix": {
+      "name": "pathwayNumberPrefix",
+      "title": "Pathway Number Prefix (e.g. PATHWAY 01)",
+      "type": "string",
+      "initialValue": "PATHWAY"
+    },
+    "rcicAssessedBadgeText": {
+      "name": "rcicAssessedBadgeText",
+      "title": "RCIC Assessed Badge Text",
+      "type": "string",
+      "initialValue": "RCIC Assessed"
+    },
+    "pathwaySummaryTitle": {
+      "name": "pathwaySummaryTitle",
+      "title": "Pathway Summary Section Heading",
+      "type": "string",
+      "initialValue": "Pathway Summary"
+    },
+    "featuresSectionTitle": {
+      "name": "featuresSectionTitle",
+      "title": "Key Requirements & Inclusions Section Heading",
+      "type": "string",
+      "initialValue": "Key Requirements & Inclusions"
+    },
+    "detailedOverviewTitle": {
+      "name": "detailedOverviewTitle",
+      "title": "Detailed Pathway Overview Section Heading",
+      "type": "string",
+      "initialValue": "Detailed Pathway Overview"
+    }
+  }
+}

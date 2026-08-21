@@ -1,0 +1,13 @@
+{
+  "group": {
+    "name": "faqs",
+    "title": "02. Questions & Answers"
+  },
+  "fields": {
+    "items": {
+      "name": "items",
+      "title": "Questions and Answers",
+      "type": "array"
+    }
+  }
+}

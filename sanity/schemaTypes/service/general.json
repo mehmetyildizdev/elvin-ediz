@@ -1,0 +1,44 @@
+{
+  "group": {
+    "name": "general",
+    "title": "01. General Info",
+    "default": true
+  },
+  "fields": {
+    "title": {
+      "name": "title",
+      "title": "Service Title",
+      "type": "string",
+      "validation": "required"
+    },
+    "slug": {
+      "name": "slug",
+      "title": "Slug",
+      "type": "slug",
+      "validation": "required"
+    },
+    "order": {
+      "name": "order",
+      "title": "Display Order",
+      "type": "number",
+      "initialValue": 0
+    },
+    "iconName": {
+      "name": "iconName",
+      "title": "Icon Name",
+      "type": "string"
+    },
+    "summary": {
+      "name": "summary",
+      "title": "Short Summary",
+      "type": "text",
+      "rows": 3,
+      "validation": "required"
+    },
+    "features": {
+      "name": "features",
+      "title": "Key Features / Highlights",
+      "type": "array"
+    }
+  }
+}

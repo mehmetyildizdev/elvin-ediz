@@ -1,0 +1,27 @@
+{
+  "group": {
+    "name": "contact",
+    "title": "02. Contact & Office"
+  },
+  "fields": {
+    "contactEmail": {
+      "name": "contactEmail",
+      "title": "Contact Email",
+      "type": "string",
+      "initialValue": "info@elvinediz.com"
+    },
+    "phone": {
+      "name": "phone",
+      "title": "Phone Number",
+      "type": "string",
+      "initialValue": "(647) 568 1009"
+    },
+    "address": {
+      "name": "address",
+      "title": "Office Address",
+      "type": "text",
+      "rows": 2,
+      "initialValue": "Toronto, Ontario, Canada"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "fields": {
+    "name": {
+      "name": "name",
+      "title": "Name",
+      "type": "string",
+      "validation": "required"
+    },
+    "designation": {
+      "name": "designation",
+      "title": "Designation / Credentials",
+      "type": "string",
+      "initialValue": "RCIC"
+    },
+    "role": {
+      "name": "role",
+      "title": "Role",
+      "type": "string",
+      "validation": "required",
+      "initialValue": "Regulated Canadian Immigration Consultant"
+    },
+    "subtitle": {
+      "name": "subtitle",
+      "title": "Subtitle / Title",
+      "type": "string",
+      "initialValue": "Founder of Elvin Ediz Immigration Services"
+    },
+    "photo": {
+      "name": "photo",
+      "title": "Photo",
+      "type": "image"
+    },
+    "bio": {
+      "name": "bio",
+      "title": "Biography / Strategy Text",
+      "type": "text",
+      "rows": 6
+    },
+    "email": {
+      "name": "email",
+      "title": "Email",
+      "type": "string"
+    },
+    "order": {
+      "name": "order",
+      "title": "Display Order",
+      "type": "number",
+      "initialValue": 1
+    }
+  }
+}

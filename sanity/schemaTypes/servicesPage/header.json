@@ -1,0 +1,38 @@
+{
+  "group": {
+    "name": "header",
+    "title": "01. Page Header",
+    "default": true
+  },
+  "fields": {
+    "eyebrow": {
+      "name": "eyebrow",
+      "title": "Eyebrow Text",
+      "type": "string",
+      "initialValue": "HOW WE CAN HELP",
+      "validation": "required"
+    },
+    "titleMain": {
+      "name": "titleMain",
+      "title": "Main Heading (Part 1)",
+      "type": "string",
+      "initialValue": "A pathway built",
+      "validation": "required"
+    },
+    "titleAccent": {
+      "name": "titleAccent",
+      "title": "Accent Heading (Italicized)",
+      "type": "string",
+      "initialValue": "around you.",
+      "validation": "required"
+    },
+    "description": {
+      "name": "description",
+      "title": "Hero Description / Copy",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "Personalized Canadian immigration guidance for the next chapter you are ready to build.",
+      "validation": "required"
+    }
+  }
+}

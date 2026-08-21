@@ -1,0 +1,18 @@
+{
+  "group": {
+    "name": "body",
+    "title": "02. Overview & Body"
+  },
+  "fields": {
+    "coverImage": {
+      "name": "coverImage",
+      "title": "Cover Image",
+      "type": "image"
+    },
+    "body": {
+      "name": "body",
+      "title": "Detailed Overview / Body",
+      "type": "array"
+    }
+  }
+}

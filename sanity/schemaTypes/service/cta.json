@@ -1,0 +1,32 @@
+{
+  "group": {
+    "name": "cta",
+    "title": "03. Call to Action"
+  },
+  "fields": {
+    "ctaTitle": {
+      "name": "ctaTitle",
+      "title": "Callout Title",
+      "description": "Optional custom heading for the callout box (defaults to 'Apply for [Service Title]').",
+      "type": "string"
+    },
+    "ctaSubtitle": {
+      "name": "ctaSubtitle",
+      "title": "Callout Subtitle",
+      "description": "Optional description (defaults to 'Direct representation and assessment with Nazly Sunguroglu, RCIC.').",
+      "type": "string"
+    },
+    "ctaButtonText": {
+      "name": "ctaButtonText",
+      "title": "Callout Button Text",
+      "description": "Optional button label (defaults to 'Book Free Consultation').",
+      "type": "string"
+    },
+    "ctaButtonLink": {
+      "name": "ctaButtonLink",
+      "title": "Callout Button Link",
+      "description": "Optional custom URL or WhatsApp link (defaults to WhatsApp message for this service).",
+      "type": "string"
+    }
+  }
+}

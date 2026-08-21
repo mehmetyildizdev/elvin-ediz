@@ -1,0 +1,32 @@
+{
+  "group": {
+    "name": "callout",
+    "title": "03. Consultation Callout"
+  },
+  "fields": {
+    "calloutEyebrow": {
+      "name": "calloutEyebrow",
+      "title": "Callout Eyebrow",
+      "type": "string",
+      "initialValue": "NOT SURE WHERE TO BEGIN?"
+    },
+    "calloutTitleMain": {
+      "name": "calloutTitleMain",
+      "title": "Callout Title Main",
+      "type": "string",
+      "initialValue": "We can find the"
+    },
+    "calloutTitleAccent": {
+      "name": "calloutTitleAccent",
+      "title": "Callout Title Accent",
+      "type": "string",
+      "initialValue": "right starting point."
+    },
+    "calloutButtonText": {
+      "name": "calloutButtonText",
+      "title": "Callout Button Label",
+      "type": "string",
+      "initialValue": "Free Consultation"
+    }
+  }
+}

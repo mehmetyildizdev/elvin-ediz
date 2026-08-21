@@ -1,0 +1,14 @@
+{
+  "group": {
+    "name": "seo",
+    "title": "02. SEO & Social"
+  },
+  "fields": {
+    "seo": {
+      "name": "seo",
+      "title": "About Page SEO & Social Share",
+      "type": "seo",
+      "description": "Search engine metadata and social preview for the About page / consultant profile."
+    }
+  }
+}

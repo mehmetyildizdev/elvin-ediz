@@ -1,0 +1,68 @@
+{
+  "group": {
+    "name": "navigation",
+    "title": "04. Navigation & Footer"
+  },
+  "fields": {
+    "headerNav": {
+      "name": "headerNav",
+      "title": "Header Navigation Links",
+      "type": "array"
+    },
+    "footerDescription": {
+      "name": "footerDescription",
+      "title": "Footer Brand Tagline / Description",
+      "type": "text",
+      "rows": 2,
+      "initialValue": "Guidance for your next chapter in Canada. Personal, regulated Canadian immigration consulting."
+    },
+    "footerNavTitle": {
+      "name": "footerNavTitle",
+      "title": "Footer Navigation Column Title",
+      "type": "string",
+      "initialValue": "Explore"
+    },
+    "footerNav": {
+      "name": "footerNav",
+      "title": "Footer Navigation Links",
+      "type": "array",
+      "initialValue": [
+        { "label": "Home", "href": "/" },
+        { "label": "Services", "href": "/services" },
+        { "label": "Insights", "href": "/insights" },
+        { "label": "Q&A", "href": "/questions" },
+        { "label": "Privacy Policy", "href": "/privacy" }
+      ]
+    },
+    "footerConnectTitle": {
+      "name": "footerConnectTitle",
+      "title": "Footer Connect Column Title",
+      "type": "string",
+      "initialValue": "Connect"
+    },
+    "footerConsultationText": {
+      "name": "footerConsultationText",
+      "title": "Footer Consultation Link Text",
+      "type": "string",
+      "initialValue": "Free Consultation"
+    },
+    "footerPrivacyText": {
+      "name": "footerPrivacyText",
+      "title": "Footer Privacy Policy Link Text",
+      "type": "string",
+      "initialValue": "Privacy Policy"
+    },
+    "footerNotice": {
+      "name": "footerNotice",
+      "title": "Footer Accreditation Notice",
+      "type": "string",
+      "initialValue": "Regulated Canadian Immigration Consultant (RCIC)"
+    },
+    "copyrightText": {
+      "name": "copyrightText",
+      "title": "Copyright Notice",
+      "type": "string",
+      "initialValue": "© Elvin Ediz Immigration Services. All rights reserved."
+    }
+  }
+}

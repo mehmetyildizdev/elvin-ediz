@@ -1,0 +1,45 @@
+{
+  "group": {
+    "name": "inquiry",
+    "title": "04. Contact & Inquiries"
+  },
+  "fields": {
+    "inquiryTitle": {
+      "name": "inquiryTitle",
+      "title": "Inquiry Section Heading",
+      "type": "string",
+      "initialValue": "5. Privacy Inquiries & Contact"
+    },
+    "inquiryDescription": {
+      "name": "inquiryDescription",
+      "title": "Inquiry Section Description",
+      "type": "text",
+      "rows": 2,
+      "initialValue": "If you have questions regarding this Privacy Policy or wish to review, update, or request the deletion of your personal information, please reach out to us:"
+    },
+    "companyName": {
+      "name": "companyName",
+      "title": "Company / Advisory Name",
+      "type": "string",
+      "initialValue": "Elvin Ediz Immigration Advisory"
+    },
+    "email": {
+      "name": "email",
+      "title": "Contact Email",
+      "type": "string",
+      "initialValue": "info@elvinediz.com"
+    },
+    "phone": {
+      "name": "phone",
+      "title": "Contact Phone",
+      "type": "string",
+      "initialValue": "+1 (437) 772-2349"
+    },
+    "address": {
+      "name": "address",
+      "title": "Office Address",
+      "type": "string",
+      "initialValue": "Toronto, Ontario, Canada"
+    }
+  }
+}

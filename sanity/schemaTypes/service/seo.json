@@ -1,0 +1,14 @@
+{
+  "group": {
+    "name": "seo",
+    "title": "04. SEO & Social"
+  },
+  "fields": {
+    "seo": {
+      "name": "seo",
+      "title": "SEO & Social Media Settings",
+      "type": "seo",
+      "description": "Custom search engine snippet and social share cards for this specific immigration pathway."
+    }
+  }
+}

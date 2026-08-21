@@ -1,0 +1,27 @@
+{
+  "group": {
+    "name": "general",
+    "title": "01. General & Brand",
+    "default": true
+  },
+  "fields": {
+    "siteTitle": {
+      "name": "siteTitle",
+      "title": "Website Brand Title",
+      "type": "string",
+      "initialValue": "Elvin Ediz Immigration Services"
+    },
+    "consultationLink": {
+      "name": "consultationLink",
+      "title": "Booking / Consultation Link",
+      "type": "string",
+      "initialValue": "/contact"
+    },
+    "officeHours": {
+      "name": "officeHours",
+      "title": "Office Hours",
+      "type": "string",
+      "initialValue": "Mon - Fri: 09:00am - 4:00pm"
+    }
+  }
+}

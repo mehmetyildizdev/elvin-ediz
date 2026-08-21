@@ -1,0 +1,59 @@
+{
+  "group": {
+    "name": "seo",
+    "title": "05. Global SEO & Metadata"
+  },
+  "fields": {
+    "defaultMetaTitle": {
+      "name": "defaultMetaTitle",
+      "title": "Default Search Title",
+      "type": "string",
+      "initialValue": "Elvin Ediz Immigration Services | Your Canadian Story Starts Here",
+      "description": "Default title used across pages when no specific page meta title is provided."
+    },
+    "titleTemplate": {
+      "name": "titleTemplate",
+      "title": "Page Title Template",
+      "type": "string",
+      "initialValue": "%s | Elvin Ediz Immigration Services",
+      "description": "Template pattern used for inner pages (e.g. '%s | Elvin Ediz Immigration Services')."
+    },
+    "defaultMetaDescription": {
+      "name": "defaultMetaDescription",
+      "title": "Default Search Description",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC. Express Entry, Study Permits, Work Permits, PNP, and Family Sponsorship in Toronto.",
+      "description": "Fallback search description used when a page does not define its own."
+    },
+    "defaultOgImage": {
+      "name": "defaultOgImage",
+      "title": "Default Social Share Banner (Open Graph)",
+      "type": "image",
+      "description": "Default 1200 x 630 px social share banner for WhatsApp, LinkedIn, and social link previews."
+    },
+    "siteKeywords": {
+      "name": "siteKeywords",
+      "title": "Global Site Keywords",
+      "type": "array",
+      "initialValue": [
+        "Canadian Immigration",
+        "RCIC Toronto",
+        "Nazly Sunguroglu",
+        "Express Entry Canada",
+        "Study in Canada",
+        "PGWP Work Permit",
+        "LMIA Canada",
+        "Spousal Sponsorship",
+        "Provincial Nominee Program"
+      ],
+      "description": "Global site-wide SEO keywords and topics."
+    },
+    "googleSiteVerification": {
+      "name": "googleSiteVerification",
+      "title": "Google Search Console Verification Token",
+      "type": "string",
+      "description": "Optional verification meta tag content for Google Search Console (e.g. 'google-site-verification=abc...')."
+    }
+  }
+}

@@ -3,12 +3,12 @@ import config from './seo.json';
 
 export const seoGroup = config.group;
 
-export const seoFields = [
+export const seoFields = Object.values(config.fields).map((f: any) =>
   defineField({
-    name: config.fields.seo.name,
-    title: config.fields.seo.title,
-    type: config.fields.seo.type,
+    name: f.name,
+    title: f.title,
+    type: f.type,
     group: config.group.name,
-    description: config.fields.seo.description,
-  }),
-];
+    description: f.description,
+  })
+);

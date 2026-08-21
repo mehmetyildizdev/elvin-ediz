@@ -1,0 +1,39 @@
+{
+  "group": {
+    "name": "cta",
+    "title": "03. Consultation Callout"
+  },
+  "fields": {
+    "ctaEyebrow": {
+      "name": "ctaEyebrow",
+      "title": "Callout Eyebrow",
+      "type": "string",
+      "initialValue": "STILL HAVE QUESTIONS?"
+    },
+    "ctaTitle": {
+      "name": "ctaTitle",
+      "title": "Callout Title",
+      "type": "string",
+      "initialValue": "Need personalized advice on your Canadian immigration case?"
+    },
+    "ctaDescription": {
+      "name": "ctaDescription",
+      "title": "Callout Description",
+      "type": "text",
+      "rows": 2,
+      "initialValue": "Schedule a 1-on-1 consultation with Nazly Sunguroglu, RCIC to evaluate your eligibility, documents, and options."
+    },
+    "ctaButtonText": {
+      "name": "ctaButtonText",
+      "title": "Callout Button Text",
+      "type": "string",
+      "initialValue": "Book Consultation"
+    },
+    "ctaButtonLink": {
+      "name": "ctaButtonLink",
+      "title": "Callout Button Link (Optional)",
+      "description": "Custom link URL or leave blank to open WhatsApp consultation.",
+      "type": "string"
+    }
+  }
+}
