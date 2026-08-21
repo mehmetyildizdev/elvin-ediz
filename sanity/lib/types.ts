@@ -211,6 +211,7 @@ export interface PostData {
   _id: string;
   title: string;
   slug: string;
+  language?: string;
   kind: PostKind;
   excerpt?: string;
   coverImageUrl?: string;

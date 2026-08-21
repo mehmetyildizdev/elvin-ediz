@@ -4,7 +4,7 @@ import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import { EarthGlobeIcon } from '@sanity/icons/EarthGlobe';
 import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { SearchIcon } from '@sanity/icons/Search';
-import { languageField } from '../i18n';
+import { languageField } from '../i18n/schema';
 
 export const siteSettings = defineType({
   name: 'siteSettings',
@@ -187,4 +187,18 @@ export const siteSettings = defineType({
         'Optional verification meta tag content for Google Search Console (e.g. "google-site-verification=abc...").',
     }),
   ],
+  preview: {
+    select: {
+      lang: 'language',
+      siteTitle: 'siteTitle',
+    },
+    prepare({ lang, siteTitle }) {
+      const l = (lang || 'en').toUpperCase();
+      return {
+        title: `[${l}] Site Settings & Navigation`,
+        subtitle: siteTitle || 'Global settings, header, footer',
+      };
+    },
+  },
 });
+

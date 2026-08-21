@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { CaseIcon } from '@sanity/icons/Case';
 import { SearchIcon } from '@sanity/icons/Search';
-import { languageField } from '../i18n';
+import { languageField } from '../i18n/schema';
 
 export const servicesPage = defineType({
   name: 'servicesPage',
@@ -58,14 +58,17 @@ export const servicesPage = defineType({
   ],
   preview: {
     select: {
+      lang: 'language',
       title: 'titleMain',
       subtitle: 'eyebrow',
     },
-    prepare({ title, subtitle }) {
+    prepare({ lang, title, subtitle }) {
+      const l = (lang || 'en').toUpperCase();
       return {
-        title: title ? `Services Page: ${title}` : 'Services Page Content',
-        subtitle: subtitle || 'Hero Header Settings',
+        title: `[${l}] Services Page`,
+        subtitle: title ? `${subtitle ? `${subtitle} - ` : ''}${title}` : 'Hero Header Settings',
       };
     },
   },
 });
+

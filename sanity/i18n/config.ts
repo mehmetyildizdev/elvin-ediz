@@ -32,6 +32,51 @@ export const documentI18nConfig = {
   schemaTypes: i18nSchemaTypes,
   languageField: 'language',
   apiVersion: '2024-01-01',
+  callback: async ({
+    sourceDocument,
+    newDocument,
+    destinationLanguageId,
+    client,
+  }: {
+    sourceDocument: any;
+    newDocument: any;
+    destinationLanguageId: string;
+    client: any;
+  }) => {
+    try {
+      if (
+        newDocument?._type === 'post' &&
+        destinationLanguageId &&
+        destinationLanguageId !== 'en'
+      ) {
+        const sourceAuthorRef = sourceDocument?.author?._ref;
+        const translatedAuthorId = await client.fetch(
+          `coalesce(
+            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == $sourceAuthorRef]) > 0][0].translations[language == $targetLang][0].value._ref,
+            *[_type == "staffMember" && language == $targetLang && (name match "*Nazly*" || _id match "*nazly*")][0]._id
+          )`,
+          {
+            sourceAuthorRef: sourceAuthorRef || 'staff-nazly',
+            targetLang: destinationLanguageId,
+          }
+        );
+
+        if (translatedAuthorId) {
+          await client
+            .patch(newDocument._id)
+            .set({
+              author: {
+                _type: 'reference',
+                _ref: translatedAuthorId,
+              },
+            })
+            .commit();
+        }
+      }
+    } catch (err) {
+      console.error('Error auto-relinking translated author in Sanity Studio:', err);
+    }
+  },
 };
 
 /**

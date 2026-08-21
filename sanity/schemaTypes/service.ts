@@ -5,7 +5,7 @@ import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { SparklesIcon } from '@sanity/icons/Sparkles';
 import { SearchIcon } from '@sanity/icons/Search';
 import { VisualIconPicker } from '../components/VisualIconPicker';
-import { languageField, isSlugUniqueByLanguage, slugifyWithI18n } from '../i18n';
+import { languageField, isSlugUniqueByLanguage, slugifyWithI18n } from '../i18n/schema';
 
 export const service = defineType({
   name: 'service',

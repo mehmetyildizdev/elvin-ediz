@@ -72,12 +72,26 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
 
   const mergedKeywords = Array.from(new Set(rawKeywords));
 
-  // 06. Canonical URL
+  // 06. Canonical URL & Language Alternates (Hreflang)
   const canonicalUrl =
     stripStega(seo?.canonicalUrl) ||
     (canonicalPath
       ? `${BASE_URL}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`
       : undefined);
+
+  const cleanPath = canonicalPath
+    ? canonicalPath.replace(/^\/(tr|ar|fr)(\/|$)/, '/').replace(/\/+$/, '') || '/'
+    : '';
+
+  const languageAlternates = cleanPath
+    ? {
+        en: `${BASE_URL}${cleanPath === '/' ? '' : cleanPath}`,
+        tr: `${BASE_URL}/tr${cleanPath === '/' ? '' : cleanPath}`,
+        ar: `${BASE_URL}/ar${cleanPath === '/' ? '' : cleanPath}`,
+        fr: `${BASE_URL}/fr${cleanPath === '/' ? '' : cleanPath}`,
+        'x-default': `${BASE_URL}${cleanPath === '/' ? '' : cleanPath}`,
+      }
+    : undefined;
 
   // 07. Search Engine Directives
   const isNoIndex = Boolean(seo?.noIndex);
@@ -87,7 +101,12 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
     title: resolvedTitle,
     description: resolvedDescription,
     keywords: mergedKeywords.length > 0 ? mergedKeywords : undefined,
-    alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
+    alternates: canonicalUrl
+      ? {
+          canonical: canonicalUrl,
+          languages: languageAlternates,
+        }
+      : undefined,
     openGraph: {
       title: ogTitle,
       description: ogDescription,

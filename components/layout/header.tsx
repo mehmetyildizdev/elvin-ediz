@@ -5,9 +5,38 @@ import Link from 'next/link';
 import { Menu, X, Phone, Mail, MapPin, Clock, ArrowUpRight, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
 
-export function Header({ settings = defaultSiteSettings }: { settings?: SiteSettingsData }) {
+function localizeHref(href: string, currentLang: string = 'en'): string {
+  if (
+    !href ||
+    href.startsWith('http') ||
+    href.startsWith('tel:') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('#')
+  ) {
+    return href;
+  }
+  if (currentLang === 'en') {
+    return href;
+  }
+  if (href === '/') {
+    return `/${currentLang}`;
+  }
+  if (href.startsWith(`/${currentLang}`)) {
+    return href;
+  }
+  return `/${currentLang}${href.startsWith('/') ? href : `/${href}`}`;
+}
+
+export function Header({
+  settings = defaultSiteSettings,
+  lang = 'en',
+}: {
+  settings?: SiteSettingsData;
+  lang?: string;
+}) {
   const [open, setOpen] = useState(false);
 
   // Prevent background scroll when mobile drawer is open
@@ -57,7 +86,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
             </a>
           </div>
 
-          <div className="hidden items-center gap-6 md:flex">
+          <div className="hidden items-center gap-5 md:flex">
             <span className="flex items-center gap-1.5 opacity-80">
               <Clock size={13} className="text-accent" />
               <span>{settings.officeHours}</span>
@@ -86,6 +115,9 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
                 </a>
               )}
             </div>
+            <div className="border-border-on-dark/20 border-l pl-3">
+              <LanguageSwitcher currentLang={lang} variant="header" />
+            </div>
           </div>
         </div>
       </div>
@@ -93,7 +125,10 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
       {/* Main Navbar */}
       <nav className="bg-bg-primary/95 border-border-on-dark/20 text-text-on-dark flex h-20 w-full items-center border-b px-6 backdrop-blur-md md:px-12">
         <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between">
-          <Link href="/" className="flex items-center transition-opacity hover:opacity-95">
+          <Link
+            href={localizeHref('/', lang)}
+            className="flex items-center transition-opacity hover:opacity-95"
+          >
             <Image
               src="/white-logo-for-elvinediz.png"
               alt={settings.siteTitle}
@@ -109,7 +144,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
             {settings.headerNav.map(({ label, href }) => (
               <Link
                 key={href}
-                href={href}
+                href={localizeHref(href, lang)}
                 className="py-2 font-medium tracking-wide opacity-80 transition-opacity hover:opacity-100"
               >
                 {label}
@@ -118,9 +153,9 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
           </div>
 
           {/* Header Action Buttons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Button
-              href={settings.consultationLink}
+              href={localizeHref(settings.consultationLink, lang)}
               variant="outline-on-dark"
               size="sm"
               className="hidden md:inline-flex"
@@ -158,7 +193,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
         {/* Drawer Header */}
         <div className="border-border-on-dark/20 flex items-center justify-between border-b px-6 py-5">
           <Link
-            href="/"
+            href={localizeHref('/', lang)}
             onClick={() => setOpen(false)}
             className="transition-opacity hover:opacity-90"
           >
@@ -181,6 +216,13 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
 
         {/* Drawer Body - Navigation Links */}
         <div className="flex-1 overflow-y-auto px-6 py-6">
+          <div className="mb-6">
+            <p className="text-accent mb-2 text-[11px] font-bold tracking-widest uppercase">
+              Language / Dil
+            </p>
+            <LanguageSwitcher currentLang={lang} variant="mobile" />
+          </div>
+
           <p className="text-accent mb-3 text-[11px] font-bold tracking-widest uppercase">
             Menu Navigation
           </p>
@@ -189,7 +231,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
             {settings.headerNav.map(({ label, href }, index) => (
               <Link
                 key={href}
-                href={href}
+                href={localizeHref(href, lang)}
                 onClick={() => setOpen(false)}
                 className="group text-text-on-dark hover:text-accent flex items-center justify-between rounded-xl px-3.5 py-3 font-serif text-base font-medium transition-all hover:bg-white/5"
               >
@@ -209,7 +251,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
 
           <div className="mt-6">
             <Button
-              href={settings.consultationLink}
+              href={localizeHref(settings.consultationLink, lang)}
               variant="primary"
               size="md"
               className="w-full justify-center"

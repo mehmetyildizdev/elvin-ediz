@@ -24,13 +24,22 @@ interface InsightsDetailProps {
   post: PostData | null;
   slug: string;
   settings?: SiteSettingsData;
+  lang?: string;
 }
 
 export function InsightsDetail({
   post,
   slug,
   settings = defaultSiteSettings,
+  lang = 'en',
 }: InsightsDetailProps) {
+  const activeLang = post?.language || lang || 'en';
+  const localize = (path: string) => {
+    if (!activeLang || activeLang === 'en') return path;
+    if (path.startsWith(`/${activeLang}`)) return path;
+    return `/${activeLang}${path.startsWith('/') ? path : `/${path}`}`;
+  };
+
   if (!post) {
     return (
       <div className="flex min-h-[60vh] flex-col justify-center">
@@ -42,7 +51,7 @@ export function InsightsDetail({
         />
         <div className="mx-auto mt-8">
           <Link
-            href="/insights"
+            href={localize('/insights')}
             className="bg-accent text-bg-primary inline-flex items-center gap-2 rounded-xs px-6 py-3 text-xs font-bold tracking-widest uppercase transition-opacity hover:opacity-90"
           >
             ← Back to insights hub
@@ -62,7 +71,7 @@ export function InsightsDetail({
           ? 'information'
           : 'insight';
 
-  const listHref =
+  const basePath =
     kind === 'information'
       ? '/information'
       : kind === 'news'
@@ -70,6 +79,8 @@ export function InsightsDetail({
         : kind === 'announcement'
           ? '/announcements'
           : '/insights';
+
+  const listHref = localize(basePath);
 
   const listLabel =
     kind === 'information'

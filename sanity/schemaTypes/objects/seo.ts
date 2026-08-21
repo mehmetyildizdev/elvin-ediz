@@ -87,7 +87,6 @@ export const seo = defineType({
       title: 'Structured Data Schema Type',
       type: 'string',
       initialValue: 'auto',
-      validation: (rule) => rule.required(),
       components: {
         input: StructuredDataTypeSelect,
       },

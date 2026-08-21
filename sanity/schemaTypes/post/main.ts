@@ -2,7 +2,7 @@ import { defineField } from 'sanity';
 import { CodeIcon } from '@sanity/icons/Code';
 import config from './main.json';
 import { VisualIconPicker } from '../../components/VisualIconPicker';
-import { isSlugUniqueByLanguage, slugifyWithI18n } from '../../i18n';
+import { isSlugUniqueByLanguage, slugifyWithI18n } from '../../i18n/schema';
 
 export const mainGroup = config.group;
 

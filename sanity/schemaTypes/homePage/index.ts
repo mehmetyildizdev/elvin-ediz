@@ -21,7 +21,7 @@ import { processGroup, processFields } from './process';
 import { insightsGroup, insightsFields } from './insights';
 import { contactGroup, contactFields } from './contact';
 import { seoGroup, seoFields } from './seo';
-import { languageField } from '../../i18n';
+import { languageField } from '../../i18n/schema';
 
 export const homePage = defineType({
   name: config.name,
@@ -52,6 +52,20 @@ export const homePage = defineType({
     ...contactFields,
     ...seoFields,
   ],
+  preview: {
+    select: {
+      lang: 'language',
+      title: 'heroTitle',
+    },
+    prepare({ lang, title }) {
+      const l = (lang || 'en').toUpperCase();
+      return {
+        title: `[${l}] Home Page`,
+        subtitle: title || 'Main landing page',
+      };
+    },
+  },
 });
 
 export default homePage;
+

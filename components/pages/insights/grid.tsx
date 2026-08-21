@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { getLocalizedPostHref } from './utils';
 
 export type PostKind = 'insights' | 'news' | 'announcements' | 'information';
 
@@ -24,7 +25,7 @@ export const posts = [
   },
 ];
 
-export function InsightsGrid({ kind }: { kind: PostKind }) {
+export function InsightsGrid({ kind, lang = 'en' }: { kind: PostKind; lang?: string }) {
   const selected =
     kind === 'insights'
       ? posts
@@ -41,13 +42,9 @@ export function InsightsGrid({ kind }: { kind: PostKind }) {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {selected.map((post) => (
               <article
-                className="group border-border-subtle bg-bg-surface flex flex-col overflow-hidden rounded-sm border p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
                 key={post.slug}
+                className="group border-border-subtle hover:border-accent/40 bg-bg-surface flex flex-col justify-between rounded-sm border p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
               >
-                <div className="bg-bg-primary/10 text-accent group-hover:bg-bg-primary/15 mb-5 flex h-44 items-center justify-center rounded-sm font-serif text-5xl italic transition-colors select-none">
-                  <span>{post.kind === 'information' ? '✦' : 'CA'}</span>
-                </div>
-
                 <div className="text-accent mb-2.5 text-xs font-bold tracking-widest uppercase">
                   {(post as any).category || post.kind}
                 </div>
@@ -59,7 +56,7 @@ export function InsightsGrid({ kind }: { kind: PostKind }) {
                 <p className="text-text-muted mb-6 text-sm leading-relaxed">{post.excerpt}</p>
 
                 <Link
-                  href={`/insights/${post.slug}`}
+                  href={getLocalizedPostHref(post, kind, lang)}
                   className="text-accent group/btn mt-auto inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase"
                 >
                   Read more

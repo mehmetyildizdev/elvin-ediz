@@ -3,7 +3,35 @@ import Link from 'next/link';
 import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
 import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 
-export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSettingsData }) {
+function localizeHref(href: string, currentLang: string = 'en'): string {
+  if (
+    !href ||
+    href.startsWith('http') ||
+    href.startsWith('tel:') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('#')
+  ) {
+    return href;
+  }
+  if (currentLang === 'en') {
+    return href;
+  }
+  if (href === '/') {
+    return `/${currentLang}`;
+  }
+  if (href.startsWith(`/${currentLang}`)) {
+    return href;
+  }
+  return `/${currentLang}${href.startsWith('/') ? href : `/${href}`}`;
+}
+
+export function Footer({
+  settings = defaultSiteSettings,
+  lang = 'en',
+}: {
+  settings?: SiteSettingsData;
+  lang?: string;
+}) {
   const consultationHref = settings?.whatsappNumber
     ? getWhatsAppUrl(settings.whatsappNumber)
     : settings?.consultationLink || getWhatsAppUrl();
@@ -13,7 +41,10 @@ export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSett
       <div className="border-border-on-dark/20 border-b px-6 py-17.5 md:px-12">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-4">
           <div className="flex flex-col gap-4 md:col-span-2">
-            <Link href="/" className="inline-block transition-opacity hover:opacity-95">
+            <Link
+              href={localizeHref('/', lang)}
+              className="inline-block transition-opacity hover:opacity-95"
+            >
               <Image
                 src="/white-logo-for-elvinediz.png"
                 alt={settings?.siteTitle || 'Elvin Ediz'}
@@ -33,31 +64,31 @@ export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSett
               Explore
             </span>
             <Link
-              href="/"
+              href={localizeHref('/', lang)}
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
               Home
             </Link>
             <Link
-              href="/services"
+              href={localizeHref('/services', lang)}
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
               Services
             </Link>
             <Link
-              href="/insights"
+              href={localizeHref('/insights', lang)}
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
               Insights
             </Link>
             <Link
-              href="/questions"
+              href={localizeHref('/questions', lang)}
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
               Q&A
             </Link>
             <Link
-              href="/privacy"
+              href={localizeHref('/privacy', lang)}
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
               Privacy Policy
@@ -95,7 +126,7 @@ export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSett
           </span>
           <div className="flex flex-wrap items-center gap-3 text-center md:text-right">
             <Link
-              href="/privacy"
+              href={localizeHref('/privacy', lang)}
               className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
             >
               Privacy Policy

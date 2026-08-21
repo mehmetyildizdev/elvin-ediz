@@ -7,7 +7,7 @@ import type { InsightsPageData, PostData, SiteSettingsData } from '@/sanity/lib/
 import { defaultInsightsPage, defaultPosts, defaultSiteSettings } from '@/sanity/lib/types';
 import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { PageHeader } from '@/components/ui/page-header';
-import { cleanStega, formatDate } from '../insights/utils';
+import { cleanStega, formatDate, getLocalizedPostHref } from '../insights/utils';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 import { ConsultationCard } from '../insights/sections/consultation-card';
 import { Pagination } from '@/components/ui/pagination';
@@ -18,12 +18,14 @@ interface InformationListProps {
   insightsPageData?: InsightsPageData;
   posts?: PostData[];
   settings?: SiteSettingsData;
+  lang?: string;
 }
 
 export function InformationList({
   insightsPageData = defaultInsightsPage,
   posts = [],
   settings = defaultSiteSettings,
+  lang = 'en',
 }: InformationListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const allPosts = posts && posts.length > 0 ? posts : defaultPosts;
@@ -37,6 +39,7 @@ export function InformationList({
   const totalPages = Math.ceil(infoPosts.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedPosts = infoPosts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const backHref = lang === 'en' ? '/insights' : `/${lang}/insights`;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -62,63 +65,49 @@ export function InformationList({
           {/* Breadcrumb back to main Insights Hub */}
           <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
             <Link
-              href="/insights"
+              href={backHref}
               className="text-text-muted hover:text-accent inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase transition-colors"
             >
-              <ArrowLeft size={15} /> Back to all insights & updates
+              <ArrowLeft size={15} /> Back to insights & updates
             </Link>
 
             {infoPosts.length > 0 && (
               <span className="text-text-muted text-xs">
                 {infoPosts.length > ITEMS_PER_PAGE
                   ? `Showing ${startIndex + 1}–${Math.min(startIndex + ITEMS_PER_PAGE, infoPosts.length)} of ${infoPosts.length} practical guides`
-                  : `Showing ${infoPosts.length} practical ${infoPosts.length === 1 ? 'guide' : 'guides'}`}
+                  : `Showing ${infoPosts.length} ${infoPosts.length === 1 ? 'practical guide' : 'practical guides'}`}
               </span>
             )}
           </div>
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-            {/* LEFT COLUMN: Information Guides list */}
-            <div className="flex flex-col gap-8 lg:col-span-8">
-              {paginatedPosts.length > 0 ? (
-                <>
+            {/* Main column */}
+            <div className="lg:col-span-8">
+              {infoPosts.length > 0 ? (
+                <div className="space-y-8">
                   {paginatedPosts.map((post) => {
-                    const GuideIcon =
-                      getIconComponent(post.checklistIcon || post.iconName) || BookOpen;
-                    const displayDate = post.publishedAt
-                      ? formatDate(post.publishedAt, {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric',
-                        })
-                      : '';
+                    const GuideIcon = getIconComponent(post.iconName) || BookOpen;
                     const checklistCount = post.checklistItems?.length || 0;
+                    const displayDate = post.publishedAt ? formatDate(post.publishedAt) : null;
+                    const postHref = getLocalizedPostHref(post, 'information', lang);
 
                     return (
                       <article
                         key={post._id || post.slug}
-                        className="group border-border-subtle hover:border-accent/40 bg-bg-surface flex flex-col rounded-sm border p-6 transition-all duration-300 hover:shadow-md md:p-8"
+                        className="group border-border-subtle hover:border-accent/40 bg-bg-surface relative overflow-hidden rounded-sm border p-6 shadow-xs transition-all duration-300 hover:shadow-md sm:p-8"
                       >
-                        {/* Top Meta Bar */}
-                        <div className="border-border-subtle/70 mb-5 flex flex-wrap items-center justify-between gap-3 border-b pb-4">
-                          <div className="flex items-center gap-2.5">
-                            <span className="bg-accent/15 text-accent flex h-8 w-8 items-center justify-center rounded-full">
-                              <GuideIcon size={16} />
-                            </span>
-                            <div>
-                              <span className="text-accent block text-[10px] font-bold tracking-widest uppercase">
-                                Practical Guide
-                              </span>
-                              <span className="text-text-main font-serif text-sm font-semibold">
-                                {post.checklistTitle || 'Guide & Documentation Checklist'}
-                              </span>
-                            </div>
-                          </div>
+                        {/* Guide Header Strip */}
+                        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                          <span className="bg-accent/15 text-accent border-accent/25 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold tracking-wider uppercase">
+                            <GuideIcon size={12} className="text-accent shrink-0" />
+                            {post.category || 'Practical Guide'}
+                          </span>
 
-                          <div className="flex flex-wrap items-center gap-2">
+                          <div className="flex items-center gap-3">
                             {checklistCount > 0 && (
                               <span className="bg-accent/10 text-accent rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase">
-                                {checklistCount} Checklist {checklistCount === 1 ? 'Step' : 'Steps'}
+                                {checklistCount} Checklist{' '}
+                                {checklistCount === 1 ? 'Step' : 'Steps'}
                               </span>
                             )}
                             {displayDate && (
@@ -132,7 +121,7 @@ export function InformationList({
 
                         {/* Title */}
                         <h3 className="text-text-main group-hover:text-accent mb-3 font-serif text-xl leading-snug font-semibold transition-colors duration-200 sm:text-2xl">
-                          <Link href={`/information/${cleanStega(post.slug)}`}>{post.title}</Link>
+                          <Link href={postHref}>{post.title}</Link>
                         </h3>
 
                         {/* Excerpt */}
@@ -171,7 +160,7 @@ export function InformationList({
                         {/* Bottom Action Row */}
                         <div className="border-border-subtle/50 flex flex-wrap items-center justify-between gap-4 border-t pt-4">
                           <Link
-                            href={`/information/${cleanStega(post.slug)}`}
+                            href={postHref}
                             className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
                           >
                             View full guide & checklist
@@ -191,9 +180,9 @@ export function InformationList({
                             )}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-xs font-medium transition-colors"
+                            className="text-accent bg-accent/10 hover:bg-accent hover:text-bg-primary inline-flex items-center gap-1.5 rounded-sm px-3.5 py-1.5 text-xs font-semibold transition-colors"
                           >
-                            {post.infoCtaButtonText || 'Schedule Audit on WhatsApp'}
+                            {post.infoCtaButtonText || 'Inquire with Consultant'}
                           </a>
                         </div>
                       </article>
@@ -206,23 +195,28 @@ export function InformationList({
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
                   />
-                </>
+                </div>
               ) : (
                 <div className="border-border-subtle bg-bg-surface rounded-sm border border-dashed p-12 text-center">
                   <BookOpen size={28} className="text-accent/60 mx-auto mb-3" />
                   <h3 className="text-text-main font-serif text-lg font-semibold">
-                    No Information Guides at this time
+                    No practical guides available
                   </h3>
                   <p className="text-text-muted mt-1 text-xs">
-                    Practical guides, document requirements, and instructions will appear here soon.
+                    {(insightsPageData as any).infoEmptyMessage ||
+                      'Comprehensive immigration blueprints are currently being prepared.'}
                   </p>
                 </div>
               )}
             </div>
 
-            {/* RIGHT SIDEBAR: Consultation Card */}
-            <div className="flex flex-col gap-8 lg:col-span-4">
-              <ConsultationCard insightsPageData={insightsPageData} settings={settings} />
+            {/* Sidebar column */}
+            <div className="space-y-8 lg:col-span-4">
+              <ConsultationCard
+                insightsPageData={insightsPageData}
+                settings={settings}
+                variant="card"
+              />
             </div>
           </div>
         </div>

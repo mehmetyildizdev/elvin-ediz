@@ -17,6 +17,44 @@ Web application and content management system for **Elvin Ediz Immigration Servi
 - **Hosting & Serverless Platform**: Vercel (Native Next.js ISR, automatic edge caching & GitHub deployment).
 - **Headless Content Management**: Sanity.io (v6 Studio hosted on `sanity.studio`).
 - **Form Submissions**: Native Next.js server route (`/api/appointment`) directly saving incoming client inquiries into the Sanity dataset with optional notification webhooks.
+- **Internationalization (i18n)**: Sanity Document Internationalization + Next.js Dynamic Language Routing (`app/[lang]/`) supporting English, Turkish, Arabic (RTL), and French.
+
+---
+
+## 🌍 Multi-Language (i18n) Architecture
+
+The application provides end-to-end multi-language support with automatic fallbacks and SEO-optimized URLs:
+
+### 1. Supported Languages
+
+- **English (`en`)**: Master default language. Served at clean root paths (e.g. `/`, `/services`, `/questions`, `/insights/[slug]`).
+- **Turkish (`tr`)**: Localized subpath (e.g. `/tr/services`, `/tr/questions`).
+- **Arabic (`ar`)**: Localized subpath with automated **RTL (Right-to-Left)** reading direction and layout adjustments (`<html lang="ar" dir="rtl">`).
+- **French (`fr`)**: Localized subpath (e.g. `/fr/services`, `/fr/insights/[slug]`).
+
+### 2. URL Strategy & Next.js Proxy (`proxy.ts`)
+
+- Default English visitors keep clean, standard URLs without unnecessary `/en/` redirects.
+- Non-default languages use clean top-level subpaths (`/tr/...`, `/ar/...`, `/fr/...`).
+- Post slugs in Sanity remain pure without redundant language prefixes (e.g. `/tr/insights/express-entry-pnp`).
+
+### 3. Clean Bundle Boundary (`sanity/i18n/index.ts` vs `sanity/i18n/schema.ts`)
+
+To prevent heavy Sanity Studio internals from leaking into the public website browser bundle:
+
+- **`sanity/i18n/index.ts` (Frontend-Safe)**: Exports pure constants, language definitions (`supportedLanguages`, `defaultLanguage`), and lightweight direction helpers (`getLanguageDirection`, `isValidLanguage`). Safe to import in React client components and Next.js layouts.
+- **`sanity/i18n/schema.ts` (Studio-Only)**: Exports Sanity Studio schema helpers (`languageField`, `isSlugUniqueByLanguage`, `slugifyWithI18n`) that import Studio runtime packages (`defineField`, Studio validation types). Used exclusively inside `sanity/schemaTypes/`.
+
+### 4. Language-Aware Data Queries with Fallback (`sanity/lib/data.ts`)
+
+All data fetchers accept an optional `lang` parameter and use GROQ `coalesce()` queries:
+
+- If a translated document exists in the requested language, it is returned immediately.
+- If a document is not yet translated, the query seamlessly falls back to the English version so visitors never encounter broken or empty pages.
+
+### 5. Automated Hreflang International SEO
+
+Metadata automatically emits Google-compliant `hreflang` alternate links (`en`, `tr`, `ar`, `fr`, and `x-default`) on every page for indexing.
 
 ---
 
@@ -105,9 +143,9 @@ pnpm run studio:deploy
 
 ## ⚡ Sanity Visual Editing & Live Preview
 
-1. **`<VisualEditing />`** (`next-sanity/visual-editing` in [`app/layout.tsx`](app/layout.tsx)):
+1. **`<VisualEditing />`** (`next-sanity/visual-editing` in [`app/[lang]/layout.tsx`](app/[lang]/layout.tsx)):
    Enables click-to-edit overlays and live DOM element selection when browsing the site inside the Sanity Studio Presentation Tool.
-2. **`<SanityLive />`** (`next-sanity/live` in [`sanity/lib/live.ts`](sanity/lib/live.ts) & [`app/layout.tsx`](app/layout.tsx)):
+2. **`<SanityLive />`** (`next-sanity/live` in [`sanity/lib/live.ts`](sanity/lib/live.ts) & [`app/[lang]/layout.tsx`](app/[lang]/layout.tsx)):
    Maintains a real-time Server-Sent Events (SSE) subscription in Draft Mode, reflecting changes live in the Studio preview window.
 3. **Draft Mode Expiration**:
    - For demo and review sessions, the draft preview cookie (`__prerender_bypass`) in [`app/api/draft/route.ts`](app/api/draft/route.ts) is configured to automatically expire after **1 hour (3600s)**.

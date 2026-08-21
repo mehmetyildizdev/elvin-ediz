@@ -1,7 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { UserIcon } from '@sanity/icons/User';
 import { SearchIcon } from '@sanity/icons/Search';
-import { languageField } from '../i18n';
+import { languageField } from '../i18n/schema';
 
 export const aboutPage = defineType({
   name: 'aboutPage',

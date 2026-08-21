@@ -15,7 +15,7 @@ import { announcementsGroup, announcementsFields } from './announcements';
 import { newsGroup, newsFields } from './news';
 import { consultationGroup, consultationFields } from './consultation';
 import { seoGroup, seoFields } from './seo';
-import { languageField } from '../../i18n';
+import { languageField } from '../../i18n/schema';
 
 export const insightsPage = defineType({
   name: config.name,
@@ -40,6 +40,20 @@ export const insightsPage = defineType({
     ...consultationFields,
     ...seoFields,
   ],
+  preview: {
+    select: {
+      lang: 'language',
+      title: 'titleMain',
+    },
+    prepare({ lang, title }) {
+      const l = (lang || 'en').toUpperCase();
+      return {
+        title: `[${l}] Insights Hub Page`,
+        subtitle: title || 'Insights & News hub settings',
+      };
+    },
+  },
 });
 
 export default insightsPage;
+

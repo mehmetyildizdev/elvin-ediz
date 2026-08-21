@@ -14,12 +14,14 @@ interface InsightsHubProps {
   insightsPageData?: InsightsPageData;
   posts?: PostData[];
   settings?: SiteSettingsData;
+  lang?: string;
 }
 
 export function InsightsHub({
   insightsPageData = defaultInsightsPage,
   posts = [],
   settings = defaultSiteSettings,
+  lang = 'en',
 }: InsightsHubProps) {
   // Use posts if available, otherwise fallback to defaults so cards are never blank
   const allPosts = posts && posts.length > 0 ? posts : defaultPosts;
@@ -41,6 +43,8 @@ export function InsightsHub({
     const k = cleanStega(p.kind);
     return k === 'news';
   });
+
+  const getCategoryHref = (path: string) => (lang === 'en' ? path : `/${lang}${path}`);
 
   return (
     <div>
@@ -76,7 +80,7 @@ export function InsightsHub({
                 </a>
 
                 <Link
-                  href="/information"
+                  href={getCategoryHref('/information')}
                   className="hover:border-accent/30 hover:bg-bg-primary/5 text-text-main hover:text-accent border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all hover:scale-102"
                 >
                   <BookOpen size={12} className="text-accent" />
@@ -89,7 +93,7 @@ export function InsightsHub({
                 </Link>
 
                 <Link
-                  href="/announcements"
+                  href={getCategoryHref('/announcements')}
                   className="hover:border-accent/30 hover:bg-bg-primary/5 text-text-main hover:text-accent border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all hover:scale-102"
                 >
                   <Bell size={12} className="text-accent" />
@@ -102,7 +106,7 @@ export function InsightsHub({
                 </Link>
 
                 <Link
-                  href="/news"
+                  href={getCategoryHref('/news')}
                   className="hover:border-accent/30 hover:bg-bg-primary/5 text-text-main hover:text-accent border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all hover:scale-102"
                 >
                   <Newspaper size={12} className="text-accent" />
@@ -117,7 +121,7 @@ export function InsightsHub({
             </div>
 
             <Link
-              href="/questions"
+              href={getCategoryHref('/questions')}
               className="text-text-muted hover:text-accent hidden shrink-0 items-center gap-1 text-xs font-semibold transition-colors xl:inline-flex"
             >
               Have a specific question? Visit Q&A →
@@ -128,13 +132,18 @@ export function InsightsHub({
             {/* ROW 1: Featured Insights (8 cols) & Official Notices / Announcements (4 cols) Perfectly Aligned */}
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-stretch">
               <div className="flex flex-col lg:col-span-8">
-                <FeaturedInsights insightsPageData={insightsPageData} posts={insightPosts} />
+                <FeaturedInsights
+                  insightsPageData={insightsPageData}
+                  posts={insightPosts}
+                  lang={lang}
+                />
               </div>
               <div className="flex flex-col lg:col-span-4">
                 <div className="border-border-subtle bg-bg-surface flex h-full flex-col rounded-sm border shadow-xs">
                   <AnnouncementsSidebar
                     insightsPageData={insightsPageData}
                     posts={announcementPosts}
+                    lang={lang}
                   />
                 </div>
               </div>
@@ -155,11 +164,15 @@ export function InsightsHub({
             {/* ROW 2: Information Guides (8 cols) & News + Consultation (4 cols) starting at identical baseline */}
             <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
               <div className="flex flex-col lg:col-span-8">
-                <InformationGuides insightsPageData={insightsPageData} posts={infoPosts} />
+                <InformationGuides
+                  insightsPageData={insightsPageData}
+                  posts={infoPosts}
+                  lang={lang}
+                />
               </div>
               <div className="flex flex-col gap-8 lg:col-span-4">
                 <div className="border-border-subtle bg-bg-surface flex flex-col rounded-sm border shadow-xs">
-                  <NewsSidebar insightsPageData={insightsPageData} posts={newsPosts} />
+                  <NewsSidebar insightsPageData={insightsPageData} posts={newsPosts} lang={lang} />
                 </div>
                 <ConsultationCard
                   insightsPageData={insightsPageData}

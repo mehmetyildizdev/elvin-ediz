@@ -4,7 +4,7 @@ import { LockIcon } from '@sanity/icons/Lock';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import { CodeIcon } from '@sanity/icons/Code';
 import { SearchIcon } from '@sanity/icons/Search';
-import { languageField } from '../i18n';
+import { languageField } from '../i18n/schema';
 
 export const privacyPage = defineType({
   name: 'privacyPage',
@@ -205,4 +205,18 @@ export const privacyPage = defineType({
         'Search engine metadata and social preview for the Privacy Policy page (/privacy-policy).',
     }),
   ],
+  preview: {
+    select: {
+      lang: 'language',
+      title: 'titleMain',
+    },
+    prepare({ lang, title }) {
+      const l = (lang || 'en').toUpperCase();
+      return {
+        title: `[${l}] Privacy Policy Page`,
+        subtitle: title || 'Client confidentiality policy',
+      };
+    },
+  },
 });
+

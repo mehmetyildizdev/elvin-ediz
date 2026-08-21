@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowUpRight, Clock, ExternalLink, Globe, Newspaper } from '
 import type { InsightsPageData, PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultInsightsPage, defaultPosts, defaultSiteSettings } from '@/sanity/lib/types';
 import { PageHeader } from '@/components/ui/page-header';
-import { cleanStega, formatDate } from '../insights/utils';
+import { cleanStega, formatDate, getLocalizedPostHref } from '../insights/utils';
 import { ConsultationCard } from '../insights/sections/consultation-card';
 import { Pagination } from '@/components/ui/pagination';
 
@@ -17,12 +17,14 @@ interface NewsListProps {
   insightsPageData?: InsightsPageData;
   posts?: PostData[];
   settings?: SiteSettingsData;
+  lang?: string;
 }
 
 export function NewsList({
   insightsPageData = defaultInsightsPage,
   posts = [],
   settings = defaultSiteSettings,
+  lang = 'en',
 }: NewsListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const allPosts = posts && posts.length > 0 ? posts : defaultPosts;
@@ -39,6 +41,7 @@ export function NewsList({
 
   const featuredPost = currentPage === 1 ? paginatedPosts[0] : null;
   const gridPosts = currentPage === 1 ? paginatedPosts.slice(1) : paginatedPosts;
+  const backHref = lang === 'en' ? '/insights' : `/${lang}/insights`;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -58,65 +61,53 @@ export function NewsList({
       {/* 02. Content Area */}
       <section className="bg-bg-app px-6 py-16 md:px-12 md:py-24">
         <div className="mx-auto max-w-7xl">
-          {/* Breadcrumb back to main Insights Hub */}
-          <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+          {/* Breadcrumb / Back Link */}
+          <div className="mb-8">
             <Link
-              href="/insights"
+              href={backHref}
               className="text-text-muted hover:text-accent inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase transition-colors"
             >
-              <ArrowLeft size={15} /> Back to insights & updates
+              <ArrowLeft size={14} /> Back to Insights Hub
             </Link>
-
-            {newsPosts.length > 0 && (
-              <span className="text-text-muted text-xs">
-                {newsPosts.length > ITEMS_PER_PAGE
-                  ? `Showing ${startIndex + 1}–${Math.min(startIndex + ITEMS_PER_PAGE, newsPosts.length)} of ${newsPosts.length} curated stories`
-                  : `Showing ${newsPosts.length} ${newsPosts.length === 1 ? 'curated story' : 'curated stories'}`}
-              </span>
-            )}
           </div>
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-            {/* LEFT COLUMN: News Feed (8 cols) */}
-            <div className="flex flex-col gap-10 lg:col-span-8">
-              {paginatedPosts.length > 0 ? (
-                <>
-                  {/* FEATURED / LEAD NEWS STORY (Page 1 only) */}
+            {/* Main column */}
+            <div className="lg:col-span-8">
+              {newsPosts.length > 0 ? (
+                <div className="space-y-8">
+                  {/* FEATURED / TOP NEWS STORY (Page 1 only) */}
                   {featuredPost && (
-                    <article className="group border-border-subtle hover:border-accent/40 bg-bg-surface overflow-hidden rounded-sm border transition-all duration-300 hover:shadow-lg">
+                    <article className="border-border-subtle hover:border-accent/40 bg-bg-surface group overflow-hidden rounded-sm border shadow-xs transition-all duration-300 hover:shadow-md">
                       {featuredPost.coverImageUrl && (
-                        <div className="relative h-64 w-full overflow-hidden sm:h-80">
+                        <div className="relative aspect-video w-full overflow-hidden bg-black/5 sm:aspect-21/9">
                           <Image
                             src={featuredPost.coverImageUrl}
                             alt={featuredPost.title}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="object-cover transition-transform duration-500 group-hover:scale-103"
+                            priority
                           />
                         </div>
                       )}
 
-                      <div className="flex flex-col p-6 sm:p-8">
+                      <div className="p-6 sm:p-8">
                         {/* Meta strip */}
                         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-xs">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className="bg-accent/15 text-accent rounded-full px-3 py-0.5 text-[11px] font-bold tracking-wider uppercase">
-                              {featuredPost.category || 'Featured News'}
-                            </span>
-                            {featuredPost.readTime && (
-                              <span className="text-text-muted flex items-center gap-1 text-[11px]">
-                                <Clock size={11} /> {featuredPost.readTime}
-                              </span>
-                            )}
-                          </div>
+                          <span className="bg-accent/10 text-accent border-accent/25 rounded-full border px-3 py-1 font-bold tracking-wider uppercase">
+                            {featuredPost.category || featuredPost.sourceName || 'Featured News'}
+                          </span>
 
-                          <div className="flex items-center gap-2">
+                          <div className="text-text-muted flex items-center gap-3">
                             {featuredPost.sourceName && (
-                              <span className="bg-bg-app border-border-subtle text-text-muted inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11px]">
-                                <Globe size={11} /> {featuredPost.sourceName}
+                              <span className="flex items-center gap-1 font-medium">
+                                <Globe size={12} className="text-accent" />
+                                {featuredPost.sourceName}
                               </span>
                             )}
                             {featuredPost.publishedAt && (
-                              <span className="text-text-muted text-[11px]">
+                              <span className="flex items-center gap-1">
+                                <Clock size={12} className="opacity-70" />
                                 {formatDate(featuredPost.publishedAt)}
                               </span>
                             )}
@@ -125,7 +116,7 @@ export function NewsList({
 
                         {/* Title */}
                         <h2 className="text-text-main group-hover:text-accent mb-4 font-serif text-2xl font-semibold transition-colors sm:text-3xl">
-                          <Link href={`/news/${cleanStega(featuredPost.slug)}`}>
+                          <Link href={getLocalizedPostHref(featuredPost, 'news', lang)}>
                             {featuredPost.title}
                           </Link>
                         </h2>
@@ -140,7 +131,7 @@ export function NewsList({
                         {/* Actions */}
                         <div className="border-border-subtle/60 flex flex-wrap items-center justify-between gap-4 border-t pt-4">
                           <Link
-                            href={`/news/${cleanStega(featuredPost.slug)}`}
+                            href={getLocalizedPostHref(featuredPost, 'news', lang)}
                             className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
                           >
                             Read story
@@ -149,17 +140,6 @@ export function NewsList({
                               className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                             />
                           </Link>
-
-                          {featuredPost.sourceURL && (
-                            <a
-                              href={featuredPost.sourceURL}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-xs transition-colors"
-                            >
-                              Source Article <ExternalLink size={11} />
-                            </a>
-                          )}
                         </div>
                       </div>
                     </article>
@@ -188,7 +168,9 @@ export function NewsList({
 
                             {/* Title */}
                             <h3 className="text-text-main group-hover:text-accent mb-3 font-serif text-lg leading-snug font-semibold transition-colors">
-                              <Link href={`/news/${cleanStega(post.slug)}`}>{post.title}</Link>
+                              <Link href={getLocalizedPostHref(post, 'news', lang)}>
+                                {post.title}
+                              </Link>
                             </h3>
 
                             {/* Excerpt */}
@@ -202,7 +184,7 @@ export function NewsList({
                           {/* Bottom row */}
                           <div className="border-border-subtle/60 mt-4 flex items-center justify-between border-t pt-3">
                             <Link
-                              href={`/news/${cleanStega(post.slug)}`}
+                              href={getLocalizedPostHref(post, 'news', lang)}
                               className="text-accent group/btn inline-flex items-center gap-1 text-xs font-bold tracking-widest uppercase"
                             >
                               Read
@@ -212,10 +194,15 @@ export function NewsList({
                               />
                             </Link>
 
-                            {post.sourceName && (
-                              <span className="text-text-muted max-w-30 truncate text-[11px]">
-                                {post.sourceName}
-                              </span>
+                            {post.sourceURL && (
+                              <a
+                                href={post.sourceURL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-[11px] transition-colors"
+                              >
+                                Source <ExternalLink size={10} />
+                              </a>
                             )}
                           </div>
                         </article>
@@ -229,7 +216,7 @@ export function NewsList({
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
                   />
-                </>
+                </div>
               ) : (
                 <div className="border-border-subtle bg-bg-surface rounded-sm border border-dashed p-12 text-center">
                   <Newspaper size={28} className="text-accent/60 mx-auto mb-3" />

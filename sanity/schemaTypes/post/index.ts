@@ -12,16 +12,30 @@ import { informationSectionFields } from './information';
 import { announcementSectionFields } from './announcement';
 import { newsSectionFields } from './news';
 import { seoGroup, seoFields } from './seo';
-import { languageField } from '../../i18n';
+import { languageField } from '../../i18n/schema';
 
 export const post = defineType({
   name: config.name,
   title: config.title,
   type: 'document',
-  initialValue: async (_params, context) => {
+  initialValue: async (params: any, context: any) => {
     let authorRef = { _type: 'reference', _ref: 'staff-nazly' };
     try {
       const client = context.getClient({ apiVersion: '2024-01-01' });
+      const docLang = params?.language || (context as any)?.document?.language || 'en';
+
+      if (docLang && docLang !== 'en') {
+        const localizedStaff = await client.fetch(
+          `*[_type == "staffMember" && (name match "*Nazly*" || _id match "*nazly*") && language == $docLang][0]{ _id }`,
+          { docLang }
+        );
+        if (localizedStaff?._id) {
+          return {
+            author: { _type: 'reference', _ref: localizedStaff._id },
+          };
+        }
+      }
+
       const staff = await client.fetch(
         `*[_type == "staffMember" && (name match "*Nazly*" || _id == "staff-nazly")][0]{ _id }`
       );

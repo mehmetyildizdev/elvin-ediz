@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { languageField } from '../i18n';
+import { languageField } from '../i18n/schema';
 
 export const staffMember = defineType({
   name: 'staffMember',

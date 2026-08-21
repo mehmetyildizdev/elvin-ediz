@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Calendar, Sparkles } from 'lucide-react';
 import type { InsightsPageData, PostData } from '@/sanity/lib/types';
-import { cleanStega, formatDate } from '../utils';
+import { cleanStega, formatDate, getLocalizedPostHref } from '../utils';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 import { Pagination } from '@/components/ui/pagination';
 
@@ -14,9 +14,10 @@ const ITEMS_PER_PAGE = 2;
 interface FeaturedInsightsProps {
   insightsPageData: InsightsPageData;
   posts: PostData[];
+  lang?: string;
 }
 
-export function FeaturedInsights({ insightsPageData, posts }: FeaturedInsightsProps) {
+export function FeaturedInsights({ insightsPageData, posts, lang = 'en' }: FeaturedInsightsProps) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
@@ -58,12 +59,15 @@ export function FeaturedInsights({ insightsPageData, posts }: FeaturedInsightsPr
         )}
       </div>
 
+      {/* Posts 2-Column Grid */}
       {paginatedPosts.length > 0 ? (
         <>
           <div className="grid min-h-120 grid-cols-1 items-start gap-6 sm:grid-cols-2">
             {paginatedPosts.map((post, idx) => {
               const globalIdx = startIndex + idx;
               const PostIcon = getIconComponent(post.iconName) || Sparkles;
+              const postHref = getLocalizedPostHref(post, 'insights', lang);
+
               return (
                 <article
                   key={post._id || post.slug}
@@ -91,8 +95,8 @@ export function FeaturedInsights({ insightsPageData, posts }: FeaturedInsightsPr
                                   ? 'FAM'
                                   : 'PNP'}
                         </span>
-                        <span className="bg-bg-surface/80 border-border-subtle text-accent rounded-full border px-2.5 py-0.5 font-sans text-[10px] font-semibold tracking-widest uppercase shadow-2xs">
-                          {post.category || 'Insight'}
+                        <span className="text-accent/70 font-sans text-xs tracking-wider uppercase">
+                          {post.category || 'Express Entry & PR'}
                         </span>
                       </div>
                     )}
@@ -114,7 +118,7 @@ export function FeaturedInsights({ insightsPageData, posts }: FeaturedInsightsPr
 
                   {/* Title (Fixed 2-line height) */}
                   <h3 className="text-text-main group-hover:text-accent mb-3 line-clamp-2 h-13 font-serif text-lg leading-snug font-semibold transition-colors duration-200">
-                    <Link href={`/insights/${cleanStega(post.slug)}`}>{post.title}</Link>
+                    <Link href={postHref}>{post.title}</Link>
                   </h3>
 
                   {/* Excerpt (Line clamped) */}
@@ -126,7 +130,7 @@ export function FeaturedInsights({ insightsPageData, posts }: FeaturedInsightsPr
 
                   {/* Read More Link (Pinned to bottom) */}
                   <Link
-                    href={`/insights/${cleanStega(post.slug)}`}
+                    href={postHref}
                     className="text-accent group/btn mt-auto inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase"
                   >
                     Read article
@@ -148,8 +152,8 @@ export function FeaturedInsights({ insightsPageData, posts }: FeaturedInsightsPr
           />
         </>
       ) : (
-        <div className="border-border-subtle bg-bg-surface rounded-sm border border-dashed p-10 text-center">
-          <p className="text-text-muted text-sm">New insight articles will be published soon.</p>
+        <div className="border-border-subtle bg-bg-surface rounded-sm border p-12 text-center">
+          <p className="text-text-muted text-sm">No insight articles available currently.</p>
         </div>
       )}
     </div>

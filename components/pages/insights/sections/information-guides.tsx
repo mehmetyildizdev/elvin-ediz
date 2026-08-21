@@ -1,20 +1,23 @@
 import Link from 'next/link';
 import { ArrowUpRight, BookOpen, Calendar } from 'lucide-react';
 import type { InsightsPageData, PostData } from '@/sanity/lib/types';
-import { cleanStega, formatDate } from '../utils';
+import { cleanStega, formatDate, getLocalizedPostHref } from '../utils';
 
 interface InformationGuidesProps {
   insightsPageData: InsightsPageData;
   posts: PostData[];
   maxItems?: number;
+  lang?: string;
 }
 
 export function InformationGuides({
   insightsPageData,
   posts,
   maxItems = 3,
+  lang = 'en',
 }: InformationGuidesProps) {
   const displayedPosts = posts.slice(0, maxItems);
+  const allInfoHref = lang === 'en' ? '/information' : `/${lang}/information`;
 
   return (
     <div id="information-section" className="flex flex-col">
@@ -29,7 +32,7 @@ export function InformationGuides({
             </span>
           </div>
           <Link
-            href="/information"
+            href={allInfoHref}
             className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent border-accent/20 rounded-full border px-3 py-1 text-xs font-bold transition-all hover:shadow-xs"
             title="See all information guides"
           >
@@ -53,58 +56,59 @@ export function InformationGuides({
 
       {displayedPosts.length > 0 ? (
         <div className="grid grid-cols-1 gap-5">
-          {displayedPosts.map((post) => (
-            <article
-              key={post._id || post.slug}
-              className="group border-border-subtle hover:border-accent/40 bg-bg-surface/80 relative flex flex-col justify-between rounded-sm border p-6 transition-all duration-300 hover:shadow-md md:p-8"
-            >
-              {/* Top Indicator */}
-              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-                <span className="bg-accent/10 text-accent border-accent/25 inline-flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-[10px] font-bold tracking-wider uppercase">
-                  <BookOpen size={12} className="text-accent" />
-                  Practical Guide
-                </span>
-                {post.publishedAt && (
-                  <span className="text-text-muted flex items-center gap-1 text-[11px]">
-                    <Calendar size={11} className="opacity-70" />
-                    {formatDate(post.publishedAt)}
+          {displayedPosts.map((post) => {
+            const postHref = getLocalizedPostHref(post, 'information', lang);
+            return (
+              <article
+                key={post._id || post.slug}
+                className="group border-border-subtle hover:border-accent/40 bg-bg-surface/80 relative flex flex-col justify-between rounded-sm border p-6 transition-all duration-300 hover:shadow-md md:p-8"
+              >
+                {/* Top Indicator */}
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                  <span className="bg-accent/10 text-accent border-accent/25 inline-flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-[10px] font-bold tracking-wider uppercase">
+                    <BookOpen size={12} className="text-accent" />
+                    Practical Guide
                   </span>
+                  {post.publishedAt && (
+                    <span className="text-text-muted flex items-center gap-1 text-[11px]">
+                      <Calendar size={11} className="opacity-70" />
+                      {formatDate(post.publishedAt)}
+                    </span>
+                  )}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-text-main group-hover:text-accent mb-3 font-serif text-xl leading-snug font-semibold transition-colors duration-200 sm:text-2xl">
+                  <Link href={postHref}>{post.title}</Link>
+                </h3>
+
+                {/* Excerpt */}
+                {post.excerpt && (
+                  <p className="text-text-muted mb-6 text-sm leading-relaxed">{post.excerpt}</p>
                 )}
-              </div>
 
-              {/* Title */}
-              <h3 className="text-text-main group-hover:text-accent mb-3 font-serif text-xl leading-snug font-semibold transition-colors duration-200 sm:text-2xl">
-                <Link href={`/information/${cleanStega(post.slug)}`}>{post.title}</Link>
-              </h3>
-
-              {/* Excerpt */}
-              {post.excerpt && (
-                <p className="text-text-muted mb-6 text-sm leading-relaxed">{post.excerpt}</p>
-              )}
-
-              {/* Bottom action row */}
-              <div className="border-border-subtle/50 flex items-center justify-between border-t pt-4">
-                <span className="text-text-muted text-xs">
-                  Curated by Elvin Ediz Immigration Advisory
-                </span>
-                <Link
-                  href={`/information/${cleanStega(post.slug)}`}
-                  className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
-                >
-                  Explore guide
-                  <ArrowUpRight
-                    size={14}
-                    className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-                  />
-                </Link>
-              </div>
-            </article>
-          ))}
+                {/* Bottom action row */}
+                <div className="border-border-subtle/50 flex items-center justify-between border-t pt-4">
+                  <span className="text-text-muted text-xs">
+                    Curated by Elvin Ediz Immigration Advisory
+                  </span>
+                  <Link
+                    href={postHref}
+                    className="text-accent group/btn inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase"
+                  >
+                    Explore guide
+                    <ArrowUpRight
+                      size={14}
+                      className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                    />
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
       ) : (
-        <div className="border-border-subtle bg-bg-surface rounded-sm border border-dashed p-10 text-center">
-          <p className="text-text-muted text-sm">Practical guides will appear here soon.</p>
-        </div>
+        <p className="text-text-muted text-xs">No practical guides found.</p>
       )}
     </div>
   );

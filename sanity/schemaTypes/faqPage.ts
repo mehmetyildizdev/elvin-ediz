@@ -4,7 +4,7 @@ import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import { CodeIcon } from '@sanity/icons/Code';
 import { SearchIcon } from '@sanity/icons/Search';
-import { languageField } from '../i18n';
+import { languageField } from '../i18n/schema';
 
 export const faqPage = defineType({
   name: 'faqPage',
@@ -219,4 +219,18 @@ export const faqPage = defineType({
       description: 'Search engine metadata and social preview for the FAQ / Q&A page (/questions).',
     }),
   ],
+  preview: {
+    select: {
+      lang: 'language',
+      title: 'titleMain',
+    },
+    prepare({ lang, title }) {
+      const l = (lang || 'en').toUpperCase();
+      return {
+        title: `[${l}] Questions & Answers (FAQ) Page`,
+        subtitle: title || 'Frequently asked questions',
+      };
+    },
+  },
 });
+

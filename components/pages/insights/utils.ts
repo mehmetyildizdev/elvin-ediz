@@ -9,6 +9,21 @@ export function cleanStega(value?: any): string {
     .toLowerCase();
 }
 
+export function getLocalizedPostHref(
+  post: { slug?: any; language?: string },
+  defaultKind: string = 'insights',
+  activeLang: string = 'en'
+): string {
+  const slug = cleanStega(post.slug || '');
+  const lang = post.language || (activeLang !== 'en' ? activeLang : 'en');
+  const kind = defaultKind.startsWith('/') ? defaultKind : `/${defaultKind}`;
+
+  if (lang && lang !== 'en') {
+    return `/${lang}${kind}/${slug}`;
+  }
+  return `${kind}/${slug}`;
+}
+
 export function formatDate(dateStr?: string, options?: Intl.DateTimeFormatOptions): string {
   if (!dateStr) return '';
   try {
