@@ -1,19 +1,19 @@
 import { createClient } from 'next-sanity';
 import { draftMode } from 'next/headers';
 import {
-  backupSiteSettings,
-  backupHomePage,
-  backupStaff,
-  backupServices,
-  backupServicesPage,
-  backupTestimonials,
-  backupGoogleReviews,
-  backupInsightsPage,
-  backupPosts,
-  backupFaqPage,
-  backupPrivacyPage,
-  backupAboutPage,
-} from './backupData';
+  defaultSiteSettings,
+  defaultHomePage,
+  defaultStaff,
+  defaultServices,
+  defaultServicesPage,
+  defaultTestimonials,
+  defaultGoogleReviews,
+  defaultInsightsPage,
+  defaultPosts,
+  defaultFaqPage,
+  defaultPrivacyPage,
+  defaultAboutPage,
+} from '@/data/defaults';
 import type {
   SiteSettingsData,
   HomePageData,
@@ -31,7 +31,11 @@ import type {
 } from './types';
 
 export * from './types';
+export * from './whatsapp';
 
+/**
+ * Creates and returns an active Sanity client for server components.
+ */
 export async function getSanityClient() {
   const projectId =
     process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
@@ -76,71 +80,173 @@ const getFetchOptions = (tags: string[]) => ({
   },
 });
 
-export async function fetchSiteSettings(lang: string = 'en'): Promise<SiteSettingsData> {
+/**
+ * Standardized GROQ helper for localized single documents with 3-tier language fallback:
+ * 1. Matching target language ($lang)
+ * 2. English fallback (or unilingual legacy doc)
+ * 3. Any existing document of the type
+ */
+function localizedDocQuery(type: string, projection: string = '...'): string {
+  return `coalesce(
+    *[_type == "${type}" && language == $lang][0],
+    *[_type == "${type}" && (language == "en" || !defined(language))][0],
+    *[_type == "${type}" || _id == "${type}"][0]
+  ) { ${projection} }`;
+}
+
+/**
+ * Reusable helper to fetch a single localized document from Sanity with safe fallback merging.
+ */
+async function fetchSingleDoc<T extends Record<string, any>>(
+  query: string,
+  lang: string,
+  fallback: T,
+  tags: string[],
+  isValid: (data: Partial<T>) => boolean = () => true
+): Promise<T> {
   const client = await getSanityClient();
-  if (!client) return backupSiteSettings;
+  if (!client) return fallback;
+
   try {
-    const data = await client.fetch<Partial<SiteSettingsData>>(
-      `coalesce(
-        *[_type == "siteSettings" && language == $lang][0],
-        *[_type == "siteSettings" && (language == "en" || !defined(language))][0],
-        *[_type == "siteSettings"][0]
-      ) {
-        ...,
-        "defaultOgImageUrl": defaultOgImage.asset->url
-      }`,
-      { lang },
-      getFetchOptions(['siteSettings', `siteSettings:${lang}`])
-    );
-    if (data && data.siteTitle) return { ...backupSiteSettings, ...data };
+    const data = await client.fetch<Partial<T>>(query, { lang }, getFetchOptions(tags));
+    if (data && isValid(data)) {
+      return { ...fallback, ...data };
+    }
   } catch (err) {
-    console.error('Error fetching siteSettings from Sanity:', err);
+    console.error(`[Sanity Fetch Error] Query failed:`, err);
   }
-  return backupSiteSettings;
+
+  return fallback;
+}
+
+// ----------------------------------------------------------------------
+// Page & Layout Fetchers
+// ----------------------------------------------------------------------
+
+export async function fetchSiteSettings(lang: string = 'en'): Promise<SiteSettingsData> {
+  const query = localizedDocQuery(
+    'siteSettings',
+    `..., "defaultOgImageUrl": defaultOgImage.asset->url`
+  );
+  return fetchSingleDoc<SiteSettingsData>(
+    query,
+    lang,
+    defaultSiteSettings,
+    ['siteSettings', `siteSettings:${lang}`],
+    (d) => Boolean(d.siteTitle)
+  );
 }
 
 export async function fetchHomePage(lang: string = 'en'): Promise<HomePageData> {
-  const client = await getSanityClient();
-  if (!client) return backupHomePage;
-  try {
-    const data = await client.fetch<Partial<HomePageData>>(
-      `coalesce(
-        *[_type == "homePage" && language == $lang][0],
-        *[_type == "homePage" && (language == "en" || !defined(language))][0],
-        *[_type == "homePage"][0]
-      ) {
-        ...,
-        "ciccBadgeImageUrl": ciccBadgeImage.asset->url,
-        "whoAreWeImageUrl": whoAreWeImage.asset->url,
-        "aboutImageUrl": aboutImage.asset->url,
-        "seo": seo {
-          ...,
-          "ogImageUrl": ogImage.asset->url
-        }
-      }`,
-      { lang },
-      getFetchOptions(['homePage', `homePage:${lang}`])
-    );
-    if (data && (data.heroTitle || data.strategyTitle || data.strategyEyebrow))
-      return { ...backupHomePage, ...data };
-  } catch (err) {
-    console.error('Error fetching homePage from Sanity:', err);
-  }
-  return backupHomePage;
+  const query = localizedDocQuery(
+    'homePage',
+    `
+    ...,
+    "ciccBadgeImageUrl": ciccBadgeImage.asset->url,
+    "whoAreWeImageUrl": whoAreWeImage.asset->url,
+    "aboutImageUrl": aboutImage.asset->url,
+    "seo": seo { ..., "ogImageUrl": ogImage.asset->url }
+  `
+  );
+  return fetchSingleDoc<HomePageData>(
+    query,
+    lang,
+    defaultHomePage,
+    ['homePage', `homePage:${lang}`],
+    (d) => Boolean(d.heroTitle || d.strategyTitle || d.strategyEyebrow)
+  );
 }
+
+export async function fetchAboutPage(lang: string = 'en'): Promise<AboutPageData> {
+  const query = localizedDocQuery(
+    'aboutPage',
+    `
+    ...,
+    "ciccBadgeImageUrl": ciccBadgeImage.asset->url,
+    "strategyImageUrl": strategyImage.asset->url,
+    "seo": seo { ..., "ogImageUrl": ogImage.asset->url }
+  `
+  );
+  return fetchSingleDoc<AboutPageData>(
+    query,
+    lang,
+    defaultAboutPage,
+    ['aboutPage', `aboutPage:${lang}`],
+    (d) => Boolean(d.titleMain || d.eyebrow || d.whoAreWeTitle || d.strategyTitleMain)
+  );
+}
+
+export async function fetchServicesPage(lang: string = 'en'): Promise<ServicesPageData> {
+  const query = localizedDocQuery(
+    'servicesPage',
+    `..., "seo": seo { ..., "ogImageUrl": ogImage.asset->url }`
+  );
+  return fetchSingleDoc<ServicesPageData>(
+    query,
+    lang,
+    defaultServicesPage,
+    ['servicesPage', `servicesPage:${lang}`],
+    (d) => Boolean(d.titleMain)
+  );
+}
+
+export async function fetchInsightsPage(lang: string = 'en'): Promise<InsightsPageData> {
+  const query = localizedDocQuery(
+    'insightsPage',
+    `..., "seo": seo { ..., "ogImageUrl": ogImage.asset->url }`
+  );
+  return fetchSingleDoc<InsightsPageData>(
+    query,
+    lang,
+    defaultInsightsPage,
+    ['insightsPage', `insightsPage:${lang}`],
+    (d) => Boolean(d.titleMain || d.eyebrow)
+  );
+}
+
+export async function fetchFaqPage(lang: string = 'en'): Promise<FaqPageData> {
+  const query = localizedDocQuery(
+    'faqPage',
+    `..., "seo": seo { ..., "ogImageUrl": ogImage.asset->url }`
+  );
+  return fetchSingleDoc<FaqPageData>(
+    query,
+    lang,
+    defaultFaqPage,
+    ['faqPage', `faqPage:${lang}`],
+    (d) => Boolean(d.titleMain || d.eyebrow || d.items?.length)
+  );
+}
+
+export async function fetchPrivacyPage(lang: string = 'en'): Promise<PrivacyPageData> {
+  const query = localizedDocQuery(
+    'privacyPage',
+    `..., "seo": seo { ..., "ogImageUrl": ogImage.asset->url }`
+  );
+  return fetchSingleDoc<PrivacyPageData>(
+    query,
+    lang,
+    defaultPrivacyPage,
+    ['privacyPage', `privacyPage:${lang}`],
+    (d) => Boolean(d.titleMain || d.eyebrow || d.commitmentTitle || d.content?.length)
+  );
+}
+
+// ----------------------------------------------------------------------
+// Collections & Entity Fetchers
+// ----------------------------------------------------------------------
 
 export async function fetchStaff(lang: string = 'en'): Promise<StaffData[]> {
   const client = await getSanityClient();
-  if (!client) return backupStaff;
+  if (!client) return defaultStaff;
+
   try {
-    let data = await client.fetch<StaffData[]>(
-      `*[_type == "staffMember" && (language == $lang || (!defined(language) && $lang == "en"))] | order(order asc) {
-        _id, name, designation, role, subtitle, bio, email, order,
-        "photoUrl": photo.asset->url
-      }`,
-      { lang },
-      getFetchOptions(['staffMember', `staffMember:${lang}`])
-    );
+    const query = `*[_type == "staffMember" && (language == $lang || (!defined(language) && $lang == "en"))] | order(order asc) {
+      _id, name, designation, role, subtitle, bio, email, order,
+      "photoUrl": photo.asset->url
+    }`;
+    let data = await client.fetch<StaffData[]>(query, { lang }, getFetchOptions(['staffMember', `staffMember:${lang}`]));
+
     if ((!data || data.length === 0) && lang !== 'en') {
       data = await client.fetch<StaffData[]>(
         `*[_type == "staffMember" && (language == "en" || !defined(language))] | order(order asc) {
@@ -155,37 +261,30 @@ export async function fetchStaff(lang: string = 'en'): Promise<StaffData[]> {
   } catch (err) {
     console.error('Error fetching staffMember from Sanity:', err);
   }
-  return backupStaff;
+  return defaultStaff;
 }
 
 export async function fetchServices(lang: string = 'en'): Promise<ServiceData[]> {
   const client = await getSanityClient();
-  if (!client) return backupServices;
+  if (!client) return defaultServices;
+
   try {
+    const serviceFields = `
+      _id, title, "slug": slug.current, order, iconName, summary, features, body,
+      ctaTitle, ctaSubtitle, ctaButtonText, ctaButtonLink,
+      "coverImageUrl": coverImage.asset->url,
+      "seo": seo { ..., "ogImageUrl": ogImage.asset->url }
+    `;
+
     let data = await client.fetch<ServiceData[]>(
-      `*[_type == "service" && (language == $lang || (!defined(language) && $lang == "en"))] | order(order asc) {
-        _id, title, "slug": slug.current, order, iconName, summary, features, body,
-        ctaTitle, ctaSubtitle, ctaButtonText, ctaButtonLink,
-        "coverImageUrl": coverImage.asset->url,
-        "seo": seo {
-          ...,
-          "ogImageUrl": ogImage.asset->url
-        }
-      }`,
+      `*[_type == "service" && (language == $lang || (!defined(language) && $lang == "en"))] | order(order asc) { ${serviceFields} }`,
       { lang },
       getFetchOptions(['services', `services:${lang}`])
     );
+
     if ((!data || data.length === 0) && lang !== 'en') {
       data = await client.fetch<ServiceData[]>(
-        `*[_type == "service" && (language == "en" || !defined(language))] | order(order asc) {
-          _id, title, "slug": slug.current, order, iconName, summary, features, body,
-          ctaTitle, ctaSubtitle, ctaButtonText, ctaButtonLink,
-          "coverImageUrl": coverImage.asset->url,
-          "seo": seo {
-            ...,
-            "ogImageUrl": ogImage.asset->url
-          }
-        }`,
+        `*[_type == "service" && (language == "en" || !defined(language))] | order(order asc) { ${serviceFields} }`,
         {},
         getFetchOptions(['services', 'services:en'])
       );
@@ -194,33 +293,7 @@ export async function fetchServices(lang: string = 'en'): Promise<ServiceData[]>
   } catch (err) {
     console.error('Error fetching services from Sanity:', err);
   }
-  return backupServices;
-}
-
-export async function fetchServicesPage(lang: string = 'en'): Promise<ServicesPageData> {
-  const client = await getSanityClient();
-  if (!client) return backupServicesPage;
-  try {
-    const data = await client.fetch<ServicesPageData>(
-      `coalesce(
-        *[_type == "servicesPage" && language == $lang][0],
-        *[_type == "servicesPage" && (language == "en" || !defined(language))][0],
-        *[_type == "servicesPage" || _id == "servicesPage"][0]
-      ) {
-        ...,
-        "seo": seo {
-          ...,
-          "ogImageUrl": ogImage.asset->url
-        }
-      }`,
-      { lang },
-      getFetchOptions(['servicesPage', `servicesPage:${lang}`])
-    );
-    if (data && data.titleMain) return data;
-  } catch (err) {
-    console.error('Error fetching services page header from Sanity:', err);
-  }
-  return backupServicesPage;
+  return defaultServices;
 }
 
 export async function fetchServiceBySlug(
@@ -229,33 +302,26 @@ export async function fetchServiceBySlug(
   strict: boolean = false
 ): Promise<ServiceData | null> {
   const client = await getSanityClient();
-  if (!client) return backupServices.find((s) => s.slug === slug) || backupServices[0];
+  if (!client) return defaultServices.find((s) => s.slug === slug) || defaultServices[0];
+
+  const serviceFields = `
+    _id, title, "slug": slug.current, order, iconName, summary, features, body,
+    ctaTitle, ctaSubtitle, ctaButtonText, ctaButtonLink,
+    "coverImageUrl": coverImage.asset->url,
+    "seo": seo { ..., "ogImageUrl": ogImage.asset->url }
+  `;
+
   try {
     const query = strict
       ? `coalesce(
           *[_type == "service" && slug.current == $slug && (language == $lang || (!defined(language) && $lang == "en"))][0],
           *[_type == "translation.metadata" && count((translations[].value._ref)[@ in *[_type == "service" && slug.current == $slug]._id]) > 0][0].translations[language == $lang][0].value->
-        ) {
-          _id, title, "slug": slug.current, order, iconName, summary, features, body,
-          ctaTitle, ctaSubtitle, ctaButtonText, ctaButtonLink,
-          "coverImageUrl": coverImage.asset->url,
-          "seo": seo {
-            ...,
-            "ogImageUrl": ogImage.asset->url
-          }
-        }`
+        ) { ${serviceFields} }`
       : `coalesce(
           *[_type == "service" && slug.current == $slug && language == $lang][0],
           *[_type == "service" && slug.current == $slug][0]
-        ) {
-          _id, title, "slug": slug.current, order, iconName, summary, features, body,
-          ctaTitle, ctaSubtitle, ctaButtonText, ctaButtonLink,
-          "coverImageUrl": coverImage.asset->url,
-          "seo": seo {
-            ...,
-            "ogImageUrl": ogImage.asset->url
-          }
-        }`;
+        ) { ${serviceFields} }`;
+
     const data = await client.fetch<ServiceData>(
       query,
       { slug, lang },
@@ -265,19 +331,22 @@ export async function fetchServiceBySlug(
   } catch (err) {
     console.error('Error fetching service by slug from Sanity:', err);
   }
-  if (!strict) return backupServices.find((s) => s.slug === slug) || backupServices[0];
+
+  if (!strict) return defaultServices.find((s) => s.slug === slug) || defaultServices[0];
   return null;
 }
 
 export async function fetchTestimonials(lang: string = 'en'): Promise<TestimonialData[]> {
   const client = await getSanityClient();
-  if (!client) return backupTestimonials;
+  if (!client) return defaultTestimonials;
+
   try {
     let data = await client.fetch<TestimonialData[]>(
       `*[_type == "testimonial" && (language == $lang || (!defined(language) && $lang == "en"))] | order(order asc) { _id, author, location, quote, rating }`,
       { lang },
       getFetchOptions(['testimonial', `testimonial:${lang}`])
     );
+
     if ((!data || data.length === 0) && lang !== 'en') {
       data = await client.fetch<TestimonialData[]>(
         `*[_type == "testimonial" && (language == "en" || !defined(language))] | order(order asc) { _id, author, location, quote, rating }`,
@@ -289,59 +358,59 @@ export async function fetchTestimonials(lang: string = 'en'): Promise<Testimonia
   } catch (err) {
     console.error('Error fetching testimonials from Sanity:', err);
   }
-  return backupTestimonials;
+  return defaultTestimonials;
 }
 
 export async function fetchGoogleReviews(): Promise<GoogleReviewsData> {
   const client = await getSanityClient();
-  if (!client) return backupGoogleReviews;
+  if (!client) return defaultGoogleReviews;
+
   try {
     const data = await client.fetch<GoogleReviewsData>(
       `*[_type == "googleReviews"][0] {
-        _id,
-        businessName,
-        rating,
-        totalReviews,
-        googleMapsUrl,
-        writeReviewUrl,
-        lastSyncedAt,
-        reviews
+        _id, businessName, rating, totalReviews, googleMapsUrl, writeReviewUrl, lastSyncedAt, reviews
       }`,
       {},
       getFetchOptions(['googleReviews'])
     );
-    if (data && data.reviews?.length) return { ...backupGoogleReviews, ...data };
+    if (data && data.reviews?.length) return { ...defaultGoogleReviews, ...data };
   } catch (err) {
     console.error('Error fetching googleReviews from Sanity:', err);
   }
-  return backupGoogleReviews;
+  return defaultGoogleReviews;
 }
 
-export async function fetchInsightsPage(lang: string = 'en'): Promise<InsightsPageData> {
-  const client = await getSanityClient();
-  if (!client) return backupInsightsPage;
-  try {
-    const data = await client.fetch<Partial<InsightsPageData>>(
-      `coalesce(
-        *[_type == "insightsPage" && language == $lang][0],
-        *[_type == "insightsPage" && (language == "en" || !defined(language))][0],
-        *[_type == "insightsPage"][0]
-      ) {
-        ...,
-        "seo": seo {
-          ...,
-          "ogImageUrl": ogImage.asset->url
-        }
-      }`,
-      { lang },
-      getFetchOptions(['insightsPage', `insightsPage:${lang}`])
-    );
-    if (data && (data.titleMain || data.eyebrow)) return { ...backupInsightsPage, ...data };
-  } catch (err) {
-    console.error('Error fetching insightsPage from Sanity:', err);
-  }
-  return backupInsightsPage;
-}
+// ----------------------------------------------------------------------
+// Posts & Content Fetchers
+// ----------------------------------------------------------------------
+
+const postProjection = `
+  ...,
+  "slug": slug.current,
+  "coverImageUrl": coverImage.asset->url,
+  "authorName": coalesce(
+    customAuthorName,
+    *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->name,
+    *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].name,
+    author->name,
+    authorName,
+    "Nazly Sunguroglu, RCIC"
+  ),
+  "authorRole": coalesce(
+    customAuthorRole,
+    *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->role,
+    *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].role,
+    author->role,
+    authorRole,
+    "Regulated Canadian Immigration Consultant"
+  ),
+  "authorPhotoUrl": coalesce(
+    *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->photo.asset->url,
+    *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].photo.asset->url,
+    author->photo.asset->url
+  ),
+  "seo": seo { ..., "ogImageUrl": ogImage.asset->url }
+`;
 
 export async function fetchPosts(
   kind?: PostKind | string,
@@ -349,119 +418,32 @@ export async function fetchPosts(
 ): Promise<PostData[]> {
   const client = await getSanityClient();
   if (!client) {
-    if (!kind) return backupPosts;
-    return backupPosts.filter((p) => p.kind === kind);
+    if (!kind) return defaultPosts;
+    return defaultPosts.filter((p) => p.kind === kind);
   }
+
   try {
     const query = kind
-      ? `*[_type == "post" && (language == $lang || (!defined(language) && $lang == "en")) && kind == $kind] | order(publishedAt desc) {
-          ...,
-          "slug": slug.current,
-          "coverImageUrl": coverImage.asset->url,
-          "authorName": coalesce(
-            customAuthorName,
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->name,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].name,
-            author->name,
-            authorName,
-            "Nazly Sunguroglu, RCIC"
-          ),
-          "authorRole": coalesce(
-            customAuthorRole,
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->role,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].role,
-            author->role,
-            authorRole,
-            "Regulated Canadian Immigration Consultant"
-          ),
-          "authorPhotoUrl": coalesce(
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->photo.asset->url,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].photo.asset->url,
-            author->photo.asset->url
-          ),
-          "seo": seo {
-            ...,
-            "ogImageUrl": ogImage.asset->url
-          }
-        }`
-      : `*[_type == "post" && (language == $lang || (!defined(language) && $lang == "en"))] | order(publishedAt desc) {
-          ...,
-          "slug": slug.current,
-          "coverImageUrl": coverImage.asset->url,
-          "authorName": coalesce(
-            customAuthorName,
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->name,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].name,
-            author->name,
-            authorName,
-            "Nazly Sunguroglu, RCIC"
-          ),
-          "authorRole": coalesce(
-            customAuthorRole,
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->role,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].role,
-            author->role,
-            authorRole,
-            "Regulated Canadian Immigration Consultant"
-          ),
-          "authorPhotoUrl": coalesce(
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->photo.asset->url,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].photo.asset->url,
-            author->photo.asset->url
-          ),
-          "seo": seo {
-            ...,
-            "ogImageUrl": ogImage.asset->url
-          }
-        }`;
-    const tags = [
-      'posts',
-      `posts:${lang}`,
-      ...(kind ? [`posts:${kind}`, `posts:${kind}:${lang}`] : []),
-    ];
-    let data = await client.fetch<PostData[]>(
-      query,
-      kind ? { kind, lang } : { lang },
-      getFetchOptions(tags)
-    );
+      ? `*[_type == "post" && (language == $lang || (!defined(language) && $lang == "en")) && kind == $kind] | order(publishedAt desc) { ${postProjection} }`
+      : `*[_type == "post" && (language == $lang || (!defined(language) && $lang == "en"))] | order(publishedAt desc) { ${postProjection} }`;
+
+    const tags = ['posts', `posts:${lang}`, ...(kind ? [`posts:${kind}`, `posts:${kind}:${lang}`] : [])];
+    let data = await client.fetch<PostData[]>(query, kind ? { kind, lang } : { lang }, getFetchOptions(tags));
+
     if ((!data || data.length === 0) && lang !== 'en') {
       const fallbackQuery = kind
-        ? `*[_type == "post" && (language == "en" || !defined(language)) && kind == $kind] | order(publishedAt desc) {
-            ...,
-            "slug": slug.current,
-            "coverImageUrl": coverImage.asset->url,
-            "authorName": coalesce(customAuthorName, author->name, authorName, "Nazly Sunguroglu, RCIC"),
-            "authorRole": coalesce(customAuthorRole, author->role, authorRole, "Regulated Canadian Immigration Consultant"),
-            "authorPhotoUrl": author->photo.asset->url,
-            "seo": seo {
-              ...,
-              "ogImageUrl": ogImage.asset->url
-            }
-          }`
-        : `*[_type == "post" && (language == "en" || !defined(language))] | order(publishedAt desc) {
-            ...,
-            "slug": slug.current,
-            "coverImageUrl": coverImage.asset->url,
-            "authorName": coalesce(customAuthorName, author->name, authorName, "Nazly Sunguroglu, RCIC"),
-            "authorRole": coalesce(customAuthorRole, author->role, authorRole, "Regulated Canadian Immigration Consultant"),
-            "authorPhotoUrl": author->photo.asset->url,
-            "seo": seo {
-              ...,
-              "ogImageUrl": ogImage.asset->url
-            }
-          }`;
-      data = await client.fetch<PostData[]>(
-        fallbackQuery,
-        kind ? { kind } : {},
-        getFetchOptions(['posts', 'posts:en'])
-      );
+        ? `*[_type == "post" && (language == "en" || !defined(language)) && kind == $kind] | order(publishedAt desc) { ${postProjection} }`
+        : `*[_type == "post" && (language == "en" || !defined(language))] | order(publishedAt desc) { ${postProjection} }`;
+      data = await client.fetch<PostData[]>(fallbackQuery, kind ? { kind, lang: 'en' } : { lang: 'en' }, getFetchOptions(['posts', 'posts:en']));
     }
+
     if (data?.length) return data;
   } catch (err) {
     console.error('Error fetching posts from Sanity:', err);
   }
-  if (!kind) return backupPosts;
-  return backupPosts.filter((p) => p.kind === kind);
+
+  if (!kind) return defaultPosts;
+  return defaultPosts.filter((p) => p.kind === kind);
 }
 
 export async function fetchPostBySlug(
@@ -470,85 +452,26 @@ export async function fetchPostBySlug(
   strict: boolean = false
 ): Promise<PostData | null> {
   const client = await getSanityClient();
-  if (!client) return backupPosts.find((p) => p.slug === slug) || null;
+  if (!client) return defaultPosts.find((p) => p.slug === slug) || null;
+
   try {
     const query = strict
       ? `coalesce(
           *[_type == "post" && slug.current == $slug && (language == $lang || (!defined(language) && $lang == "en"))][0],
           *[_type == "translation.metadata" && count((translations[].value._ref)[@ in *[_type == "post" && slug.current == $slug]._id]) > 0][0].translations[language == $lang][0].value->
-        ) {
-          ...,
-          "slug": slug.current,
-          "coverImageUrl": coverImage.asset->url,
-          "authorName": coalesce(
-            customAuthorName,
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->name,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].name,
-            author->name,
-            authorName,
-            "Nazly Sunguroglu, RCIC"
-          ),
-          "authorRole": coalesce(
-            customAuthorRole,
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->role,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].role,
-            author->role,
-            authorRole,
-            "Regulated Canadian Immigration Consultant"
-          ),
-          "authorPhotoUrl": coalesce(
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->photo.asset->url,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].photo.asset->url,
-            author->photo.asset->url
-          ),
-          "seo": seo {
-            ...,
-            "ogImageUrl": ogImage.asset->url
-          }
-        }`
+        ) { ${postProjection} }`
       : `coalesce(
           *[_type == "post" && slug.current == $slug && language == $lang][0],
           *[_type == "post" && slug.current == $slug][0]
-        ) {
-          ...,
-          "slug": slug.current,
-          "coverImageUrl": coverImage.asset->url,
-          "authorName": coalesce(
-            customAuthorName,
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->name,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].name,
-            author->name,
-            authorName,
-            "Nazly Sunguroglu, RCIC"
-          ),
-          "authorRole": coalesce(
-            customAuthorRole,
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->role,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].role,
-            author->role,
-            authorRole,
-            "Regulated Canadian Immigration Consultant"
-          ),
-          "authorPhotoUrl": coalesce(
-            *[_type == "translation.metadata" && count((translations[].value._ref)[@ == ^.author._ref]) > 0][0].translations[language == $lang][0].value->photo.asset->url,
-            *[_type == "staffMember" && language == $lang && (name match "*Nazly*" || _id match "*nazly*")][0].photo.asset->url,
-            author->photo.asset->url
-          ),
-          "seo": seo {
-            ...,
-            "ogImageUrl": ogImage.asset->url
-          }
-        }`;
-    const data = await client.fetch<PostData>(
-      query,
-      { slug, lang },
-      getFetchOptions([`post:${slug}`, `post:${slug}:${lang}`])
-    );
+        ) { ${postProjection} }`;
+
+    const data = await client.fetch<PostData>(query, { slug, lang }, getFetchOptions([`post:${slug}`, `post:${slug}:${lang}`]));
     if (data) return data;
   } catch (err) {
     console.error('Error fetching post by slug from Sanity:', err);
   }
-  if (!strict) return backupPosts.find((p) => p.slug === slug) || null;
+
+  if (!strict) return defaultPosts.find((p) => p.slug === slug) || null;
   return null;
 }
 
@@ -557,9 +480,10 @@ export async function fetchAllPostSlugsWithLang(
 ): Promise<{ lang: string; slug: string }[]> {
   const client = await getSanityClient();
   if (!client) {
-    const list = kind ? backupPosts.filter((p) => p.kind === kind) : backupPosts;
+    const list = kind ? defaultPosts.filter((p) => p.kind === kind) : defaultPosts;
     return list.map((p) => ({ lang: 'en', slug: p.slug }));
   }
+
   try {
     const query = kind
       ? `*[_type == "post" && kind == $kind && defined(slug.current)] {
@@ -570,105 +494,12 @@ export async function fetchAllPostSlugsWithLang(
           "slug": slug.current,
           "lang": coalesce(language, "en")
         }`;
-    const data = await client.fetch<{ lang: string; slug: string }[]>(
-      query,
-      kind ? { kind } : {},
-      getFetchOptions(['posts'])
-    );
+    const data = await client.fetch<{ lang: string; slug: string }[]>(query, kind ? { kind } : {}, getFetchOptions(['posts']));
     if (data?.length) return data;
   } catch (err) {
     console.error('Error fetching post slugs with lang from Sanity:', err);
   }
-  const list = kind ? backupPosts.filter((p) => p.kind === kind) : backupPosts;
+
+  const list = kind ? defaultPosts.filter((p) => p.kind === kind) : defaultPosts;
   return list.map((p) => ({ lang: 'en', slug: p.slug }));
 }
-
-export async function fetchFaqPage(lang: string = 'en'): Promise<FaqPageData> {
-  const client = await getSanityClient();
-  if (!client) return backupFaqPage;
-  try {
-    const data = await client.fetch<Partial<FaqPageData>>(
-      `coalesce(
-        *[_type == "faqPage" && language == $lang][0],
-        *[_type == "faqPage" && (language == "en" || !defined(language))][0],
-        *[_type == "faqPage"][0]
-      ) {
-        ...,
-        "seo": seo {
-          ...,
-          "ogImageUrl": ogImage.asset->url
-        }
-      }`,
-      { lang },
-      getFetchOptions(['faqPage', `faqPage:${lang}`])
-    );
-    if (data && (data.titleMain || data.eyebrow || data.items?.length)) {
-      return { ...backupFaqPage, ...data };
-    }
-  } catch (err) {
-    console.error('Error fetching faqPage from Sanity:', err);
-  }
-  return backupFaqPage;
-}
-
-export async function fetchPrivacyPage(lang: string = 'en'): Promise<PrivacyPageData> {
-  const client = await getSanityClient();
-  if (!client) return backupPrivacyPage;
-  try {
-    const data = await client.fetch<Partial<PrivacyPageData>>(
-      `coalesce(
-        *[_type == "privacyPage" && language == $lang][0],
-        *[_type == "privacyPage" && (language == "en" || !defined(language))][0],
-        *[_type == "privacyPage"][0]
-      ) {
-        ...,
-        "seo": seo {
-          ...,
-          "ogImageUrl": ogImage.asset->url
-        }
-      }`,
-      { lang },
-      getFetchOptions(['privacyPage', `privacyPage:${lang}`])
-    );
-    if (data && (data.titleMain || data.eyebrow || data.commitmentTitle || data.content?.length)) {
-      return { ...backupPrivacyPage, ...data };
-    }
-  } catch (err) {
-    console.error('Error fetching privacyPage from Sanity:', err);
-  }
-  return backupPrivacyPage;
-}
-
-export async function fetchAboutPage(lang: string = 'en'): Promise<AboutPageData> {
-  const client = await getSanityClient();
-  if (!client) return backupAboutPage;
-  try {
-    const data = await client.fetch<Partial<AboutPageData>>(
-      `coalesce(
-        *[_type == "aboutPage" && language == $lang][0],
-        *[_type == "aboutPage" && (language == "en" || !defined(language))][0],
-        *[_type == "aboutPage"][0]
-      ) {
-        ...,
-        "ciccBadgeImageUrl": ciccBadgeImage.asset->url,
-        "strategyImageUrl": strategyImage.asset->url,
-        "seo": seo {
-          ...,
-          "ogImageUrl": ogImage.asset->url
-        }
-      }`,
-      { lang },
-      getFetchOptions(['aboutPage', `aboutPage:${lang}`])
-    );
-    if (data && (data.titleMain || data.eyebrow || data.whoAreWeTitle || data.strategyTitleMain)) {
-      return { ...backupAboutPage, ...data };
-    }
-  } catch (err) {
-    console.error('Error fetching aboutPage from Sanity:', err);
-  }
-  return backupAboutPage;
-}
-
-export * from './whatsapp';
-
-

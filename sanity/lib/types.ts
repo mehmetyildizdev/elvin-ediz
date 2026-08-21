@@ -1,16 +1,4 @@
-import {
-  backupSiteSettings,
-  backupHomePage,
-  backupStaff,
-  backupServices,
-  backupTestimonials,
-  backupGoogleReviews,
-  backupInsightsPage,
-  backupPosts,
-  backupFaqPage,
-  backupPrivacyPage,
-  backupAboutPage,
-} from './backupData';
+
 
 export interface SeoData {
   metaTitle?: string;
@@ -510,15 +498,7 @@ export interface AboutPageData {
   seo?: SeoData;
 }
 
-export const defaultSiteSettings = backupSiteSettings;
-export const defaultHomePage = backupHomePage;
-export const defaultServices = backupServices;
-export const defaultStaff = backupStaff;
-export const defaultTestimonials = backupTestimonials;
-export const defaultGoogleReviews = backupGoogleReviews;
-export const defaultInsightsPage = backupInsightsPage;
-export const defaultPosts = backupPosts;
-export const defaultFaqPage: FaqPageData = backupFaqPage;
-export const defaultPrivacyPage: PrivacyPageData = backupPrivacyPage;
-export const defaultAboutPage: AboutPageData = backupAboutPage;
+// Re-export all type-safe defaults from data layer
+export * from '@/data/defaults';
+
 
