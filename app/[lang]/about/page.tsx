@@ -1,9 +1,5 @@
 import type { Metadata } from 'next';
-import {
-  fetchSiteSettings,
-  fetchAboutPage,
-  fetchStaff,
-} from '@/sanity/lib/data';
+import { fetchSiteSettings, fetchAboutPage, fetchStaff } from '@/sanity/lib/data';
 import { buildPageMetadata, buildPageJsonLd } from '@/sanity/lib/seo';
 import { JsonLd } from '@/components/seo/json-ld';
 import { defaultLanguage, isValidLanguage } from '@/sanity/i18n';
@@ -27,8 +23,7 @@ export async function generateMetadata({
     fetchAboutPage(currentLang),
   ]);
 
-  const canonicalPath =
-    currentLang === defaultLanguage ? '/about' : `/${currentLang}/about`;
+  const canonicalPath = currentLang === defaultLanguage ? '/about' : `/${currentLang}/about`;
 
   return buildPageMetadata({
     pageTitle:
@@ -43,11 +38,7 @@ export async function generateMetadata({
   });
 }
 
-export default async function AboutPage({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+export default async function AboutPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang = defaultLanguage } = await params;
   const currentLang = isValidLanguage(lang) ? lang : defaultLanguage;
 
@@ -57,8 +48,7 @@ export default async function AboutPage({
     fetchStaff(currentLang),
   ]);
 
-  const canonicalPath =
-    currentLang === defaultLanguage ? '/about' : `/${currentLang}/about`;
+  const canonicalPath = currentLang === defaultLanguage ? '/about' : `/${currentLang}/about`;
 
   const aboutJsonLd = buildPageJsonLd({
     title:

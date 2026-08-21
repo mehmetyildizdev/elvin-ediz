@@ -7,10 +7,7 @@ export const staffMember = defineType({
   name: config.name,
   title: config.title,
   type: 'document',
-  fields: [
-    languageField,
-    ...staffMemberFields,
-  ],
+  fields: [languageField, ...staffMemberFields],
   preview: {
     select: { title: 'name', subtitle: 'role', media: 'photo', language: 'language' },
     prepare({ title, subtitle, media, language }) {

@@ -6,7 +6,8 @@ import type { Task, TaskContext } from '../../types';
 export const seedServicesTask: Task = {
   id: 'services',
   name: 'Seed Services & Services Page',
-  description: 'Seeds all 5 immigration pathway services and the main Services page layout into Sanity CMS.',
+  description:
+    'Seeds all 5 immigration pathway services and the main Services page layout into Sanity CMS.',
   run: async (ctx: TaskContext) => {
     // 1. Upsert Services Page document
     await upsertDocument(ctx, {

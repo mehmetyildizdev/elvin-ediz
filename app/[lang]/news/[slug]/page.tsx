@@ -79,12 +79,7 @@ export default async function NewsSlugPage({
     <>
       <JsonLd data={postJsonLd} />
       <main>
-        <InsightsDetail
-          post={post}
-          slug={decodedSlug}
-          settings={settings}
-          lang={currentLang}
-        />
+        <InsightsDetail post={post} slug={decodedSlug} settings={settings} lang={currentLang} />
       </main>
     </>
   );

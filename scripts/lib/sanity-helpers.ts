@@ -61,7 +61,9 @@ export async function batchUpsert<T extends SanityDocumentPayload>(
 
     try {
       await tx.commit();
-      logger.success(`Committed batch ${Math.floor(i / chunkSize) + 1}/${Math.ceil(docs.length / chunkSize)} (${chunk.length} docs)`);
+      logger.success(
+        `Committed batch ${Math.floor(i / chunkSize) + 1}/${Math.ceil(docs.length / chunkSize)} (${chunk.length} docs)`
+      );
     } catch (err) {
       logger.error(`Batch transaction failed at chunk starting index ${i}`, err);
       throw err;

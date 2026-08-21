@@ -20,9 +20,10 @@ export const post = defineType({
   type: 'document',
   initialValue: async (params: any, context: any) => {
     let authorRef = { _type: 'reference', _ref: 'staff-nazly' };
+    const docLang = params?.language || (context as any)?.document?.language || 'en';
+    const docKind = params?.kind || (context as any)?.document?.kind || 'insight';
     try {
       const client = context.getClient({ apiVersion: '2024-01-01' });
-      const docLang = params?.language || (context as any)?.document?.language || 'en';
 
       if (docLang && docLang !== 'en') {
         const localizedStaff = await client.fetch(
@@ -31,6 +32,8 @@ export const post = defineType({
         );
         if (localizedStaff?._id) {
           return {
+            kind: docKind,
+            language: docLang,
             author: { _type: 'reference', _ref: localizedStaff._id },
           };
         }
@@ -46,6 +49,8 @@ export const post = defineType({
       // fallback
     }
     return {
+      kind: docKind,
+      language: docLang,
       author: authorRef,
     };
   },

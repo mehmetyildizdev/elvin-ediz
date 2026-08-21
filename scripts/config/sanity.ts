@@ -8,7 +8,9 @@ export interface SanityConfigOptions {
   requireWriteToken?: boolean;
 }
 
-export function getScriptSanityClient(options: SanityConfigOptions = { requireWriteToken: true }): SanityClient {
+export function getScriptSanityClient(
+  options: SanityConfigOptions = { requireWriteToken: true }
+): SanityClient {
   const projectId =
     process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
     process.env.SANITY_STUDIO_PROJECT_ID ||
@@ -32,7 +34,9 @@ export function getScriptSanityClient(options: SanityConfigOptions = { requireWr
 
   if (options.requireWriteToken && !token) {
     logger.error('Missing SANITY_EDITOR_TOKEN / SANITY_API_WRITE_TOKEN in environment.');
-    logger.info('Please add SANITY_EDITOR_TOKEN or SANITY_API_WRITE_TOKEN with write access to .env.local');
+    logger.info(
+      'Please add SANITY_EDITOR_TOKEN or SANITY_API_WRITE_TOKEN with write access to .env.local'
+    );
     process.exit(1);
   }
 

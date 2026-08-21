@@ -36,8 +36,7 @@ export const backupAboutPage: AboutPageData = {
   strategyLeaderName: 'Nazly Sunguroglu (RCIC)',
   strategyLeaderRole: 'Regulated Canadian Immigration Consultant',
   strategyLeaderSubtitle: 'Founder of Elvin Ediz Immigration Services',
-  strategyQuoteParagraph:
-    'We believe Canadian immigration should be empowering, not overwhelming.',
+  strategyQuoteParagraph: 'We believe Canadian immigration should be empowering, not overwhelming.',
   strategyBodyParagraph:
     'With personalized assessment and clear strategic direction, we help individuals, students, professionals, and families navigate Canadian immigration regulations with confidence.',
   credentials: [

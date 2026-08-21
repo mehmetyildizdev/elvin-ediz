@@ -6,7 +6,8 @@ import type { Task, TaskContext } from '../../types';
 export const syncInsightsTask: Task = {
   id: 'insights',
   name: 'Sync Insight Posts',
-  description: 'Syncs in-depth thought leadership & strategic insight articles from data/defaults/posts/insights into Sanity.',
+  description:
+    'Syncs in-depth thought leadership & strategic insight articles from data/defaults/posts/insights into Sanity.',
   run: async (ctx: TaskContext) => {
     // Resolve Nazly staff author if present
     let staffId = 'staff-nazly';

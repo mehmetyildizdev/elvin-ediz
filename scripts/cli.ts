@@ -82,7 +82,9 @@ async function main(): Promise<void> {
 
   const group = groups[command];
   if (!group) {
-    logger.error(`Unknown command: "${command}". Available commands: seed, sync, maintenance, list.`);
+    logger.error(
+      `Unknown command: "${command}". Available commands: seed, sync, maintenance, list.`
+    );
     printHelp();
     process.exit(1);
   }

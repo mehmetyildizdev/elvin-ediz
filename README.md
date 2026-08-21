@@ -155,6 +155,23 @@ pnpm run studio:deploy
 
 ---
 
+## 📊 Cloud Platform Quotas & Studio Performance Impact (Vercel & Sanity Free Tiers)
+
+When managing content, the choice between **Structure Tool** and **Presentation Tool** directly influences local editor responsiveness and cloud platform resource consumption:
+
+| Platform & Metric                                    | Primary Related Uses                                                   | Structure Tool Impact                                       | Presentation Tool Impact                                                     | Quota / Performance Note                                       |
+| :--------------------------------------------------- | :--------------------------------------------------------------------- | :---------------------------------------------------------- | :--------------------------------------------------------------------------- | :------------------------------------------------------------- |
+| **Vercel: Serverless Function Execution (GB-Hours)** | Live preview re-renders, draft Server Actions, Next.js dynamic routing | **Zero** (Vercel compute is completely idle during editing) | **High** (Re-renders Next.js Server Components on each draft mutation burst) | ⚠️ **Primary bottleneck on Vercel Free Tier (100 GB-hrs/mo)**  |
+| **Vercel: Function Invocations & Middleware**        | Route middleware, draft session auth, live revalidation webhooks       | **Zero** while typing; only 1 invocation upon `Publish`     | **Moderate** (1 invocation per draft stream update)                          | ℹ️ Well within free allowances                                 |
+| **Sanity: Live Listener (SSE Stream)**               | Real-time content sync between Content Lake and preview window         | **Zero** (No active live stream connected)                  | **Active** (Maintains open SSE connection while tab is open)                 | ℹ️ Handled within Sanity Free Live Content limits              |
+| **Sanity: Non-CDN API Requests**                     | Fresh draft queries (`useCdn: false` in live preview)                  | Negligible (Only when opening a document)                   | **Moderate** (Fetches uncached draft data during preview updates)            | ℹ️ Within Sanity Free 10k monthly non-CDN allowance            |
+| **Sanity: Document Mutations (Auto-Saves)**          | Typing and editing content fields                                      | **Standard** (Debounced delta patches)                      | **Standard** (Debounced delta patches)                                       | ℹ️ Same across both tools                                      |
+| **Editor Input Responsiveness**                      | Real-time typing, long-form copy drafting                              | ⚡ **100% Fluid** (Zero input lag or focus interruption)    | ⏱️ **Can stutter during typing** if DOM overlays re-sync caret focus         | 💡 _Toggle overlays OFF in Presentation toolbar while writing_ |
+
+> 📖 **Complete Client & Editor Guide:** For detailed workflows, step-by-step editing instructions, translation management, and best practices, see [docs/content-editor-guide.md](docs/content-editor-guide.md).
+
+---
+
 ## 🔄 On-Demand Cache Revalidation (Webhook)
 
 When editors publish content in Sanity Studio, Next.js instantly purges the cached pages and hub listings via the scoped webhook route at [`/api/revalidate`](app/api/revalidate/route.ts).

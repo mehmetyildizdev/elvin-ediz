@@ -1,11 +1,7 @@
 import type { AboutPageData } from '@/sanity/lib/types';
 import { defaultAboutPage } from '@/sanity/lib/types';
 
-export function AboutProcess({
-  aboutData = defaultAboutPage,
-}: {
-  aboutData?: AboutPageData;
-}) {
+export function AboutProcess({ aboutData = defaultAboutPage }: { aboutData?: AboutPageData }) {
   const rawSteps = aboutData.processSteps?.length
     ? aboutData.processSteps
     : defaultAboutPage.processSteps || [];

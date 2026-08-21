@@ -111,8 +111,8 @@ export function InformationList({
                               <span className="bg-accent/10 text-accent rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase">
                                 {checklistCount}{' '}
                                 {checklistCount === 1
-                                  ? (insightsPageData.infoChecklistStepText || 'Checklist Step')
-                                  : (insightsPageData.infoChecklistStepsText || 'Checklist Steps')}
+                                  ? insightsPageData.infoChecklistStepText || 'Checklist Step'
+                                  : insightsPageData.infoChecklistStepsText || 'Checklist Steps'}
                               </span>
                             )}
                             {displayDate && (

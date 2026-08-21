@@ -45,9 +45,7 @@ export function Footer({
     : settings?.consultationLink || getWhatsAppUrl();
 
   const footerNavLinks =
-    settings?.footerNav && settings.footerNav.length > 0
-      ? settings.footerNav
-      : defaultFooterNav;
+    settings?.footerNav && settings.footerNav.length > 0 ? settings.footerNav : defaultFooterNav;
 
   return (
     <footer className="bg-bg-primary text-text-on-dark w-full">

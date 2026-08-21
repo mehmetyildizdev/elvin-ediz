@@ -8,7 +8,8 @@ import type { Task, TaskContext } from '../../types';
 export const syncAllPostsTask: Task = {
   id: 'all-posts',
   name: 'Sync All Post Kinds',
-  description: 'Syncs all 4 post kinds (Insights, Information Guides, Announcements, News) into Sanity CMS.',
+  description:
+    'Syncs all 4 post kinds (Insights, Information Guides, Announcements, News) into Sanity CMS.',
   run: async (ctx: TaskContext) => {
     logger.info('Starting sync for all post kinds...');
     await syncInsightsTask.run(ctx);

@@ -245,7 +245,11 @@ export async function fetchStaff(lang: string = 'en'): Promise<StaffData[]> {
       _id, name, designation, role, subtitle, bio, email, order,
       "photoUrl": photo.asset->url
     }`;
-    let data = await client.fetch<StaffData[]>(query, { lang }, getFetchOptions(['staffMember', `staffMember:${lang}`]));
+    let data = await client.fetch<StaffData[]>(
+      query,
+      { lang },
+      getFetchOptions(['staffMember', `staffMember:${lang}`])
+    );
 
     if ((!data || data.length === 0) && lang !== 'en') {
       data = await client.fetch<StaffData[]>(
@@ -427,14 +431,26 @@ export async function fetchPosts(
       ? `*[_type == "post" && (language == $lang || (!defined(language) && $lang == "en")) && kind == $kind] | order(publishedAt desc) { ${postProjection} }`
       : `*[_type == "post" && (language == $lang || (!defined(language) && $lang == "en"))] | order(publishedAt desc) { ${postProjection} }`;
 
-    const tags = ['posts', `posts:${lang}`, ...(kind ? [`posts:${kind}`, `posts:${kind}:${lang}`] : [])];
-    let data = await client.fetch<PostData[]>(query, kind ? { kind, lang } : { lang }, getFetchOptions(tags));
+    const tags = [
+      'posts',
+      `posts:${lang}`,
+      ...(kind ? [`posts:${kind}`, `posts:${kind}:${lang}`] : []),
+    ];
+    let data = await client.fetch<PostData[]>(
+      query,
+      kind ? { kind, lang } : { lang },
+      getFetchOptions(tags)
+    );
 
     if ((!data || data.length === 0) && lang !== 'en') {
       const fallbackQuery = kind
         ? `*[_type == "post" && (language == "en" || !defined(language)) && kind == $kind] | order(publishedAt desc) { ${postProjection} }`
         : `*[_type == "post" && (language == "en" || !defined(language))] | order(publishedAt desc) { ${postProjection} }`;
-      data = await client.fetch<PostData[]>(fallbackQuery, kind ? { kind, lang: 'en' } : { lang: 'en' }, getFetchOptions(['posts', 'posts:en']));
+      data = await client.fetch<PostData[]>(
+        fallbackQuery,
+        kind ? { kind, lang: 'en' } : { lang: 'en' },
+        getFetchOptions(['posts', 'posts:en'])
+      );
     }
 
     if (data?.length) return data;
@@ -465,7 +481,11 @@ export async function fetchPostBySlug(
           *[_type == "post" && slug.current == $slug][0]
         ) { ${postProjection} }`;
 
-    const data = await client.fetch<PostData>(query, { slug, lang }, getFetchOptions([`post:${slug}`, `post:${slug}:${lang}`]));
+    const data = await client.fetch<PostData>(
+      query,
+      { slug, lang },
+      getFetchOptions([`post:${slug}`, `post:${slug}:${lang}`])
+    );
     if (data) return data;
   } catch (err) {
     console.error('Error fetching post by slug from Sanity:', err);
@@ -494,7 +514,11 @@ export async function fetchAllPostSlugsWithLang(
           "slug": slug.current,
           "lang": coalesce(language, "en")
         }`;
-    const data = await client.fetch<{ lang: string; slug: string }[]>(query, kind ? { kind } : {}, getFetchOptions(['posts']));
+    const data = await client.fetch<{ lang: string; slug: string }[]>(
+      query,
+      kind ? { kind } : {},
+      getFetchOptions(['posts'])
+    );
     if (data?.length) return data;
   } catch (err) {
     console.error('Error fetching post slugs with lang from Sanity:', err);

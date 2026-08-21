@@ -1,5 +1,3 @@
-
-
 export interface SeoData {
   metaTitle?: string;
   metaDescription?: string;
@@ -500,5 +498,3 @@ export interface AboutPageData {
 
 // Re-export all type-safe defaults from data layer
 export * from '@/data/defaults';
-
-

@@ -64,4 +64,3 @@ export const homePage = defineType({
 });
 
 export default homePage;
-

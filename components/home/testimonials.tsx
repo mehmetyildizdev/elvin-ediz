@@ -213,7 +213,9 @@ export function Testimonials({
                         rel="noopener noreferrer"
                         className="text-accent inline-flex items-center gap-1 self-start pt-1 text-[11px] font-medium transition-colors hover:underline"
                       >
-                        <span>{homeData.testimonialsGoogleReadMoreText || 'Read on Google Maps'}</span>
+                        <span>
+                          {homeData.testimonialsGoogleReadMoreText || 'Read on Google Maps'}
+                        </span>
                         <ExternalLink size={10} />
                       </a>
                     </div>

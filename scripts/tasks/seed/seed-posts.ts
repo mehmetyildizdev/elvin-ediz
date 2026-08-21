@@ -5,7 +5,8 @@ import type { Task, TaskContext } from '../../types';
 export const seedPostsTask: Task = {
   id: 'posts',
   name: 'Seed Default Posts (All Kinds)',
-  description: 'Seeds all 28 baseline insight articles, practical guides, announcements, and news into Sanity CMS.',
+  description:
+    'Seeds all 28 baseline insight articles, practical guides, announcements, and news into Sanity CMS.',
   run: async (ctx: TaskContext) => {
     for (const p of defaultPosts) {
       await upsertDocument(ctx, {

@@ -12,6 +12,14 @@ import { CogIcon } from '@sanity/icons/Cog';
 import { EarthGlobeIcon } from '@sanity/icons/EarthGlobe';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import type { StructureBuilder, StructureResolver } from 'sanity/structure';
+import { supportedLanguages } from './i18n/config';
+
+const langFlags: Record<string, string> = {
+  en: '🇬🇧',
+  tr: '🇹🇷',
+  ar: '🇸🇦',
+  fr: '🇫🇷',
+};
 
 const postList = (
   S: StructureBuilder,
@@ -23,10 +31,84 @@ const postList = (
     .title(title)
     .icon(icon)
     .child(
-      S.documentTypeList('post')
+      S.list()
         .title(title)
-        .filter('_type == "post" && kind == $kind')
-        .params({ kind })
+        .items([
+          S.listItem()
+            .title(`All ${title}`)
+            .icon(icon)
+            .child(
+              S.documentList()
+                .title(`All ${title} (All Languages)`)
+                .filter('_type == "post" && kind == $kind')
+                .params({ kind })
+                .initialValueTemplates([
+                  S.initialValueTemplateItem('post-by-kind-and-language', {
+                    kind,
+                    language: 'en',
+                  }),
+                ])
+                .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+            ),
+          S.divider(),
+          ...supportedLanguages.map((lang) =>
+            S.listItem()
+              .title(`${langFlags[lang.id] || '🌐'} ${lang.title}`)
+              .child(
+                S.documentList()
+                  .title(`${title} — ${lang.title}`)
+                  .filter('_type == "post" && kind == $kind && language == $lang')
+                  .params({ kind, lang: lang.id })
+                  .initialValueTemplates([
+                    S.initialValueTemplateItem('post-by-kind-and-language', {
+                      kind,
+                      language: lang.id,
+                    }),
+                  ])
+                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+              )
+          ),
+        ])
+    );
+
+const serviceList = (S: StructureBuilder) =>
+  S.listItem()
+    .title('Immigration Services')
+    .icon(CaseIcon)
+    .child(
+      S.list()
+        .title('Immigration Services')
+        .items([
+          S.listItem()
+            .title('All Services')
+            .icon(CaseIcon)
+            .child(
+              S.documentList()
+                .title('All Services (All Languages)')
+                .filter('_type == "service"')
+                .initialValueTemplates([
+                  S.initialValueTemplateItem('service-by-language', {
+                    language: 'en',
+                  }),
+                ])
+            ),
+          S.divider(),
+          ...supportedLanguages.map((lang) =>
+            S.listItem()
+              .title(`${langFlags[lang.id] || '🌐'} ${lang.title}`)
+              .child(
+                S.documentList()
+                  .title(`Services — ${lang.title}`)
+                  .filter('_type == "service" && language == $lang')
+                  .params({ lang: lang.id })
+                  .initialValueTemplates([
+                    S.initialValueTemplateItem('service-by-language', {
+                      language: lang.id,
+                    }),
+                  ])
+              )
+          ),
+        ])
     );
 
 export const structure: StructureResolver = (S: StructureBuilder) =>
@@ -49,7 +131,10 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         .title('About Us Page')
         .icon(UserIcon)
         .child(
-          S.document().schemaType('aboutPage').documentId('aboutPage').title('About Us Page Content')
+          S.document()
+            .schemaType('aboutPage')
+            .documentId('aboutPage')
+            .title('About Us Page Content')
         ),
       S.listItem()
         .title('Insights & Updates Page')
@@ -83,10 +168,7 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
             .title('Privacy Policy Content')
         ),
       S.divider(),
-      S.listItem()
-        .title('Immigration Services')
-        .icon(CaseIcon)
-        .child(S.documentTypeList('service').title('Immigration Services')),
+      serviceList(S),
       S.listItem()
         .title('Google Reviews (Synced)')
         .icon(StarIcon)

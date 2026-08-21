@@ -98,8 +98,18 @@
         { "_key": "stat-1", "number": "4,578+", "label": "Trusted Clients", "icon": "user-check" },
         { "_key": "stat-2", "number": "99%", "label": "Worldwide Approvals", "icon": "globe" },
         { "_key": "stat-3", "number": "50+", "label": "Canadian Colleges", "icon": "school" },
-        { "_key": "stat-4", "number": "120+", "label": "Successful PR Visas", "icon": "graduation" },
-        { "_key": "stat-5", "number": "100%", "label": "Regulated RCIC Support", "icon": "file-check" }
+        {
+          "_key": "stat-4",
+          "number": "120+",
+          "label": "Successful PR Visas",
+          "icon": "graduation"
+        },
+        {
+          "_key": "stat-5",
+          "number": "100%",
+          "label": "Regulated RCIC Support",
+          "icon": "file-check"
+        }
       ]
     }
   }

@@ -15,24 +15,20 @@ export function AboutStrategy({
   settings?: SiteSettingsData;
 }) {
   const leader = staff[0] || defaultStaff[0];
-  const photoSrc =
-    aboutData.strategyImageUrl || leader?.photoUrl || '/nazly-profile-picture.png';
+  const photoSrc = aboutData.strategyImageUrl || leader?.photoUrl || '/nazly-profile-picture.png';
   const leaderName =
     aboutData.strategyLeaderName ||
     `${leader?.name || 'Nazly Sunguroglu'} (${leader?.designation || 'RCIC'})`;
   const leaderRole =
-    aboutData.strategyLeaderRole ||
-    leader?.role ||
-    'Regulated Canadian Immigration Consultant';
+    aboutData.strategyLeaderRole || leader?.role || 'Regulated Canadian Immigration Consultant';
   const leaderSubtitle =
     aboutData.strategyLeaderSubtitle ||
     leader?.subtitle ||
     'Founder of Elvin Ediz Immigration Services';
 
-  const credentialsList =
-    aboutData.credentials?.length
-      ? aboutData.credentials
-      : defaultAboutPage.credentials || [];
+  const credentialsList = aboutData.credentials?.length
+    ? aboutData.credentials
+    : defaultAboutPage.credentials || [];
 
   return (
     <section className="bg-bg-surface px-6 py-20 md:px-12 md:py-32" id="strategy">

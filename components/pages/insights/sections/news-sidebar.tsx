@@ -90,8 +90,7 @@ export function NewsSidebar({
                       rel="noopener noreferrer"
                       className="text-text-muted hover:text-accent inline-flex items-center gap-1 text-[10px] transition-colors"
                     >
-                      {insightsPageData.newsSourceLabel || 'Source'}{' '}
-                      <ExternalLink size={10} />
+                      {insightsPageData.newsSourceLabel || 'Source'} <ExternalLink size={10} />
                     </a>
                   )}
                 </div>

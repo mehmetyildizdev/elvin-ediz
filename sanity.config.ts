@@ -158,5 +158,30 @@ export default defineConfig({
   },
   schema: {
     types: schemaTypes,
+    templates: (prev) => [
+      ...prev,
+      {
+        id: 'post-by-kind-and-language',
+        title: 'Post by Kind and Language',
+        schemaType: 'post',
+        parameters: [
+          { name: 'kind', type: 'string' },
+          { name: 'language', type: 'string' },
+        ],
+        value: ({ kind, language }: { kind?: string; language?: string }) => ({
+          kind: kind || 'insight',
+          language: language || 'en',
+        }),
+      },
+      {
+        id: 'service-by-language',
+        title: 'Service by Language',
+        schemaType: 'service',
+        parameters: [{ name: 'language', type: 'string' }],
+        value: ({ language }: { language?: string }) => ({
+          language: language || 'en',
+        }),
+      },
+    ],
   },
 });

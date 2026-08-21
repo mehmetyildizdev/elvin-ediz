@@ -7,10 +7,7 @@ export const testimonial = defineType({
   name: config.name,
   title: config.title,
   type: 'document',
-  fields: [
-    languageField,
-    ...testimonialFields,
-  ],
+  fields: [languageField, ...testimonialFields],
   preview: {
     select: {
       title: 'author',

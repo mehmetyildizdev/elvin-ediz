@@ -157,8 +157,7 @@ export function InsightsHub({
               <div className="bg-bg-app border-border-subtle text-accent/90 relative flex items-center gap-2.5 rounded-full border px-4 py-1 text-[11px] font-bold tracking-widest uppercase shadow-2xs">
                 <span className="bg-accent h-1.5 w-1.5 rounded-full" />
                 <span>
-                  {insightsPageData.sectionDividerBadgeText ||
-                    'Knowledge Base & Community Updates'}
+                  {insightsPageData.sectionDividerBadgeText || 'Knowledge Base & Community Updates'}
                 </span>
                 <span className="bg-accent h-1.5 w-1.5 rounded-full" />
               </div>

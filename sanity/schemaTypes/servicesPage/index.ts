@@ -19,13 +19,7 @@ export const servicesPage = defineType({
     { ...calloutGroup, icon: CaseIcon },
     { ...seoGroup, icon: SearchIcon },
   ],
-  fields: [
-    languageField,
-    ...headerFields,
-    ...pathwaysFields,
-    ...calloutFields,
-    ...seoFields,
-  ],
+  fields: [languageField, ...headerFields, ...pathwaysFields, ...calloutFields, ...seoFields],
   preview: {
     select: {
       lang: 'language',

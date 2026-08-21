@@ -21,13 +21,7 @@ export const service = defineType({
     { ...ctaGroup, icon: SparklesIcon },
     { ...seoGroup, icon: SearchIcon },
   ],
-  fields: [
-    languageField,
-    ...generalFields,
-    ...bodyFields,
-    ...ctaFields,
-    ...seoFields,
-  ],
+  fields: [languageField, ...generalFields, ...bodyFields, ...ctaFields, ...seoFields],
   preview: {
     select: {
       title: 'title',

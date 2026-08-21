@@ -70,10 +70,15 @@ export const linkTranslationsTask: Task = {
       { types: i18nSchemaTypes }
     );
 
-    logger.info(`Auditing ${allDocs.length} published document(s) and ${metadataDocs.length} metadata record(s)...`);
+    logger.info(
+      `Auditing ${allDocs.length} published document(s) and ${metadataDocs.length} metadata record(s)...`
+    );
 
     // 3. Map referenced doc IDs to their metadata document
-    const docToMetadataMap = new Map<string, { metadata: TranslationMetadataDoc; language: string }>();
+    const docToMetadataMap = new Map<
+      string,
+      { metadata: TranslationMetadataDoc; language: string }
+    >();
     const metadataById = new Map<string, TranslationMetadataDoc>();
 
     for (const meta of metadataDocs) {
@@ -162,7 +167,9 @@ export const linkTranslationsTask: Task = {
 
       const baseDoc = findBaseDoc(doc);
       if (!baseDoc) {
-        logger.error(`  ↳ No matching English base document found for [${doc._type}] "${doc._id}". Flagged as orphan.`);
+        logger.error(
+          `  ↳ No matching English base document found for [${doc._type}] "${doc._id}". Flagged as orphan.`
+        );
         orphanCount++;
         continue;
       }
@@ -244,7 +251,9 @@ export const linkTranslationsTask: Task = {
         };
 
         if (ctx.dryRun) {
-          logger.dryRun(`  ↳ Would create metadata linking "${baseDoc._id}" [EN] and "${doc._id}" [${lang}]`);
+          logger.dryRun(
+            `  ↳ Would create metadata linking "${baseDoc._id}" [EN] and "${doc._id}" [${lang}]`
+          );
         } else {
           const created = await ctx.client.create(newMetaRecord);
           const fullMeta: TranslationMetadataDoc = {
@@ -254,7 +263,9 @@ export const linkTranslationsTask: Task = {
           metadataById.set(created._id, fullMeta);
           docToMetadataMap.set(baseDoc._id, { metadata: fullMeta, language: 'en' });
           docToMetadataMap.set(doc._id, { metadata: fullMeta, language: lang });
-          logger.success(`  ✔ Created metadata (${created._id}) linking "${baseDoc._id}" [EN] & "${doc._id}" [${lang}]`);
+          logger.success(
+            `  ✔ Created metadata (${created._id}) linking "${baseDoc._id}" [EN] & "${doc._id}" [${lang}]`
+          );
         }
         newlyLinkedCount++;
       }

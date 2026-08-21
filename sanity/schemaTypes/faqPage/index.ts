@@ -21,13 +21,7 @@ export const faqPage = defineType({
     { ...ctaGroup, icon: EnvelopeIcon },
     { ...seoGroup, icon: SearchIcon },
   ],
-  fields: [
-    languageField,
-    ...headerFields,
-    ...faqsFields,
-    ...ctaFields,
-    ...seoFields,
-  ],
+  fields: [languageField, ...headerFields, ...faqsFields, ...ctaFields, ...seoFields],
   preview: {
     select: {
       lang: 'language',

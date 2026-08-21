@@ -6,7 +6,8 @@ import type { Task, TaskContext } from '../../types';
 export const syncAnnouncementsTask: Task = {
   id: 'announcements',
   name: 'Sync Announcement Posts',
-  description: 'Syncs official IRCC directives, policy updates, and office notices from data/defaults/posts/announcements into Sanity.',
+  description:
+    'Syncs official IRCC directives, policy updates, and office notices from data/defaults/posts/announcements into Sanity.',
   run: async (ctx: TaskContext) => {
     logger.info(`Processing ${defaultAnnouncementPosts.length} announcement posts...`);
 
