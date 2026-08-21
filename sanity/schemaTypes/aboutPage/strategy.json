@@ -1,0 +1,87 @@
+{
+  "group": {
+    "name": "strategy",
+    "title": "03. Strategy & Leadership"
+  },
+  "fields": {
+    "strategyEyebrow": {
+      "name": "strategyEyebrow",
+      "title": "Strategy Eyebrow",
+      "type": "string",
+      "initialValue": "ELVIN EDIZ IMMIGRATION SERVICES"
+    },
+    "strategyTitleMain": {
+      "name": "strategyTitleMain",
+      "title": "Strategy Title (Line 1)",
+      "type": "string",
+      "initialValue": "Our"
+    },
+    "strategyTitleAccent": {
+      "name": "strategyTitleAccent",
+      "title": "Strategy Accent Title (Line 2)",
+      "type": "string",
+      "initialValue": "Strategy"
+    },
+    "strategyImage": {
+      "name": "strategyImage",
+      "title": "Strategy Section Image / Photo",
+      "type": "image"
+    },
+    "strategyLeaderName": {
+      "name": "strategyLeaderName",
+      "title": "Leader Name",
+      "type": "string",
+      "initialValue": "Nazly Sunguroglu (RCIC)"
+    },
+    "strategyLeaderRole": {
+      "name": "strategyLeaderRole",
+      "title": "Leader Role",
+      "type": "string",
+      "initialValue": "Regulated Canadian Immigration Consultant"
+    },
+    "strategyLeaderSubtitle": {
+      "name": "strategyLeaderSubtitle",
+      "title": "Leader Subtitle",
+      "type": "string",
+      "initialValue": "Founder of Elvin Ediz Immigration Services"
+    },
+    "strategyQuoteParagraph": {
+      "name": "strategyQuoteParagraph",
+      "title": "Highlighted Italic Quote",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "We believe Canadian immigration should be empowering, not overwhelming."
+    },
+    "strategyBodyParagraph": {
+      "name": "strategyBodyParagraph",
+      "title": "Main Body Paragraph",
+      "type": "text",
+      "rows": 4,
+      "initialValue": "With personalized assessment and clear strategic direction, we help individuals, students, professionals, and families navigate Canadian immigration regulations with confidence."
+    },
+    "credentials": {
+      "name": "credentials",
+      "title": "Key Credentials & Accreditations",
+      "type": "array",
+      "initialValue": [
+        "CICC Licensed & Active Member #R533968",
+        "CAPIC (Canadian Association of Professional Immigration Consultants)",
+        "Authorized IRCC Representation Across All Canadian Provinces",
+        "End-to-End File Audit & Direct Client Communication"
+      ]
+    },
+    "strategyCtaText": {
+      "name": "strategyCtaText",
+      "title": "CTA Button Label",
+      "type": "string",
+      "initialValue": "Free Consultation"
+    },
+    "strategyCtaLink": {
+      "name": "strategyCtaLink",
+      "title": "CTA Button Link",
+      "description": "Optional custom URL or leave blank to use WhatsApp consultation.",
+      "type": "string",
+      "initialValue": ""
+    }
+  }
+}

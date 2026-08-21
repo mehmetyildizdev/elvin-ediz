@@ -1,7 +1,7 @@
 {
   "group": {
     "name": "process",
-    "title": "Process"
+    "title": "04. Process & How It Works"
   },
   "fields": {
     "processEyebrow": {
@@ -34,16 +34,19 @@
       "itemTextTitle": "Step Description",
       "initialValue": [
         {
+          "_key": "step-1",
           "number": "01",
           "title": "Start with a conversation",
           "text": "We listen to your plans, questions, and circumstances."
         },
         {
+          "_key": "step-2",
           "number": "02",
           "title": "Find your right pathway",
           "text": "Together, we map out an approach that makes sense for you."
         },
         {
+          "_key": "step-3",
           "number": "03",
           "title": "Move forward with confidence",
           "text": "We help you prepare, submit, and understand what comes next."

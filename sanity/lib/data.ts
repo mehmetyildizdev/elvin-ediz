@@ -12,6 +12,7 @@ import {
   backupPosts,
   backupFaqPage,
   backupPrivacyPage,
+  backupAboutPage,
 } from './backupData';
 import type {
   SiteSettingsData,
@@ -26,6 +27,7 @@ import type {
   PostKind,
   FaqPageData,
   PrivacyPageData,
+  AboutPageData,
 } from './types';
 
 export * from './types';
@@ -637,5 +639,36 @@ export async function fetchPrivacyPage(lang: string = 'en'): Promise<PrivacyPage
   return backupPrivacyPage;
 }
 
+export async function fetchAboutPage(lang: string = 'en'): Promise<AboutPageData> {
+  const client = await getSanityClient();
+  if (!client) return backupAboutPage;
+  try {
+    const data = await client.fetch<Partial<AboutPageData>>(
+      `coalesce(
+        *[_type == "aboutPage" && language == $lang][0],
+        *[_type == "aboutPage" && (language == "en" || !defined(language))][0],
+        *[_type == "aboutPage"][0]
+      ) {
+        ...,
+        "ciccBadgeImageUrl": ciccBadgeImage.asset->url,
+        "strategyImageUrl": strategyImage.asset->url,
+        "seo": seo {
+          ...,
+          "ogImageUrl": ogImage.asset->url
+        }
+      }`,
+      { lang },
+      getFetchOptions(['aboutPage', `aboutPage:${lang}`])
+    );
+    if (data && (data.titleMain || data.eyebrow || data.whoAreWeTitle || data.strategyTitleMain)) {
+      return { ...backupAboutPage, ...data };
+    }
+  } catch (err) {
+    console.error('Error fetching aboutPage from Sanity:', err);
+  }
+  return backupAboutPage;
+}
+
 export * from './whatsapp';
+
 

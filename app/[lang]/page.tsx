@@ -6,7 +6,6 @@ import {
   RcicSection,
   Testimonials,
   About,
-  Process,
   Insights,
   Contact,
 } from '@/components/home';
@@ -82,7 +81,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <RcicSection homeData={homeData} settings={settings} />
       <About staff={staff} homeData={homeData} settings={settings} />
       <Testimonials testimonials={testimonials} googleReviews={googleReviews} homeData={homeData} />
-      <Process homeData={homeData} />
       <Insights homeData={homeData} lang={currentLang} />
       <Contact homeData={homeData} services={services} />
     </main>

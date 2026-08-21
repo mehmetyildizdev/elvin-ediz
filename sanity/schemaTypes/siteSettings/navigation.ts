@@ -24,6 +24,7 @@ export const navigationFields = [
         },
       }),
     ],
+    initialValue: config.fields.headerNav.initialValue,
   }),
   defineField({
     name: config.fields.footerDescription.name,

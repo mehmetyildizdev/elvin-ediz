@@ -1,30 +1,30 @@
 {
   "group": {
     "name": "whoAreWe",
-    "title": "Who We Are"
+    "title": "02. Who We Are"
   },
   "fields": {
-    "strategyEyebrow": {
-      "name": "strategyEyebrow",
+    "whoAreWeEyebrow": {
+      "name": "whoAreWeEyebrow",
       "title": "Section Eyebrow",
       "type": "string",
       "initialValue": "WHO ARE WE?"
     },
-    "strategyTitle": {
-      "name": "strategyTitle",
+    "whoAreWeTitle": {
+      "name": "whoAreWeTitle",
       "title": "Section Title",
       "type": "string",
       "initialValue": "Elvin Ediz Immigration Services"
     },
-    "strategyParagraph1": {
-      "name": "strategyParagraph1",
+    "whoAreWeParagraph1": {
+      "name": "whoAreWeParagraph1",
       "title": "Paragraph 1",
       "type": "text",
       "rows": 4,
       "initialValue": "Elvin Ediz Immigration Services is a Toronto-based Canadian immigration firm led by Nazly Sunguroglu, RCIC (Regulated Canadian Immigration Consultant). We provide structured, end-to-end guidance across economic immigration, study pathways, work permits, family sponsorship, and citizenship."
     },
-    "strategyParagraph2": {
-      "name": "strategyParagraph2",
+    "whoAreWeParagraph2": {
+      "name": "whoAreWeParagraph2",
       "title": "Paragraph 2",
       "type": "text",
       "rows": 3,
@@ -39,7 +39,7 @@
     "whoAreWePrimaryCtaLink": {
       "name": "whoAreWePrimaryCtaLink",
       "title": "Primary Button Link",
-      "description": "Optional custom URL or leave blank to use Site Settings WhatsApp number",
+      "description": "Optional custom URL or leave blank to use WhatsApp consultation.",
       "type": "string",
       "initialValue": ""
     },
@@ -58,7 +58,6 @@
     "ciccBadgeImage": {
       "name": "ciccBadgeImage",
       "title": "CICC Badge / RCIC Logo Image",
-      "description": "Upload a custom badge or logo image from Sanity. If not uploaded, defaults to /rcic_logo.png.",
       "type": "image"
     },
     "ciccBadgeTitle": {
@@ -84,16 +83,6 @@
       "itemLabelTitle": "Stat Label",
       "itemIconName": "icon",
       "itemIconTitle": "Selectable Icon",
-      "iconOptions": [
-        { "title": "User Check (Person / Clients)", "value": "user-check" },
-        { "title": "Globe (Worldwide / International)", "value": "globe" },
-        { "title": "School (Education / Colleges)", "value": "school" },
-        { "title": "Graduation Cap (Degree / Students)", "value": "graduation" },
-        { "title": "File Check (Approved Applications)", "value": "file-check" },
-        { "title": "Shield Check (Licensed / Secure)", "value": "shield" },
-        { "title": "Award (Success / Excellence)", "value": "award" },
-        { "title": "Briefcase (Work / Career)", "value": "briefcase" }
-      ],
       "initialValue": [
         { "_key": "stat-1", "number": "4,578+", "label": "Trusted Clients", "icon": "user-check" },
         { "_key": "stat-2", "number": "99%", "label": "Worldwide Approvals", "icon": "globe" },

@@ -1,0 +1,46 @@
+{
+  "group": {
+    "name": "cta",
+    "title": "05. Consultation Callout"
+  },
+  "fields": {
+    "ctaEyebrow": {
+      "name": "ctaEyebrow",
+      "title": "Callout Eyebrow",
+      "type": "string",
+      "initialValue": "START YOUR JOURNEY"
+    },
+    "ctaTitleMain": {
+      "name": "ctaTitleMain",
+      "title": "Callout Title Main",
+      "type": "string",
+      "initialValue": "Ready to discuss your Canadian"
+    },
+    "ctaTitleAccent": {
+      "name": "ctaTitleAccent",
+      "title": "Callout Title Accent",
+      "type": "string",
+      "initialValue": "immigration goals?"
+    },
+    "ctaDescription": {
+      "name": "ctaDescription",
+      "title": "Callout Description",
+      "type": "text",
+      "rows": 2,
+      "initialValue": "Book a strategic consultation with Nazly Sunguroglu, RCIC to evaluate your eligibility, understand current IRCC processing, and chart your optimal pathway."
+    },
+    "ctaButtonText": {
+      "name": "ctaButtonText",
+      "title": "Callout Button Label",
+      "type": "string",
+      "initialValue": "Book Free Consultation"
+    },
+    "ctaButtonLink": {
+      "name": "ctaButtonLink",
+      "title": "Callout Button Link",
+      "description": "Optional custom URL or leave blank to use WhatsApp consultation.",
+      "type": "string",
+      "initialValue": ""
+    }
+  }
+}

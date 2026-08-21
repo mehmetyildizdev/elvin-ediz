@@ -27,11 +27,11 @@ export function About({
     'Founder of Elvin Ediz Immigration Services';
 
   return (
-    <section className="bg-bg-surface px-6 py-20 md:px-12 md:py-32" id="about">
+    <section className="bg-bg-app px-6 py-20 md:px-12 md:py-32" id="about">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-20">
         {/* Left Column: Staff Member Card */}
         <div className="flex flex-col lg:col-span-5">
-          <div className="bg-bg-app border-border-subtle relative aspect-4/5 w-full overflow-hidden rounded-sm border shadow-lg">
+          <div className="bg-bg-surface border-border-subtle relative aspect-4/5 w-full overflow-hidden rounded-sm border shadow-lg">
             <Image
               src={photoSrc}
               alt={leaderName}

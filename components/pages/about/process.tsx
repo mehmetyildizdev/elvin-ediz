@@ -1,0 +1,59 @@
+import type { AboutPageData } from '@/sanity/lib/types';
+import { defaultAboutPage } from '@/sanity/lib/types';
+
+export function AboutProcess({
+  aboutData = defaultAboutPage,
+}: {
+  aboutData?: AboutPageData;
+}) {
+  const rawSteps = aboutData.processSteps?.length
+    ? aboutData.processSteps
+    : defaultAboutPage.processSteps || [];
+
+  const steps = rawSteps.filter(
+    (step) => step && (step.title?.trim() || step.text?.trim() || step.number?.trim())
+  );
+
+  return (
+    <section
+      className="bg-bg-primary text-text-on-dark px-6 py-20 md:px-12 md:py-32"
+      id="how-it-works"
+    >
+      <div className="mx-auto flex max-w-7xl flex-col">
+        <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="text-text-on-dark-muted mb-3 text-xs font-bold tracking-widest uppercase">
+              {aboutData.processEyebrow || 'THE ELVIN EDIZ WAY'}
+            </p>
+            <h2 className="m-0 font-serif text-4xl leading-tight sm:text-5xl md:text-5xl">
+              {aboutData.processTitleMain || 'Less uncertainty.'}
+              <br />
+              <span className="text-accent font-serif font-normal italic">
+                {aboutData.processTitleAccent || 'More momentum.'}
+              </span>
+            </h2>
+          </div>
+        </div>
+
+        <div className="border-border-on-dark divide-border-on-dark grid grid-cols-1 divide-y border-t md:grid-cols-3 md:divide-x md:divide-y-0">
+          {steps.map((step, index) => (
+            <article
+              key={step.number || index}
+              className="group hover:bg-bg-surface/10 flex flex-col gap-2 py-8 transition-all duration-300 first:pl-0 last:pr-0 md:py-10 md:pr-10 md:pl-6"
+            >
+              <span className="text-accent font-serif text-3xl font-semibold select-none">
+                {step.number || `0${index + 1}`}
+              </span>
+              <h3 className="text-text-on-dark group-hover:text-accent mt-4 mb-2 font-serif text-xl font-semibold transition-colors duration-300 md:text-2xl">
+                {step.title}
+              </h3>
+              <p className="text-text-on-dark-muted m-0 max-w-xs text-sm leading-relaxed">
+                {step.text}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

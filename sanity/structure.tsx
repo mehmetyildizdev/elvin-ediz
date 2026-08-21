@@ -46,6 +46,12 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
           S.document().schemaType('homePage').documentId('homePage').title('Home Page Content')
         ),
       S.listItem()
+        .title('About Us Page')
+        .icon(UserIcon)
+        .child(
+          S.document().schemaType('aboutPage').documentId('aboutPage').title('About Us Page Content')
+        ),
+      S.listItem()
         .title('Insights & Updates Page')
         .icon(EarthGlobeIcon)
         .child(

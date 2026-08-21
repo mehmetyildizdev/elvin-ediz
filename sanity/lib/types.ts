@@ -9,6 +9,7 @@ import {
   backupPosts,
   backupFaqPage,
   backupPrivacyPage,
+  backupAboutPage,
 } from './backupData';
 
 export interface SeoData {
@@ -454,6 +455,61 @@ export interface PrivacyPageData {
   seo?: SeoData;
 }
 
+export interface AboutPageData {
+  _id?: string;
+  language?: string;
+
+  // 01. Page Header
+  eyebrow?: string;
+  titleMain?: string;
+  titleAccent?: string;
+  description?: string;
+
+  // 02. Who We Are
+  whoAreWeEyebrow?: string;
+  whoAreWeTitle?: string;
+  whoAreWeParagraph1?: string;
+  whoAreWeParagraph2?: string;
+  whoAreWePrimaryCtaText?: string;
+  whoAreWePrimaryCtaLink?: string;
+  whoAreWeSecondaryCtaText?: string;
+  whoAreWeSecondaryCtaLink?: string;
+  ciccBadgeImageUrl?: string;
+  ciccBadgeTitle?: string;
+  ciccBadgeSubtitle?: string;
+  stats?: StatItem[];
+
+  // 03. Strategy & Leadership
+  strategyEyebrow?: string;
+  strategyTitleMain?: string;
+  strategyTitleAccent?: string;
+  strategyImageUrl?: string;
+  strategyLeaderName?: string;
+  strategyLeaderRole?: string;
+  strategyLeaderSubtitle?: string;
+  strategyQuoteParagraph?: string;
+  strategyBodyParagraph?: string;
+  credentials?: string[];
+  strategyCtaText?: string;
+  strategyCtaLink?: string;
+
+  // 04. Process (How It Works)
+  processEyebrow?: string;
+  processTitleMain?: string;
+  processTitleAccent?: string;
+  processSteps?: ProcessStep[];
+
+  // 05. Consultation Callout
+  ctaEyebrow?: string;
+  ctaTitleMain?: string;
+  ctaTitleAccent?: string;
+  ctaDescription?: string;
+  ctaButtonText?: string;
+  ctaButtonLink?: string;
+
+  seo?: SeoData;
+}
+
 export const defaultSiteSettings = backupSiteSettings;
 export const defaultHomePage = backupHomePage;
 export const defaultServices = backupServices;
@@ -464,3 +520,5 @@ export const defaultInsightsPage = backupInsightsPage;
 export const defaultPosts = backupPosts;
 export const defaultFaqPage: FaqPageData = backupFaqPage;
 export const defaultPrivacyPage: PrivacyPageData = backupPrivacyPage;
+export const defaultAboutPage: AboutPageData = backupAboutPage;
+

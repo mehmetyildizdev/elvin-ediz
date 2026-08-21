@@ -77,12 +77,16 @@ export default defineConfig({
           faqPage: defineLocations({
             locations: [{ title: 'Q&A Page', href: '/questions' }],
           }),
+          aboutPage: defineLocations({
+            locations: [{ title: 'About Us Page', href: '/about' }],
+          }),
           privacyPage: defineLocations({
             locations: [{ title: 'Privacy Policy Page', href: '/privacy' }],
           }),
           siteSettings: defineLocations({
             locations: [
               { title: 'Home', href: '/' },
+              { title: 'About', href: '/about' },
               { title: 'Services', href: '/services' },
               { title: 'Insights', href: '/insights' },
               { title: 'Q&A', href: '/questions' },

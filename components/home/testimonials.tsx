@@ -105,7 +105,7 @@ export function Testimonials({
   return (
     <section
       ref={sectionRef}
-      className="bg-bg-app border-border-subtle overflow-hidden border-t px-6 py-20 md:px-12 md:py-28"
+      className="bg-bg-surface border-border-subtle overflow-hidden border-y px-6 py-20 md:px-12 md:py-28"
     >
       <div className="mx-auto flex max-w-7xl flex-col">
         {/* Top Header & Google Trust Badge */}
@@ -123,9 +123,9 @@ export function Testimonials({
           </div>
 
           {/* Official Google Reviews Badge Summary Card */}
-          <div className="border-border-subtle bg-bg-surface/80 hover:border-accent/40 flex flex-col gap-3 rounded-lg border p-4 backdrop-blur-xs transition-all sm:flex-row sm:items-center sm:gap-6">
+          <div className="border-border-subtle bg-bg-app hover:border-accent/40 flex flex-col gap-3 rounded-lg border p-4 shadow-xs transition-all sm:flex-row sm:items-center sm:gap-6">
             <div className="flex items-center gap-3">
-              <div className="bg-bg-app border-border-subtle flex h-11 w-11 shrink-0 items-center justify-center rounded-full border shadow-xs">
+              <div className="bg-bg-surface border-border-subtle flex h-11 w-11 shrink-0 items-center justify-center rounded-full border shadow-xs">
                 <GoogleIcon className="h-5 w-5" />
               </div>
               <div>
@@ -183,7 +183,7 @@ export function Testimonials({
                 renderItem={(item: GoogleReviewItem) => (
                   <article
                     key={item._key || item.author}
-                    className="border-border-subtle bg-bg-surface hover:border-accent/30 flex h-57.5 flex-col justify-between rounded-lg border p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                    className="border-border-subtle bg-bg-app hover:border-accent/30 flex h-57.5 flex-col justify-between rounded-lg border p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                   >
                     {/* 1. Fixed Header: Google Icon + Stars + Date (h-5) */}
                     <div className="flex h-5 items-center justify-between">
@@ -276,7 +276,7 @@ export function Testimonials({
                   renderItem={(item: TestimonialData) => (
                     <article
                       key={item._id}
-                      className="border-border-subtle/60 bg-bg-surface/50 hover:bg-bg-surface flex h-45 flex-col justify-between rounded-md border p-4 transition-all duration-200 hover:shadow-xs"
+                      className="border-border-subtle bg-bg-app hover:bg-bg-app flex h-45 flex-col justify-between rounded-md border p-4 transition-all duration-200 hover:shadow-xs"
                     >
                       <div className="flex h-4 items-center justify-between">
                         <div className="flex gap-0.5 text-amber-500">

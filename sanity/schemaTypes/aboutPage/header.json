@@ -1,0 +1,34 @@
+{
+  "group": {
+    "name": "header",
+    "title": "01. Page Header",
+    "default": true
+  },
+  "fields": {
+    "eyebrow": {
+      "name": "eyebrow",
+      "title": "Hero Eyebrow",
+      "type": "string",
+      "initialValue": "ABOUT ELVIN EDIZ"
+    },
+    "titleMain": {
+      "name": "titleMain",
+      "title": "Hero Main Heading",
+      "type": "string",
+      "initialValue": "Your Trusted Partner in"
+    },
+    "titleAccent": {
+      "name": "titleAccent",
+      "title": "Hero Accent Heading",
+      "type": "string",
+      "initialValue": "Canadian Immigration."
+    },
+    "description": {
+      "name": "description",
+      "title": "Hero Description",
+      "type": "text",
+      "rows": 3,
+      "initialValue": "Founded on transparency, integrity, and RCIC-regulated expertise, we provide personalized guidance to help individuals, professionals, and families navigate Canadian immigration regulations with confidence."
+    }
+  }
+}

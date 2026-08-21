@@ -7,7 +7,15 @@
     "headerNav": {
       "name": "headerNav",
       "title": "Header Navigation Links",
-      "type": "array"
+      "type": "array",
+      "initialValue": [
+        { "label": "Home", "href": "/" },
+        { "label": "About", "href": "/about" },
+        { "label": "Services", "href": "/services" },
+        { "label": "Insights", "href": "/insights" },
+        { "label": "Q&A", "href": "/questions" },
+        { "label": "Contact", "href": "/contact" }
+      ]
     },
     "footerDescription": {
       "name": "footerDescription",
@@ -28,6 +36,7 @@
       "type": "array",
       "initialValue": [
         { "label": "Home", "href": "/" },
+        { "label": "About", "href": "/about" },
         { "label": "Services", "href": "/services" },
         { "label": "Insights", "href": "/insights" },
         { "label": "Q&A", "href": "/questions" },

@@ -1,9 +1,9 @@
 import { defineArrayMember, defineField } from 'sanity';
-import config from './content.json';
+import config from './strategy.json';
 
-export const contentGroup = config.group;
+export const strategyGroup = config.group;
 
-export const contentFields = Object.values(config.fields).map((f: any) => {
+export const strategyFields = Object.values(config.fields).map((f: any) => {
   if (f.name === 'credentials') {
     return defineField({
       name: f.name,
@@ -11,6 +11,7 @@ export const contentFields = Object.values(config.fields).map((f: any) => {
       type: 'array',
       group: config.group.name,
       of: [defineArrayMember({ type: 'string' })],
+      initialValue: f.initialValue,
     });
   }
 
