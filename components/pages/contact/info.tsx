@@ -9,7 +9,7 @@ export function ContactInfo({ homeData = defaultHomePage }: { homeData?: HomePag
           {homeData.contactEyebrow}
         </p>
       )}
-      <h1 className="text-text-on-dark mb-6 font-serif text-4xl leading-tight font-light sm:text-5xl md:text-5xl whitespace-pre-line">
+      <h1 className="text-text-on-dark mb-6 font-serif text-4xl leading-tight font-light whitespace-pre-line sm:text-5xl md:text-5xl">
         {homeData.contactTitleMain || "Let's talk about\nwhat's"}{' '}
         <span className="text-accent font-serif font-normal italic">
           {homeData.contactTitleAccent || 'next.'}

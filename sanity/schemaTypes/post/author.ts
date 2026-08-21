@@ -10,7 +10,8 @@ export const authorFields = [
     type: 'reference',
     to: [{ type: 'staffMember' }],
     group: config.group.name,
-    description: 'Select an authorized RCIC consultant or team member from Staff (defaults to Nazly Sunguroglu, RCIC)',
+    description:
+      'Select an authorized RCIC consultant or team member from Staff (defaults to Nazly Sunguroglu, RCIC)',
     initialValue: async (_params, context) => {
       try {
         const client = context.getClient({ apiVersion: '2024-01-01' });

@@ -1,0 +1,42 @@
+{
+  "defaultLanguage": "en",
+  "languages": [
+    {
+      "id": "en",
+      "title": "English",
+      "isDefault": true,
+      "direction": "ltr"
+    },
+    {
+      "id": "tr",
+      "title": "Türkçe",
+      "isDefault": false,
+      "direction": "ltr"
+    },
+    {
+      "id": "ar",
+      "title": "العربية",
+      "isDefault": false,
+      "direction": "rtl"
+    },
+    {
+      "id": "fr",
+      "title": "Français",
+      "isDefault": false,
+      "direction": "ltr"
+    }
+  ],
+  "schemaTypes": [
+    "post",
+    "service",
+    "homePage",
+    "insightsPage",
+    "servicesPage",
+    "aboutPage",
+    "faqPage",
+    "privacyPage",
+    "testimonial",
+    "staffMember",
+    "siteSettings"
+  ]
+}

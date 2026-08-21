@@ -12,12 +12,9 @@ if (fs.existsSync('.env.local')) {
   }
 }
 
-const projectId =
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset =
-  process.env.NEXT_PUBLIC_SANITY_DATASET ||
-  process.env.SANITY_STUDIO_DATASET ||
-  'production';
+  process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
 const token = process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_WRITE_TOKEN;
 
 if (!projectId || !token) {
@@ -37,7 +34,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-study-permit-funds-2026',
     _type: 'post',
-    title: 'IRCC Mandatory Proof-of-Funds & Cost-of-Living Benchmark Adjustment for Study Permit Applications',
+    title:
+      'IRCC Mandatory Proof-of-Funds & Cost-of-Living Benchmark Adjustment for Study Permit Applications',
     slug: {
       _type: 'slug',
       current: 'ircc-mandatory-proof-of-funds-cost-of-living-adjustment',
@@ -103,7 +101,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-cicc-compliance-portal',
     _type: 'post',
-    title: 'College of Immigration and Citizenship Consultants (CICC) Verification Standards for Representation',
+    title:
+      'College of Immigration and Citizenship Consultants (CICC) Verification Standards for Representation',
     slug: {
       _type: 'slug',
       current: 'cicc-verification-standards-client-representation',
@@ -155,7 +154,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-esdc-tfwp-wage-thresholds',
     _type: 'post',
-    title: 'ESDC Revisions to Temporary Foreign Worker Program: Wage Benchmarks & Low-Wage Cap Enforcement',
+    title:
+      'ESDC Revisions to Temporary Foreign Worker Program: Wage Benchmarks & Low-Wage Cap Enforcement',
     slug: {
       _type: 'slug',
       current: 'esdc-tfwp-wage-benchmarks-low-wage-cap-updates',
@@ -207,7 +207,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-oinp-employer-portal-updates',
     _type: 'post',
-    title: 'OINP Employer Job Offer Streams: Digital Declaration Requirements and Sector Quota Allocation',
+    title:
+      'OINP Employer Job Offer Streams: Digital Declaration Requirements and Sector Quota Allocation',
     slug: {
       _type: 'slug',
       current: 'oinp-employer-job-offer-digital-declaration-updates',
@@ -311,7 +312,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-medical-threshold-adjustment',
     _type: 'post',
-    title: 'Annual Cost Threshold Adjustment for Medical Inadmissibility in Permanent Residence Applications',
+    title:
+      'Annual Cost Threshold Adjustment for Medical Inadmissibility in Permanent Residence Applications',
     slug: {
       _type: 'slug',
       current: 'annual-cost-threshold-adjustment-medical-inadmissibility',
@@ -363,7 +365,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-language-test-verification',
     _type: 'post',
-    title: 'Mandatory Electronic Verification for IELTS, CELPIP, PTE Core, and TEF/TCF Language Results',
+    title:
+      'Mandatory Electronic Verification for IELTS, CELPIP, PTE Core, and TEF/TCF Language Results',
     slug: {
       _type: 'slug',
       current: 'mandatory-electronic-verification-language-results',
@@ -415,7 +418,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-super-visa-insurance-rules',
     _type: 'post',
-    title: 'Updated Medical Insurance Requirements for Parents and Grandparents Super Visa Applications',
+    title:
+      'Updated Medical Insurance Requirements for Parents and Grandparents Super Visa Applications',
     slug: {
       _type: 'slug',
       current: 'updated-medical-insurance-requirements-super-visa',
@@ -467,7 +471,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-pgwp-180-day-completion-rule',
     _type: 'post',
-    title: 'Procedural Clarification on Official Completion Letters and Maintained Work Rights Post-Graduation',
+    title:
+      'Procedural Clarification on Official Completion Letters and Maintained Work Rights Post-Graduation',
     slug: {
       _type: 'slug',
       current: 'procedural-clarification-pgwp-completion-letters',
@@ -571,7 +576,8 @@ const announcementPosts = [
   {
     _id: 'post-announcement-citizenship-descent-bill-c71',
     _type: 'post',
-    title: 'Legislative Updates on Citizenship by Descent (First-Generation Limit) and Lineage Applications',
+    title:
+      'Legislative Updates on Citizenship by Descent (First-Generation Limit) and Lineage Applications',
     slug: {
       _type: 'slug',
       current: 'legislative-updates-citizenship-by-descent-lineage-applications',
@@ -659,10 +665,7 @@ async function syncAnnouncements() {
     },
   }));
 
-  fs.writeFileSync(
-    'data/announcement-posts.json',
-    JSON.stringify(formattedPosts, null, 2)
-  );
+  fs.writeFileSync('data/announcement-posts.json', JSON.stringify(formattedPosts, null, 2));
   console.log(`Saved ${formattedPosts.length} announcement posts to data/announcement-posts.json.`);
 
   // 4. Create new announcement posts in Sanity

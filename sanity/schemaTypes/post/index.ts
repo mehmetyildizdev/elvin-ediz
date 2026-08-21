@@ -11,6 +11,8 @@ import { insightSectionFields } from './insight';
 import { informationSectionFields } from './information';
 import { announcementSectionFields } from './announcement';
 import { newsSectionFields } from './news';
+import { seoGroup, seoFields } from './seo';
+import { languageField } from '../../i18n';
 
 export const post = defineType({
   name: config.name,
@@ -37,25 +39,33 @@ export const post = defineType({
     { ...mainGroup, icon: DocumentTextIcon },
     { name: 'typeConfig', title: '02. Type Settings', icon: SparklesIcon },
     { ...authorGroup, icon: UserIcon },
-    { name: 'seo', title: '04. SEO & Social', icon: SearchIcon },
+    { ...seoGroup, icon: SearchIcon },
   ],
   fields: [
+    languageField,
     ...mainFields,
     ...authorFields,
     ...insightSectionFields,
     ...informationSectionFields,
     ...announcementSectionFields,
     ...newsSectionFields,
-    defineField({
-      name: 'seo',
-      title: 'SEO & Social Media Settings',
-      type: 'seo',
-      group: 'seo',
-      description: 'Custom metadata, search engine snippets, and social share previews for this post.',
-    }),
+    ...seoFields,
   ],
   preview: {
-    select: { title: 'title', subtitle: 'kind', media: 'coverImage' },
+    select: {
+      title: 'title',
+      subtitle: 'kind',
+      media: 'coverImage',
+      language: 'language',
+    },
+    prepare({ title, subtitle, media, language }) {
+      const langBadge = language ? `[${language.toUpperCase()}] ` : '';
+      return {
+        title: `${langBadge}${title || 'Untitled Post'}`,
+        subtitle: subtitle ? `Kind: ${subtitle}` : 'Insight / Post',
+        media,
+      };
+    },
   },
 });
 

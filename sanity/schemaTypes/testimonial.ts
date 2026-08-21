@@ -1,10 +1,12 @@
 import { defineField, defineType } from 'sanity';
+import { languageField } from '../i18n';
 
 export const testimonial = defineType({
   name: 'testimonial',
   title: 'Testimonial',
   type: 'document',
   fields: [
+    languageField,
     defineField({
       name: 'author',
       title: 'Author / Client Name',
@@ -45,6 +47,19 @@ export const testimonial = defineType({
     }),
   ],
   preview: {
-    select: { title: 'author', subtitle: 'quote', media: 'avatar' },
+    select: {
+      title: 'author',
+      subtitle: 'quote',
+      media: 'avatar',
+      language: 'language',
+    },
+    prepare({ title, subtitle, media, language }) {
+      const langBadge = language ? `[${language.toUpperCase()}] ` : '';
+      return {
+        title: `${langBadge}${title || 'Anonymous'}`,
+        subtitle,
+        media,
+      };
+    },
   },
 });

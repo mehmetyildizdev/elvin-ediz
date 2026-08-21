@@ -12,14 +12,14 @@ import { JsonLd } from '@/components/seo/json-ld';
 export const revalidate = 1209600; // 2 weeks
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [settings, privacyData] = await Promise.all([
-    fetchSiteSettings(),
-    fetchPrivacyPage(),
-  ]);
+  const [settings, privacyData] = await Promise.all([fetchSiteSettings(), fetchPrivacyPage()]);
 
   return buildPageMetadata({
-    pageTitle: `${privacyData.titleMain || 'Privacy'} ${privacyData.titleAccent || 'Policy'}`.trim(),
-    pageDescription: privacyData.description || 'Learn how Elvin Ediz Immigration Services protects and handles your personal information.',
+    pageTitle:
+      `${privacyData.titleMain || 'Privacy'} ${privacyData.titleAccent || 'Policy'}`.trim(),
+    pageDescription:
+      privacyData.description ||
+      'Learn how Elvin Ediz Immigration Services protects and handles your personal information.',
     seo: privacyData.seo,
     settings,
     canonicalPath: '/privacy',
@@ -65,19 +65,19 @@ export default async function PrivacyPolicyPage() {
 
             {/* Commitment Box */}
             {(privacyData.commitmentTitle || privacyData.commitmentText) && (
-              <div className="rounded-sm border border-border-subtle bg-bg-surface p-8 shadow-xs">
+              <div className="border-border-subtle bg-bg-surface rounded-sm border p-8 shadow-xs">
                 <div className="flex items-start gap-4">
-                  <div className="rounded-full bg-accent/10 p-3 text-accent shrink-0">
+                  <div className="bg-accent/10 text-accent shrink-0 rounded-full p-3">
                     <ShieldCheck size={24} />
                   </div>
                   <div>
                     {privacyData.commitmentTitle && (
-                      <h2 className="font-serif text-lg font-bold text-text-main">
+                      <h2 className="text-text-main font-serif text-lg font-bold">
                         {privacyData.commitmentTitle}
                       </h2>
                     )}
                     {privacyData.commitmentText && (
-                      <p className="text-text-muted mt-2 text-sm leading-relaxed font-sans">
+                      <p className="text-text-muted mt-2 font-sans text-sm leading-relaxed">
                         {privacyData.commitmentText}
                       </p>
                     )}
@@ -95,10 +95,10 @@ export default async function PrivacyPolicyPage() {
 
             {/* 04. Contact & Inquiries Section */}
             {(privacyData.inquiryTitle || privacyData.inquiryDescription) && (
-              <div className="space-y-4 border-t border-border-subtle pt-10 font-sans">
-                <div className="flex items-center gap-2 text-accent">
+              <div className="border-border-subtle space-y-4 border-t pt-10 font-sans">
+                <div className="text-accent flex items-center gap-2">
                   <Mail size={18} />
-                  <h3 className="font-serif text-xl font-semibold text-text-main">
+                  <h3 className="text-text-main font-serif text-xl font-semibold">
                     {privacyData.inquiryTitle || 'Privacy Inquiries & Contact'}
                   </h3>
                 </div>
@@ -107,15 +107,15 @@ export default async function PrivacyPolicyPage() {
                     {privacyData.inquiryDescription}
                   </p>
                 )}
-                <div className="rounded-sm border border-border-subtle bg-bg-surface p-6 text-sm space-y-1.5 shadow-2xs">
-                  <p className="font-semibold text-text-main text-base">
+                <div className="border-border-subtle bg-bg-surface space-y-1.5 rounded-sm border p-6 text-sm shadow-2xs">
+                  <p className="text-text-main text-base font-semibold">
                     {privacyData.companyName || 'Elvin Ediz Immigration Advisory'}
                   </p>
                   <p className="text-text-muted">
                     Email:{' '}
                     <a
                       href={`mailto:${privacyData.email || settings?.contactEmail || 'info@elvinediz.com'}`}
-                      className="text-accent hover:underline font-medium"
+                      className="text-accent font-medium hover:underline"
                     >
                       {privacyData.email || settings?.contactEmail || 'info@elvinediz.com'}
                     </a>
@@ -123,9 +123,7 @@ export default async function PrivacyPolicyPage() {
                   {(privacyData.phone || settings?.phone) && (
                     <p className="text-text-muted">
                       Phone:{' '}
-                      <span className="text-text-main">
-                        {privacyData.phone || settings?.phone}
-                      </span>
+                      <span className="text-text-main">{privacyData.phone || settings?.phone}</span>
                     </p>
                   )}
                   {(privacyData.address || settings?.address) && (

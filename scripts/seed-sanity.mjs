@@ -14,7 +14,8 @@ if (fs.existsSync('.env.local')) {
 }
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
+const dataset =
+  process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
 const token = process.env.SANITY_EDITOR_TOKEN;
 
 if (!projectId) {
@@ -120,8 +121,7 @@ async function seed() {
     aboutEyebrow: 'ELVIN EDIZ IMMIGRATION SERVICES',
     aboutTitleMain: 'Our',
     aboutTitleAccent: 'Strategy',
-    aboutQuoteParagraph:
-      'We believe Canadian immigration should be empowering, not overwhelming.',
+    aboutQuoteParagraph: 'We believe Canadian immigration should be empowering, not overwhelming.',
     aboutBodyParagraph:
       'With personalized assessment and clear strategic direction, we help individuals, students, professionals, and families navigate Canadian immigration regulations with confidence.',
     aboutCtaText: 'Free Consultation',
@@ -181,7 +181,6 @@ async function seed() {
       'Other',
     ],
   };
-
 
   // 3. Staff Member (Nazly Sunguroglu)
   const staffNazly = {
@@ -465,7 +464,8 @@ Our personalized approach believes that Pragmatism is the key to handling your c
     {
       _id: 'post-insight-express-entry-category-based-selection',
       _type: 'post',
-      title: 'Navigating Express Entry Category-Based Selection: Strategic Occupations & French Advantage',
+      title:
+        'Navigating Express Entry Category-Based Selection: Strategic Occupations & French Advantage',
       slug: { _type: 'slug', current: 'navigating-express-entry-category-based-selection' },
       kind: 'insight',
       category: 'Express Entry & PR',
@@ -499,7 +499,8 @@ Our personalized approach believes that Pragmatism is the key to handling your c
     {
       _id: 'post-insight-making-study-plan-achievable-pgwp',
       _type: 'post',
-      title: 'Strategic Planning for Canadian Study Permits, DLIs, and PGWP Eligibility Regulations',
+      title:
+        'Strategic Planning for Canadian Study Permits, DLIs, and PGWP Eligibility Regulations',
       slug: { _type: 'slug', current: 'making-your-study-plan-achievable' },
       kind: 'insight',
       category: 'Study in Canada & PGWP',
@@ -533,7 +534,8 @@ Our personalized approach believes that Pragmatism is the key to handling your c
     {
       _id: 'post-insight-lmia-employer-compliance-global-talent',
       _type: 'post',
-      title: 'Employer Compliance & LMIA Navigation: Pathways for High-Wage, Global Talent, and Intra-Company Transferees',
+      title:
+        'Employer Compliance & LMIA Navigation: Pathways for High-Wage, Global Talent, and Intra-Company Transferees',
       slug: { _type: 'slug', current: 'lmia-employer-compliance-and-global-talent-pathways' },
       kind: 'insight',
       category: 'Work Permits & LMIA',
@@ -567,7 +569,8 @@ Our personalized approach believes that Pragmatism is the key to handling your c
     {
       _id: 'post-insight-spousal-sponsorship-inland-vs-outland',
       _type: 'post',
-      title: 'Deconstructing Spousal Sponsorship: Inland vs. Outland Streams, Dual Intent, and Open Work Permits',
+      title:
+        'Deconstructing Spousal Sponsorship: Inland vs. Outland Streams, Dual Intent, and Open Work Permits',
       slug: { _type: 'slug', current: 'spousal-sponsorship-inland-vs-outland-strategic-guide' },
       kind: 'insight',
       category: 'Family & Spousal Sponsorship',
@@ -601,7 +604,8 @@ Our personalized approach believes that Pragmatism is the key to handling your c
     {
       _id: 'post-insight-pnp-strategies-ontario-bc-alberta',
       _type: 'post',
-      title: 'Unlocking Provincial Nominee Programs: Strategic Pathways across Ontario (OINP), BC PNP, and Alberta',
+      title:
+        'Unlocking Provincial Nominee Programs: Strategic Pathways across Ontario (OINP), BC PNP, and Alberta',
       slug: { _type: 'slug', current: 'pnp-strategies-ontario-bc-alberta-nominations' },
       kind: 'insight',
       category: 'Provincial Nominee (PNP)',
@@ -712,7 +716,8 @@ Our personalized approach believes that Pragmatism is the key to handling your c
     {
       _id: 'post-canada-tech-jobs-regional-hubs-growth',
       _type: 'post',
-      title: 'Canada’s Tech Corridors Expand Outside Toronto: Emerging Opportunities in Calgary and Halifax',
+      title:
+        'Canada’s Tech Corridors Expand Outside Toronto: Emerging Opportunities in Calgary and Halifax',
       slug: { _type: 'slug', current: 'canada-tech-jobs-regional-hubs-growth' },
       kind: 'news',
       category: 'Tech & Career',
@@ -799,4 +804,3 @@ seed().catch((err) => {
   console.error('❌ Seeding failed:', err);
   process.exit(1);
 });
-

@@ -101,7 +101,7 @@ export function FeaturedInsights({ insightsPageData, posts }: FeaturedInsightsPr
                   {/* Category Pill Tag & Date */}
                   <div className="mb-3 flex items-center justify-between gap-2">
                     <span className="bg-accent/10 text-accent border-accent/25 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase">
-                      <PostIcon size={12} className="shrink-0 text-accent" />
+                      <PostIcon size={12} className="text-accent shrink-0" />
                       {post.category || 'Insight'}
                     </span>
                     {post.publishedAt && (
@@ -113,7 +113,7 @@ export function FeaturedInsights({ insightsPageData, posts }: FeaturedInsightsPr
                   </div>
 
                   {/* Title (Fixed 2-line height) */}
-                  <h3 className="text-text-main group-hover:text-accent mb-3 h-13 font-serif text-lg leading-snug font-semibold transition-colors duration-200 line-clamp-2">
+                  <h3 className="text-text-main group-hover:text-accent mb-3 line-clamp-2 h-13 font-serif text-lg leading-snug font-semibold transition-colors duration-200">
                     <Link href={`/insights/${cleanStega(post.slug)}`}>{post.title}</Link>
                   </h3>
 

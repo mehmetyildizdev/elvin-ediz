@@ -14,17 +14,19 @@ export function RcicSection({
   settings?: SiteSettingsData;
 }) {
   const rawStats = homeData.stats?.length ? homeData.stats : defaultHomePage.stats || [];
-  const statsList = rawStats.filter(
-    (stat) => stat && (stat.number?.trim() || stat.label?.trim())
-  );
+  const statsList = rawStats.filter((stat) => stat && (stat.number?.trim() || stat.label?.trim()));
 
   return (
-    <section className="bg-bg-primary text-text-on-dark relative overflow-hidden px-6 py-20 md:px-12 md:py-28" id="who-are-we">
+    <section
+      className="bg-bg-primary text-text-on-dark relative overflow-hidden px-6 py-20 md:px-12 md:py-28"
+      id="who-are-we"
+    >
       {/* Background Glow */}
       <div
         className="pointer-events-none absolute inset-0 opacity-40 select-none"
         style={{
-          backgroundImage: 'radial-gradient(circle at 75% 25%, rgba(200, 90, 50, 0.18), transparent 55%)',
+          backgroundImage:
+            'radial-gradient(circle at 75% 25%, rgba(200, 90, 50, 0.18), transparent 55%)',
         }}
       />
 
@@ -37,33 +39,33 @@ export function RcicSection({
             </p>
             <h2 className="mb-6 font-serif text-4xl leading-tight text-white sm:text-5xl md:text-5xl">
               {homeData.strategyTitle ? (
-                <>
-                  {homeData.strategyTitle}
-                </>
+                <>{homeData.strategyTitle}</>
               ) : (
                 <>
                   Elvin Ediz <br />
-                  <span className="text-accent font-serif font-normal italic">Immigration Services</span>
+                  <span className="text-accent font-serif font-normal italic">
+                    Immigration Services
+                  </span>
                 </>
               )}
             </h2>
 
             <div className="text-text-on-dark-muted space-y-4 text-base leading-relaxed">
-              <p>
-                {homeData.strategyParagraph1}
-              </p>
-              <p className="text-white font-medium">
-                {homeData.strategyParagraph2}
-              </p>
+              <p>{homeData.strategyParagraph1}</p>
+              <p className="font-medium text-white">{homeData.strategyParagraph2}</p>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button href={resolveCtaLink(homeData.whoAreWePrimaryCtaLink, settings?.whatsappNumber)} variant="primary" size="md">
+              <Button
+                href={resolveCtaLink(homeData.whoAreWePrimaryCtaLink, settings?.whatsappNumber)}
+                variant="primary"
+                size="md"
+              >
                 {homeData.whoAreWePrimaryCtaText || 'Free Consultation'} <ArrowUpRight size={16} />
               </Button>
               <a
                 href={homeData.whoAreWeSecondaryCtaLink || '#contact'}
-                className="border-border-on-dark text-text-on-dark hover:text-accent hover:border-accent inline-flex items-center gap-2 border-b pb-1 text-xs font-semibold uppercase tracking-wider transition-colors"
+                className="border-border-on-dark text-text-on-dark hover:text-accent hover:border-accent inline-flex items-center gap-2 border-b pb-1 text-xs font-semibold tracking-wider uppercase transition-colors"
               >
                 {homeData.whoAreWeSecondaryCtaText || 'Send a Message'}
               </a>
@@ -76,7 +78,10 @@ export function RcicSection({
               <div className="relative h-44 w-full max-w-xs sm:h-52">
                 <Image
                   src={homeData.ciccBadgeImageUrl || homeData.whoAreWeImageUrl || '/rcic_logo.png'}
-                  alt={homeData.ciccBadgeTitle || 'Regulated Canadian Immigration Consultant (RCIC) CICC'}
+                  alt={
+                    homeData.ciccBadgeTitle ||
+                    'Regulated Canadian Immigration Consultant (RCIC) CICC'
+                  }
                   fill
                   sizes="(max-width: 768px) 100vw, 320px"
                   className="object-contain"
@@ -84,7 +89,7 @@ export function RcicSection({
                 />
               </div>
               <div className="border-border-on-dark/20 mt-6 border-t pt-4">
-                <span className="text-accent text-xs font-bold uppercase tracking-widest">
+                <span className="text-accent text-xs font-bold tracking-widest uppercase">
                   {homeData.ciccBadgeTitle || 'CICC REGISTERED & APPROVED'}
                 </span>
                 <p className="text-text-on-dark-muted mt-1 text-xs leading-relaxed whitespace-pre-line">
@@ -97,16 +102,19 @@ export function RcicSection({
         </div>
 
         {/* RCIC Statistics Counters Bar */}
-        <div className="border-border-on-dark/20 bg-bg-surface/10 mt-16 grid grid-cols-2 divide-x divide-y divide-border-on-dark/20 rounded-sm border backdrop-blur-xs md:grid-cols-5 md:divide-y-0">
+        <div className="border-border-on-dark/20 bg-bg-surface/10 divide-border-on-dark/20 mt-16 grid grid-cols-2 divide-x divide-y rounded-sm border backdrop-blur-xs md:grid-cols-5 md:divide-y-0">
           {statsList.map((stat, i) => {
             const Icon = getIconComponent(stat.icon) || UserCheck;
             return (
-              <div key={stat.label || i} className="flex flex-col items-center justify-center p-6 text-center">
+              <div
+                key={stat.label || i}
+                className="flex flex-col items-center justify-center p-6 text-center"
+              >
                 <Icon size={26} className="text-accent mb-2.5 opacity-90" />
-                <span className="text-white font-serif text-3xl font-bold md:text-4xl">
+                <span className="font-serif text-3xl font-bold text-white md:text-4xl">
                   {stat.number}
                 </span>
-                <span className="text-text-on-dark-muted mt-1.5 text-xs font-semibold uppercase tracking-wider">
+                <span className="text-text-on-dark-muted mt-1.5 text-xs font-semibold tracking-wider uppercase">
                   {stat.label}
                 </span>
               </div>
@@ -117,4 +125,3 @@ export function RcicSection({
     </section>
   );
 }
-

@@ -62,7 +62,7 @@ export function Pagination({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage <= 1}
-        className="border-border-subtle bg-bg-surface hover:border-accent hover:text-accent disabled:opacity-40 disabled:pointer-events-none text-text-main inline-flex h-9 items-center gap-1 rounded-sm border px-3 text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
+        className="border-border-subtle bg-bg-surface hover:border-accent hover:text-accent text-text-main inline-flex h-9 cursor-pointer items-center gap-1 rounded-sm border px-3 text-xs font-semibold tracking-wider uppercase transition-all duration-200 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40"
         aria-label="Go to previous page"
       >
         <ChevronLeft size={14} />
@@ -91,7 +91,7 @@ export function Pagination({
               key={`page-${pageNum}`}
               onClick={() => onPageChange(pageNum)}
               aria-current={isActive ? 'page' : undefined}
-              className={`flex h-9 min-w-9 items-center justify-center rounded-sm px-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+              className={`flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-sm px-2 text-xs font-semibold transition-all duration-200 ${
                 isActive
                   ? 'bg-accent text-bg-primary font-bold shadow-xs'
                   : 'border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent border'
@@ -107,7 +107,7 @@ export function Pagination({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage >= totalPages}
-        className="border-border-subtle bg-bg-surface hover:border-accent hover:text-accent disabled:opacity-40 disabled:pointer-events-none text-text-main inline-flex h-9 items-center gap-1 rounded-sm border px-3 text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
+        className="border-border-subtle bg-bg-surface hover:border-accent hover:text-accent text-text-main inline-flex h-9 cursor-pointer items-center gap-1 rounded-sm border px-3 text-xs font-semibold tracking-wider uppercase transition-all duration-200 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40"
         aria-label="Go to next page"
       >
         <span className="hidden sm:inline">Next</span>

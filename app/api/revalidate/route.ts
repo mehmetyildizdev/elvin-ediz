@@ -29,7 +29,9 @@ export async function POST(req: NextRequest) {
     } else {
       // 2. Direct secret verification fallback (Authorization header, query param, or JSON body)
       const authHeader = req.headers.get('authorization');
-      const bearerSecret = authHeader?.startsWith('Bearer ') ? authHeader.substring(7).trim() : null;
+      const bearerSecret = authHeader?.startsWith('Bearer ')
+        ? authHeader.substring(7).trim()
+        : null;
       const urlSecret = req.nextUrl.searchParams.get('secret');
 
       const rawBodyText = await req.text();
@@ -87,7 +89,12 @@ export async function POST(req: NextRequest) {
           revalidatePath(`/news/${slug}`, 'page');
           revalidatePath(`/announcements/${slug}`, 'page');
           revalidatePath(`/information/${slug}`, 'page');
-          revalidatedPaths.push(`/insights/${slug}`, `/news/${slug}`, `/announcements/${slug}`, `/information/${slug}`);
+          revalidatedPaths.push(
+            `/insights/${slug}`,
+            `/news/${slug}`,
+            `/announcements/${slug}`,
+            `/information/${slug}`
+          );
         }
 
         // Listing hubs
@@ -247,6 +254,7 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({
     status: 'online',
-    usage: 'POST to this endpoint with Sanity Webhook or pass ?secret=...&tag=... or ?secret=...&path=...',
+    usage:
+      'POST to this endpoint with Sanity Webhook or pass ?secret=...&tag=... or ?secret=...&path=...',
   });
 }

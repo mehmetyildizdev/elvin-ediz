@@ -13,7 +13,8 @@ if (fs.existsSync('.env.local')) {
 }
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
+const dataset =
+  process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
 const token = process.env.SANITY_EDITOR_TOKEN;
 
 if (!projectId) {
@@ -37,7 +38,8 @@ const client = createClient({
 async function updateNav() {
   console.log('Updating Sanity CMS siteSettings headerNav to include Home and remove About...');
 
-  await client.patch('siteSettings')
+  await client
+    .patch('siteSettings')
     .set({
       headerNav: [
         { _key: 'n1', label: 'Home', href: '/' },

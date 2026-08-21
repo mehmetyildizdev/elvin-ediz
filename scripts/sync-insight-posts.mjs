@@ -12,12 +12,9 @@ if (fs.existsSync('.env.local')) {
   }
 }
 
-const projectId =
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset =
-  process.env.NEXT_PUBLIC_SANITY_DATASET ||
-  process.env.SANITY_STUDIO_DATASET ||
-  'production';
+  process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
 const token = process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_WRITE_TOKEN;
 
 if (!projectId || !token) {
@@ -74,10 +71,7 @@ async function syncInsightPosts() {
   }));
 
   // Re-save data/insight-posts.json with updated author reference
-  fs.writeFileSync(
-    'data/insight-posts.json',
-    JSON.stringify(formattedPosts, null, 2)
-  );
+  fs.writeFileSync('data/insight-posts.json', JSON.stringify(formattedPosts, null, 2));
   console.log(`Saved ${formattedPosts.length} insight posts to data/insight-posts.json.`);
 
   // 4. Create new insight posts in Sanity

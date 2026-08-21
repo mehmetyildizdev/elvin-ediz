@@ -2,6 +2,7 @@ import { defineField } from 'sanity';
 import { CodeIcon } from '@sanity/icons/Code';
 import config from './main.json';
 import { VisualIconPicker } from '../../components/VisualIconPicker';
+import { isSlugUniqueByLanguage, slugifyWithI18n } from '../../i18n';
 
 export const mainGroup = config.group;
 
@@ -18,7 +19,12 @@ export const mainFields = [
     title: config.fields.slug.title,
     type: 'slug',
     group: config.group.name,
-    options: { source: 'title', maxLength: 96 },
+    options: {
+      source: 'title',
+      maxLength: 96,
+      slugify: slugifyWithI18n,
+      isUnique: isSlugUniqueByLanguage,
+    },
     validation: (rule) => rule.required(),
   }),
   defineField({

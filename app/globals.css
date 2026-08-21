@@ -62,13 +62,17 @@
 :root,
 [data-font='classic'],
 html[data-font='classic'] {
-  --font-family-sans: var(--font-dm-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-sans:
+    var(--font-dm-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
   --font-family-serif: var(--font-playfair), Georgia, Cambria, 'Times New Roman', serif;
 }
 
 [data-font='modern'],
 html[data-font='modern'] {
-  --font-family-sans: var(--font-jakarta), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-sans:
+    var(--font-jakarta), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
   --font-family-serif: var(--font-lora), Georgia, Cambria, 'Times New Roman', serif;
 }
 
@@ -76,13 +80,16 @@ html[data-font='modern'] {
 [data-font='executive'],
 html[data-font='diplomat'],
 html[data-font='executive'] {
-  --font-family-sans: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-sans:
+    var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
   --font-family-serif: var(--font-dm-serif), Georgia, Cambria, 'Times New Roman', serif;
 }
 
 [data-font='heritage'],
 html[data-font='heritage'] {
-  --font-family-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-sans:
+    var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-serif: var(--font-merriweather), Georgia, Cambria, 'Times New Roman', serif;
 }
 

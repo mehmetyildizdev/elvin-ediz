@@ -1,6 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Bell, BookOpen, Calendar, ExternalLink, Newspaper, Sparkles } from 'lucide-react';
+import {
+  ArrowLeft,
+  Bell,
+  BookOpen,
+  Calendar,
+  ExternalLink,
+  Newspaper,
+  Sparkles,
+} from 'lucide-react';
 import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
 import { PageHeader } from '@/components/ui/page-header';
@@ -35,7 +43,7 @@ export function InsightsDetail({
         <div className="mx-auto mt-8">
           <Link
             href="/insights"
-            className="bg-accent text-bg-primary rounded-xs inline-flex items-center gap-2 px-6 py-3 text-xs font-bold tracking-widest uppercase transition-opacity hover:opacity-90"
+            className="bg-accent text-bg-primary inline-flex items-center gap-2 rounded-xs px-6 py-3 text-xs font-bold tracking-widest uppercase transition-opacity hover:opacity-90"
           >
             ← Back to insights hub
           </Link>
@@ -98,15 +106,16 @@ export function InsightsDetail({
             {kind === 'insight' && (
               <Link
                 href="/insights"
-                className="bg-accent/15 text-accent hover:bg-accent/25 border-accent/30 rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
+                className="bg-accent/15 text-accent hover:bg-accent/25 border-accent/30 inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
               >
-                {CustomIcon ? <CustomIcon size={13} /> : <Sparkles size={13} />} {post.category || 'Insight Article'}
+                {CustomIcon ? <CustomIcon size={13} /> : <Sparkles size={13} />}{' '}
+                {post.category || 'Insight Article'}
               </Link>
             )}
             {kind === 'information' && (
               <Link
                 href="/information"
-                className="bg-bg-primary/10 text-accent hover:bg-accent/15 border-border-subtle rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
+                className="bg-bg-primary/10 text-accent hover:bg-accent/15 border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
               >
                 {CustomIcon ? <CustomIcon size={13} /> : <BookOpen size={13} />} Practical Guide
               </Link>
@@ -114,7 +123,7 @@ export function InsightsDetail({
             {kind === 'announcement' && (
               <Link
                 href="/announcements"
-                className="bg-accent/20 text-accent hover:bg-accent/30 border-accent/40 rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
+                className="bg-accent/20 text-accent hover:bg-accent/30 border-accent/40 inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
               >
                 {CustomIcon ? <CustomIcon size={13} /> : <Bell size={13} />} Official Notice
               </Link>
@@ -122,7 +131,7 @@ export function InsightsDetail({
             {kind === 'news' && (
               <Link
                 href="/news"
-                className="bg-bg-primary/10 text-text-main hover:text-accent border-border-subtle rounded-full inline-flex items-center gap-1.5 border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
+                className="bg-bg-primary/10 text-text-main hover:text-accent border-border-subtle inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1 text-xs font-bold tracking-wider uppercase transition-colors"
               >
                 {CustomIcon ? <CustomIcon size={13} /> : <Newspaper size={13} />} Immigration News
               </Link>
@@ -179,7 +188,7 @@ export function InsightsDetail({
                 href={post.sourceURL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent hover:underline inline-flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase"
+                className="text-accent inline-flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase hover:underline"
               >
                 Original Source <ExternalLink size={13} />
               </a>

@@ -12,12 +12,9 @@ if (fs.existsSync('.env.local')) {
   }
 }
 
-const projectId =
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset =
-  process.env.NEXT_PUBLIC_SANITY_DATASET ||
-  process.env.SANITY_STUDIO_DATASET ||
-  'production';
+  process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
 const token = process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_WRITE_TOKEN;
 
 if (!projectId || !token) {
@@ -37,7 +34,8 @@ const informationGuides = [
   {
     _id: 'post-info-questions-before-application',
     _type: 'post',
-    title: 'Three Critical Questions to Evaluate Before Beginning Your Canadian Immigration Application',
+    title:
+      'Three Critical Questions to Evaluate Before Beginning Your Canadian Immigration Application',
     slug: {
       _type: 'slug',
       current: 'questions-before-your-application',
@@ -55,7 +53,8 @@ const informationGuides = [
       'Ensure Certified Translations & Affidavits for all Non-English/Non-French Records',
     ],
     infoCtaTitle: 'Need a complete pre-application document audit?',
-    infoCtaSubtitle: 'Our RCIC legal team verifies all eligibility criteria and supporting documentation.',
+    infoCtaSubtitle:
+      'Our RCIC legal team verifies all eligibility criteria and supporting documentation.',
     infoCtaButtonText: 'Schedule Document Audit',
     excerpt:
       'Clarity at the outset prevents costly refusals: timeline expectations, proof-of-funds readiness, and verifiable principal applicant credentials.',
@@ -108,7 +107,8 @@ const informationGuides = [
   {
     _id: 'post-info-express-entry-crs-optimization',
     _type: 'post',
-    title: 'A Strategic Guide to Maximizing Your Express Entry Comprehensive Ranking System (CRS) Score',
+    title:
+      'A Strategic Guide to Maximizing Your Express Entry Comprehensive Ranking System (CRS) Score',
     slug: {
       _type: 'slug',
       current: 'complete-guide-to-express-entry-crs-optimization',
@@ -126,7 +126,8 @@ const informationGuides = [
       'Evaluate Provincial Nominee Program (PNP) Alignments for an Immediate 600-Point Boost',
     ],
     infoCtaTitle: 'Want to optimize your Express Entry CRS ranking?',
-    infoCtaSubtitle: 'We analyze your qualifications to identify hidden point opportunities and PNP streams.',
+    infoCtaSubtitle:
+      'We analyze your qualifications to identify hidden point opportunities and PNP streams.',
     infoCtaButtonText: 'Book CRS Strategy Session',
     excerpt:
       'Learn how strategic language retakes, spouse credentials, and provincial nominee alignments can elevate your profile above competitive draw cut-offs.',
@@ -179,7 +180,8 @@ const informationGuides = [
   {
     _id: 'post-info-study-permit-blueprint-sop',
     _type: 'post',
-    title: 'Study Permit Blueprint: Document Checklist, Proof of Funds, and Statement of Purpose (SOP)',
+    title:
+      'Study Permit Blueprint: Document Checklist, Proof of Funds, and Statement of Purpose (SOP)',
     slug: {
       _type: 'slug',
       current: 'study-permit-document-checklist-and-statement-of-purpose',
@@ -197,7 +199,8 @@ const informationGuides = [
       'Demonstrate Strong Economic, Social, and Familial Ties to Your Home Country',
     ],
     infoCtaTitle: 'Planning to study at a Canadian institution?',
-    infoCtaSubtitle: 'We guide you through LOA verifications, financial proofs, and comprehensive SOP drafting.',
+    infoCtaSubtitle:
+      'We guide you through LOA verifications, financial proofs, and comprehensive SOP drafting.',
     infoCtaButtonText: 'Consult Study Permit Specialist',
     excerpt:
       'A structured guide covering acceptance letters, provincial attestations (PAL), cost-of-living proof, and building a compelling dual-intent narrative.',
@@ -236,7 +239,8 @@ const informationGuides = [
   {
     _id: 'post-info-work-permit-transitions-maintained-status',
     _type: 'post',
-    title: 'Navigating In-Canada Work Permit Transitions: LMIA, Maintained Status, and Bridging Visas',
+    title:
+      'Navigating In-Canada Work Permit Transitions: LMIA, Maintained Status, and Bridging Visas',
     slug: {
       _type: 'slug',
       current: 'in-canada-work-permit-transition-guide',
@@ -254,7 +258,8 @@ const informationGuides = [
       'Ensure Provincial Healthcare and Social Insurance Number (SIN) Continuations',
     ],
     infoCtaTitle: 'Facing an upcoming work permit expiration date?',
-    infoCtaSubtitle: 'Our licensed practitioners protect your lawful status and structure smooth employer transitions.',
+    infoCtaSubtitle:
+      'Our licensed practitioners protect your lawful status and structure smooth employer transitions.',
     infoCtaButtonText: 'Review Work Permit Options',
     excerpt:
       'How to maintain continuous legal authorization to work in Canada while transitioning between employer-specific, open, or bridging work permits.',
@@ -311,7 +316,8 @@ const informationGuides = [
       'Include Statutory Declarations and Letters of Support from Family Members and Close Friends',
     ],
     infoCtaTitle: 'Sponsoring your spouse or common-law partner to Canada?',
-    infoCtaSubtitle: 'We assemble structured, compelling relationship portfolios that satisfy IRCC scrutiny.',
+    infoCtaSubtitle:
+      'We assemble structured, compelling relationship portfolios that satisfy IRCC scrutiny.',
     infoCtaButtonText: 'Schedule Sponsorship Review',
     excerpt:
       'Detailed guidance on compiling financial, cohabitation, and social evidence to demonstrate a genuine relationship free of immigration convenience concerns.',
@@ -350,7 +356,8 @@ const informationGuides = [
   {
     _id: 'post-info-canadian-citizenship-physical-presence',
     _type: 'post',
-    title: 'Canadian Citizenship Application Roadmap: Physical Presence, Tax Filing, and Test Preparation',
+    title:
+      'Canadian Citizenship Application Roadmap: Physical Presence, Tax Filing, and Test Preparation',
     slug: {
       _type: 'slug',
       current: 'canadian-citizenship-application-physical-presence-guide',
@@ -368,7 +375,8 @@ const informationGuides = [
       'Prepare for the Canadian Citizenship Knowledge Test with Official Discover Canada Material',
     ],
     infoCtaTitle: 'Ready to become a Canadian citizen?',
-    infoCtaSubtitle: 'We audit your physical presence calculations, file submissions, and guide you to oath of citizenship.',
+    infoCtaSubtitle:
+      'We audit your physical presence calculations, file submissions, and guide you to oath of citizenship.',
     infoCtaButtonText: 'Start Citizenship Assessment',
     excerpt:
       'A step-by-step roadmap detailing the 1,095-day rule, temporary resident credit calculations, CRA tax requirements, and study tips for the citizenship exam.',
@@ -443,10 +451,7 @@ async function syncInformationPosts() {
     },
   }));
 
-  fs.writeFileSync(
-    'data/information-posts.json',
-    JSON.stringify(formattedPosts, null, 2)
-  );
+  fs.writeFileSync('data/information-posts.json', JSON.stringify(formattedPosts, null, 2));
   console.log(`Saved ${formattedPosts.length} information posts to data/information-posts.json.`);
 
   // 4. Create new information posts in Sanity

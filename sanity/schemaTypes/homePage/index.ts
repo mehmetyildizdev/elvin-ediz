@@ -21,6 +21,7 @@ import { processGroup, processFields } from './process';
 import { insightsGroup, insightsFields } from './insights';
 import { contactGroup, contactFields } from './contact';
 import { seoGroup, seoFields } from './seo';
+import { languageField } from '../../i18n';
 
 export const homePage = defineType({
   name: config.name,
@@ -39,6 +40,7 @@ export const homePage = defineType({
     { ...seoGroup, icon: SearchIcon },
   ],
   fields: [
+    languageField,
     ...heroFields,
     ...trustBarFields,
     ...servicesFields,

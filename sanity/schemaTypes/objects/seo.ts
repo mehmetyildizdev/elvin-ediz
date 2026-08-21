@@ -13,7 +13,11 @@ export const seo = defineType({
       description:
         'Optimal length: 50–60 characters. Recommended format: "Primary Keyword – Secondary Keyword | Elvin Ediz". If left empty, the document/page title is used.',
       validation: (rule) =>
-        rule.max(70).warning('Titles longer than 60 characters are typically truncated by Google search results.'),
+        rule
+          .max(70)
+          .warning(
+            'Titles longer than 60 characters are typically truncated by Google search results.'
+          ),
     }),
     defineField({
       name: 'metaDescription',
@@ -23,7 +27,9 @@ export const seo = defineType({
       description:
         'Optimal length: 120–160 characters. An engaging summary shown below the title in search engine results. If left empty, the page excerpt/summary is used.',
       validation: (rule) =>
-        rule.max(170).warning('Descriptions longer than 160 characters are typically truncated by Google.'),
+        rule
+          .max(170)
+          .warning('Descriptions longer than 160 characters are typically truncated by Google.'),
     }),
     defineField({
       name: 'ogImage',
@@ -66,7 +72,8 @@ export const seo = defineType({
       options: {
         layout: 'tags',
       },
-      description: 'Key search terms and topics for internal search indexing and topical relevance (e.g. "Express Entry", "CRS Score", "RCIC Toronto").',
+      description:
+        'Key search terms and topics for internal search indexing and topical relevance (e.g. "Express Entry", "CRS Score", "RCIC Toronto").',
     }),
     defineField({
       name: 'canonicalUrl',

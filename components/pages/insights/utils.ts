@@ -12,11 +12,14 @@ export function cleanStega(value?: any): string {
 export function formatDate(dateStr?: string, options?: Intl.DateTimeFormatOptions): string {
   if (!dateStr) return '';
   try {
-    return new Date(dateStr).toLocaleDateString('en-US', options || {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
+    return new Date(dateStr).toLocaleDateString(
+      'en-US',
+      options || {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      }
+    );
   } catch {
     return dateStr;
   }

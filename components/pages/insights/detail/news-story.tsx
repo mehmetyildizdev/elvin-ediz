@@ -1,5 +1,14 @@
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Clock, ExternalLink, Globe, MessageSquare, Newspaper, Tag } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Clock,
+  ExternalLink,
+  Globe,
+  MessageSquare,
+  Newspaper,
+  Tag,
+} from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PostData, SiteSettingsData } from '@/sanity/lib/types';
 import { defaultSiteSettings } from '@/sanity/lib/types';
@@ -94,7 +103,7 @@ export function NewsStory({ post, settings = defaultSiteSettings }: NewsStoryPro
                 href={post.sourceURL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent hover:underline inline-flex items-center gap-1 font-semibold"
+                className="text-accent inline-flex items-center gap-1 font-semibold hover:underline"
               >
                 Read full article on {post.sourceName || 'Source'} <ExternalLink size={12} />
               </a>
@@ -128,7 +137,8 @@ export function NewsStory({ post, settings = defaultSiteSettings }: NewsStoryPro
               Questions about life or opportunities in Canada?
             </h4>
             <p className="text-text-on-dark-muted text-xs leading-relaxed">
-              Reach out to our team for tailored guidance on studying, working, or settling in Canada.
+              Reach out to our team for tailored guidance on studying, working, or settling in
+              Canada.
             </p>
             <Button
               href={resolveCtaLink(

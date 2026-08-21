@@ -34,7 +34,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-300">
       {/* Top Contact Bar (Desktop / Tablet) */}
-      <div className="bg-bg-primary text-text-on-dark-muted border-border-on-dark/20 hidden border-b py-2 px-6 text-xs transition-colors md:block md:px-12">
+      <div className="bg-bg-primary text-text-on-dark-muted border-border-on-dark/20 hidden border-b px-6 py-2 text-xs transition-colors md:block md:px-12">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5">
@@ -128,7 +128,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
               Free Consultation
             </Button>
             <button
-              className="text-text-on-dark flex h-10 w-10 items-center justify-center rounded-lg hover:bg-white/10 transition-colors md:hidden"
+              className="text-text-on-dark flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-white/10 md:hidden"
               onClick={() => setOpen(true)}
               aria-label="Open menu"
             >
@@ -141,14 +141,14 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
       {/* Mobile Slide-Over Side Drawer & Backdrop */}
       <div
         className={`fixed inset-0 z-50 bg-black/65 backdrop-blur-xs transition-opacity duration-300 md:hidden ${
-          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
         onClick={() => setOpen(false)}
         aria-hidden="true"
       />
 
       <aside
-        className={`fixed top-0 right-0 bottom-0 z-50 flex w-[85vw] max-w-sm flex-col justify-between border-l border-border-on-dark/20 bg-bg-primary text-text-on-dark shadow-2xl transition-transform duration-300 ease-out md:hidden ${
+        className={`border-border-on-dark/20 bg-bg-primary text-text-on-dark fixed top-0 right-0 bottom-0 z-50 flex w-[85vw] max-w-sm flex-col justify-between border-l shadow-2xl transition-transform duration-300 ease-out md:hidden ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
@@ -156,8 +156,12 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
         aria-label="Mobile Navigation"
       >
         {/* Drawer Header */}
-        <div className="flex items-center justify-between border-b border-border-on-dark/20 px-6 py-5">
-          <Link href="/" onClick={() => setOpen(false)} className="transition-opacity hover:opacity-90">
+        <div className="border-border-on-dark/20 flex items-center justify-between border-b px-6 py-5">
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className="transition-opacity hover:opacity-90"
+          >
             <Image
               src="/white-logo-for-elvinediz.png"
               alt={settings.siteTitle}
@@ -168,7 +172,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
           </Link>
           <button
             onClick={() => setOpen(false)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-text-on-dark hover:bg-white/10 hover:text-accent transition-colors"
+            className="text-text-on-dark hover:text-accent flex h-10 w-10 items-center justify-center rounded-full bg-white/5 transition-colors hover:bg-white/10"
             aria-label="Close menu"
           >
             <X size={20} />
@@ -187,15 +191,17 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="group flex items-center justify-between rounded-xl px-3.5 py-3 text-base font-serif font-medium text-text-on-dark transition-all hover:bg-white/5 hover:text-accent"
+                className="group text-text-on-dark hover:text-accent flex items-center justify-between rounded-xl px-3.5 py-3 font-serif text-base font-medium transition-all hover:bg-white/5"
               >
                 <span className="flex items-center gap-3">
-                  <span className="text-accent/60 font-sans text-xs font-semibold">0{index + 1}</span>
+                  <span className="text-accent/60 font-sans text-xs font-semibold">
+                    0{index + 1}
+                  </span>
                   <span>{label}</span>
                 </span>
                 <ChevronRight
                   size={16}
-                  className="text-text-on-dark-muted opacity-40 transition-all group-hover:translate-x-1 group-hover:text-accent group-hover:opacity-100"
+                  className="text-text-on-dark-muted group-hover:text-accent opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-100"
                 />
               </Link>
             ))}
@@ -215,10 +221,10 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
         </div>
 
         {/* Drawer Footer - Contact Info & Socials */}
-        <div className="border-t border-border-on-dark/20 bg-black/15 p-6 space-y-3 text-xs">
+        <div className="border-border-on-dark/20 space-y-3 border-t bg-black/15 p-6 text-xs">
           <a
             href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`}
-            className="flex items-center gap-2.5 text-text-on-dark-muted transition-colors hover:text-accent"
+            className="text-text-on-dark-muted hover:text-accent flex items-center gap-2.5 transition-colors"
           >
             <Phone size={13} className="text-accent shrink-0" />
             <span>{settings.phone}</span>
@@ -226,26 +232,26 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
 
           <a
             href={`mailto:${settings.contactEmail}`}
-            className="flex items-center gap-2.5 text-text-on-dark-muted transition-colors hover:text-accent"
+            className="text-text-on-dark-muted hover:text-accent flex items-center gap-2.5 transition-colors"
           >
             <Mail size={13} className="text-accent shrink-0" />
             <span>{settings.contactEmail}</span>
           </a>
 
           {settings.officeHours && (
-            <div className="flex items-center gap-2.5 text-text-on-dark-muted">
+            <div className="text-text-on-dark-muted flex items-center gap-2.5">
               <Clock size={13} className="text-accent shrink-0" />
               <span>{settings.officeHours}</span>
             </div>
           )}
 
-          <div className="flex items-start gap-2.5 text-text-on-dark-muted">
-            <MapPin size={13} className="text-accent shrink-0 mt-0.5" />
+          <div className="text-text-on-dark-muted flex items-start gap-2.5">
+            <MapPin size={13} className="text-accent mt-0.5 shrink-0" />
             <span className="leading-snug">{settings.address}</span>
           </div>
 
           {(settings.linkedinUrl || settings.instagramUrl) && (
-            <div className="flex items-center gap-3 pt-2 border-t border-border-on-dark/10">
+            <div className="border-border-on-dark/10 flex items-center gap-3 border-t pt-2">
               {settings.linkedinUrl && (
                 <a
                   href={settings.linkedinUrl}

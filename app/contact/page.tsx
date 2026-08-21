@@ -10,14 +10,12 @@ import { JsonLd } from '@/components/seo/json-ld';
 export const revalidate = 1209600; // 2 weeks
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [settings, homeData] = await Promise.all([
-    fetchSiteSettings(),
-    fetchHomePage(),
-  ]);
+  const [settings, homeData] = await Promise.all([fetchSiteSettings(), fetchHomePage()]);
 
   return buildPageMetadata({
     pageTitle: 'Contact & Book Consultation | Elvin Ediz Immigration',
-    pageDescription: 'Book a confidential Canadian immigration consultation with Nazly Sunguroglu, RCIC. Inquire about Express Entry, Study & Work Permits, or Family Sponsorship in Toronto.',
+    pageDescription:
+      'Book a confidential Canadian immigration consultation with Nazly Sunguroglu, RCIC. Inquire about Express Entry, Study & Work Permits, or Family Sponsorship in Toronto.',
     settings,
     canonicalPath: '/contact',
   });

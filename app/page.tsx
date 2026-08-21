@@ -26,10 +26,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 export const revalidate = 1209600; // 2 weeks
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [settings, homeData] = await Promise.all([
-    fetchSiteSettings(),
-    fetchHomePage(),
-  ]);
+  const [settings, homeData] = await Promise.all([fetchSiteSettings(), fetchHomePage()]);
 
   return buildPageMetadata({
     pageTitle: homeData.heroTitle,
@@ -70,11 +67,7 @@ export default async function Home() {
       <Services services={services} homeData={homeData} />
       <RcicSection homeData={homeData} settings={settings} />
       <About staff={staff} homeData={homeData} settings={settings} />
-      <Testimonials
-        testimonials={testimonials}
-        googleReviews={googleReviews}
-        homeData={homeData}
-      />
+      <Testimonials testimonials={testimonials} googleReviews={googleReviews} homeData={homeData} />
       <Process homeData={homeData} />
       <Insights homeData={homeData} />
       <Contact homeData={homeData} services={services} />
@@ -82,6 +75,3 @@ export default async function Home() {
     </main>
   );
 }
-
-
-

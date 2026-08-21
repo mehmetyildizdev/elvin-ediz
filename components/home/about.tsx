@@ -16,16 +16,22 @@ export function About({
 }) {
   const leader = staff[0] || defaultStaff[0];
   const photoSrc = homeData.aboutImageUrl || leader?.photoUrl || '/nazly-profile-picture.png';
-  const leaderName = homeData.aboutLeaderName || `${leader?.name || 'Nazly Sunguroglu'} (${leader?.designation || 'RCIC'})`;
-  const leaderRole = homeData.aboutLeaderRole || leader?.role || 'Regulated Canadian Immigration Consultant';
-  const leaderSubtitle = homeData.aboutLeaderSubtitle || leader?.subtitle || 'Founder of Elvin Ediz Immigration Services';
+  const leaderName =
+    homeData.aboutLeaderName ||
+    `${leader?.name || 'Nazly Sunguroglu'} (${leader?.designation || 'RCIC'})`;
+  const leaderRole =
+    homeData.aboutLeaderRole || leader?.role || 'Regulated Canadian Immigration Consultant';
+  const leaderSubtitle =
+    homeData.aboutLeaderSubtitle ||
+    leader?.subtitle ||
+    'Founder of Elvin Ediz Immigration Services';
 
   return (
     <section className="bg-bg-surface px-6 py-20 md:px-12 md:py-32" id="about">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-20">
         {/* Left Column: Staff Member Card */}
         <div className="flex flex-col lg:col-span-5">
-          <div className="bg-bg-app relative aspect-4/5 w-full overflow-hidden rounded-sm border border-border-subtle shadow-lg">
+          <div className="bg-bg-app border-border-subtle relative aspect-4/5 w-full overflow-hidden rounded-sm border shadow-lg">
             <Image
               src={photoSrc}
               alt={leaderName}
@@ -39,12 +45,10 @@ export function About({
             <h3 className="text-text-main font-serif text-2xl font-bold tracking-tight">
               {leaderName}
             </h3>
-            <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">
+            <p className="text-text-muted text-xs font-semibold tracking-wider uppercase">
               {leaderRole}
             </p>
-            <p className="text-text-muted text-xs opacity-90">
-              {leaderSubtitle}
-            </p>
+            <p className="text-text-muted text-xs opacity-90">{leaderSubtitle}</p>
           </div>
         </div>
 
@@ -84,4 +88,3 @@ export function About({
     </section>
   );
 }
-

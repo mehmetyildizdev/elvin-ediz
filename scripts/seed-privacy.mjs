@@ -13,7 +13,8 @@ if (fs.existsSync('.env.local')) {
 }
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
+const dataset =
+  process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
 const token = process.env.SANITY_EDITOR_TOKEN;
 
 if (!projectId || !token) {
@@ -65,19 +66,33 @@ async function pushPrivacyPage() {
         _type: 'block',
         _key: 'p3',
         listItem: 'bullet',
-        children: [{ _type: 'span', _key: 's3', text: 'Your full name, email address, and phone number.' }],
+        children: [
+          { _type: 'span', _key: 's3', text: 'Your full name, email address, and phone number.' },
+        ],
       },
       {
         _type: 'block',
         _key: 'p4',
         listItem: 'bullet',
-        children: [{ _type: 'span', _key: 's4', text: 'Immigration history, educational background, work experience, and language proficiency scores.' }],
+        children: [
+          {
+            _type: 'span',
+            _key: 's4',
+            text: 'Immigration history, educational background, work experience, and language proficiency scores.',
+          },
+        ],
       },
       {
         _type: 'block',
         _key: 'p5',
         listItem: 'bullet',
-        children: [{ _type: 'span', _key: 's5', text: 'Specific case details and questions you provide to help assess your Canadian immigration eligibility.' }],
+        children: [
+          {
+            _type: 'span',
+            _key: 's5',
+            text: 'Specific case details and questions you provide to help assess your Canadian immigration eligibility.',
+          },
+        ],
       },
       {
         _type: 'block',

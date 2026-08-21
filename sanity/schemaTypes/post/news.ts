@@ -11,7 +11,8 @@ export const newsSectionFields = [
     group: config.group.name,
     hidden: ({ document }) => document?.kind !== 'news',
     initialValue: config.fields.sourceName.initialValue,
-    description: 'Publisher or source outlet (e.g. CBC News, Global News, Financial Post, Daily Hive, Reuters)',
+    description:
+      'Publisher or source outlet (e.g. CBC News, Global News, Financial Post, Daily Hive, Reuters)',
   }),
   defineField({
     name: config.fields.sourceURL.name,

@@ -16,9 +16,17 @@ import { ThemeSwitcher } from '@/components/ui/theme-switcher';
 import './globals.css';
 
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans', display: 'swap' });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
 
-const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta', display: 'swap' });
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
+});
 const lora = Lora({ subsets: ['latin'], variable: '--font-lora', display: 'swap' });
 
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope', display: 'swap' });
@@ -43,7 +51,8 @@ export const metadata: Metadata = {
     template: '%s | Elvin Ediz Immigration Services',
     default: 'Elvin Ediz Immigration Services | Your Canadian Story Starts Here',
   },
-  description: 'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC in Toronto, Ontario.',
+  description:
+    'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC in Toronto, Ontario.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -57,8 +66,11 @@ export const metadata: Metadata = {
     locale: 'en_CA',
     siteName: 'Elvin Ediz Immigration Services',
     title: 'Elvin Ediz Immigration Services | Your Canadian Story Starts Here',
-    description: 'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC.',
-    images: [{ url: '/favicon.png', width: 512, height: 512, alt: 'Elvin Ediz Immigration Services' }],
+    description:
+      'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC.',
+    images: [
+      { url: '/favicon.png', width: 512, height: 512, alt: 'Elvin Ediz Immigration Services' },
+    ],
   },
 };
 

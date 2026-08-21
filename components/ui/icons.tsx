@@ -23,7 +23,13 @@ export function ServiceIcon({ Icon }: { Icon: LucideIcon }) {
   );
 }
 
-export function TextLink({ children, href = '#contact' }: { children: React.ReactNode; href?: string }) {
+export function TextLink({
+  children,
+  href = '#contact',
+}: {
+  children: React.ReactNode;
+  href?: string;
+}) {
   const content = (
     <>
       {children}

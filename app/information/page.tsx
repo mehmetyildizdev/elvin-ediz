@@ -15,8 +15,11 @@ export async function generateMetadata(): Promise<Metadata> {
   ]);
 
   return buildPageMetadata({
-    pageTitle: `${insightsPageData.infoTitleMain || 'Practical Immigration Guides'} ${insightsPageData.infoTitleAccent || '& Checklists'}`.trim(),
-    pageDescription: insightsPageData.infoDescription || 'Step-by-step Canadian immigration guides, document checklists, and application preparation resources.',
+    pageTitle:
+      `${insightsPageData.infoTitleMain || 'Practical Immigration Guides'} ${insightsPageData.infoTitleAccent || '& Checklists'}`.trim(),
+    pageDescription:
+      insightsPageData.infoDescription ||
+      'Step-by-step Canadian immigration guides, document checklists, and application preparation resources.',
     settings,
     canonicalPath: '/information',
   });
@@ -28,8 +31,11 @@ export default async function InformationPage() {
   const posts = await fetchPosts();
 
   const informationJsonLd = buildWebPageJsonLd({
-    title: `${insightsPageData.infoTitleMain || 'Practical Immigration Guides'} ${insightsPageData.infoTitleAccent || '& Checklists'}`.trim(),
-    description: insightsPageData.infoDescription || 'Step-by-step Canadian immigration guides, document checklists, and application preparation resources.',
+    title:
+      `${insightsPageData.infoTitleMain || 'Practical Immigration Guides'} ${insightsPageData.infoTitleAccent || '& Checklists'}`.trim(),
+    description:
+      insightsPageData.infoDescription ||
+      'Step-by-step Canadian immigration guides, document checklists, and application preparation resources.',
     url: '/information',
     type: 'CollectionPage',
     settings,
@@ -46,4 +52,3 @@ export default async function InformationPage() {
     </>
   );
 }
-

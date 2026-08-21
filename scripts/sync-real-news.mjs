@@ -12,12 +12,9 @@ if (fs.existsSync('.env.local')) {
   }
 }
 
-const projectId =
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset =
-  process.env.NEXT_PUBLIC_SANITY_DATASET ||
-  process.env.SANITY_STUDIO_DATASET ||
-  'production';
+  process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
 const token = process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_WRITE_TOKEN;
 
 if (!projectId || !token) {
@@ -37,7 +34,8 @@ const realNewsPosts = [
   {
     _id: 'post-news-express-entry-score-distribution',
     _type: 'post',
-    title: 'Canada Publishes Revised Distribution of Candidate Scores Within the Express Entry Pool',
+    title:
+      'Canada Publishes Revised Distribution of Candidate Scores Within the Express Entry Pool',
     slug: {
       _type: 'slug',
       current: 'canada-express-entry-candidate-score-distribution-update',
@@ -232,7 +230,8 @@ const realNewsPosts = [
   {
     _id: 'post-news-ircc-wait-times-dashboard',
     _type: 'post',
-    title: 'Canada Updates Official Wait Times and Inventory Statistics for PR and Citizenship Applicants',
+    title:
+      'Canada Updates Official Wait Times and Inventory Statistics for PR and Citizenship Applicants',
     slug: {
       _type: 'slug',
       current: 'canada-updates-wait-times-pr-citizenship-inventory',
@@ -297,7 +296,8 @@ const realNewsPosts = [
   {
     _id: 'post-news-transport-workers-express-entry',
     _type: 'post',
-    title: 'Canada Invites 300 Transport Sector Workers in First Category-Based Draw Under Revamped Stream',
+    title:
+      'Canada Invites 300 Transport Sector Workers in First Category-Based Draw Under Revamped Stream',
     slug: {
       _type: 'slug',
       current: 'canada-invites-transport-workers-express-entry-category-draw',
@@ -362,7 +362,8 @@ const realNewsPosts = [
   {
     _id: 'post-news-newfoundland-provincial-draw',
     _type: 'post',
-    title: 'Newfoundland and Labrador Issues 208 Invitations in Latest Provincial Immigration Selection',
+    title:
+      'Newfoundland and Labrador Issues 208 Invitations in Latest Provincial Immigration Selection',
     slug: {
       _type: 'slug',
       current: 'newfoundland-labrador-provincial-nomination-draw-august-2026',
@@ -444,9 +445,7 @@ async function syncRealNews() {
   }
 
   // 2. Fetch existing news posts in Sanity to delete/overwrite old ones
-  const existingNews = await client.fetch(
-    `*[_type == "post" && kind == "news"]{ _id, title }`
-  );
+  const existingNews = await client.fetch(`*[_type == "post" && kind == "news"]{ _id, title }`);
   console.log(`Found ${existingNews.length} existing news posts in Sanity.`);
 
   for (const item of existingNews) {

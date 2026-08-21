@@ -10,13 +10,9 @@ if (fs.existsSync('.env.local')) {
 export default defineCliConfig({
   api: {
     projectId:
-      process.env.SANITY_STUDIO_PROJECT_ID ||
-      process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
-      '',
+      process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
     dataset:
-      process.env.SANITY_STUDIO_DATASET ||
-      process.env.NEXT_PUBLIC_SANITY_DATASET ||
-      'production',
+      process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   },
   deployment: {
     appId: 'drd8ieqii4k4xpqhmzk2zd1h',

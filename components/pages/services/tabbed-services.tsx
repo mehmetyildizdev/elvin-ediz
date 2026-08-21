@@ -11,7 +11,6 @@ import { resolveCtaLink } from '@/sanity/lib/whatsapp';
 import { getIconComponent } from '@/sanity/lib/iconLibrary';
 import { PortableTextRenderer } from '@/components/ui/portable-text';
 
-
 export function TabbedServices({
   services = [],
   settings = defaultSiteSettings,
@@ -79,7 +78,7 @@ export function TabbedServices({
                   onClick={() => handleTabChange(service.slug)}
                   className={`group relative flex shrink-0 items-center gap-4 rounded-md border p-4 text-left transition-all duration-200 lg:w-full ${
                     isSelected
-                      ? 'border-accent bg-bg-surface text-text-main shadow-md ring-1 ring-accent/30'
+                      ? 'border-accent bg-bg-surface text-text-main ring-accent/30 shadow-md ring-1'
                       : 'border-border-subtle hover:border-border-on-dark/30 hover:bg-bg-surface/50 text-text-muted hover:text-text-main bg-transparent'
                   }`}
                 >
@@ -101,21 +100,23 @@ export function TabbedServices({
                     <Icon size={18} />
                   </span>
 
-                  <div className="flex flex-col min-w-0 pr-2">
+                  <div className="flex min-w-0 flex-col pr-2">
                     <span
-                      className={`text-sm font-semibold tracking-tight truncate ${
-                        isSelected ? 'text-text-main font-bold' : 'text-text-muted group-hover:text-text-main'
+                      className={`truncate text-sm font-semibold tracking-tight ${
+                        isSelected
+                          ? 'text-text-main font-bold'
+                          : 'text-text-muted group-hover:text-text-main'
                       }`}
                     >
                       {service.title}
                     </span>
-                    <span className="text-text-muted/70 text-[11px] truncate hidden sm:block">
+                    <span className="text-text-muted/70 hidden truncate text-[11px] sm:block">
                       {service.summary}
                     </span>
                   </div>
 
                   {isSelected && (
-                    <span className="bg-accent absolute -left-1 top-2 bottom-2 hidden w-1 rounded-r lg:block" />
+                    <span className="bg-accent absolute top-2 bottom-2 -left-1 hidden w-1 rounded-r lg:block" />
                   )}
                 </button>
               );
@@ -126,7 +127,7 @@ export function TabbedServices({
           <div className="lg:col-span-8">
             <article className="border-border-subtle bg-bg-surface relative flex flex-col rounded-lg border p-6 shadow-sm md:p-10">
               {/* Top Meta Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border-subtle pb-6">
+              <div className="border-border-subtle flex flex-wrap items-center justify-between gap-4 border-b pb-6">
                 <div className="flex items-center gap-3">
                   <span className="border-accent/30 bg-accent/10 text-accent flex h-12 w-12 items-center justify-center rounded-full border">
                     <ActiveIcon size={24} />
@@ -150,7 +151,7 @@ export function TabbedServices({
 
               {/* Cover Image */}
               {activeService.coverImageUrl && (
-                <div className="relative mt-6 h-56 sm:h-72 w-full overflow-hidden rounded-md border border-border-subtle shadow-sm">
+                <div className="border-border-subtle relative mt-6 h-56 w-full overflow-hidden rounded-md border shadow-sm sm:h-72">
                   <Image
                     src={activeService.coverImageUrl}
                     alt={activeService.title}
@@ -174,7 +175,7 @@ export function TabbedServices({
 
               {/* Features Grid */}
               {activeService.features && activeService.features.length > 0 && (
-                <div className="border-t border-border-subtle py-6">
+                <div className="border-border-subtle border-t py-6">
                   <h3 className="text-text-main mb-4 text-xs font-bold tracking-widest uppercase">
                     Key Requirements & Inclusions
                   </h3>
@@ -185,7 +186,7 @@ export function TabbedServices({
                         className="bg-bg-app border-border-subtle flex items-start gap-3 rounded-md border p-3.5"
                       >
                         <CheckCircle2 size={18} className="text-accent mt-0.5 shrink-0" />
-                        <span className="text-text-main text-xs font-medium leading-relaxed">
+                        <span className="text-text-main text-xs leading-relaxed font-medium">
                           {feature}
                         </span>
                       </div>
@@ -195,21 +196,23 @@ export function TabbedServices({
               )}
 
               {/* Detailed Overview / Body (Portable Text from Sanity Studio) */}
-              {activeService.body && Array.isArray(activeService.body) && activeService.body.length > 0 && (
-                <div className="border-t border-border-subtle py-8">
-                  <h3 className="text-accent mb-6 text-xs font-bold tracking-widest uppercase">
-                    Detailed Pathway Overview
-                  </h3>
-                  <div className="prose-content">
-                    <PortableTextRenderer value={activeService.body} size="base" />
+              {activeService.body &&
+                Array.isArray(activeService.body) &&
+                activeService.body.length > 0 && (
+                  <div className="border-border-subtle border-t py-8">
+                    <h3 className="text-accent mb-6 text-xs font-bold tracking-widest uppercase">
+                      Detailed Pathway Overview
+                    </h3>
+                    <div className="prose-content">
+                      <PortableTextRenderer value={activeService.body} size="base" />
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* Consultation Callout Footer */}
               <div className="bg-bg-primary text-text-on-dark mt-6 flex flex-col justify-between gap-6 rounded-md p-6 sm:flex-row sm:items-center sm:p-8">
                 <div>
-                  <h4 className="font-serif text-lg font-semibold sm:text-xl text-white">
+                  <h4 className="font-serif text-lg font-semibold text-white sm:text-xl">
                     {activeService.ctaTitle || `Apply for ${activeService.title}`}
                   </h4>
                   <p className="text-text-on-dark-muted mt-1 text-xs sm:text-sm">

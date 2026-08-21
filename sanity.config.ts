@@ -3,12 +3,22 @@ import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { presentationTool, defineLocations } from 'sanity/presentation';
 import { markdownSchema } from 'sanity-plugin-markdown';
+import { documentInternationalization } from '@sanity/document-internationalization';
+import { internationalizedArray } from 'sanity-plugin-internationalized-array';
+
 import { schemaTypes } from './sanity/schemaTypes';
 import { structure } from './sanity/structure';
-
+import { documentI18nConfig, internationalizedArrayConfig } from './sanity/i18n';
 import { StudioLogo, StudioIcon } from './sanity/components/StudioLogo';
 
-const singletonTypes = new Set(['homePage', 'insightsPage', 'faqPage', 'privacyPage', 'siteSettings']);
+const singletonTypes = new Set([
+  'homePage',
+  'insightsPage',
+  'faqPage',
+  'privacyPage',
+  'siteSettings',
+]);
+const nonCreatableTypes = new Set([...singletonTypes, 'translation.metadata']);
 
 const getPreviewOrigin = () => {
   if (
@@ -29,11 +39,15 @@ export default defineConfig({
       logo: StudioLogo,
     },
   },
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
-  dataset: process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  projectId:
+    process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+  dataset:
+    process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   plugins: [
     structureTool({ structure }),
     markdownSchema(),
+    documentInternationalization(documentI18nConfig),
+    internationalizedArray(internationalizedArrayConfig),
     presentationTool({
       previewUrl: {
         origin: getPreviewOrigin(),
@@ -124,7 +138,7 @@ export default defineConfig({
   ],
   document: {
     newDocumentOptions: (previous: TemplateItem[]) =>
-      previous.filter((item: TemplateItem) => !singletonTypes.has(item.templateId)),
+      previous.filter((item: TemplateItem) => !nonCreatableTypes.has(item.templateId)),
   },
   schema: {
     types: schemaTypes,

@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { CaseIcon } from '@sanity/icons/Case';
 import { SearchIcon } from '@sanity/icons/Search';
+import { languageField } from '../i18n';
 
 export const servicesPage = defineType({
   name: 'servicesPage',
@@ -11,6 +12,7 @@ export const servicesPage = defineType({
     { name: 'seo', title: '02. SEO & Social', icon: SearchIcon },
   ],
   fields: [
+    languageField,
     defineField({
       name: 'eyebrow',
       title: 'Eyebrow Text',
@@ -50,7 +52,8 @@ export const servicesPage = defineType({
       title: 'Services Page SEO & Social Share',
       type: 'seo',
       group: 'seo',
-      description: 'Search engine metadata and social preview for the main Services directory page (/services).',
+      description:
+        'Search engine metadata and social preview for the main Services directory page (/services).',
     }),
   ],
   preview: {
@@ -66,4 +69,3 @@ export const servicesPage = defineType({
     },
   },
 });
-

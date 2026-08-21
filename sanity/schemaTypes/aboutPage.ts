@@ -1,6 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { UserIcon } from '@sanity/icons/User';
 import { SearchIcon } from '@sanity/icons/Search';
+import { languageField } from '../i18n';
 
 export const aboutPage = defineType({
   name: 'aboutPage',
@@ -11,6 +12,7 @@ export const aboutPage = defineType({
     { name: 'seo', title: '02. SEO & Social', icon: SearchIcon },
   ],
   fields: [
+    languageField,
     defineField({
       name: 'eyebrow',
       title: 'Eyebrow Text',
@@ -58,8 +60,8 @@ export const aboutPage = defineType({
       title: 'About Page SEO & Social Share',
       type: 'seo',
       group: 'seo',
-      description: 'Search engine metadata and social preview for the About page / consultant profile.',
+      description:
+        'Search engine metadata and social preview for the About page / consultant profile.',
     }),
   ],
 });
-

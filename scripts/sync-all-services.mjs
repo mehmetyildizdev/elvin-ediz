@@ -48,7 +48,14 @@ export const servicesData = [
         _key: 'b1',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'b1-s', _type: 'span', marks: [], text: 'Overview of Canadian Visitor Visa (TRV)' }],
+        children: [
+          {
+            _key: 'b1-s',
+            _type: 'span',
+            marks: [],
+            text: 'Overview of Canadian Visitor Visa (TRV)',
+          },
+        ],
       },
       {
         _key: 'b2',
@@ -56,7 +63,12 @@ export const servicesData = [
         style: 'normal',
         children: [
           { _key: 'b2-s1', _type: 'span', marks: [], text: 'A ' },
-          { _key: 'b2-s2', _type: 'span', marks: ['strong'], text: 'Visitor Visa (Temporary Resident Visa)' },
+          {
+            _key: 'b2-s2',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Visitor Visa (Temporary Resident Visa)',
+          },
           {
             _key: 'b2-s3',
             _type: 'span',
@@ -90,7 +102,9 @@ export const servicesData = [
         _key: 'b4',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'b4-s', _type: 'span', marks: [], text: 'Available Visitor Visa Streams' }],
+        children: [
+          { _key: 'b4-s', _type: 'span', marks: [], text: 'Available Visitor Visa Streams' },
+        ],
       },
       {
         _key: 'b5',
@@ -131,7 +145,12 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'b7-s1', _type: 'span', marks: ['strong'], text: 'Medical Visit (Treatment / Consultation) Visa: ' },
+          {
+            _key: 'b7-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Medical Visit (Treatment / Consultation) Visa: ',
+          },
           {
             _key: 'b7-s2',
             _type: 'span',
@@ -205,7 +224,14 @@ export const servicesData = [
         _key: 'tr-b1',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'tr-b1-s', _type: 'span', marks: [], text: 'Temporary Resident Status in Canada' }],
+        children: [
+          {
+            _key: 'tr-b1-s',
+            _type: 'span',
+            marks: [],
+            text: 'Temporary Resident Status in Canada',
+          },
+        ],
       },
       {
         _key: 'tr-b2',
@@ -225,7 +251,14 @@ export const servicesData = [
         _key: 'tr-b3',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'tr-b3-s', _type: 'span', marks: [], text: 'Types of Residency Status in Canada' }],
+        children: [
+          {
+            _key: 'tr-b3-s',
+            _type: 'span',
+            marks: [],
+            text: 'Types of Residency Status in Canada',
+          },
+        ],
       },
       {
         _key: 'tr-b4',
@@ -248,7 +281,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'tr-b5-s1', _type: 'span', marks: ['strong'], text: 'Open Work Permit: ' },
-          { _key: 'tr-b5-s2', _type: 'span', marks: [], text: 'You can work for almost any Canadian employer without industry or geographical restrictions.' },
+          {
+            _key: 'tr-b5-s2',
+            _type: 'span',
+            marks: [],
+            text: 'You can work for almost any Canadian employer without industry or geographical restrictions.',
+          },
         ],
       },
       {
@@ -258,8 +296,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'tr-b6-s1', _type: 'span', marks: ['strong'], text: 'Employer Specific Work Permit: ' },
-          { _key: 'tr-b6-s2', _type: 'span', marks: [], text: 'Work for a designated Canadian employer who holds a positive LMIA or LMIA-exempt approval.' },
+          {
+            _key: 'tr-b6-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Employer Specific Work Permit: ',
+          },
+          {
+            _key: 'tr-b6-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Work for a designated Canadian employer who holds a positive LMIA or LMIA-exempt approval.',
+          },
         ],
       },
       {
@@ -270,7 +318,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'tr-b7-s1', _type: 'span', marks: ['strong'], text: 'Study Permit Holder: ' },
-          { _key: 'tr-b7-s2', _type: 'span', marks: [], text: 'Authorized enrollment at recognized Designated Learning Institutions (DLIs) across Canadian provinces.' },
+          {
+            _key: 'tr-b7-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Authorized enrollment at recognized Designated Learning Institutions (DLIs) across Canadian provinces.',
+          },
         ],
       },
       {
@@ -281,7 +334,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'tr-b8-s1', _type: 'span', marks: ['strong'], text: 'Refugee / Asylum Status: ' },
-          { _key: 'tr-b8-s2', _type: 'span', marks: [], text: 'Legal protection and temporary status for individuals seeking asylum and humanitarian relief.' },
+          {
+            _key: 'tr-b8-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Legal protection and temporary status for individuals seeking asylum and humanitarian relief.',
+          },
         ],
       },
       {
@@ -291,8 +349,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'tr-b9-s1', _type: 'span', marks: ['strong'], text: 'Spousal Work / Study Permit: ' },
-          { _key: 'tr-b9-s2', _type: 'span', marks: [], text: 'Authorization for spouses and common-law partners of qualifying permit holders to work or study in Canada.' },
+          {
+            _key: 'tr-b9-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Spousal Work / Study Permit: ',
+          },
+          {
+            _key: 'tr-b9-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Authorization for spouses and common-law partners of qualifying permit holders to work or study in Canada.',
+          },
         ],
       },
       {
@@ -338,7 +406,9 @@ export const servicesData = [
         _key: 'pr-b1',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'pr-b1-s', _type: 'span', marks: [], text: 'Permanent Residency in Canada' }],
+        children: [
+          { _key: 'pr-b1-s', _type: 'span', marks: [], text: 'Permanent Residency in Canada' },
+        ],
       },
       {
         _key: 'pr-b2',
@@ -358,7 +428,9 @@ export const servicesData = [
         _key: 'pr-b3',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'pr-b3-s', _type: 'span', marks: [], text: 'Permanent Residency Pathways' }],
+        children: [
+          { _key: 'pr-b3-s', _type: 'span', marks: [], text: 'Permanent Residency Pathways' },
+        ],
       },
       {
         _key: 'pr-b4',
@@ -380,8 +452,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'pr-b5-s1', _type: 'span', marks: ['strong'], text: 'Express Entry (Points-Based System): ' },
-          { _key: 'pr-b5-s2', _type: 'span', marks: [], text: 'Apply from inside or outside Canada. Eligible work or study permit holders and skilled professionals can qualify if they meet the Comprehensive Ranking System (CRS) score cutoff.' },
+          {
+            _key: 'pr-b5-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Express Entry (Points-Based System): ',
+          },
+          {
+            _key: 'pr-b5-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Apply from inside or outside Canada. Eligible work or study permit holders and skilled professionals can qualify if they meet the Comprehensive Ranking System (CRS) score cutoff.',
+          },
         ],
       },
       {
@@ -391,8 +473,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'pr-b6-s1', _type: 'span', marks: ['strong'], text: 'Family & Spousal Sponsorship: ' },
-          { _key: 'pr-b6-s2', _type: 'span', marks: [], text: 'Secure permanent residency through sponsorship by a Canadian citizen or permanent resident spouse, partner, parent, or child.' },
+          {
+            _key: 'pr-b6-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Family & Spousal Sponsorship: ',
+          },
+          {
+            _key: 'pr-b6-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Secure permanent residency through sponsorship by a Canadian citizen or permanent resident spouse, partner, parent, or child.',
+          },
         ],
       },
       {
@@ -403,7 +495,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'pr-b7-s1', _type: 'span', marks: ['strong'], text: 'Start-Up Visa Program: ' },
-          { _key: 'pr-b7-s2', _type: 'span', marks: [], text: 'Designed for innovative entrepreneurs—one of the fastest and most reliable direct PR pathways with a supported business idea.' },
+          {
+            _key: 'pr-b7-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Designed for innovative entrepreneurs—one of the fastest and most reliable direct PR pathways with a supported business idea.',
+          },
         ],
       },
       {
@@ -413,8 +510,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'pr-b8-s1', _type: 'span', marks: ['strong'], text: 'Refugee & Humanitarian Status: ' },
-          { _key: 'pr-b8-s2', _type: 'span', marks: [], text: 'Legal recognition as a protected person or refugee provides a direct route to Canadian permanent residency.' },
+          {
+            _key: 'pr-b8-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Refugee & Humanitarian Status: ',
+          },
+          {
+            _key: 'pr-b8-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Legal recognition as a protected person or refugee provides a direct route to Canadian permanent residency.',
+          },
         ],
       },
       {
@@ -432,8 +539,7 @@ export const servicesData = [
       },
     ],
     ctaTitle: 'Achieve Canadian Permanent Residency',
-    ctaSubtitle:
-      'Direct representation and CRS points assessment with Nazly Sunguroglu, RCIC.',
+    ctaSubtitle: 'Direct representation and CRS points assessment with Nazly Sunguroglu, RCIC.',
     ctaButtonText: 'Start PR Assessment',
   },
 
@@ -459,14 +565,21 @@ export const servicesData = [
         _key: 'su-b1',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'su-b1-s', _type: 'span', marks: [], text: 'What is the Start-Up Visa Program?' }],
+        children: [
+          { _key: 'su-b1-s', _type: 'span', marks: [], text: 'What is the Start-Up Visa Program?' },
+        ],
       },
       {
         _key: 'su-b2',
         _type: 'block',
         style: 'normal',
         children: [
-          { _key: 'su-b2-s1', _type: 'span', marks: ['strong'], text: 'Canada’s Start-Up Visa Program (SUV)' },
+          {
+            _key: 'su-b2-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Canada’s Start-Up Visa Program (SUV)',
+          },
           {
             _key: 'su-b2-s2',
             _type: 'span',
@@ -489,7 +602,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'su-b4-s1', _type: 'span', marks: ['strong'], text: 'Innovative Founders: ' },
-          { _key: 'su-b4-s2', _type: 'span', marks: [], text: 'Entrepreneurs with a viable, innovative business concept with global scalability potential.' },
+          {
+            _key: 'su-b4-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Entrepreneurs with a viable, innovative business concept with global scalability potential.',
+          },
         ],
       },
       {
@@ -499,8 +617,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'su-b5-s1', _type: 'span', marks: ['strong'], text: 'Designated Organization Support: ' },
-          { _key: 'su-b5-s2', _type: 'span', marks: [], text: 'A formal letter of support from an approved Venture Capital Fund, Angel Investor Group, or Business Incubator in Canada.' },
+          {
+            _key: 'su-b5-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Designated Organization Support: ',
+          },
+          {
+            _key: 'su-b5-s2',
+            _type: 'span',
+            marks: [],
+            text: 'A formal letter of support from an approved Venture Capital Fund, Angel Investor Group, or Business Incubator in Canada.',
+          },
         ],
       },
       {
@@ -510,15 +638,27 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'su-b6-s1', _type: 'span', marks: ['strong'], text: 'Language & Settlement Funds: ' },
-          { _key: 'su-b6-s2', _type: 'span', marks: [], text: 'Applicants who meet minimum language proficiency (CLB 5) and required settlement funds for relocation.' },
+          {
+            _key: 'su-b6-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Language & Settlement Funds: ',
+          },
+          {
+            _key: 'su-b6-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Applicants who meet minimum language proficiency (CLB 5) and required settlement funds for relocation.',
+          },
         ],
       },
       {
         _key: 'su-b7',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'su-b7-s', _type: 'span', marks: [], text: 'Why Choose the Start-Up Visa?' }],
+        children: [
+          { _key: 'su-b7-s', _type: 'span', marks: [], text: 'Why Choose the Start-Up Visa?' },
+        ],
       },
       {
         _key: 'su-b8',
@@ -527,8 +667,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'su-b8-s1', _type: 'span', marks: ['strong'], text: 'Direct Permanent Residency: ' },
-          { _key: 'su-b8-s2', _type: 'span', marks: [], text: 'Direct pathway to Permanent Residency for you and your family members.' },
+          {
+            _key: 'su-b8-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Direct Permanent Residency: ',
+          },
+          {
+            _key: 'su-b8-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Direct pathway to Permanent Residency for you and your family members.',
+          },
         ],
       },
       {
@@ -539,7 +689,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'su-b9-s1', _type: 'span', marks: ['strong'], text: 'Economic Stability: ' },
-          { _key: 'su-b9-s2', _type: 'span', marks: [], text: 'Opportunity to build and scale your venture in one of the world’s most stable and transparent economies.' },
+          {
+            _key: 'su-b9-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Opportunity to build and scale your venture in one of the world’s most stable and transparent economies.',
+          },
         ],
       },
       {
@@ -550,14 +705,26 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'su-b10-s1', _type: 'span', marks: ['strong'], text: 'Strong Ecosystem: ' },
-          { _key: 'su-b10-s2', _type: 'span', marks: [], text: 'Access to Canada’s venture capital networks, North American trade agreements, and skilled workforce.' },
+          {
+            _key: 'su-b10-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Access to Canada’s venture capital networks, North American trade agreements, and skilled workforce.',
+          },
         ],
       },
       {
         _key: 'su-b11',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'su-b11-s', _type: 'span', marks: [], text: 'Comprehensive Family Benefits & Education Savings' }],
+        children: [
+          {
+            _key: 'su-b11-s',
+            _type: 'span',
+            marks: [],
+            text: 'Comprehensive Family Benefits & Education Savings',
+          },
+        ],
       },
       {
         _key: 'su-b12',
@@ -567,7 +734,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'su-b12-s1', _type: 'span', marks: ['strong'], text: 'Universal Healthcare: ' },
-          { _key: 'su-b12-s2', _type: 'span', marks: [], text: 'Family members get full access to Canada’s public healthcare system without costly private insurance.' },
+          {
+            _key: 'su-b12-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Family members get full access to Canada’s public healthcare system without costly private insurance.',
+          },
         ],
       },
       {
@@ -577,8 +749,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'su-b13-s1', _type: 'span', marks: ['strong'], text: 'Free Public Schooling for Children: ' },
-          { _key: 'su-b13-s2', _type: 'span', marks: [], text: 'Children attend Canadian public primary and secondary schools for free, avoiding high international student tuition fees.' },
+          {
+            _key: 'su-b13-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Free Public Schooling for Children: ',
+          },
+          {
+            _key: 'su-b13-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Children attend Canadian public primary and secondary schools for free, avoiding high international student tuition fees.',
+          },
         ],
       },
       {
@@ -588,8 +770,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'su-b14-s1', _type: 'span', marks: ['strong'], text: 'Domestic University Tuition: ' },
-          { _key: 'su-b14-s2', _type: 'span', marks: [], text: 'Access domestic tuition rates at Canadian colleges and universities (saving 2–4x compared to international student rates).' },
+          {
+            _key: 'su-b14-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Domestic University Tuition: ',
+          },
+          {
+            _key: 'su-b14-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Access domestic tuition rates at Canadian colleges and universities (saving 2–4x compared to international student rates).',
+          },
         ],
       },
       {
@@ -641,7 +833,12 @@ export const servicesData = [
         _type: 'block',
         style: 'normal',
         children: [
-          { _key: 'lm-b2-s1', _type: 'span', marks: ['strong'], text: 'A Labour Market Impact Assessment (LMIA)' },
+          {
+            _key: 'lm-b2-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'A Labour Market Impact Assessment (LMIA)',
+          },
           {
             _key: 'lm-b2-s2',
             _type: 'span',
@@ -667,7 +864,14 @@ export const servicesData = [
         _key: 'lm-b4',
         _type: 'block',
         style: 'h3',
-        children: [{ _key: 'lm-b4-s', _type: 'span', marks: [], text: 'Benefits of LMIA for Business Owners' }],
+        children: [
+          {
+            _key: 'lm-b4-s',
+            _type: 'span',
+            marks: [],
+            text: 'Benefits of LMIA for Business Owners',
+          },
+        ],
       },
       {
         _key: 'lm-b5',
@@ -676,8 +880,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'lm-b5-s1', _type: 'span', marks: ['strong'], text: 'Access to Skilled Talent: ' },
-          { _key: 'lm-b5-s2', _type: 'span', marks: [], text: 'Hire employees with specialized skills not readily available locally and fill critical position gaps to scale operations.' },
+          {
+            _key: 'lm-b5-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Access to Skilled Talent: ',
+          },
+          {
+            _key: 'lm-b5-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Hire employees with specialized skills not readily available locally and fill critical position gaps to scale operations.',
+          },
         ],
       },
       {
@@ -687,8 +901,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'lm-b6-s1', _type: 'span', marks: ['strong'], text: 'Business Expansion & Continuity: ' },
-          { _key: 'lm-b6-s2', _type: 'span', marks: [], text: 'Quickly onboard foreign workers to support seasonal peaks, new contracts, and maintain operations without labor shortages.' },
+          {
+            _key: 'lm-b6-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Business Expansion & Continuity: ',
+          },
+          {
+            _key: 'lm-b6-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Quickly onboard foreign workers to support seasonal peaks, new contracts, and maintain operations without labor shortages.',
+          },
         ],
       },
       {
@@ -698,8 +922,18 @@ export const servicesData = [
         listItem: 'bullet',
         level: 1,
         children: [
-          { _key: 'lm-b7-s1', _type: 'span', marks: ['strong'], text: 'Pathway to Permanent Residency: ' },
-          { _key: 'lm-b7-s2', _type: 'span', marks: [], text: 'Certain LMIA-supported employees can apply for permanent residency, helping retain valuable talent long-term.' },
+          {
+            _key: 'lm-b7-s1',
+            _type: 'span',
+            marks: ['strong'],
+            text: 'Pathway to Permanent Residency: ',
+          },
+          {
+            _key: 'lm-b7-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Certain LMIA-supported employees can apply for permanent residency, helping retain valuable talent long-term.',
+          },
         ],
       },
       {
@@ -710,7 +944,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'lm-b8-s1', _type: 'span', marks: ['strong'], text: 'Flexible Hiring Options: ' },
-          { _key: 'lm-b8-s2', _type: 'span', marks: [], text: 'LMIA permits hiring for full-time, seasonal, or temporary positions depending on business requirements.' },
+          {
+            _key: 'lm-b8-s2',
+            _type: 'span',
+            marks: [],
+            text: 'LMIA permits hiring for full-time, seasonal, or temporary positions depending on business requirements.',
+          },
         ],
       },
       {
@@ -721,7 +960,12 @@ export const servicesData = [
         level: 1,
         children: [
           { _key: 'lm-b9-s1', _type: 'span', marks: ['strong'], text: 'Competitive Advantage: ' },
-          { _key: 'lm-b9-s2', _type: 'span', marks: [], text: 'Attract international expertise and multilingual capabilities to drive innovation and business growth.' },
+          {
+            _key: 'lm-b9-s2',
+            _type: 'span',
+            marks: [],
+            text: 'Attract international expertise and multilingual capabilities to drive innovation and business growth.',
+          },
         ],
       },
     ],

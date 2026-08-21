@@ -5,6 +5,7 @@ import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { SparklesIcon } from '@sanity/icons/Sparkles';
 import { SearchIcon } from '@sanity/icons/Search';
 import { VisualIconPicker } from '../components/VisualIconPicker';
+import { languageField, isSlugUniqueByLanguage, slugifyWithI18n } from '../i18n';
 
 export const service = defineType({
   name: 'service',
@@ -17,6 +18,7 @@ export const service = defineType({
     { name: 'seo', title: '04. SEO & Social', icon: SearchIcon },
   ],
   fields: [
+    languageField,
     defineField({
       name: 'title',
       title: 'Service Title',
@@ -29,7 +31,12 @@ export const service = defineType({
       title: 'Slug',
       type: 'slug',
       group: 'general',
-      options: { source: 'title', maxLength: 96 },
+      options: {
+        source: 'title',
+        maxLength: 96,
+        slugify: slugifyWithI18n,
+        isUnique: isSlugUniqueByLanguage,
+      },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -108,14 +115,16 @@ export const service = defineType({
     defineField({
       name: 'ctaTitle',
       title: 'Callout Title',
-      description: 'Optional custom heading for the callout box (defaults to "Apply for [Service Title]").',
+      description:
+        'Optional custom heading for the callout box (defaults to "Apply for [Service Title]").',
       type: 'string',
       group: 'cta',
     }),
     defineField({
       name: 'ctaSubtitle',
       title: 'Callout Subtitle',
-      description: 'Optional description (defaults to "Direct representation and assessment with Nazly Sunguroglu, RCIC.").',
+      description:
+        'Optional description (defaults to "Direct representation and assessment with Nazly Sunguroglu, RCIC.").',
       type: 'string',
       group: 'cta',
     }),
@@ -129,7 +138,8 @@ export const service = defineType({
     defineField({
       name: 'ctaButtonLink',
       title: 'Callout Button Link',
-      description: 'Optional custom URL or WhatsApp link (defaults to WhatsApp message for this service).',
+      description:
+        'Optional custom URL or WhatsApp link (defaults to WhatsApp message for this service).',
       type: 'string',
       group: 'cta',
     }),
@@ -138,11 +148,24 @@ export const service = defineType({
       title: 'SEO & Social Media Settings',
       type: 'seo',
       group: 'seo',
-      description: 'Custom search engine snippet and social share cards for this specific immigration pathway.',
+      description:
+        'Custom search engine snippet and social share cards for this specific immigration pathway.',
     }),
   ],
   preview: {
-    select: { title: 'title', subtitle: 'summary', media: 'coverImage' },
+    select: {
+      title: 'title',
+      subtitle: 'summary',
+      media: 'coverImage',
+      language: 'language',
+    },
+    prepare({ title, subtitle, media, language }) {
+      const langBadge = language ? `[${language.toUpperCase()}] ` : '';
+      return {
+        title: `${langBadge}${title || 'Untitled Service'}`,
+        subtitle: subtitle || 'Immigration Service',
+        media,
+      };
+    },
   },
 });
-

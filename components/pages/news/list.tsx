@@ -176,11 +176,13 @@ export function NewsList({
                           <div>
                             {/* Meta strip */}
                             <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-[11px]">
-                              <span className="bg-bg-app border-border-subtle text-accent rounded-xs border px-2 py-0.5 font-bold tracking-wider uppercase text-[10px]">
+                              <span className="bg-bg-app border-border-subtle text-accent rounded-xs border px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
                                 {post.category || 'News'}
                               </span>
                               {post.publishedAt && (
-                                <span className="text-text-muted">{formatDate(post.publishedAt)}</span>
+                                <span className="text-text-muted">
+                                  {formatDate(post.publishedAt)}
+                                </span>
                               )}
                             </div>
 
@@ -211,7 +213,7 @@ export function NewsList({
                             </Link>
 
                             {post.sourceName && (
-                              <span className="text-text-muted text-[11px] truncate max-w-30">
+                              <span className="text-text-muted max-w-30 truncate text-[11px]">
                                 {post.sourceName}
                               </span>
                             )}

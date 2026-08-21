@@ -19,7 +19,7 @@ export async function SanityFAQ() {
               +
             </span>
           </summary>
-          <div className="text-text-muted mt-4 max-w-3xl pl-1 text-sm leading-relaxed font-sans sm:text-base">
+          <div className="text-text-muted mt-4 max-w-3xl pl-1 font-sans text-sm leading-relaxed sm:text-base">
             <PortableTextRenderer value={item.answer} size="sm" />
           </div>
         </details>

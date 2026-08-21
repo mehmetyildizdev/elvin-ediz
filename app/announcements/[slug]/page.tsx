@@ -20,10 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const decodedSlug = decodeURIComponent(slug);
-  const [settings, post] = await Promise.all([
-    fetchSiteSettings(),
-    fetchPostBySlug(decodedSlug),
-  ]);
+  const [settings, post] = await Promise.all([fetchSiteSettings(), fetchPostBySlug(decodedSlug)]);
 
   if (!post) {
     return buildPageMetadata({
@@ -49,10 +46,7 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const decodedSlug = decodeURIComponent(slug);
-  const [settings, post] = await Promise.all([
-    fetchSiteSettings(),
-    fetchPostBySlug(decodedSlug),
-  ]);
+  const [settings, post] = await Promise.all([fetchSiteSettings(), fetchPostBySlug(decodedSlug)]);
 
   const postJsonLd = post ? buildPostJsonLd(post, settings) : null;
 

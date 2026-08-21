@@ -152,5 +152,3 @@ The application implements an automated, zero-friction SEO architecture in [`san
 
 3. **Tier 3: Explicit Studio Overrides (Optional)**
    - Editors can open the **SEO & Social Sharing** tab on any document in Sanity Studio to supply custom search titles, custom descriptions, social preview banners, or search engine indexing directives (`noIndex` / `noFollow`).
-
-

@@ -11,7 +11,10 @@ export function Process({ homeData = defaultHomePage }: { homeData?: HomePageDat
   );
 
   return (
-    <section className="bg-bg-primary text-text-on-dark px-6 py-20 md:px-12 md:py-32" id="how-it-works">
+    <section
+      className="bg-bg-primary text-text-on-dark px-6 py-20 md:px-12 md:py-32"
+      id="how-it-works"
+    >
       <div className="mx-auto flex max-w-7xl flex-col">
         <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
@@ -50,4 +53,3 @@ export function Process({ homeData = defaultHomePage }: { homeData?: HomePageDat
     </section>
   );
 }
-

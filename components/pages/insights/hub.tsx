@@ -58,7 +58,7 @@ export function InsightsHub({
           {/* Category Quick-Navigation Strip */}
           <div className="border-border-subtle/80 bg-bg-surface/90 mb-12 flex flex-col justify-between gap-3.5 rounded-sm border p-4 shadow-2xs backdrop-blur-xs xl:flex-row xl:items-center xl:p-3">
             <div className="flex flex-col gap-2.5 xl:flex-row xl:items-center xl:gap-3">
-              <span className="text-text-muted px-0.5 text-[11px] font-bold tracking-wider uppercase select-none xl:px-1 shrink-0">
+              <span className="text-text-muted shrink-0 px-0.5 text-[11px] font-bold tracking-wider uppercase select-none xl:px-1">
                 Browse By Category:
               </span>
               <div className="flex flex-wrap items-center gap-2">
@@ -69,7 +69,7 @@ export function InsightsHub({
                   <Sparkles size={12} className="text-accent" />
                   Featured Insights
                   {insightPosts.length > 0 && (
-                    <span className="bg-accent/20 ml-1 rounded-full px-1.5 py-0.2 text-[10px] font-bold">
+                    <span className="bg-accent/20 py-0.2 ml-1 rounded-full px-1.5 text-[10px] font-bold">
                       {insightPosts.length}
                     </span>
                   )}
@@ -82,7 +82,7 @@ export function InsightsHub({
                   <BookOpen size={12} className="text-accent" />
                   Practical Guides
                   {infoPosts.length > 0 && (
-                    <span className="bg-bg-app text-text-muted ml-1 rounded-full px-1.5 py-0.2 text-[10px] font-bold">
+                    <span className="bg-bg-app text-text-muted py-0.2 ml-1 rounded-full px-1.5 text-[10px] font-bold">
                       {infoPosts.length}
                     </span>
                   )}
@@ -95,7 +95,7 @@ export function InsightsHub({
                   <Bell size={12} className="text-accent" />
                   Official Notices
                   {announcementPosts.length > 0 && (
-                    <span className="bg-bg-app text-text-muted ml-1 rounded-full px-1.5 py-0.2 text-[10px] font-bold">
+                    <span className="bg-bg-app text-text-muted py-0.2 ml-1 rounded-full px-1.5 text-[10px] font-bold">
                       {announcementPosts.length}
                     </span>
                   )}
@@ -108,7 +108,7 @@ export function InsightsHub({
                   <Newspaper size={12} className="text-accent" />
                   Immigration News
                   {newsPosts.length > 0 && (
-                    <span className="bg-bg-app text-text-muted ml-1 rounded-full px-1.5 py-0.2 text-[10px] font-bold">
+                    <span className="bg-bg-app text-text-muted py-0.2 ml-1 rounded-full px-1.5 text-[10px] font-bold">
                       {newsPosts.length}
                     </span>
                   )}

@@ -12,7 +12,6 @@ export async function Insights({ homeData = defaultHomePage }: { homeData?: Home
       ? fetchedPosts.slice(0, 3)
       : defaultPosts.filter((p) => p.kind === 'insight').slice(0, 3);
 
-
   const formatDate = (dateStr?: string) => {
     if (!dateStr) return '';
     try {
@@ -99,4 +98,3 @@ export async function Insights({ homeData = defaultHomePage }: { homeData?: Home
     </section>
   );
 }
-

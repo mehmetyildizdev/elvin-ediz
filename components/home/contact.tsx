@@ -14,16 +14,13 @@ export function Contact({
   services?: ServiceData[];
 }) {
   return (
-    <section
-      className="bg-bg-primary text-text-on-dark px-6 py-16 md:px-12 md:py-24"
-      id="contact"
-    >
+    <section className="bg-bg-primary text-text-on-dark px-6 py-16 md:px-12 md:py-24" id="contact">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-20">
         <div className="flex flex-col justify-center lg:col-span-5">
           <p className="text-accent mb-4 text-xs font-bold tracking-widest uppercase">
             {homeData.contactEyebrow || 'READY WHEN YOU ARE'}
           </p>
-          <h2 className="mb-6 font-serif text-4xl leading-tight text-white sm:text-5xl md:text-5xl whitespace-pre-line">
+          <h2 className="mb-6 font-serif text-4xl leading-tight whitespace-pre-line text-white sm:text-5xl md:text-5xl">
             {homeData.contactTitleMain || "Let's talk about\nwhat's"}{' '}
             <span className="text-accent font-serif font-normal italic">
               {homeData.contactTitleAccent || 'next.'}
@@ -86,7 +83,7 @@ export function ConsultationForm({
           name="name"
           required
           placeholder="How should we call you?"
-          className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:border-accent focus:outline-none"
+          className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 focus:border-accent block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:outline-none"
         />
       </label>
 
@@ -97,7 +94,7 @@ export function ConsultationForm({
           required
           type="email"
           placeholder="you@example.com"
-          className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:border-accent focus:outline-none"
+          className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 focus:border-accent block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:outline-none"
         />
       </label>
 
@@ -110,7 +107,7 @@ export function ConsultationForm({
           name="phone"
           type="tel"
           placeholder="Your preferred number"
-          className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:border-accent focus:outline-none"
+          className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 focus:border-accent block w-full rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:outline-none"
         />
       </label>
 
@@ -120,17 +117,13 @@ export function ConsultationForm({
           name="service"
           required
           defaultValue=""
-          className="border-border-on-dark text-text-on-dark block w-full cursor-pointer rounded-none border-b bg-transparent py-2.5 font-sans text-sm transition-colors focus:border-accent focus:outline-none"
+          className="border-border-on-dark text-text-on-dark focus:border-accent block w-full cursor-pointer rounded-none border-b bg-transparent py-2.5 font-sans text-sm transition-colors focus:outline-none"
         >
           <option value="" disabled className="bg-bg-primary text-text-on-dark">
             Select a service
           </option>
           {serviceOptions.map((service) => (
-            <option
-              key={service}
-              value={service}
-              className="bg-bg-primary text-text-on-dark"
-            >
+            <option key={service} value={service} className="bg-bg-primary text-text-on-dark">
               {service}
             </option>
           ))}
@@ -146,7 +139,7 @@ export function ConsultationForm({
           name="message"
           rows={3}
           placeholder="What would you like help with?"
-          className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 block min-h-16 w-full resize-y rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:border-accent focus:outline-none"
+          className="border-border-on-dark text-text-on-dark placeholder:text-text-on-dark-muted/50 focus:border-accent block min-h-16 w-full resize-y rounded-none border-b bg-transparent py-2 font-sans text-sm transition-colors focus:outline-none"
         />
       </label>
 
@@ -179,7 +172,7 @@ export function ConsultationForm({
             {homeData.contactDisclaimer}{' '}
             <Link
               href="/privacy"
-              className="text-accent underline underline-offset-2 hover:opacity-80 transition-opacity"
+              className="text-accent underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               Privacy Policy
             </Link>
@@ -189,7 +182,7 @@ export function ConsultationForm({
             By submitting, you agree to our{' '}
             <Link
               href="/privacy"
-              className="text-accent underline underline-offset-2 hover:opacity-80 transition-opacity"
+              className="text-accent underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               Privacy Policy
             </Link>{' '}
@@ -200,4 +193,3 @@ export function ConsultationForm({
     </form>
   );
 }
-

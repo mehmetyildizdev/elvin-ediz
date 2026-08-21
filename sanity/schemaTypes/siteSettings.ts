@@ -4,6 +4,7 @@ import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import { EarthGlobeIcon } from '@sanity/icons/EarthGlobe';
 import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { SearchIcon } from '@sanity/icons/Search';
+import { languageField } from '../i18n';
 
 export const siteSettings = defineType({
   name: 'siteSettings',
@@ -17,6 +18,7 @@ export const siteSettings = defineType({
     { name: 'seo', title: '05. Global SEO & Metadata', icon: SearchIcon },
   ],
   fields: [
+    languageField,
     defineField({
       name: 'siteTitle',
       title: 'Website Brand Title',
@@ -67,7 +69,8 @@ export const siteSettings = defineType({
     defineField({
       name: 'whatsappNumber',
       title: 'WhatsApp Number',
-      description: 'Enter WhatsApp phone number (e.g. 123456789). The website will automatically format WhatsApp chat links using this number.',
+      description:
+        'Enter WhatsApp phone number (e.g. 123456789). The website will automatically format WhatsApp chat links using this number.',
       type: 'string',
       group: 'social',
       initialValue: '123456789',
@@ -133,7 +136,8 @@ export const siteSettings = defineType({
       type: 'string',
       group: 'seo',
       initialValue: '%s | Elvin Ediz Immigration Services',
-      description: 'Template pattern used for inner pages (e.g. "%s | Elvin Ediz Immigration Services").',
+      description:
+        'Template pattern used for inner pages (e.g. "%s | Elvin Ediz Immigration Services").',
     }),
     defineField({
       name: 'defaultMetaDescription',
@@ -141,7 +145,8 @@ export const siteSettings = defineType({
       type: 'text',
       group: 'seo',
       rows: 3,
-      initialValue: 'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC. Express Entry, Study Permits, Work Permits, PNP, and Family Sponsorship in Toronto.',
+      initialValue:
+        'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC. Express Entry, Study Permits, Work Permits, PNP, and Family Sponsorship in Toronto.',
       description: 'Fallback search description used when a page does not define its own.',
     }),
     defineField({
@@ -150,7 +155,8 @@ export const siteSettings = defineType({
       type: 'image',
       group: 'seo',
       options: { hotspot: true },
-      description: 'Default 1200 x 630 px social share banner for WhatsApp, LinkedIn, and social link previews.',
+      description:
+        'Default 1200 x 630 px social share banner for WhatsApp, LinkedIn, and social link previews.',
     }),
     defineField({
       name: 'siteKeywords',
@@ -177,8 +183,8 @@ export const siteSettings = defineType({
       title: 'Google Search Console Verification Token',
       type: 'string',
       group: 'seo',
-      description: 'Optional verification meta tag content for Google Search Console (e.g. "google-site-verification=abc...").',
+      description:
+        'Optional verification meta tag content for Google Search Console (e.g. "google-site-verification=abc...").',
     }),
   ],
 });
-

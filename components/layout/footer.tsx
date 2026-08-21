@@ -89,7 +89,10 @@ export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSett
 
       <div className="bg-bg-primary text-text-on-dark-muted/70 px-6 py-5 text-xs font-medium tracking-wider uppercase md:px-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 md:flex-row">
-          <span>{settings?.copyrightText || `© ${new Date().getFullYear()} Elvin Ediz Immigration Services.`}</span>
+          <span>
+            {settings?.copyrightText ||
+              `© ${new Date().getFullYear()} Elvin Ediz Immigration Services.`}
+          </span>
           <div className="flex flex-wrap items-center gap-3 text-center md:text-right">
             <Link
               href="/privacy"

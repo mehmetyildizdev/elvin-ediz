@@ -20,8 +20,7 @@ if (fs.existsSync(envPath)) {
   });
 }
 
-const projectId =
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset =
   process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
 const token =
@@ -83,11 +82,9 @@ async function scrapeGoogleReviews() {
 
     // Wait for reviews container or review elements
     console.log('⏳ Waiting for reviews list to render...');
-    await page
-      .waitForSelector('div.jftiEf, div[data-review-id]', { timeout: 12000 })
-      .catch(() => {
-        console.log('⚠️ Direct review card selector timeout, parsing rendered DOM...');
-      });
+    await page.waitForSelector('div.jftiEf, div[data-review-id]', { timeout: 12000 }).catch(() => {
+      console.log('⚠️ Direct review card selector timeout, parsing rendered DOM...');
+    });
 
     // Scroll reviews container to load more reviews
     try {
@@ -147,9 +144,7 @@ async function scrapeGoogleReviews() {
         }
       }
 
-      const reviewCards = Array.from(
-        document.querySelectorAll('div.jftiEf, div[data-review-id]')
-      );
+      const reviewCards = Array.from(document.querySelectorAll('div.jftiEf, div[data-review-id]'));
       const seenAuthors = new Set();
       const reviews = [];
 
@@ -176,19 +171,15 @@ async function scrapeGoogleReviews() {
           '';
 
         let stars = 5;
-        const starEl = card.querySelector(
-          'span.kvMYJc, span[aria-label*="star"], span.fsw7Cb'
-        );
+        const starEl = card.querySelector('span.kvMYJc, span[aria-label*="star"], span.fsw7Cb');
         if (starEl) {
           const aria = starEl.getAttribute('aria-label') || starEl.textContent || '';
           const m = aria.match(/([1-5])/);
           if (m) stars = parseInt(m[1], 10);
         }
 
-        const date =
-          card.querySelector('.rsqaWe, .xRkPPb')?.textContent?.trim() || 'Recent';
-        const quote =
-          card.querySelector('.wiI7Zc, div.MyEned')?.textContent?.trim() || '';
+        const date = card.querySelector('.rsqaWe, .xRkPPb')?.textContent?.trim() || 'Recent';
+        const quote = card.querySelector('.wiI7Zc, div.MyEned')?.textContent?.trim() || '';
 
         // Deduplicate by normalized author name and ensure review text exists
         const authorKey = cleanAuthor.toLowerCase();

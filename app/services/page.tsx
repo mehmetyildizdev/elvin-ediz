@@ -18,7 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
   ]);
 
   return buildPageMetadata({
-    pageTitle: `${servicesPageData.titleMain} ${servicesPageData.titleAccent}`.trim() || 'Canadian Immigration Services',
+    pageTitle:
+      `${servicesPageData.titleMain} ${servicesPageData.titleAccent}`.trim() ||
+      'Canadian Immigration Services',
     pageDescription: servicesPageData.description,
     seo: servicesPageData.seo,
     settings,
@@ -34,7 +36,9 @@ export default async function ServicesPage() {
   ]);
 
   const serviceJsonLd = buildPageJsonLd({
-    title: `${servicesPageData?.titleMain} ${servicesPageData?.titleAccent}`.trim() || 'Canadian Immigration Services',
+    title:
+      `${servicesPageData?.titleMain} ${servicesPageData?.titleAccent}`.trim() ||
+      'Canadian Immigration Services',
     description: servicesPageData?.description,
     url: '/services',
     defaultType: 'Service',
@@ -57,7 +61,9 @@ export default async function ServicesPage() {
             'Personalized Canadian immigration guidance for the next chapter you are ready to build.'
           }
         />
-        <Suspense fallback={<div className="py-20 text-center text-text-muted">Loading pathways...</div>}>
+        <Suspense
+          fallback={<div className="text-text-muted py-20 text-center">Loading pathways...</div>}
+        >
           <TabbedServices services={services} settings={settings} />
         </Suspense>
         <ServicesCallout settings={settings} />

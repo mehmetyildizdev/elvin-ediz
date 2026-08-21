@@ -20,7 +20,12 @@ function isNonWhatsAppLink(input: string): boolean {
 
 function formatCustomLink(input: string): string {
   const trimmed = input.trim();
-  if (trimmed.includes('@') && !trimmed.startsWith('mailto:') && !trimmed.includes('/') && !trimmed.startsWith('http')) {
+  if (
+    trimmed.includes('@') &&
+    !trimmed.startsWith('mailto:') &&
+    !trimmed.includes('/') &&
+    !trimmed.startsWith('http')
+  ) {
     return `mailto:${trimmed}`;
   }
   return trimmed;
@@ -31,10 +36,7 @@ function formatCustomLink(input: string): string {
  * Supports plain phone numbers (e.g. '123456789', '+1 234 567 89'),
  * existing wa.me links, or custom URLs.
  */
-export function getWhatsAppUrl(
-  whatsappInput?: string | null,
-  message?: string
-): string {
+export function getWhatsAppUrl(whatsappInput?: string | null, message?: string): string {
   const input = (whatsappInput || '').trim();
 
   // If no input is provided, fallback to default WhatsApp number
@@ -94,5 +96,3 @@ export function resolveCtaLink(
   // If the user typed a specific phone number into this CTA field
   return getWhatsAppUrl(link, message);
 }
-
-

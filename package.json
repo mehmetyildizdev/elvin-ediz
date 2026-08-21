@@ -15,6 +15,7 @@
   "dependencies": {
     "@portabletext/react": "^7.0.1",
     "@sanity/client": "^7.23.1",
+    "@sanity/document-internationalization": "^6.2.31",
     "@sanity/icons": "^5.1.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/ui": "^3.3.5",
@@ -25,6 +26,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "sanity": "^6.5.0",
+    "sanity-plugin-internationalized-array": "^5.2.0",
     "sanity-plugin-markdown": "^9.0.11",
     "styled-components": "^6.1.19",
     "typescript": "^6.0.0"

@@ -42,12 +42,7 @@ export function ConsultationCard({
         {insightsPageData.consultationDescription ||
           'Connect with Nazly Sunguroglu, RCIC for a one-on-one assessment of your Canadian immigration pathway.'}
       </p>
-      <Button
-        href={buttonHref}
-        variant="primary"
-        size="sm"
-        className="mt-2 w-full"
-      >
+      <Button href={buttonHref} variant="primary" size="sm" className="mt-2 w-full">
         {insightsPageData.consultationButtonText || 'Message on WhatsApp'}{' '}
         <ArrowUpRight size={14} />
       </Button>

@@ -30,7 +30,7 @@ export function InformationGuides({
           </div>
           <Link
             href="/information"
-            className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent border border-accent/20 rounded-full px-3 py-1 text-xs font-bold transition-all hover:shadow-xs"
+            className="bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent border-accent/20 rounded-full border px-3 py-1 text-xs font-bold transition-all hover:shadow-xs"
             title="See all information guides"
           >
             All Guides →

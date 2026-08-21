@@ -13,7 +13,7 @@ export function ServicesGrid({ services = defaultServices }: { services?: Servic
           >
             <div className="flex items-center justify-between">
               <span className="text-accent font-serif text-3xl font-semibold">0{index + 1}</span>
-              <span className="bg-accent/10 text-accent rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider">
+              <span className="bg-accent/10 text-accent rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase">
                 {service.title}
               </span>
             </div>

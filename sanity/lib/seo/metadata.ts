@@ -41,7 +41,8 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
   // Next.js layout uses `title.template: '%s | Elvin Ediz Immigration Services'`.
   // Returning rawTitle lets Next.js format the title once with no duplicates.
   // If the title already contains '|' or matches siteTitle, we use { absolute: rawTitle }.
-  const rawTitle = stripStega(seo?.metaTitle || pageTitle || settings?.defaultMetaTitle) || siteTitle;
+  const rawTitle =
+    stripStega(seo?.metaTitle || pageTitle || settings?.defaultMetaTitle) || siteTitle;
   const isCustomOrFullTitle = rawTitle.includes('|') || rawTitle === siteTitle;
   const resolvedTitle = isCustomOrFullTitle ? { absolute: rawTitle } : rawTitle;
 
@@ -65,18 +66,18 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
   const ogDescription = stripStega(seo?.ogDescription) || resolvedDescription;
 
   // 05. Keywords
-  const rawKeywords = [
-    ...(seo?.keywords || []),
-    ...keywords,
-    ...(settings?.siteKeywords || []),
-  ].map((k) => stripStega(k)).filter(Boolean);
+  const rawKeywords = [...(seo?.keywords || []), ...keywords, ...(settings?.siteKeywords || [])]
+    .map((k) => stripStega(k))
+    .filter(Boolean);
 
   const mergedKeywords = Array.from(new Set(rawKeywords));
 
   // 06. Canonical URL
   const canonicalUrl =
     stripStega(seo?.canonicalUrl) ||
-    (canonicalPath ? `${BASE_URL}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}` : undefined);
+    (canonicalPath
+      ? `${BASE_URL}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`
+      : undefined);
 
   // 07. Search Engine Directives
   const isNoIndex = Boolean(seo?.noIndex);
@@ -95,7 +96,9 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
       locale: 'en_CA',
       type: type,
       ...(type === 'article' && publishedTime ? { publishedTime: stripStega(publishedTime) } : {}),
-      ...(type === 'article' && authors?.length ? { authors: authors.map((a) => stripStega(a)) } : {}),
+      ...(type === 'article' && authors?.length
+        ? { authors: authors.map((a) => stripStega(a)) }
+        : {}),
       images: resolvedOgImage
         ? [
             {

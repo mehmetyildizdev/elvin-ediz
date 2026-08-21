@@ -105,7 +105,7 @@ export function Testimonials({
   return (
     <section
       ref={sectionRef}
-      className="bg-bg-app border-border-subtle border-t px-6 py-20 md:px-12 md:py-28 overflow-hidden"
+      className="bg-bg-app border-border-subtle overflow-hidden border-t px-6 py-20 md:px-12 md:py-28"
     >
       <div className="mx-auto flex max-w-7xl flex-col">
         {/* Top Header & Google Trust Badge */}
@@ -140,7 +140,9 @@ export function Testimonials({
                   </div>
                 </div>
                 <p className="text-text-muted text-xs font-medium">
-                  Based on <strong className="text-text-main font-semibold">{totalReviews}+ reviews</strong> on Google
+                  Based on{' '}
+                  <strong className="text-text-main font-semibold">{totalReviews}+ reviews</strong>{' '}
+                  on Google
                 </p>
               </div>
             </div>
@@ -202,14 +204,14 @@ export function Testimonials({
 
                     {/* 2. Fixed Content Area (h-23.5) with line clamp & Google Read More link */}
                     <div className="my-auto flex h-23.5 flex-col justify-between overflow-hidden">
-                      <p className="text-text-main font-serif text-sm leading-relaxed line-clamp-3">
+                      <p className="text-text-main line-clamp-3 font-serif text-sm leading-relaxed">
                         &ldquo;{item.quote}&rdquo;
                       </p>
                       <a
                         href={mapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-accent hover:underline text-[11px] font-medium inline-flex items-center gap-1 self-start pt-1 transition-colors"
+                        className="text-accent inline-flex items-center gap-1 self-start pt-1 text-[11px] font-medium transition-colors hover:underline"
                       >
                         <span>Read on Google Maps</span>
                         <ExternalLink size={10} />
@@ -232,16 +234,16 @@ export function Testimonials({
                           </div>
                         )}
                         <div className="min-w-0 flex-1">
-                          <h4 className="text-text-main font-serif text-xs font-semibold leading-tight truncate">
+                          <h4 className="text-text-main truncate font-serif text-xs leading-tight font-semibold">
                             {item.author}
                           </h4>
-                          <span className="text-text-muted text-[10px] leading-tight truncate block">
+                          <span className="text-text-muted block truncate text-[10px] leading-tight">
                             Verified Google Review
                           </span>
                         </div>
                       </div>
 
-                      <span className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
+                      <span className="shrink-0 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold tracking-wider text-emerald-600 uppercase dark:text-emerald-400">
                         5.0 ★
                       </span>
                     </div>
@@ -260,9 +262,7 @@ export function Testimonials({
                       Additional Client Cases & Feedback
                     </h3>
                   </div>
-                  <span className="text-text-muted text-[11px]">
-                    Direct client submissions
-                  </span>
+                  <span className="text-text-muted text-[11px]">Direct client submissions</span>
                 </div>
 
                 <Carousel
@@ -293,10 +293,10 @@ export function Testimonials({
 
                       <div className="border-border-subtle/40 flex h-9.5 items-center justify-between border-t pt-2">
                         <div className="min-w-0 flex-1 pr-2">
-                          <h5 className="text-text-main text-xs font-semibold truncate">
+                          <h5 className="text-text-main truncate text-xs font-semibold">
                             {item.author}
                           </h5>
-                          <span className="text-text-muted text-[10px] truncate block">
+                          <span className="text-text-muted block truncate text-[10px]">
                             {item.location || 'Canada'}
                           </span>
                         </div>
@@ -312,7 +312,7 @@ export function Testimonials({
           </>
         ) : (
           /* Placeholder skeleton during off-screen initial load */
-          <div className="h-72 w-full animate-pulse rounded-lg bg-bg-surface/30" />
+          <div className="bg-bg-surface/30 h-72 w-full animate-pulse rounded-lg" />
         )}
       </div>
     </section>

@@ -15,7 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
   ]);
 
   return buildPageMetadata({
-    pageTitle: `${insightsPageData.titleMain} ${insightsPageData.titleAccent}`.trim() || 'Insights & Immigration Updates',
+    pageTitle:
+      `${insightsPageData.titleMain} ${insightsPageData.titleAccent}`.trim() ||
+      'Insights & Immigration Updates',
     pageDescription: insightsPageData.description,
     seo: insightsPageData.seo,
     settings,
@@ -29,7 +31,9 @@ export default async function InsightsPage() {
   const posts = await fetchPosts();
 
   const hubJsonLd = buildPageJsonLd({
-    title: `${insightsPageData.titleMain} ${insightsPageData.titleAccent}`.trim() || 'Insights & Updates',
+    title:
+      `${insightsPageData.titleMain} ${insightsPageData.titleAccent}`.trim() ||
+      'Insights & Updates',
     description: insightsPageData.description,
     url: '/insights',
     defaultType: 'CollectionPage',
@@ -48,4 +52,3 @@ export default async function InsightsPage() {
     </>
   );
 }
-

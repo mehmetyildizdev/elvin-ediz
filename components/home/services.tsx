@@ -33,7 +33,7 @@ export function Services({
           </p>
           <Link
             href={homeData.servicesViewAllLink || '/services'}
-            className="text-accent hover:text-accent-hover font-semibold mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-wider"
+            className="text-accent hover:text-accent-hover mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase"
           >
             {homeData.servicesViewAllText || `View all ${validServices.length} pathways →`}
           </Link>
@@ -46,10 +46,10 @@ export function Services({
               <Link
                 href={`/services?tab=${service.slug}#pathways-tabs`}
                 key={service._id || service.slug}
-                className="border-border-subtle hover:border-accent/40 hover:bg-bg-surface/70 group grid grid-cols-1 items-center gap-4 border-b py-6 transition-all duration-300 hover:pl-4 sm:gap-6 md:grid-cols-12 cursor-pointer"
+                className="border-border-subtle hover:border-accent/40 hover:bg-bg-surface/70 group grid cursor-pointer grid-cols-1 items-center gap-4 border-b py-6 transition-all duration-300 hover:pl-4 sm:gap-6 md:grid-cols-12"
               >
                 <span className="text-accent font-serif text-lg font-semibold">0{i + 1}</span>
-                <span className="border-border-subtle text-accent bg-bg-surface group-hover:border-accent/50 group-hover:scale-105 flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300">
+                <span className="border-border-subtle text-accent bg-bg-surface group-hover:border-accent/50 flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 group-hover:scale-105">
                   <IconComp size={22} />
                 </span>
                 <div className="flex flex-col gap-0.5 pr-2 md:col-span-6">
@@ -63,7 +63,9 @@ export function Services({
                 <div className="flex justify-end md:col-span-3">
                   <span className="text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold tracking-widest uppercase transition-colors">
                     Learn more
-                    <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">
+                      →
+                    </span>
                   </span>
                 </div>
               </Link>

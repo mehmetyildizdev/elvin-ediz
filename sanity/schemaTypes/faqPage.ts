@@ -4,6 +4,7 @@ import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import { CodeIcon } from '@sanity/icons/Code';
 import { SearchIcon } from '@sanity/icons/Search';
+import { languageField } from '../i18n';
 
 export const faqPage = defineType({
   name: 'faqPage',
@@ -16,6 +17,7 @@ export const faqPage = defineType({
     { name: 'seo', title: '04. SEO & Social', icon: SearchIcon },
   ],
   fields: [
+    languageField,
     // 01. Page Header
     defineField({
       name: 'eyebrow',
@@ -69,7 +71,8 @@ export const faqPage = defineType({
             defineField({
               name: 'category',
               title: 'Category / Topic Tag',
-              description: 'Optional topic tag (e.g. Express Entry, Study Permits, General, Sponsorship)',
+              description:
+                'Optional topic tag (e.g. Express Entry, Study Permits, General, Sponsorship)',
               type: 'string',
             }),
             defineField({

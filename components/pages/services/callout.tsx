@@ -3,7 +3,11 @@ import { Button } from '@/components/ui/button';
 import { SiteSettingsData, defaultSiteSettings } from '@/sanity/lib/types';
 import { getWhatsAppUrl } from '@/sanity/lib/whatsapp';
 
-export function ServicesCallout({ settings = defaultSiteSettings }: { settings?: SiteSettingsData }) {
+export function ServicesCallout({
+  settings = defaultSiteSettings,
+}: {
+  settings?: SiteSettingsData;
+}) {
   const consultationHref = getWhatsAppUrl(settings?.whatsappNumber);
 
   return (
@@ -16,9 +20,7 @@ export function ServicesCallout({ settings = defaultSiteSettings }: { settings?:
           <h2 className="font-serif text-3xl leading-tight font-light sm:text-5xl md:text-5xl">
             We can find the
             <br />
-            <span className="text-accent font-serif font-normal italic">
-              right starting point.
-            </span>
+            <span className="text-accent font-serif font-normal italic">right starting point.</span>
           </h2>
         </div>
         <Button

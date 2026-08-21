@@ -17,8 +17,7 @@ export function VisualIconPicker(props: StringInputProps) {
 
   const filteredIcons = useMemo(() => {
     return ICON_LIBRARY.filter((item) => {
-      const matchesCategory =
-        selectedCategory === 'all' || item.category === selectedCategory;
+      const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
 
       if (!matchesCategory) return false;
 

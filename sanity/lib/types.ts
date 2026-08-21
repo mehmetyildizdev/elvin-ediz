@@ -325,7 +325,6 @@ export interface ServicesPageData {
   seo?: SeoData;
 }
 
-
 export interface FaqPageData {
   // 01. Page Header
   eyebrow?: string;
@@ -381,5 +380,3 @@ export const defaultInsightsPage = backupInsightsPage;
 export const defaultPosts = backupPosts;
 export const defaultFaqPage: FaqPageData = backupFaqPage;
 export const defaultPrivacyPage: PrivacyPageData = backupPrivacyPage;
-
-

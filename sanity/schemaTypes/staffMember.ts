@@ -1,10 +1,12 @@
 import { defineField, defineType } from 'sanity';
+import { languageField } from '../i18n';
 
 export const staffMember = defineType({
   name: 'staffMember',
   title: 'Team Member / Staff',
   type: 'document',
   fields: [
+    languageField,
     defineField({
       name: 'name',
       title: 'Name',
@@ -40,5 +42,15 @@ export const staffMember = defineType({
     defineField({ name: 'email', title: 'Email', type: 'string' }),
     defineField({ name: 'order', title: 'Display Order', type: 'number', initialValue: 1 }),
   ],
-  preview: { select: { title: 'name', subtitle: 'role', media: 'photo' } },
+  preview: {
+    select: { title: 'name', subtitle: 'role', media: 'photo', language: 'language' },
+    prepare({ title, subtitle, media, language }) {
+      const langBadge = language ? `[${language.toUpperCase()}] ` : '';
+      return {
+        title: `${langBadge}${title || 'Team Member'}`,
+        subtitle,
+        media,
+      };
+    },
+  },
 });

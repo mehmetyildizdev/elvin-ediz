@@ -184,8 +184,8 @@ export function ThemeSwitcher() {
           onClick={() => setIsOpen(!isOpen)}
           className={`group flex h-12 items-center gap-2.5 rounded-full border px-4 shadow-xl backdrop-blur-md transition-all duration-300 focus:outline-hidden ${
             isOpen
-              ? 'border-accent bg-bg-primary text-text-on-dark ring-2 ring-accent/30'
-              : 'border-border-on-dark/30 bg-bg-primary/90 text-text-on-dark hover:border-accent hover:bg-bg-primary hover:shadow-2xl hover:scale-105'
+              ? 'border-accent bg-bg-primary text-text-on-dark ring-accent/30 ring-2'
+              : 'border-border-on-dark/30 bg-bg-primary/90 text-text-on-dark hover:border-accent hover:bg-bg-primary hover:scale-105 hover:shadow-2xl'
           }`}
           aria-label="Open appearance settings"
           aria-expanded={isOpen}
@@ -207,7 +207,7 @@ export function ThemeSwitcher() {
 
           <SlidersHorizontal
             size={14}
-            className={`transition-transform duration-300 ${isOpen ? 'rotate-90 text-accent' : 'opacity-70 group-hover:opacity-100'}`}
+            className={`transition-transform duration-300 ${isOpen ? 'text-accent rotate-90' : 'opacity-70 group-hover:opacity-100'}`}
           />
         </button>
       </div>
@@ -218,25 +218,25 @@ export function ThemeSwitcher() {
           ref={panelRef}
           role="dialog"
           aria-label="Appearance Customizer"
-          className="fixed right-4 bottom-20 z-50 w-84 max-w-[calc(100vw-2rem)] rounded-2xl border border-border-subtle bg-bg-surface/95 p-5 text-text-main shadow-2xl backdrop-blur-xl transition-all duration-200 animate-in fade-in zoom-in-95 sm:right-6 sm:w-96"
+          className="border-border-subtle bg-bg-surface/95 text-text-main animate-in fade-in zoom-in-95 fixed right-4 bottom-20 z-50 w-84 max-w-[calc(100vw-2rem)] rounded-2xl border p-5 shadow-2xl backdrop-blur-xl transition-all duration-200 sm:right-6 sm:w-96"
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-border-subtle pb-3.5">
+          <div className="border-border-subtle flex items-center justify-between border-b pb-3.5">
             <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent/15 text-accent">
+              <span className="bg-accent/15 text-accent flex h-7 w-7 items-center justify-center rounded-lg">
                 <SlidersHorizontal size={15} />
               </span>
               <div>
-                <h3 className="font-serif text-sm font-semibold tracking-tight text-text-main">
+                <h3 className="text-text-main font-serif text-sm font-semibold tracking-tight">
                   Appearance
                 </h3>
-                <p className="text-[11px] text-text-muted">Customize theme & typography</p>
+                <p className="text-text-muted text-[11px]">Customize theme & typography</p>
               </div>
             </div>
 
             <button
               onClick={() => setIsOpen(false)}
-              className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full text-text-muted transition-colors hover:bg-bg-app hover:text-text-main"
+              className="text-text-muted hover:bg-bg-app hover:text-text-main flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-colors"
               aria-label="Close customizer"
             >
               <X size={15} />
@@ -244,7 +244,7 @@ export function ThemeSwitcher() {
           </div>
 
           {/* Separate Selection Tabs */}
-          <div className="mt-3.5 flex rounded-lg bg-bg-app/80 p-1 border border-border-subtle/60">
+          <div className="bg-bg-app/80 border-border-subtle/60 mt-3.5 flex rounded-lg border p-1">
             <button
               onClick={() => setActiveTab('theme')}
               className={`flex flex-1 items-center justify-center gap-2 rounded-md py-1.5 text-xs font-semibold transition-all ${
@@ -284,12 +284,12 @@ export function ThemeSwitcher() {
                       onClick={() => changeTheme(key)}
                       className={`group relative flex flex-col items-start rounded-xl border p-3 text-left transition-all duration-200 ${
                         isSelected
-                          ? 'border-accent bg-bg-app shadow-xs ring-1 ring-accent/30'
+                          ? 'border-accent bg-bg-app ring-accent/30 shadow-xs ring-1'
                           : 'border-border-subtle bg-bg-surface hover:border-accent/40 hover:bg-bg-app/60'
                       }`}
                     >
                       {/* Color swatches preview: Brand Theme Color + Accent + Background Surface */}
-                      <div className="flex w-full items-center gap-1.5 mb-2">
+                      <div className="mb-2 flex w-full items-center gap-1.5">
                         <span
                           className="h-5 w-5 rounded-full border border-black/15 shadow-xs transition-transform group-hover:scale-110"
                           style={{ backgroundColor: cfg.brandColor }}
@@ -306,18 +306,18 @@ export function ThemeSwitcher() {
                           title={`Surface: ${cfg.surfaceBg}`}
                         />
                         {cfg.isDark && (
-                          <span className="ml-auto rounded bg-black/10 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-text-muted">
+                          <span className="text-text-muted ml-auto rounded bg-black/10 px-1.5 py-0.5 text-[9px] font-bold tracking-wider uppercase">
                             Dark
                           </span>
                         )}
                       </div>
 
                       <div className="flex w-full items-center justify-between">
-                        <span className="text-xs font-bold text-text-main">{cfg.name}</span>
+                        <span className="text-text-main text-xs font-bold">{cfg.name}</span>
                         {isSelected && <Check size={13} className="text-accent" />}
                       </div>
 
-                      <span className="text-[10px] text-text-muted mt-0.5 leading-tight">
+                      <span className="text-text-muted mt-0.5 text-[10px] leading-tight">
                         {cfg.description}
                       </span>
                     </button>
@@ -340,14 +340,14 @@ export function ThemeSwitcher() {
                     onClick={() => changeFont(key)}
                     className={`group flex w-full items-center justify-between rounded-xl border p-3 text-left transition-all duration-200 ${
                       isSelected
-                        ? 'border-accent bg-bg-app shadow-xs ring-1 ring-accent/30'
+                        ? 'border-accent bg-bg-app ring-accent/30 shadow-xs ring-1'
                         : 'border-border-subtle bg-bg-surface hover:border-accent/40 hover:bg-bg-app/60'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       {/* Large Typography Glyph Preview */}
                       <span
-                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border-subtle bg-bg-surface text-lg font-semibold ${cfg.previewClass} ${
+                        className={`border-border-subtle bg-bg-surface flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border text-lg font-semibold ${cfg.previewClass} ${
                           isSelected ? 'text-accent border-accent/30' : 'text-text-main'
                         }`}
                       >
@@ -356,18 +356,18 @@ export function ThemeSwitcher() {
 
                       <div className="flex flex-col">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-xs font-bold text-text-main">{cfg.name}</span>
-                          <span className="text-[10px] text-text-muted">({cfg.description})</span>
+                          <span className="text-text-main text-xs font-bold">{cfg.name}</span>
+                          <span className="text-text-muted text-[10px]">({cfg.description})</span>
                         </div>
-                        <span className="text-[11px] text-text-muted mt-0.5">
-                          <strong className="font-semibold text-text-main">{cfg.serifName}</strong>{' '}
+                        <span className="text-text-muted mt-0.5 text-[11px]">
+                          <strong className="text-text-main font-semibold">{cfg.serifName}</strong>{' '}
                           + {cfg.sansName}
                         </span>
                       </div>
                     </div>
 
                     {isSelected && (
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-white">
+                      <span className="bg-accent flex h-5 w-5 items-center justify-center rounded-full text-white">
                         <Check size={12} />
                       </span>
                     )}
@@ -378,10 +378,10 @@ export function ThemeSwitcher() {
           )}
 
           {/* Footer with Reset */}
-          <div className="mt-4 flex items-center justify-between border-t border-border-subtle pt-3 text-[11px]">
+          <div className="border-border-subtle mt-4 flex items-center justify-between border-t pt-3 text-[11px]">
             <button
               onClick={resetDefaults}
-              className="inline-flex items-center gap-1.5 text-text-muted transition-colors hover:text-accent"
+              className="text-text-muted hover:text-accent inline-flex items-center gap-1.5 transition-colors"
             >
               <RotateCcw size={12} />
               <span>Reset defaults</span>

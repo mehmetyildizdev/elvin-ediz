@@ -15,6 +15,7 @@ import { announcementsGroup, announcementsFields } from './announcements';
 import { newsGroup, newsFields } from './news';
 import { consultationGroup, consultationFields } from './consultation';
 import { seoGroup, seoFields } from './seo';
+import { languageField } from '../../i18n';
 
 export const insightsPage = defineType({
   name: config.name,
@@ -30,6 +31,7 @@ export const insightsPage = defineType({
     { ...seoGroup, icon: SearchIcon },
   ],
   fields: [
+    languageField,
     ...headerFields,
     ...insightsSectionFields,
     ...informationFields,

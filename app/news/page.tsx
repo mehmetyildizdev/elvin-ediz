@@ -16,7 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return buildPageMetadata({
     pageTitle: `${insightsPageData.newsTitle || 'Canadian Immigration News & Media Updates'}`,
-    pageDescription: 'Curated Canadian immigration news, policy analysis, Express Entry draw results, and economic migration trends.',
+    pageDescription:
+      'Curated Canadian immigration news, policy analysis, Express Entry draw results, and economic migration trends.',
     settings,
     canonicalPath: '/news',
   });
@@ -29,7 +30,8 @@ export default async function NewsPage() {
 
   const newsJsonLd = buildWebPageJsonLd({
     title: insightsPageData.newsTitle || 'Canadian Immigration News',
-    description: 'Curated Canadian immigration news, policy updates, and economic migration trends.',
+    description:
+      'Curated Canadian immigration news, policy updates, and economic migration trends.',
     url: '/news',
     type: 'CollectionPage',
     settings,
@@ -46,4 +48,3 @@ export default async function NewsPage() {
     </>
   );
 }
-

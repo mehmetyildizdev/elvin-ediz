@@ -9,11 +9,7 @@ interface NewsSidebarProps {
   maxItems?: number;
 }
 
-export function NewsSidebar({
-  insightsPageData,
-  posts,
-  maxItems = 3,
-}: NewsSidebarProps) {
+export function NewsSidebar({ insightsPageData, posts, maxItems = 3 }: NewsSidebarProps) {
   const displayedPosts = posts.slice(0, maxItems);
 
   return (
@@ -50,7 +46,9 @@ export function NewsSidebar({
                   {post.category || post.sourceName || 'Canada News'}
                 </span>
                 {post.publishedAt && (
-                  <span className="text-text-muted text-[11px]">{formatDate(post.publishedAt)}</span>
+                  <span className="text-text-muted text-[11px]">
+                    {formatDate(post.publishedAt)}
+                  </span>
                 )}
               </div>
 

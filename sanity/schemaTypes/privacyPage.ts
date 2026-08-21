@@ -4,6 +4,7 @@ import { LockIcon } from '@sanity/icons/Lock';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import { CodeIcon } from '@sanity/icons/Code';
 import { SearchIcon } from '@sanity/icons/Search';
+import { languageField } from '../i18n';
 
 export const privacyPage = defineType({
   name: 'privacyPage',
@@ -17,6 +18,7 @@ export const privacyPage = defineType({
     { name: 'seo', title: '05. SEO & Social', icon: SearchIcon },
   ],
   fields: [
+    languageField,
     // 01. Page Header
     defineField({
       name: 'eyebrow',
@@ -199,7 +201,8 @@ export const privacyPage = defineType({
       title: 'Privacy Policy SEO & Social Share',
       type: 'seo',
       group: 'seo',
-      description: 'Search engine metadata and social preview for the Privacy Policy page (/privacy-policy).',
+      description:
+        'Search engine metadata and social preview for the Privacy Policy page (/privacy-policy).',
     }),
   ],
 });

@@ -42,7 +42,9 @@ export function buildOrganizationJsonLd(settings?: SiteSettingsData) {
             'Spousal & Family Sponsorship',
           ],
         },
-        sameAs: [stripStega(settings?.linkedinUrl), stripStega(settings?.instagramUrl)].filter(Boolean),
+        sameAs: [stripStega(settings?.linkedinUrl), stripStega(settings?.instagramUrl)].filter(
+          Boolean
+        ),
       },
       {
         '@type': 'WebSite',

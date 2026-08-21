@@ -16,7 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return buildPageMetadata({
     pageTitle: `${insightsPageData.announcementsTitle || 'Official Immigration Announcements & Bulletins'}`,
-    pageDescription: 'Official policy changes, processing updates, and immigration regulatory notices from IRCC and Elvin Ediz Immigration Services.',
+    pageDescription:
+      'Official policy changes, processing updates, and immigration regulatory notices from IRCC and Elvin Ediz Immigration Services.',
     settings,
     canonicalPath: '/announcements',
   });
@@ -46,4 +47,3 @@ export default async function AnnouncementsPage() {
     </>
   );
 }
-

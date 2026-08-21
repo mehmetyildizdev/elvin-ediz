@@ -105,7 +105,16 @@ export interface PageJsonLdOptions {
   title: string;
   description?: string;
   url: string;
-  defaultType?: 'Organization' | 'Service' | 'FAQPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage' | 'WebPage' | 'Article' | 'NewsArticle';
+  defaultType?:
+    | 'Organization'
+    | 'Service'
+    | 'FAQPage'
+    | 'AboutPage'
+    | 'ContactPage'
+    | 'CollectionPage'
+    | 'WebPage'
+    | 'Article'
+    | 'NewsArticle';
   structuredDataType?: string;
   settings?: SiteSettingsData;
   services?: import('../types').ServiceData[];
@@ -129,9 +138,7 @@ export function buildPageJsonLd(options: PageJsonLdOptions) {
   } = options;
 
   const resolvedType =
-    structuredDataType && structuredDataType !== 'auto'
-      ? structuredDataType
-      : defaultType;
+    structuredDataType && structuredDataType !== 'auto' ? structuredDataType : defaultType;
 
   // 1. Organization & Home
   if (resolvedType === 'Organization') {

@@ -25,31 +25,33 @@ export function InsightArticle({ post, settings = defaultSiteSettings }: Insight
         ) : (
           <div className="text-text-muted space-y-6 text-base leading-relaxed sm:text-lg">
             <p>
-              Navigating Canadian immigration pathways requires aligning personal qualifications with
-              current federal and provincial policy directives. From Comprehensive Ranking System (CRS)
-              score optimization to strategic provincial nomination selections, every decision impacts
-              your application timeline.
+              Navigating Canadian immigration pathways requires aligning personal qualifications
+              with current federal and provincial policy directives. From Comprehensive Ranking
+              System (CRS) score optimization to strategic provincial nomination selections, every
+              decision impacts your application timeline.
             </p>
             <p>
-              Applicants who assess their documentation upfront and understand IRCC evaluation standards
-              position themselves for a clearer, more predictable process. In this analysis, our RCIC
-              consulting team reviews key strategic considerations.
+              Applicants who assess their documentation upfront and understand IRCC evaluation
+              standards position themselves for a clearer, more predictable process. In this
+              analysis, our RCIC consulting team reviews key strategic considerations.
             </p>
             <h3 className="text-text-main mt-8 font-serif text-2xl font-semibold">
               Key Strategic Takeaways
             </h3>
             <p>
               1. <strong>Language Scores:</strong> Maximizing CLB benchmarks across first and second
-              official languages remains one of the highest-yield investments for Express Entry candidates.
+              official languages remains one of the highest-yield investments for Express Entry
+              candidates.
             </p>
             <p>
-              2. <strong>Work Experience Verification:</strong> Ensuring job descriptions align strictly
-              with Canadian National Occupational Classification (NOC / TEER) codes prevents
-              disqualifications during eligibility assessment.
+              2. <strong>Work Experience Verification:</strong> Ensuring job descriptions align
+              strictly with Canadian National Occupational Classification (NOC / TEER) codes
+              prevents disqualifications during eligibility assessment.
             </p>
             <p>
-              3. <strong>Regulatory Compliance:</strong> Always verify that representation is managed by a
-              licensed member of the College of Immigration and Citizenship Consultants (CICC).
+              3. <strong>Regulatory Compliance:</strong> Always verify that representation is
+              managed by a licensed member of the College of Immigration and Citizenship Consultants
+              (CICC).
             </p>
           </div>
         )}

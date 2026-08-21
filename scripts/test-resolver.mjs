@@ -7,7 +7,7 @@ async function resolveGoogleUrl(googleUrl) {
       },
       redirect: 'follow',
     });
-    
+
     // In many cases, Google returns a page with c-wiz or data-n-au or a meta refresh
     const text = await res.text();
     const match = text.match(/href="([^"]+)"/);
@@ -32,7 +32,8 @@ async function resolveGoogleUrl(googleUrl) {
 }
 
 async function test() {
-  const url = "https://news.google.com/rss/articles/CBMijwFBVV95cUxNVGZLNzRzTDlzM0g3eDJOQ2VwYkhwQ0l3Y0cyUDNlWmdaNWpaT0pyMm5fSG1zWGtKT1F5NjFsQ00zX3g4T1YyU2k2NXdRX0lhcVhLamxTOFlkczk3SUJ0OC1XazZfcWVfVlZYaVRockpyNU41a25JRFZ6ejFlQmJheElnd3FPcm9sazhzSThrVQ?oc=5";
+  const url =
+    'https://news.google.com/rss/articles/CBMijwFBVV95cUxNVGZLNzRzTDlzM0g3eDJOQ2VwYkhwQ0l3Y0cyUDNlWmdaNWpaT0pyMm5fSG1zWGtKT1F5NjFsQ00zX3g4T1YyU2k2NXdRX0lhcVhLamxTOFlkczk3SUJ0OC1XazZfcWVfVlZYaVRockpyNU41a25JRFZ6ejFlQmJheElnd3FPcm9sazhzSThrVQ?oc=5';
   console.log('Testing resolution for CBC article...');
   const res = await resolveGoogleUrl(url);
   console.log('Result:', res);

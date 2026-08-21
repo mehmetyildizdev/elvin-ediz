@@ -31,10 +31,12 @@ import type {
 export * from './types';
 
 export async function getSanityClient() {
-  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
+  const projectId =
+    process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
   if (!projectId) return null;
 
-  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
+  const dataset =
+    process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
   let isDraft = false;
   try {
     const draft = await draftMode();
@@ -58,7 +60,9 @@ export async function getSanityClient() {
         process.env.NEXT_PUBLIC_SANITY_STUDIO_URL ||
         (isDev ? 'http://localhost:3333' : 'https://elvin-ediz.sanity.studio'),
     },
-    token: isDraft ? (process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_API_READ_TOKEN) : undefined,
+    token: isDraft
+      ? process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_API_READ_TOKEN
+      : undefined,
   });
 }
 
@@ -107,7 +111,8 @@ export async function fetchHomePage(): Promise<HomePageData> {
       {},
       getFetchOptions(['homePage'])
     );
-    if (data && (data.heroTitle || data.strategyTitle || data.strategyEyebrow)) return { ...backupHomePage, ...data };
+    if (data && (data.heroTitle || data.strategyTitle || data.strategyEyebrow))
+      return { ...backupHomePage, ...data };
   } catch (err) {
     console.error('Error fetching homePage from Sanity:', err);
   }
@@ -299,11 +304,7 @@ export async function fetchPosts(kind?: PostKind | string): Promise<PostData[]> 
           }
         }`;
     const tags = ['posts', ...(kind ? [`posts:${kind}`] : [])];
-    const data = await client.fetch<PostData[]>(
-      query,
-      kind ? { kind } : {},
-      getFetchOptions(tags)
-    );
+    const data = await client.fetch<PostData[]>(query, kind ? { kind } : {}, getFetchOptions(tags));
     if (data?.length) return data;
   } catch (err) {
     console.error('Error fetching posts from Sanity:', err);
@@ -388,4 +389,3 @@ export async function fetchPrivacyPage(): Promise<PrivacyPageData> {
 }
 
 export * from './whatsapp';
-

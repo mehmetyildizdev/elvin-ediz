@@ -127,7 +127,7 @@ export function Carousel<T>({
       <div className="w-full py-3">
         <div
           className={`grid grid-cols-1 gap-4 transition-opacity duration-350 ease-out md:grid-cols-2 lg:grid-cols-3 ${
-            isAnimating ? 'opacity-40 scale-[0.99]' : 'opacity-100 scale-100'
+            isAnimating ? 'scale-[0.99] opacity-40' : 'scale-100 opacity-100'
           }`}
         >
           {currentItems.map((item, idx) => {
@@ -155,7 +155,7 @@ export function Carousel<T>({
                   key={i}
                   type="button"
                   onClick={() => triggerPageChange(i)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${
                     currentPage === i
                       ? 'bg-accent w-6'
                       : 'bg-border-subtle hover:bg-text-muted/50 w-2'
@@ -168,11 +168,11 @@ export function Carousel<T>({
 
           {/* Prev / Next Arrows */}
           {showControls && totalPages > 1 && (
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex shrink-0 items-center gap-2">
               <button
                 type="button"
                 onClick={prev}
-                className="border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent flex h-9 w-9 items-center justify-center rounded-full border transition-colors shadow-xs cursor-pointer active:scale-95"
+                className="border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border shadow-xs transition-colors active:scale-95"
                 aria-label="Previous page"
               >
                 <ChevronLeft size={16} />
@@ -180,7 +180,7 @@ export function Carousel<T>({
               <button
                 type="button"
                 onClick={next}
-                className="border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent flex h-9 w-9 items-center justify-center rounded-full border transition-colors shadow-xs cursor-pointer active:scale-95"
+                className="border-border-subtle bg-bg-surface text-text-main hover:border-accent hover:text-accent flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border shadow-xs transition-colors active:scale-95"
                 aria-label="Next page"
               >
                 <ChevronRight size={16} />

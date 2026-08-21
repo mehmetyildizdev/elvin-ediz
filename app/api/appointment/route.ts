@@ -6,18 +6,14 @@ export async function POST(request: Request) {
     const { name, email, phone, service, message } = data;
 
     if (!name || !email) {
-      return NextResponse.json(
-        { message: 'Name and email are required.' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Name and email are required.' }, { status: 400 });
     }
 
     const projectId =
       process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID;
     const dataset =
       process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production';
-    const writeToken =
-      process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_WRITE_TOKEN;
+    const writeToken = process.env.SANITY_EDITOR_TOKEN || process.env.SANITY_WRITE_TOKEN;
 
     if (!projectId || !writeToken) {
       return NextResponse.json(

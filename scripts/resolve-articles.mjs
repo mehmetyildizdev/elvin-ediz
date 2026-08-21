@@ -1,7 +1,8 @@
 import puppeteer from 'puppeteer';
 
 async function getMoreArticles() {
-  const url = 'https://news.google.com/rss/search?q=Canada+immigration+when:14d&hl=en-CA&gl=CA&ceid=CA:en';
+  const url =
+    'https://news.google.com/rss/search?q=Canada+immigration+when:14d&hl=en-CA&gl=CA&ceid=CA:en';
   const res = await fetch(url);
   const xml = await res.text();
 

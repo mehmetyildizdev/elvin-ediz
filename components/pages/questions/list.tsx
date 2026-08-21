@@ -13,12 +13,14 @@ interface QuestionsListProps {
   settings?: SiteSettingsData;
 }
 
-
 export function QuestionsList({
   faqPageData = defaultFaqPage,
   settings = defaultSiteSettings,
 }: QuestionsListProps) {
-  const items = faqPageData.items && faqPageData.items.length > 0 ? faqPageData.items : defaultFaqPage.items || [];
+  const items =
+    faqPageData.items && faqPageData.items.length > 0
+      ? faqPageData.items
+      : defaultFaqPage.items || [];
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -35,7 +37,9 @@ export function QuestionsList({
 
   const filteredItems = useMemo(() => {
     if (activeCategory === 'All') return items;
-    return items.filter((item) => item.category?.trim().toLowerCase() === activeCategory.toLowerCase());
+    return items.filter(
+      (item) => item.category?.trim().toLowerCase() === activeCategory.toLowerCase()
+    );
   }, [items, activeCategory]);
 
   return (
@@ -52,7 +56,7 @@ export function QuestionsList({
               className={`rounded-full px-4 py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors ${
                 activeCategory === 'All'
                   ? 'bg-accent text-bg-primary shadow-xs'
-                  : 'bg-bg-surface text-text-muted hover:text-text-main border border-border-subtle'
+                  : 'bg-bg-surface text-text-muted hover:text-text-main border-border-subtle border'
               }`}
             >
               All Topics ({items.length})
@@ -67,7 +71,7 @@ export function QuestionsList({
                 className={`rounded-full px-4 py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors ${
                   activeCategory === cat
                     ? 'bg-accent text-bg-primary shadow-xs'
-                    : 'bg-bg-surface text-text-muted hover:text-text-main border border-border-subtle'
+                    : 'bg-bg-surface text-text-muted hover:text-text-main border-border-subtle border'
                 }`}
               >
                 {cat}
@@ -95,7 +99,7 @@ export function QuestionsList({
                   >
                     <div className="flex flex-col items-start gap-1.5 pr-4">
                       {item.category && (
-                        <span className="bg-accent/10 text-accent rounded-xs border border-accent/20 px-2 py-0.5 text-[10px] font-sans font-bold tracking-wider uppercase">
+                        <span className="bg-accent/10 text-accent border-accent/20 rounded-xs border px-2 py-0.5 font-sans text-[10px] font-bold tracking-wider uppercase">
                           {item.category}
                         </span>
                       )}
@@ -111,7 +115,7 @@ export function QuestionsList({
                   </button>
 
                   {isOpen && (
-                    <div className="mt-4 max-w-3xl pl-1 animate-in fade-in duration-200">
+                    <div className="animate-in fade-in mt-4 max-w-3xl pl-1 duration-200">
                       <PortableTextRenderer value={item.answer} size="sm" />
                     </div>
                   )}
@@ -161,7 +165,7 @@ export function QuestionsList({
                 )}
                 variant="primary"
                 size="md"
-                className="shrink-0 inline-flex items-center gap-2"
+                className="inline-flex shrink-0 items-center gap-2"
               >
                 <MessageCircle size={16} />
                 {faqPageData.ctaButtonText || 'Book Consultation'}

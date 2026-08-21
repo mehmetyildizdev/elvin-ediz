@@ -31,4 +31,3 @@ export default async function ServiceSlugPage({ params }: { params: Promise<{ sl
   const resolvedParams = await params;
   redirect(`/services?tab=${resolvedParams.slug}#pathways-tabs`);
 }
-

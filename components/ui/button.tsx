@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline-on-dark' | 'outline-on-light' | 'ghost';
+export type ButtonVariant =
+  'primary' | 'secondary' | 'outline-on-dark' | 'outline-on-light' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface BaseButtonProps {
@@ -13,8 +14,16 @@ interface BaseButtonProps {
 
 export type ButtonProps = BaseButtonProps &
   (
-    | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined; target?: string; rel?: string })
-    | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string; target?: string; rel?: string })
+    | (React.ButtonHTMLAttributes<HTMLButtonElement> & {
+        href?: undefined;
+        target?: string;
+        rel?: string;
+      })
+    | (React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+        href: string;
+        target?: string;
+        rel?: string;
+      })
   );
 
 const variantStyles: Record<ButtonVariant, string> = {

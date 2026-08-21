@@ -54,7 +54,9 @@ export function AnnouncementsSidebar({
                     Official Notice
                   </span>
                   {post.publishedAt && (
-                    <span className="text-text-muted text-[11px]">{formatDate(post.publishedAt)}</span>
+                    <span className="text-text-muted text-[11px]">
+                      {formatDate(post.publishedAt)}
+                    </span>
                   )}
                 </div>
 

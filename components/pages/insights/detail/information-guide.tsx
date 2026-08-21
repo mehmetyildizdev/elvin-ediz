@@ -20,23 +20,21 @@ const defaultChecklist = [
   'Ensure Certified Translations for All Non-English Documents',
 ];
 
-export function InformationGuide({
-  post,
-  settings = defaultSiteSettings,
-}: InformationGuideProps) {
-  const items = post.checklistItems && post.checklistItems.length > 0 ? post.checklistItems : defaultChecklist;
+export function InformationGuide({ post, settings = defaultSiteSettings }: InformationGuideProps) {
+  const items =
+    post.checklistItems && post.checklistItems.length > 0 ? post.checklistItems : defaultChecklist;
   const ChecklistIcon = getIconComponent(post.checklistIcon) || BookOpen;
 
   return (
     <div className="mx-auto max-w-4xl space-y-12">
       {/* Action Checklist Box */}
-      <div className="rounded-sm border border-border-subtle bg-bg-surface p-8 shadow-sm">
+      <div className="border-border-subtle bg-bg-surface rounded-sm border p-8 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="rounded-full bg-accent/10 p-2.5 text-accent">
+          <div className="bg-accent/10 text-accent rounded-full p-2.5">
             <ChecklistIcon size={22} />
           </div>
           <div>
-            <h3 className="font-serif text-lg font-bold text-text-main">
+            <h3 className="text-text-main font-serif text-lg font-bold">
               {post.checklistTitle || 'Guide Summary & Action Checklist'}
             </h3>
             <p className="text-text-muted text-xs">
@@ -51,7 +49,7 @@ export function InformationGuide({
             {post.checklistItems.map((item, idx) => (
               <li
                 key={idx}
-                className="flex items-start gap-3 rounded-xs border border-border-subtle bg-bg-app p-3 text-xs leading-relaxed text-text-main md:text-sm"
+                className="border-border-subtle bg-bg-app text-text-main flex items-start gap-3 rounded-xs border p-3 text-xs leading-relaxed md:text-sm"
               >
                 <CheckCircle2 size={16} className="text-accent mt-0.5 shrink-0" />
                 <span>{item}</span>
@@ -71,10 +69,10 @@ export function InformationGuide({
       </div>
 
       {/* Audit / Documentation CTA Box */}
-      <div className="rounded-sm border border-accent/20 bg-accent/5 p-8">
+      <div className="border-accent/20 bg-accent/5 rounded-sm border p-8">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div className="space-y-1">
-            <h4 className="font-serif text-base font-bold text-text-main">
+            <h4 className="text-text-main font-serif text-base font-bold">
               {post.infoCtaTitle || 'Need assistance with this documentation?'}
             </h4>
             <p className="text-text-muted text-xs">

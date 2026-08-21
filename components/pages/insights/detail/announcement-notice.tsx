@@ -27,7 +27,7 @@ export function AnnouncementNotice({
     : formattedDate;
 
   return (
-    <div className="border-border-subtle bg-bg-surface flex flex-col rounded-sm border p-6 md:p-10 shadow-xs">
+    <div className="border-border-subtle bg-bg-surface flex flex-col rounded-sm border p-6 shadow-xs md:p-10">
       {/* Official Notice Header */}
       <div className="border-border-subtle mb-8 flex flex-wrap items-center justify-between gap-4 border-b pb-6">
         <div className="flex items-center gap-3">
@@ -60,8 +60,8 @@ export function AnnouncementNotice({
         <div className="text-text-muted space-y-6 text-base leading-relaxed sm:text-lg">
           <p>
             Please take note of this official announcement regarding policy procedures, schedule
-            adjustments, or regulatory requirement updates from Immigration, Refugees and Citizenship
-            Canada (IRCC).
+            adjustments, or regulatory requirement updates from Immigration, Refugees and
+            Citizenship Canada (IRCC).
           </p>
         </div>
       )}

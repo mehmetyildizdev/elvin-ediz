@@ -145,7 +145,7 @@ export function InformationList({
                         {/* Checklist Teaser Preview if available */}
                         {post.checklistItems && post.checklistItems.length > 0 && (
                           <div className="border-border-subtle/70 bg-bg-app mb-6 rounded-sm border p-4">
-                            <strong className="text-text-main block text-xs font-semibold uppercase tracking-wider">
+                            <strong className="text-text-main block text-xs font-semibold tracking-wider uppercase">
                               Key Checklist Items:
                             </strong>
                             <ul className="mt-2 space-y-1.5">
@@ -159,8 +159,9 @@ export function InformationList({
                                 </li>
                               ))}
                               {post.checklistItems.length > 3 && (
-                                <li className="text-accent text-[11px] font-medium pt-1">
-                                  + {post.checklistItems.length - 3} more checklist points in full guide
+                                <li className="text-accent pt-1 text-[11px] font-medium">
+                                  + {post.checklistItems.length - 3} more checklist points in full
+                                  guide
                                 </li>
                               )}
                             </ul>
