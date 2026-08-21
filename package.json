@@ -10,7 +10,16 @@
     "studio": "sanity dev",
     "studio:deploy": "node --env-file-if-exists=.env.local ./node_modules/sanity/bin/sanity deploy",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "cli": "tsx scripts/cli.ts",
+    "seed": "tsx scripts/cli.ts seed --all",
+    "sync:all-posts": "tsx scripts/cli.ts sync --target=all-posts",
+    "sync:news": "tsx scripts/cli.ts sync --target=news",
+    "sync:announcements": "tsx scripts/cli.ts sync --target=announcements",
+    "sync:insights": "tsx scripts/cli.ts sync --target=insights",
+    "sync:information": "tsx scripts/cli.ts sync --target=information",
+    "sync:reviews": "tsx scripts/cli.ts sync --target=google-reviews",
+    "sync:services": "tsx scripts/cli.ts sync --target=services"
   },
   "dependencies": {
     "@portabletext/react": "^7.0.1",
@@ -37,6 +46,7 @@
     "@types/react": "^19.2.0",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "tailwindcss": "^4.3.2"
+    "tailwindcss": "^4.3.2",
+    "tsx": "^4.23.12"
   }
 }
