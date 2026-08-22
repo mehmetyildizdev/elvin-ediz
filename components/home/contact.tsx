@@ -57,19 +57,24 @@ export function ConsultationForm({
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     setStatus('sending');
     try {
-      const data = Object.fromEntries(new FormData(event.currentTarget).entries());
-      const endpoint = process.env.NEXT_PUBLIC_APPOINTMENT_ENDPOINT || '/api/appointment';
-      const response = await fetch(endpoint, {
+      const data = Object.fromEntries(new FormData(form).entries());
+      const response = await fetch('/api/appointment', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error('Request failed');
-      event.currentTarget.reset();
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        console.error('Appointment API error:', response.status, errData);
+        throw new Error(errData?.message || 'Request failed');
+      }
+      form.reset();
       setStatus('success');
-    } catch {
+    } catch (err) {
+      console.error('Contact submission error:', err);
       setStatus('error');
     }
   }

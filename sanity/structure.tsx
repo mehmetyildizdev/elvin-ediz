@@ -10,9 +10,9 @@ import { CaseIcon } from '@sanity/icons/Case';
 import { StarIcon } from '@sanity/icons/Star';
 import { CogIcon } from '@sanity/icons/Cog';
 import { EarthGlobeIcon } from '@sanity/icons/EarthGlobe';
-import { EnvelopeIcon } from '@sanity/icons/Envelope';
 import type { StructureBuilder, StructureResolver } from 'sanity/structure';
 import { supportedLanguages } from './i18n/config';
+import { AppointmentBadgeIcon } from './components/AppointmentBadgeIcon';
 
 const langFlags: Record<string, string> = {
   en: '🇬🇧',
@@ -194,7 +194,7 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
       S.divider(),
       S.listItem()
         .title('Form Appointments')
-        .icon(EnvelopeIcon)
+        .icon(AppointmentBadgeIcon)
         .child(
           S.list()
             .title('Form Inquiries & Leads')
