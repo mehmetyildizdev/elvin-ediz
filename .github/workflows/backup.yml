@@ -1,0 +1,133 @@
+name: Project & Sanity CMS Backup
+
+on:
+  # Manual trigger via GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      dataset:
+        description: 'Sanity Dataset to Export'
+        required: true
+        default: 'production'
+        type: string
+      include_assets:
+        description: 'Download and bundle all media assets (images, PDFs, files)'
+        required: true
+        default: true
+        type: boolean
+
+  # -------------------------------------------------------------------------
+  # TO ENABLE AUTOMATED SCHEDULED BACKUPS:
+  # Uncomment the lines below to run automatically (e.g., every Sunday at 02:00 UTC)
+  # -------------------------------------------------------------------------
+  # schedule:
+  #   - cron: '0 2 * * 0' # Every Sunday at 02:00 UTC (Run '0 2 * * *' for daily)
+
+jobs:
+  create-backup:
+    name: Create & Package Backup
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js & pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install Project Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Initialize Backup Metadata
+        id: meta
+        run: |
+          TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')
+          echo "timestamp=$TIMESTAMP" >> "$GITHUB_OUTPUT"
+          mkdir -p "./backup_temp/code"
+          mkdir -p "./backup_temp/sanity"
+
+      - name: 1. Package Code Repository (Clean Git Snapshot)
+        run: |
+          echo "Archiving repository source at commit ${{ github.sha }}..."
+          git archive --format=tar.gz -o "./backup_temp/code/code-snapshot-${{ steps.meta.outputs.timestamp }}.tar.gz" HEAD
+
+      - name: 2. Export Sanity CMS Dataset & Media Assets
+        env:
+          SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID || secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          SANITY_DATASET: ${{ inputs.dataset || 'production' }}
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN || secrets.SANITY_EDITOR_TOKEN }}
+        run: |
+          TARGET_DATASET="${SANITY_DATASET:-production}"
+          echo "Exporting Sanity dataset '${TARGET_DATASET}'..."
+
+          ASSETS_FLAG=""
+          if [ "${{ inputs.include_assets }}" = "true" ] || [ "${{ inputs.include_assets }}" = "" ]; then
+            ASSETS_FLAG="--assets"
+          fi
+
+          # Export full dataset (raw NDJSON + all uploaded images/files)
+          pnpm sanity dataset export "$TARGET_DATASET" "./backup_temp/sanity/sanity-export-${TARGET_DATASET}-${{ steps.meta.outputs.timestamp }}.tar.gz" --raw $ASSETS_FLAG
+
+      - name: 3. Generate Backup Manifest
+        run: |
+          cat <<EOF > ./backup_temp/manifest.json
+          {
+            "backup_name": "elvin-ediz-backup-${{ steps.meta.outputs.timestamp }}",
+            "created_at": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+            "git_commit": "${{ github.sha }}",
+            "git_branch": "${{ github.ref_name }}",
+            "git_author": "${{ github.actor }}",
+            "sanity_dataset": "${{ inputs.dataset || 'production' }}",
+            "assets_included": ${{ inputs.include_assets || true }},
+            "restore_instructions": "To restore sanity data: pnpm sanity dataset import ./sanity/sanity-export-*.tar.gz <target-dataset> --replace"
+          }
+          EOF
+
+      - name: 4. Bundle Combined Zip Archive
+        run: |
+          cd ./backup_temp
+          zip -r "../elvin-ediz-complete-backup-${{ steps.meta.outputs.timestamp }}.zip" .
+          cd ..
+          echo "Archive generated: elvin-ediz-complete-backup-${{ steps.meta.outputs.timestamp }}.zip"
+          ls -lh "elvin-ediz-complete-backup-${{ steps.meta.outputs.timestamp }}.zip"
+
+      - name: 5. Store Backup Artifact in GitHub Actions
+        uses: actions/upload-artifact@v4
+        with:
+          name: elvin-ediz-complete-backup-${{ steps.meta.outputs.timestamp }}
+          path: elvin-ediz-complete-backup-${{ steps.meta.outputs.timestamp }}.zip
+          retention-days: 30 # Backup stays downloadable in GitHub Actions menu for 30 days
+
+
+      # ------------------------------------------------------------------------------------------------
+      # OPTIONAL: CLOUD DRIVE UPLOAD (GOOGLE DRIVE / S3 / CLOUDFLARE R2)
+      # ------------------------------------------------------------------------------------------------
+      # To automatically upload this zip to Google Drive upon every manual or scheduled run:
+      #
+      # 1. Create a Google Cloud Service Account in Google Cloud Console with Google Drive API enabled.
+      # 2. Share your target Google Drive folder with the Service Account email (give 'Editor' permission).
+      # 3. Add GitHub Repository Secrets (Settings -> Secrets and variables -> Actions):
+      #      - GDRIVE_SERVICE_ACCOUNT_KEY : Full JSON content of the service account key
+      #      - GDRIVE_FOLDER_ID           : The folder ID from your Google Drive URL
+      # 4. Uncomment the step below:
+      #
+      # - name: 6. Upload Combined Backup to Google Drive
+      #   uses: adityak74/google-drive-upload-git-action@v0.3
+      #   with:
+      #     credentials: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
+      #     filename: "elvin-ediz-complete-backup-${{ steps.meta.outputs.timestamp }}.zip"
+      #     folderId: ${{ secrets.GDRIVE_FOLDER_ID }}
+      #     name: "elvin-ediz-complete-backup-${{ steps.meta.outputs.timestamp }}.zip"
+      #     overwrite: false
+      # ------------------------------------------------------------------------------------------------

@@ -207,3 +207,93 @@ The application implements an automated, zero-friction SEO architecture in [`san
 
 3. **Tier 3: Explicit Studio Overrides (Optional)**
    - Editors can open the **SEO & Social Sharing** tab on any document in Sanity Studio to supply custom search titles, custom descriptions, social preview banners, or search engine indexing directives (`noIndex` / `noFollow`).
+
+---
+
+## 💾 Disaster Recovery & Unified Backup Pipeline
+
+The repository includes a unified backup pipeline in [`.github/workflows/backup.yml`](.github/workflows/backup.yml) that packages both the **application code** and the **complete Sanity CMS data (NDJSON documents + raw media assets)** into a single timestamped `.zip` archive.
+
+### 📦 Inside the Backup Archive
+
+Every generated backup archive contains:
+
+```text
+elvin-ediz-complete-backup-YYYY-MM-DD_HH-MM-SS.zip
+├── code/
+│   └── code-snapshot-YYYY-MM-DD_HH-MM-SS.tar.gz    # Clean Git repo source (no node_modules or build bloat)
+├── sanity/
+│   └── sanity-export-production-YYYY-MM-DD.tar.gz  # Full NDJSON dataset + all uploaded images & documents
+└── manifest.json                                   # Metadata: commit SHA, branch, timestamp, dataset
+```
+
+---
+
+### 🚀 Running a Manual Backup from GitHub UI
+
+1. Navigate to your GitHub repository and click the **Actions** tab.
+2. Under **Workflows** on the left, select **`Project & Sanity CMS Backup`**.
+3. Click the **`Run workflow`** dropdown button on the right:
+   - **Sanity Dataset to Export**: `production` (default)
+   - **Include media assets**: `true` (default)
+4. Click **Run workflow**.
+5. Once the run finishes (green checkmark), click on the completed run:
+   - Scroll down to the **Artifacts** section at the bottom.
+   - Click **`elvin-ediz-complete-backup-<timestamp>`** to download the ready-to-use zip file.
+   - _Artifacts are retained and downloadable directly from GitHub for 30 days._
+
+---
+
+### 🔄 How to Restore from a Backup
+
+1. **Unzip the main backup package**:
+   ```bash
+   unzip elvin-ediz-complete-backup-2026-08-22.zip -d ./my-backup
+   ```
+2. **Restore Application Code**:
+   ```bash
+   tar -xzf ./my-backup/code/code-snapshot-*.tar.gz -C ./restored-app
+   ```
+3. **Restore Sanity CMS Content & Assets**:
+   ```bash
+   pnpm sanity dataset import ./my-backup/sanity/sanity-export-production-*.tar.gz production --replace
+   ```
+
+---
+
+### ⏰ Switching to Automated Scheduled Backups
+
+By default, the workflow is configured for on-demand manual triggers. To make it run **automatically on a schedule** (e.g., weekly or daily):
+
+1. Open [`.github/workflows/backup.yml`](.github/workflows/backup.yml).
+2. Uncomment the `schedule` block near the top:
+   ```yaml
+   on:
+     workflow_dispatch: # Keep for on-demand runs
+     schedule:
+       - cron: '0 2 * * 0' # Runs automatically every Sunday at 02:00 UTC
+       # - cron: '0 2 * * *' # Uncomment for daily automated backups
+   ```
+3. Commit and push the changes to your `main` branch. GitHub Actions will now automatically generate and store the backup archives on schedule.
+
+---
+
+### ☁️ Uploading Backups to Google Drive (Optional)
+
+If you wish to automatically upload every generated backup archive to a designated Google Drive folder:
+
+1. **Create a Google Cloud Service Account**:
+   - Go to [Google Cloud Console](https://console.cloud.google.com/) and create a project (free).
+   - Enable the **Google Drive API**.
+   - Create a **Service Account** under _IAM & Admin -> Service Accounts_ and generate a JSON Key.
+2. **Share Your Google Drive Folder**:
+   - Open your Google Drive in a browser and create a dedicated folder (e.g. `Elvin-Ediz-Backups`).
+   - Share that folder with your Service Account's email address (giving it **Editor** permissions).
+   - Copy the folder ID from the browser URL (`https://drive.google.com/drive/folders/<FOLDER_ID>`).
+3. **Add Secrets to GitHub Repository**:
+   - Go to your GitHub repo -> **Settings** -> **Secrets and variables** -> **Actions**.
+   - Add `GDRIVE_SERVICE_ACCOUNT_KEY`: Paste the entire JSON key file content.
+   - Add `GDRIVE_FOLDER_ID`: Paste your Google Drive folder ID.
+   - Ensure `SANITY_EDITOR_TOKEN` (or `SANITY_AUTH_TOKEN`) is also added to secrets.
+4. **Enable the Step in the Workflow**:
+   - Open [`.github/workflows/backup.yml`](.github/workflows/backup.yml) and uncomment step **`6. Upload Combined Backup to Google Drive`**.
