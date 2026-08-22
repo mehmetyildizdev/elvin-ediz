@@ -71,7 +71,32 @@
       "name": "copyrightText",
       "title": "Copyright Notice",
       "type": "string",
-      "initialValue": "© Elvin Ediz Immigration Services. All rights reserved."
+      "initialValue": "© Elvin Ediz Immigration Services."
+    },
+    "showDeveloperCredit": {
+      "name": "showDeveloperCredit",
+      "title": "Show Developer / Creator Credit",
+      "description": "Displays the bottom separator and 'Crafted by Mehmet Yıldız' attribution in the footer.",
+      "type": "boolean",
+      "initialValue": true
+    },
+    "developerCreditText": {
+      "name": "developerCreditText",
+      "title": "Developer Credit Prefix",
+      "type": "string",
+      "initialValue": "Crafted by"
+    },
+    "developerCreditName": {
+      "name": "developerCreditName",
+      "title": "Developer Name / Studio",
+      "type": "string",
+      "initialValue": "Mehmet Yıldız"
+    },
+    "developerCreditUrl": {
+      "name": "developerCreditUrl",
+      "title": "Developer Website Link",
+      "type": "url",
+      "initialValue": "https://mehmetyildiz.dev"
     }
   }
 }

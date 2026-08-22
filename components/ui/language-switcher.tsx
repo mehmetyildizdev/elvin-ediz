@@ -77,21 +77,21 @@ export function LanguageSwitcher({
 
   if (variant === 'mobile') {
     return (
-      <div className="flex flex-wrap gap-2 pt-2">
+      <div className="flex flex-wrap gap-1.5 pt-1">
         {supportedLanguages.map((lang) => {
           const isActive = lang.id === activeLang;
           return (
             <button
               key={lang.id}
               onClick={() => handleLanguageChange(lang.id)}
-              className={`flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
+              className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium transition-all ${
                 isActive
                   ? 'bg-accent text-bg-primary font-semibold shadow-sm'
                   : 'bg-white/10 text-white/80 hover:bg-white/15 hover:text-white'
               }`}
             >
               <span>{lang.title}</span>
-              {isActive && <Check size={12} className="stroke-[2.5]" />}
+              {isActive && <Check size={11} className="stroke-[2.5]" />}
             </button>
           );
         })}

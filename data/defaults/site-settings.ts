@@ -32,7 +32,11 @@ export const backupSiteSettings: SiteSettingsData = {
   footerConsultationText: 'Free Consultation',
   footerPrivacyText: 'Privacy Policy',
   footerNotice: 'Regulated Canadian Immigration Consultant (RCIC)',
-  copyrightText: `© ${new Date().getFullYear()} Elvin Ediz Immigration Services. All rights reserved.`,
+  copyrightText: `© ${new Date().getFullYear()} Elvin Ediz Immigration Services.`,
+  showDeveloperCredit: true,
+  developerCreditText: 'Crafted by',
+  developerCreditName: 'Mehmet Yıldız',
+  developerCreditUrl: 'https://mehmetyildiz.dev',
 };
 
 export const defaultSiteSettings = backupSiteSettings;

@@ -6,3 +6,5 @@ dist/
 public/
 pnpm-lock.yaml
 *.min.js
+next-env.d.ts
+*.tsbuildinfo

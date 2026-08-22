@@ -108,24 +108,47 @@ export function Footer({
         </div>
       </div>
 
-      <div className="bg-bg-primary text-text-on-dark-muted/70 px-6 py-5 text-xs font-medium tracking-wider uppercase md:px-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 md:flex-row">
-          <span>
-            {settings?.copyrightText ||
-              `© ${new Date().getFullYear()} Elvin Ediz Immigration Services.`}
-          </span>
-          <div className="flex flex-wrap items-center gap-3 text-center md:text-right">
-            <Link
-              href={localizeHref('/privacy', lang)}
-              className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
-            >
-              {settings?.footerPrivacyText || 'Privacy Policy'}
-            </Link>
-            <span>•</span>
-            <span>
-              {settings?.footerNotice || 'Regulated Canadian Immigration Consultant (RCIC)'}
-            </span>
+      <div className="bg-bg-primary text-text-on-dark-muted/70 px-6 py-5 text-xs font-medium tracking-wider md:px-12">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3">
+          {/* Row 1: Copyright & RCIC Accreditation on left, Privacy link on right */}
+          <div className="flex flex-col items-center justify-between gap-3 text-center uppercase md:flex-row md:text-left">
+            <div className="flex flex-col items-center justify-center gap-1 md:flex-row md:items-center md:justify-start md:gap-2">
+              <span>
+                {settings?.copyrightText ||
+                  `© ${new Date().getFullYear()} Elvin Ediz Immigration Services.`}
+              </span>
+              <span className="hidden md:inline">•</span>
+              <span className="text-text-on-dark-muted">
+                {settings?.footerNotice || 'Regulated Canadian Immigration Consultant (RCIC)'}
+              </span>
+            </div>
+
+            <div>
+              <Link
+                href={localizeHref('/privacy', lang)}
+                className="hover:text-accent opacity-80 transition-colors duration-200 hover:opacity-100"
+              >
+                {settings?.footerPrivacyText || 'Privacy Policy'}
+              </Link>
+            </div>
           </div>
+
+          {/* Row 2: Distinct Creator Signature (configurable & toggleable via Sanity Studio) */}
+          {settings?.showDeveloperCredit !== false && (
+            <div className="border-border-on-dark/15 flex items-center justify-center border-t pt-3 text-[11px] tracking-normal md:justify-end">
+              <span className="text-text-on-dark-muted/60">
+                {settings?.developerCreditText || 'Crafted by'}{' '}
+                <a
+                  href={settings?.developerCreditUrl || 'https://mehmetyildiz.dev'}
+                  target="_blank"
+                  rel="noopener"
+                  className="hover:text-accent text-text-on-dark-muted/90 font-medium underline-offset-2 transition-colors duration-200 hover:underline"
+                >
+                  {settings?.developerCreditName || 'Mehmet Yıldız'}
+                </a>
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </footer>

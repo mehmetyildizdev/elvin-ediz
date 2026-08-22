@@ -15,6 +15,7 @@ import { SanityLive } from '@/sanity/lib/live';
 import { ThemeSwitcher } from '@/components/ui/theme-switcher';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import { DeveloperSignature } from '@/components/layout/developer-signature';
 import { fetchSiteSettings } from '@/sanity/lib/data';
 import {
   supportedLanguages,
@@ -61,6 +62,9 @@ export const metadata: Metadata = {
   },
   description:
     'Personalized Canadian immigration guidance and representation from Nazly Sunguroglu, RCIC in Toronto, Ontario.',
+  authors: [{ name: 'Mehmet Yıldız', url: 'https://mehmetyildiz.dev' }],
+  creator: 'Mehmet Yıldız (mehmetyildiz.dev)',
+  publisher: 'Elvin Ediz Immigration Services',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -113,11 +117,15 @@ export default async function LocaleLayout({
 
   return (
     <html lang={currentLang} dir={direction} className={fontClasses} data-scroll-behavior="smooth">
+      <head>
+        <link rel="author" href="/humans.txt" />
+      </head>
       <body className={fontClasses}>
         <Header settings={settings} lang={currentLang} />
         {children}
         <Footer settings={settings} lang={currentLang} />
         <ThemeSwitcher />
+        <DeveloperSignature />
         {/* Real-time live listener for draft mode / Presentation Tool */}
         {isEnabled && <SanityLive />}
         {/* Click-to-edit highlight overlays in draft mode / Presentation Tool */}

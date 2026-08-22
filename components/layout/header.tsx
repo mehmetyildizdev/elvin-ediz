@@ -61,7 +61,7 @@ export function Header({
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 w-full transition-all duration-300">
+    <header className="bg-bg-primary sticky top-0 z-40 w-full shadow-xs">
       {/* Top Contact Bar (Desktop / Tablet) */}
       <div className="bg-bg-primary text-text-on-dark-muted border-border-on-dark/20 hidden border-b px-6 py-2 text-xs transition-colors md:block md:px-12">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
@@ -123,7 +123,7 @@ export function Header({
       </div>
 
       {/* Main Navbar */}
-      <nav className="bg-bg-primary/95 border-border-on-dark/20 text-text-on-dark flex h-20 w-full items-center border-b px-6 backdrop-blur-md md:px-12">
+      <nav className="bg-bg-primary border-border-on-dark/20 text-text-on-dark flex h-20 w-full items-center border-b px-6 md:px-12">
         <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between">
           <Link
             href={localizeHref('/', lang)}
@@ -191,7 +191,7 @@ export function Header({
         aria-label="Mobile Navigation"
       >
         {/* Drawer Header */}
-        <div className="border-border-on-dark/20 flex items-center justify-between border-b px-6 py-5">
+        <div className="border-border-on-dark/20 flex items-center justify-between border-b px-5 py-3.5">
           <Link
             href={localizeHref('/', lang)}
             onClick={() => setOpen(false)}
@@ -200,70 +200,70 @@ export function Header({
             <Image
               src="/white-logo-for-elvinediz.png"
               alt={settings.siteTitle}
-              width={140}
-              height={42}
-              className="h-auto w-30 object-contain"
+              width={125}
+              height={36}
+              className="h-auto w-28 object-contain"
             />
           </Link>
           <button
             onClick={() => setOpen(false)}
-            className="text-text-on-dark hover:text-accent flex h-10 w-10 items-center justify-center rounded-full bg-white/5 transition-colors hover:bg-white/10"
+            className="text-text-on-dark hover:text-accent flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/5 transition-colors hover:bg-white/10"
             aria-label="Close menu"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
         {/* Drawer Body - Navigation Links */}
-        <div className="flex-1 overflow-y-auto px-6 py-6">
-          <div className="mb-6">
-            <p className="text-accent mb-2 text-[11px] font-bold tracking-widest uppercase">
+        <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-3.5">
+          <div className="mb-3">
+            <p className="text-accent mb-1 text-[10px] font-bold tracking-widest uppercase">
               Language / Dil
             </p>
             <LanguageSwitcher currentLang={lang} variant="mobile" />
           </div>
 
-          <p className="text-accent mb-3 text-[11px] font-bold tracking-widest uppercase">
+          <p className="text-accent mb-1.5 text-[10px] font-bold tracking-widest uppercase">
             Menu Navigation
           </p>
 
-          <nav className="flex flex-col gap-1.5">
+          <nav className="flex flex-col gap-1">
             {settings.headerNav.map(({ label, href }, index) => (
               <Link
                 key={href}
                 href={localizeHref(href, lang)}
                 onClick={() => setOpen(false)}
-                className="group text-text-on-dark hover:text-accent flex items-center justify-between rounded-xl px-3.5 py-3 font-serif text-base font-medium transition-all hover:bg-white/5"
+                className="group text-text-on-dark hover:text-accent flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all hover:bg-white/5"
               >
-                <span className="flex items-center gap-3">
-                  <span className="text-accent/60 font-sans text-xs font-semibold">
+                <span className="flex items-center gap-2.5">
+                  <span className="text-accent/60 font-mono text-[10px] font-semibold">
                     0{index + 1}
                   </span>
                   <span>{label}</span>
                 </span>
                 <ChevronRight
-                  size={16}
-                  className="text-text-on-dark-muted group-hover:text-accent opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-100"
+                  size={14}
+                  className="text-text-on-dark-muted group-hover:text-accent opacity-40 transition-all group-hover:translate-x-0.5 group-hover:opacity-100"
                 />
               </Link>
             ))}
           </nav>
 
-          <div className="mt-6">
+          <div className="mt-3.5">
             <Button
               href={localizeHref(settings.consultationLink, lang)}
               variant="primary"
-              size="md"
-              className="w-full justify-center"
+              size="sm"
+              className="w-full justify-center py-2 text-xs font-semibold tracking-wide"
               onClick={() => setOpen(false)}
             >
-              Free Consultation <ArrowUpRight size={16} />
+              Free Consultation <ArrowUpRight size={14} />
             </Button>
           </div>
         </div>
 
-        {/* Drawer Footer - Contact Info & Socials */}
-        <div className="border-border-on-dark/20 space-y-3 border-t bg-black/15 p-6 text-xs">
+        {/* Drawer Footer - Contact Info & Socials (One item per line) */}
+        <div className="border-border-on-dark/20 space-y-2 border-t bg-black/20 px-5 py-3.5 text-xs">
           <a
             href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`}
             className="text-text-on-dark-muted hover:text-accent flex items-center gap-2.5 transition-colors"
@@ -293,7 +293,7 @@ export function Header({
           </div>
 
           {(settings.linkedinUrl || settings.instagramUrl) && (
-            <div className="border-border-on-dark/10 flex items-center gap-3 border-t pt-2">
+            <div className="border-border-on-dark/10 flex items-center gap-3 border-t pt-2 text-xs">
               {settings.linkedinUrl && (
                 <a
                   href={settings.linkedinUrl}
@@ -314,6 +314,23 @@ export function Header({
                   Instagram
                 </a>
               )}
+            </div>
+          )}
+
+          {/* Mobile Drawer Developer Credit (toggled via Sanity Studio) */}
+          {settings?.showDeveloperCredit !== false && (
+            <div className="border-border-on-dark/10 border-t pt-2 text-[10.5px]">
+              <span className="text-text-on-dark-muted/60">
+                {settings?.developerCreditText || 'Crafted by'}{' '}
+                <a
+                  href={settings?.developerCreditUrl || 'https://mehmetyildiz.dev'}
+                  target="_blank"
+                  rel="noopener"
+                  className="hover:text-accent font-medium text-text-on-dark-muted/90 underline-offset-2 transition-colors duration-200 hover:underline"
+                >
+                  {settings?.developerCreditName || 'Mehmet Yıldız'}
+                </a>
+              </span>
             </div>
           )}
         </div>

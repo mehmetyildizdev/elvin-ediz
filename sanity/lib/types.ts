@@ -31,6 +31,10 @@ export interface SiteSettingsData {
   footerPrivacyText?: string;
   footerNotice: string;
   copyrightText: string;
+  showDeveloperCredit?: boolean;
+  developerCreditText?: string;
+  developerCreditName?: string;
+  developerCreditUrl?: string;
   defaultMetaTitle?: string;
   titleTemplate?: string;
   defaultMetaDescription?: string;
