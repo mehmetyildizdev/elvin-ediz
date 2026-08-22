@@ -326,7 +326,7 @@ export function Header({
                   href={settings?.developerCreditUrl || 'https://mehmetyildiz.dev'}
                   target="_blank"
                   rel="noopener"
-                  className="hover:text-accent font-medium text-text-on-dark-muted/90 underline-offset-2 transition-colors duration-200 hover:underline"
+                  className="hover:text-accent text-text-on-dark-muted/90 font-medium underline-offset-2 transition-colors duration-200 hover:underline"
                 >
                   {settings?.developerCreditName || 'Mehmet Yıldız'}
                 </a>
